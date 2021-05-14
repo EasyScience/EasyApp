@@ -1,0 +1,28 @@
+# POETRY CONFIG
+
+[build-system]
+requires = ["poetry>=1.0"]
+build-backend = "poetry.masonry.api"
+
+[tool.poetry]
+name = "easyApp"
+version = "0.0.3"
+description = "The application skeleton in the easy universe."
+license = "GPL-3.0-only"
+authors = ["Andrew Sazonov", "Simon Ward"]
+readme = "README.md"
+homepage = "https://github.com/easyScience/easyApp"
+documentation = "https://github.com/easyScience/easyApp"
+include = ["CHANGELOG.md"]
+packages = [ { include = "easyAppGui" } ]
+
+[tool.poetry.dependencies]
+python = '^3.7.0, <3.9'
+dicttoxml = "^1.7.4"
+requests = "^2.25.1"
+PySide2 = '^5.15.2'
+
+[tool.poetry.dev-dependencies]
+pytest = "^5.2"
+
+# CUSTOM CONFIG

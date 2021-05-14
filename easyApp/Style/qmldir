@@ -1,0 +1,6 @@
+module Style
+
+singleton Colors 1.0 Colors.qml
+singleton Fonts 1.0 Fonts.qml
+singleton Sizes 1.0 Sizes.qml
+singleton Times 1.0 Times.qml

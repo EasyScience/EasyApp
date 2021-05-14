@@ -1,0 +1,14 @@
+module Charts
+
+LineSeries 1.0 LineSeries.qml
+AreaSeries 1.0 AreaSeries.qml
+ScatterSeries 1.0 ScatterSeries.qml
+
+ValueAxis 1.0 ValueAxis.qml
+ChartView 1.0 ChartView.qml
+
+BasePlot 1.0 BasePlot.qml
+BaseBokeh 1.0 BaseBokeh.qml
+BaseQtCharts 1.0 BaseQtCharts.qml
+
+BaseChemDoodle 1.0 BaseChemDoodle.qml

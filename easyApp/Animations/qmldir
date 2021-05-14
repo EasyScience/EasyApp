@@ -1,0 +1,4 @@
+module Animations
+
+TranslationChange 1.0 TranslationChange.qml
+ThemeChange 1.0 ThemeChange.qml

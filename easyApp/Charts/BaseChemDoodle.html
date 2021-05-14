@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:400">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+  <script type="text/javascript" src="ChemDoodleWeb-9.2.0.unpacked.modified.js"></script>
+
+  <style type="text/css">
+
+    /* Global variables */
+
+    :root {
+      --tooltipWidth:120;
+
+      --chartWidth:726;
+      --chartHeight:621;
+
+      --fontPixelSize:14;
+      --toolButtonHeight:calc(2.5 * var(--fontPixelSize));
+
+      --backgroundColor:#fff;
+      --foregroundColor:#333;
+      --buttonBackgroundColor:#f4f4f4;
+      --buttonBackgroundHoveredColor:#fefefe;
+      --buttonForegroundColor:#333;
+      --buttonForegroundHoveredColor:#00a3e3;
+      --buttonBorderColor:#ddd;
+      --tooltipBackgroundColor:#e9e9e9;
+      --tooltipForegroundColor:#333;
+      --tooltipBorderColor:#ddd;
+    }
+
+    /* Standard elements */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+      font-family: "PT Sans", sans-serif;
+      font-size: calc(var(--fontPixelSize) * 1px);
+    }
+
+    /* Chart main container */
+
+    #container {
+      position:relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Toolbar */
+
+    #toolbar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: calc(var(--fontPixelSize) * 1px);
+      margin-right: calc(var(--fontPixelSize) * 1px);
+    }
+
+    #toolbar .toolbar-separator {
+      width: calc(0.25 * var(--fontPixelSize) * 1px);
+      margin-left: calc(0.25 * var(--fontPixelSize) * 1px);
+      display: inline-block;
+    }
+
+    #toolbar button {
+      width: calc(var(--toolButtonHeight) * 1px);
+      height: calc(var(--toolButtonHeight) * 1px);
+      margin-left: calc(0.25 * var(--fontPixelSize) * 1px);
+      font-size: calc(1.25 * var(--fontPixelSize) * 1px);
+      color: var(--buttonForegroundColor);
+      background: var(--buttonBackgroundColor);
+      border: 1px solid var(--buttonBorderColor);
+    }
+
+    #toolbar button:hover {
+      color: var(--buttonForegroundHoveredColor);
+      background: var(--buttonBackgroundHoveredColor);
+    }
+
+    #toolbar button:focus {
+      outline: 0;
+    }
+
+    /* Tooltips */
+
+    [data-tooltip] {
+      position: relative;
+    }
+
+    [data-tooltip]::after {
+      content: attr(data-tooltip);
+      display: inline-block;
+      white-space: nowrap;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translate(-50%, calc(-0.75 * var(--fontPixelSize) * 1px));
+      font-family: "PT Sans", sans-serif;
+      font-size: calc(var(--fontPixelSize) * 1px);
+      padding: calc(0.75 * var(--fontPixelSize) * 1px) calc(var(--fontPixelSize) * 1px);
+      background-color: var(--tooltipBackgroundColor);
+      color: var(--tooltipForegroundColor);
+      border: 1px solid var(--tooltipBorderColor);
+      border-radius: calc(0.25 * var(--fontPixelSize) * 1px);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    [data-tooltip]:hover::after {
+        opacity: 1;
+    }
+  </style>
+
+</head>
+
+<body>
+
+  <div id="container">
+
+    <div id="toolbar"></div>
+
+    <script>
+      const style = getComputedStyle(document.documentElement)
+
+      ChemDoodle.DEFAULT_STYLES.projectionPerspective_3D = true
+      ChemDoodle.DEFAULT_STYLES.projectionPerspectiveVerticalFieldOfView_3D = 20
+      ChemDoodle.DEFAULT_STYLES.compass_display = true
+      ChemDoodle.DEFAULT_STYLES.compass_type_3D = 0
+      ChemDoodle.DEFAULT_STYLES.compass_size_3D = 70
+      ChemDoodle.DEFAULT_STYLES.compass_displayText_3D = true
+      ChemDoodle.DEFAULT_STYLES.text_font_families = ["PT Sans", "Helvetica", "Arial", "Dialog"]
+      ChemDoodle.DEFAULT_STYLES.text_font_size = parseInt(style.getPropertyValue('--fontPixelSize'))
+      ChemDoodle.DEFAULT_STYLES.backgroundColor = style.getPropertyValue('--backgroundColor')
+      ChemDoodle.DEFAULT_STYLES.shapes_color = style.getPropertyValue('--foregroundColor')
+
+      const structureViewer = new ChemDoodle.TransformCanvas3D(
+        "chart",
+        parseInt(style.getPropertyValue('--chartWidth')),
+        parseInt(style.getPropertyValue('--chartHeight'))
+      )
+      structureViewer.styles.set3DRepresentation("Ball and Stick")
+      structureViewer.styles.atoms_display = true
+      structureViewer.styles.atoms_displayLabels_3D = true
+      structureViewer.styles.atoms_useJMOLColors = true
+      structureViewer.styles.atoms_usePYMOLColors = false
+      structureViewer.styles.bonds_display = true
+      structureViewer.styles.bonds_splitColor = true
+      structureViewer.styles.bonds_cylinderDiameter_3D = 0.2
+      structureViewer.camera.zoomOut()
+
+      defaultViewAction()
+      reloadCif(
+        "data_Dichlorine\n\n_cell_length_a   8.56\n_cell_length_b   8.56\n_cell_length_c   6.12\n_cell_angle_alpha   90.0\n_cell_angle_beta   90.0\n_cell_angle_gamma   90.0\n_space_group_name_H-M_alt   'P 42/n c m'\n_space_group.IT_coordinate_system_code   1\n\nloop_\n _atom_site_label\n _atom_site_type_symbol\n _atom_site_occupancy\n _atom_site_fract_x\n _atom_site_fract_y\n _atom_site_fract_z\n _atom_site_adp_type\n _atom_site_U_iso_or_equiv\n  Cl1  Cl  1.0  0.0  0.0  0.0  Uiso  0.0\n\nloop_\n _symmetry_equiv_pos_as_xyz\n x, y, z\n -y+1/2, x+1/2, z+1/2\n -x, -y, z\n y+1/2, -x+1/2, z+1/2\n x+1/2, -y+1/2, -z\n y, x, -z+1/2\n -x+1/2, y+1/2, -z\n -y, -x, -z+1/2\n -x+1/2, -y+1/2, -z+1/2\n y, -x, -z\n x+1/2, y+1/2, -z+1/2\n -y, x, -z\n -x, y, z+1/2\n -y+1/2, -x+1/2, z\n x, -y, z+1/2\n y+1/2, x+1/2, z\n"
+      )
+      showToolbar(true)
+
+      // Actions (for buttons)
+
+      function showBondsAction() {
+        structureViewer.styles.bonds_display = !structureViewer.styles.bonds_display
+        structureViewer.repaint()
+        setShowBondsButtonTooltip()
+      }
+
+      function showLabelsAction() {
+        structureViewer.styles.atoms_displayLabels_3D = !structureViewer.styles.atoms_displayLabels_3D
+        structureViewer.repaint()
+        setShowLabelsButtonTooltip()
+      }
+
+      function projectionTypeAction() {
+        structureViewer.styles.projectionPerspective_3D = !structureViewer.styles.projectionPerspective_3D
+        structureViewer.setupScene()
+        structureViewer.repaint()
+        setProjectionTypeButtonTooltip()
+      }
+
+      function xProjectionAction() {
+        structureViewer.rotationMatrix = [0, 0, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1]
+        structureViewer.repaint()
+      }
+
+      function yProjectionAction() {
+        structureViewer.rotationMatrix = [0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1]
+        structureViewer.repaint()
+      }
+
+      function zProjectionAction() {
+        structureViewer.rotationMatrix = [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1]
+        structureViewer.repaint()
+      }
+
+      function defaultViewAction() {
+        structureViewer.rotationMatrix = [0.9703, 0, -0.2419, 0, 0, 1, 0, 0, 0.2419, 0, 0.9703, 0, 0, 0, 0, 1]
+        structureViewer.repaint()
+      }
+
+      // Actions (without buttons)
+
+      function reloadCif(cifStr) {
+        const xSuper = 1
+        const ySuper = 1
+        const zSuper = 1
+        const phase = ChemDoodle.readCIF(cifStr, xSuper, ySuper, zSuper)
+        structureViewer.loadContent([phase.molecule], [phase.unitCell])
+        structureViewer.setupScene()
+        structureViewer.repaint()
+      }
+
+      function showToolbar(state) {
+        const toolbar = document.getElementById("toolbar")
+        if (state === true) {
+          toolbar.style.display = "block"
+        } else {
+          toolbar.style.display = "none"
+        }
+      }
+
+      function setChartSizesExtra() {
+        structureViewer.styles.text_font_size = style.getPropertyValue('--fontPixelSize')
+        //document.getElementById("chart").width = parseInt(style.getPropertyValue('--chartWidth'))
+        //document.getElementById("chart").height = parseInt(style.getPropertyValue('--chartHeight'))
+        //document.getElementById("chart").style.width = `'${style.getPropertyValue('--chartWidth')}px'`
+        //document.getElementById("chart").style.height = `'${style.getPropertyValue('--chartHeight')}px'`
+        structureViewer.setupScene()
+        structureViewer.repaint()
+      }
+
+      function setChartColorsExtra() {
+        structureViewer.styles.backgroundColor = style.getPropertyValue('--backgroundColor')
+        structureViewer.styles.shapes_color = style.getPropertyValue('--foregroundColor')
+        structureViewer.setupScene()
+        structureViewer.repaint()
+      }
+
+      // Buttons
+
+      const showBondsButton = document.createElement("button")
+      showBondsButton.innerHTML = "<i class='fas fa-bone'></i>"
+      setShowBondsButtonTooltip()
+      showBondsButton.addEventListener("click", showBondsAction)
+
+      const showLabelsButton = document.createElement("button")
+      showLabelsButton.innerHTML = "<i class='fas fa-tag'></i>"
+      setShowLabelsButtonTooltip()
+      showLabelsButton.addEventListener("click", showLabelsAction)
+
+      const projectionTypeButton = document.createElement("button")
+      projectionTypeButton.innerHTML = "<i class='fas fa-cube'></i>"
+      setProjectionTypeButtonTooltip()
+      projectionTypeButton.addEventListener("click", projectionTypeAction)
+
+      const xProjectionButton = document.createElement("button")
+      xProjectionButton.innerHTML = "x"
+      xProjectionButton.setAttribute("data-tooltip", "View along the x axis")
+      xProjectionButton.addEventListener("click", xProjectionAction)
+
+      const yProjectionButton = document.createElement("button")
+      yProjectionButton.innerHTML = "y"
+      yProjectionButton.setAttribute("data-tooltip", "View along the y axis")
+      yProjectionButton.addEventListener("click", yProjectionAction)
+
+      const zProjectionButton = document.createElement("button")
+      zProjectionButton.innerHTML = "z"
+      zProjectionButton.setAttribute("data-tooltip", "View along the z axis")
+      zProjectionButton.addEventListener("click", zProjectionAction)
+
+      const defaultViewButton = document.createElement("button")
+      defaultViewButton.innerHTML = "<i class='fas fa-home'></i>"
+      defaultViewButton.setAttribute("data-tooltip", "Reset to default view")
+      defaultViewButton.addEventListener("click", defaultViewAction)
+
+      function createToolbarSeparator() {
+        const element = document.createElement("span")
+        element.classList.toggle("toolbar-separator")
+        return element
+      }
+
+      // Button tooltips
+
+      function setShowBondsButtonTooltip() {
+        if (structureViewer.styles.bonds_display) {
+          showBondsButton.setAttribute("data-tooltip", "Hide bonds")
+        } else {
+          showBondsButton.setAttribute("data-tooltip", "Show bonds")
+        }
+      }
+
+      function setShowLabelsButtonTooltip() {
+        if (structureViewer.styles.atoms_displayLabels_3D) {
+          showLabelsButton.setAttribute("data-tooltip", "Hide labels")
+        } else {
+          showLabelsButton.setAttribute("data-tooltip", "Show labels")
+        }
+      }
+
+      function setProjectionTypeButtonTooltip() {
+        if (structureViewer.styles.projectionPerspective_3D) {
+          projectionTypeButton.setAttribute("data-tooltip", "Set orthographic view")
+        } else {
+          projectionTypeButton.setAttribute("data-tooltip", "Set perspective view")
+        }
+      }
+
+      // Toolbar
+
+      const toolbar = document.getElementById("toolbar")
+
+      toolbar.appendChild(showBondsButton)
+      toolbar.appendChild(showLabelsButton)
+      toolbar.appendChild(createToolbarSeparator())
+      toolbar.appendChild(projectionTypeButton)
+      toolbar.appendChild(createToolbarSeparator())
+      toolbar.appendChild(xProjectionButton)
+      toolbar.appendChild(yProjectionButton)
+      toolbar.appendChild(zProjectionButton)
+      toolbar.appendChild(defaultViewButton)
+    </script>
+
+  </div>
+
+</body>
+
+</html>
