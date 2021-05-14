@@ -1,7 +1,7 @@
 import os
 import pathlib
 import re
-import requests
+import urllib.request
 import sys
 
 from PySide2.QtCore import QObject, QProcess, Property, Signal, Slot
@@ -172,12 +172,8 @@ class Updater(QObject):
     def _getWebChangelog(self):
         url = Updater.webChangelogUrl()
         try:
-            result = requests.get(url)
-            if result.ok:
-                return result.text
-            else:
-                print(f"* Failed to read web file {url} with code '{result.status_code}' and reason '{result.reason}'")
-                return ""
+            with urllib.request.urlopen(url) as f:
+                return f.read().decode('utf-8')
         except Exception as exception:
             print(f"* Failed to read web file {url} with exception {exception}")
             return ""
