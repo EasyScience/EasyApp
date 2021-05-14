@@ -1,11 +1,11 @@
 import QtQuick 2.13
 import Qt.labs.settings 1.0
 
-import easyAppGui.Style 1.0 as EaStyle
-import easyAppGui.Globals 1.0 as EaGlobals
-import easyAppGui.Animations 1.0 as EaAnimations
-import easyAppGui.Elements 1.0 as EaElements
-import easyAppGui.Components 1.0 as EaComponents
+import easyApp.Style 1.0 as EaStyle
+import easyApp.Globals 1.0 as EaGlobals
+import easyApp.Animations 1.0 as EaAnimations
+import easyApp.Elements 1.0 as EaElements
+import easyApp.Components 1.0 as EaComponents
 
 import Gui.Pages.Home 1.0 as ExHomePage
 

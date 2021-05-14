@@ -3,9 +3,9 @@ import QtQuick.Templates 2.13 as T
 import QtQuick.Controls.Material 2.12
 import QtQuick.Controls.Material.impl 2.12
 
-import easyAppGui.Style 1.0 as EaStyle
-import easyAppGui.Animations 1.0 as EaAnimations
-import easyAppGui.Elements 1.0 as EaElements
+import easyApp.Style 1.0 as EaStyle
+import easyApp.Animations 1.0 as EaAnimations
+import easyApp.Elements 1.0 as EaElements
 
 T.Slider {
     id: control

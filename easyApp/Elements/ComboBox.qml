@@ -4,10 +4,10 @@ import QtQuick.Controls 2.14
 import QtQuick.Controls.impl 2.14
 import QtQuick.Templates 2.14 as T
 
-import easyAppGui.Style 1.0 as EaStyle
-import easyAppGui.Globals 1.0 as EaGlobals
-import easyAppGui.Animations 1.0 as EaAnimations
-import easyAppGui.Elements 1.0 as EaElements
+import easyApp.Style 1.0 as EaStyle
+import easyApp.Globals 1.0 as EaGlobals
+import easyApp.Animations 1.0 as EaAnimations
+import easyApp.Elements 1.0 as EaElements
 
 T.ComboBox {
     id: control

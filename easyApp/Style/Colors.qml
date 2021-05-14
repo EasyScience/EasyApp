@@ -4,7 +4,7 @@ import QtQuick 2.13
 import QtQuick.Controls.Material 2.13
 import Qt.labs.settings 1.0
 
-import easyAppGui.Globals 1.0 as EaGlobals
+import easyApp.Globals 1.0 as EaGlobals
 
 QtObject {
     id: object

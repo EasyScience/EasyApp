@@ -1,6 +1,6 @@
 import QtQuick 2.13
 
-import easyAppGui.Elements 1.0 as EaElements
+import easyApp.Elements 1.0 as EaElements
 
 EaElements.ComboBox {
     property string headerText: ""

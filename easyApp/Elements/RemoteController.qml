@@ -4,9 +4,9 @@ import QtGraphicalEffects 1.12
 import QtMultimedia 5.14
 import QtTest 1.14
 
-import easyAppGui.Style 1.0 as EaStyle
-import easyAppGui.Globals 1.0 as EaGlobals
-import easyAppGui.Elements 1.0 as EaElements
+import easyApp.Style 1.0 as EaStyle
+import easyApp.Globals 1.0 as EaGlobals
+import easyApp.Elements 1.0 as EaElements
 
 Item {
     id: rc

@@ -1,9 +1,9 @@
 import QtQuick 2.13
 import QtCharts 2.13
 
-import easyAppGui.Style 1.0 as EaStyle
-import easyAppGui.Globals 1.0 as EaGlobals
-import easyAppGui.Animations 1.0 as EaAnimations
+import easyApp.Style 1.0 as EaStyle
+import easyApp.Globals 1.0 as EaGlobals
+import easyApp.Animations 1.0 as EaAnimations
 
 ValueAxis {
     property string title: ""

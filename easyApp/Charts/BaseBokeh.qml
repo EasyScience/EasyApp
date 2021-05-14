@@ -2,10 +2,10 @@ import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtWebEngine 1.10
 
-import easyAppGui.Style 1.0 as EaStyle
-import easyAppGui.Elements 1.0 as EaElements
-import easyAppGui.Logic 1.0 as EaLogic
-import easyAppGui.Charts 1.0 as EaCharts
+import easyApp.Style 1.0 as EaStyle
+import easyApp.Elements 1.0 as EaElements
+import easyApp.Logic 1.0 as EaLogic
+import easyApp.Charts 1.0 as EaCharts
 
 EaCharts.BasePlot {
     id: plot

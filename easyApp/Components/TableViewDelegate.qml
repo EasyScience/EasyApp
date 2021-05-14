@@ -1,7 +1,7 @@
 import QtQuick 2.13
 
-import easyAppGui.Style 1.0 as EaStyle
-import easyAppGui.Animations 1.0 as EaAnimations
+import easyApp.Style 1.0 as EaStyle
+import easyApp.Animations 1.0 as EaAnimations
 
 Rectangle {
     default property alias contentRowData: contentRow.data

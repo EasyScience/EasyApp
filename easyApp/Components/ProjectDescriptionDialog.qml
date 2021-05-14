@@ -4,10 +4,10 @@ import QtQuick.Dialogs 1.3 as QtQuickDialogs1
 import Qt.labs.platform 1.1 as QtLabsPlatform1
 import Qt.labs.settings 1.0
 
-import easyAppGui.Style 1.0 as EaStyle
-import easyAppGui.Globals 1.0 as EaGlobals
-import easyAppGui.Elements 1.0 as EaElements
-import easyAppGui.Logic 1.0 as EaLogic
+import easyApp.Style 1.0 as EaStyle
+import easyApp.Globals 1.0 as EaGlobals
+import easyApp.Elements 1.0 as EaElements
+import easyApp.Logic 1.0 as EaLogic
 
 EaElements.Dialog {
     id: dialog

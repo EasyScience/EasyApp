@@ -4,9 +4,9 @@ import QtQuick.Controls.impl 2.12
 import QtQuick.Layouts 1.12
 import QtGraphicalEffects 1.12
 
-import easyAppGui.Style 1.0 as EaStyle
-import easyAppGui.Globals 1.0 as EaGlobals
-import easyAppGui.Elements 1.0 as EaElements
+import easyApp.Style 1.0 as EaStyle
+import easyApp.Globals 1.0 as EaGlobals
+import easyApp.Elements 1.0 as EaElements
 
 import Gui.Globals 1.0 as ExGlobals
 
