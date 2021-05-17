@@ -16,7 +16,11 @@ EaElements.Dialog {
     id: dialog
 
     contentWidth: bar.implicitWidth
-    contentHeight: bar.implicitHeight + EaStyle.Sizes.fontPixelSize * 12
+    contentHeight: bar.implicitHeight +
+                   view.implicitHeight +
+                   topPadding +
+                   bottomPadding +
+                   implicitHeaderHeight
 
     visible: EaGlobals.Variables.showAppPreferencesDialog
     onClosed: EaGlobals.Variables.showAppPreferencesDialog = false
@@ -27,10 +31,21 @@ EaElements.Dialog {
 
     Component.onCompleted: setPreferencesOkButton()
 
+    // TabBar
+
     EaElements.TabBar {
         id: bar
 
         anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.right: parent.right
+
+        background: Rectangle {
+            z: 2
+            anchors.fill: parent
+            color: "transparent"
+            border.color: EaStyle.Colors.appBarBorder
+        }
 
         EaElements.AppBarTabButton {
             fontIcon: "users"
@@ -61,8 +76,9 @@ EaElements.Dialog {
             text: qsTr("Develop")
             ToolTip.text: qsTr("")
         }
-
     }
+
+    // Main area
 
     SwipeView {
         id: view
@@ -72,7 +88,9 @@ EaElements.Dialog {
         anchors.left: parent.left
         anchors.right: parent.right
 
-        anchors.topMargin: EaStyle.Sizes.fontPixelSize * 1.25
+        topPadding: EaStyle.Sizes.fontPixelSize * 0.75
+        leftPadding: EaStyle.Sizes.fontPixelSize * 1.5
+        bottomPadding: EaStyle.Sizes.fontPixelSize * 3
 
         currentIndex: bar.currentIndex
 
@@ -111,24 +129,31 @@ EaElements.Dialog {
 
         // Updates tab content
 
-        Grid {
-            columns: 2
-            columnSpacing: EaStyle.Sizes.fontPixelSize
-            rowSpacing: EaStyle.Sizes.fontPixelSize
-            verticalItemAlignment: Grid.AlignVCenter
+        Column {
+            topPadding: EaStyle.Sizes.fontPixelSize * 0.5
+            spacing: EaStyle.Sizes.fontPixelSize * 1.5
 
-            EaElements.Label {
-               text: qsTr("Check on app start") + ":"
+            Row {
+                id: checkOnAppStartRow
+                spacing: EaStyle.Sizes.fontPixelSize
+
+                EaElements.Label {
+                    anchors.verticalCenter: parent.verticalCenter
+                    text: qsTr("Check on app start") + ":"
+                }
+
+                EaElements.CheckBox {
+                    id: updatesCheckBox
+                    padding: 0
+                    checked: EaGlobals.Variables.checkUpdateOnAppStart
+                    onCheckedChanged: EaGlobals.Variables.checkUpdateOnAppStart = checked
+                }
             }
 
-            EaElements.CheckBox {
-                id: updatesCheckBox
-                checked: EaGlobals.Variables.checkUpdateOnAppStart
-                onCheckedChanged: EaGlobals.Variables.checkUpdateOnAppStart = checked
-            }
-
-            EaElements.Button {
-                text: qsTr("Check for updates now")
+            EaElements.SideBarButton {
+                width: checkOnAppStartRow.width
+                highlighted: true
+                text: qsTr("Check now")
                 onClicked: {
                     EaGlobals.Variables.updater.silentCheck = false
                     EaGlobals.Variables.updater.checkUpdate()
@@ -268,6 +293,8 @@ EaElements.Dialog {
         }
 
     }
+
+    // Misc
 
     Settings {
         fileName: EaGlobals.Variables.settingsFile
