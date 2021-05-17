@@ -130,6 +130,7 @@ Column {
                 const headerText = cells[cellIndex].headerText
                 qmlString +=
                         "EaComponents.TableViewLabel { \n" +
+                            `textFormat: Text.RichText \n` +
                             `text: '${headerText}' \n` +
                             `width: ${width} \n` +
                             `horizontalAlignment: ${horizontalAlignment} \n` +
