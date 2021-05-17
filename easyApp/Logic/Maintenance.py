@@ -19,6 +19,7 @@ class Updater(QObject):
     silentCheckChanged = Signal()
     errorMessageChanged = Signal()
     webVersionChanged = Signal()
+    webDateChanged = Signal()
     releaseNotesChanged = Signal()
 
     # INIT
@@ -30,6 +31,7 @@ class Updater(QObject):
         self._silent_check = True
         self._error_message = ""
         self._web_version = ""
+        self._web_date = ""
 
         self._release_notes = ""
 
@@ -95,6 +97,10 @@ class Updater(QObject):
     def webVersion(self):
         return self._web_version
 
+    @Property(str, notify=webDateChanged)
+    def webDate(self):
+        return self._web_date
+
     @Property(str, notify=releaseNotesChanged)
     def releaseNotes(self):
         return self._release_notes
@@ -104,8 +110,10 @@ class Updater(QObject):
     def _onStarted(self):
         print("* Updater process started")
         self._web_version = ""
+        self._web_date = ""
         self._error_message = ""
         self.webVersionChanged.emit()
+        self.webDateChanged.emit()
         self.errorMessageChanged.emit()
 
     def _onFinished(self, exit_code: int, exit_status: QProcess.ExitStatus):
@@ -147,8 +155,10 @@ class Updater(QObject):
         # New version is found
         print(f"* Updater found component(s) with new version(s): {matches}")
         self._web_version = matches[0]  # TODO: Update this if multiple components are available
+        self._web_date = self._getWebDate()
         self._release_notes = self._getReleaseNotes()
         self.webVersionChanged.emit()
+        self.webDateChanged.emit()
         self.releaseNotesChanged.emit()
 
         # Trigger frontend dialog opening
@@ -189,6 +199,13 @@ class Updater(QObject):
         release_notes = re.sub(r'^# ', "### ", release_notes)
         return release_notes
 
+    def _getWebDate(self):
+        web_changelog = self._getWebChangelog()
+        pattern = r'^# Version .*? \(([A-Za-z0-9\s]*)\)'
+        matches = re.findall(pattern, web_changelog)
+        web_date = matches[0]
+        return web_date
+
     # STATIC METHODS
 
     @staticmethod
@@ -209,7 +226,7 @@ class Updater(QObject):
         else:
             relative_path = "CHANGELOG.md"
         path = os.path.join(QApplication.applicationDirPath(), relative_path)
-        #path = os.path.join("/Applications/easyDiffraction/MaintenanceTool.app/Contents/MacOS", relative_path)
+        #path = os.path.join("/Applications/easyDiffraction/easyDiffraction.app/Contents/MacOS", relative_path)
         return path
 
     @staticmethod
