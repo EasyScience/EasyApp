@@ -128,9 +128,8 @@ EaElements.Dialog {
             }
 
             EaElements.Button {
-                text: qsTr("Check now")
+                text: qsTr("Check for updates now")
                 onClicked: {
-                    print("!!", EaGlobals.Variables.updater)
                     EaGlobals.Variables.updater.silentCheck = false
                     EaGlobals.Variables.updater.checkUpdate()
                 }
