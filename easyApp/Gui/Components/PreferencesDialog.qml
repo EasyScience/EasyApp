@@ -17,10 +17,10 @@ EaElements.Dialog {
 
     contentWidth: bar.implicitWidth
     contentHeight: bar.implicitHeight +
-                   view.implicitHeight +
+                   implicitHeaderHeight +
                    topPadding +
                    bottomPadding +
-                   implicitHeaderHeight
+                   EaStyle.Sizes.fontPixelSize * 9
 
     visible: EaGlobals.Variables.showAppPreferencesDialog
     onClosed: EaGlobals.Variables.showAppPreferencesDialog = false
@@ -89,7 +89,7 @@ EaElements.Dialog {
         anchors.right: parent.right
 
         topPadding: EaStyle.Sizes.fontPixelSize * 0.75
-        leftPadding: EaStyle.Sizes.fontPixelSize * 1.5
+        leftPadding: EaStyle.Sizes.fontPixelSize * 0.5
         bottomPadding: EaStyle.Sizes.fontPixelSize * 3
 
         currentIndex: bar.currentIndex
