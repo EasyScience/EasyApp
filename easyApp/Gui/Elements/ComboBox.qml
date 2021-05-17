@@ -181,7 +181,7 @@ T.ComboBox {
     }
 
     function _foregroundColor() {
-        if (!enabled)
+        if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
         if (rippleArea.containsMouse)
             return EaStyle.Colors.themeForegroundHovered
@@ -189,8 +189,8 @@ T.ComboBox {
     }
 
     function _borderColor() {
-        if (!enabled)
-            return EaStyle.Colors.themeForegroundDisabled
+        if (!control.enabled)
+            return EaStyle.Colors.themeBackgroundDisabled
         if (rippleArea.containsMouse)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.appBarComboBoxBorder
