@@ -32,13 +32,8 @@ class Updater(QObject):
         self._error_message = ""
         self._web_version = ""
         self._web_date = ""
-
         self._release_notes = ""
-
-        self._process = QProcess()
-        self._process.setWorkingDirectory(QApplication.applicationDirPath())
-        #self._process.setWorkingDirectory("/Applications/easyDiffraction/MaintenanceTool.app/Contents/MacOS")
-        self._process.setProgram(Updater.exeRelativePath())
+        self._process = self._createUpdaterProcess()
 
         # connections
         self._process.started.connect(self._onStarted)
@@ -106,6 +101,12 @@ class Updater(QObject):
         return self._release_notes
 
     # PRIVATE METHODS
+
+    def _createUpdaterProcess(self):
+        process = QProcess()
+        process.setWorkingDirectory(QApplication.applicationDirPath())
+        process.setProgram(Updater.exeRelativePath())
+        return process
 
     def _onStarted(self):
         print("* Updater process started")
