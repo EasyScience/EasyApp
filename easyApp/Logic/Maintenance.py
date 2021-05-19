@@ -211,11 +211,11 @@ class Updater(QObject):
     @staticmethod
     def exeRelativePath():
         if sys.platform.startswith('win'):
-            return "maintenancetool.exe"
+            return "..\\MaintenanceTool.exe"
         elif sys.platform.startswith('darwin'):
             return "../../../MaintenanceTool.app/Contents/MacOS/MaintenanceTool"
         else:
-            return "maintenancetool"
+            return "../MaintenanceTool"
 
     @staticmethod
     def appChangelogPath():
