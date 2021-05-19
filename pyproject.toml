@@ -6,7 +6,7 @@ build-backend = "poetry.masonry.api"
 
 [tool.poetry]
 name = "easyApp"
-version = "0.0.3"
+version = "0.1.0"
 description = "The application skeleton in the easy universe."
 license = "GPL-3.0-only"
 authors = ["Andrew Sazonov", "Simon Ward"]
