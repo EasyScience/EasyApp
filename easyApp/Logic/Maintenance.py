@@ -221,13 +221,12 @@ class Updater(QObject):
     @staticmethod
     def appChangelogPath():
         if sys.platform.startswith('win'):
-            relative_path = "CHANGELOG.md"
+            relative_path = "..\\CHANGELOG.md"
         elif sys.platform.startswith('darwin'):
             relative_path = "../../../CHANGELOG.md"
         else:
-            relative_path = "CHANGELOG.md"
+            relative_path = "../CHANGELOG.md"
         path = os.path.join(QApplication.applicationDirPath(), relative_path)
-        #path = os.path.join("/Applications/easyDiffraction/easyDiffraction.app/Contents/MacOS", relative_path)
         return path
 
     @staticmethod
