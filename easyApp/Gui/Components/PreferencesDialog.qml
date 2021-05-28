@@ -139,7 +139,7 @@ EaElements.Dialog {
 
                 EaElements.Label {
                     anchors.verticalCenter: parent.verticalCenter
-                    text: qsTr("Check on app start") + ":"
+                    text: qsTr("Check on application start") + ":"
                 }
 
                 EaElements.CheckBox {
