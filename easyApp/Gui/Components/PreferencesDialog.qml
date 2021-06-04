@@ -51,6 +51,8 @@ EaElements.Dialog {
             fontIcon: "users"
             text: qsTr("Prompts")
             ToolTip.text: qsTr("")
+
+            Component.onCompleted: EaGlobals.Variables.promptsTab = this
         }
 
         EaElements.AppBarTabButton {
@@ -63,6 +65,8 @@ EaElements.Dialog {
             fontIcon: "paint-brush"
             text: qsTr("Appearance")
             ToolTip.text: qsTr("")
+
+            Component.onCompleted: EaGlobals.Variables.appearanceTab = this
         }
 
         EaElements.AppBarTabButton {
