@@ -214,10 +214,10 @@ EaElements.Dialog {
             }
 
             EaElements.ComboBox {
-                model: ExGlobals.Constants.proxy.plotting3dLibs
-                onActivated: ExGlobals.Constants.proxy.current3dPlottingLib = currentValue
+                model: ExGlobals.Constants.proxy.plotting3d.plotting3dLibs
+                onActivated: ExGlobals.Constants.proxy.plotting3d.current3dPlottingLib = currentValue
                 Component.onCompleted: {
-                    currentIndex = model.indexOf(ExGlobals.Constants.proxy.current3dPlottingLib)
+                    currentIndex = model.indexOf(ExGlobals.Constants.proxy.plotting3d.current3dPlottingLib)
                 }
             }
 
