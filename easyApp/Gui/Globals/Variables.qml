@@ -43,6 +43,10 @@ QtObject {
     // Screenshots control
     property bool saveScreenshotsRunning: false
 
+    // Tab buttons
+    property var appearanceTab
+    property var promptsTab
+
     // App bar
     property int appBarCurrentIndex: 0
     enum AppBarIndexEnum {

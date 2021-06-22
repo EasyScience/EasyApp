@@ -19,6 +19,10 @@ QtObject {
     property FontLoader encodeSansExpandedRegular: FontLoader { source: fontPath("Encode_Sans_Expanded", "EncodeSansExpanded-Regular.ttf") }
     property FontLoader encodeSansExpandedLight: FontLoader { source: fontPath("Encode_Sans_Expanded", "EncodeSansExpanded-Light.ttf") } // font.weight: Font.Light
 
+    property FontLoader nunitoRegular: FontLoader { source: fontPath("Nunito", "Nunito-Regular.ttf") }
+    property FontLoader nunitoLight: FontLoader { source: fontPath("Nunito", "Nunito-Light.ttf") }  // font.weight: Font.Light
+    property FontLoader nunitoSemiBold: FontLoader { source: fontPath("Nunito", "Nunito-SemiBold.ttf") } // font.weight: Font.DemiBold
+
     property FontLoader fontAwesomeSolid: FontLoader { source: fontPath("FontAwesome", "Font Awesome 5 Free-Solid-900.otf") }
 
     // Font families
@@ -30,6 +34,8 @@ QtObject {
     readonly property string secondFontFamily: encodeSansRegular.name
     readonly property string secondCondensedFontFamily: encodeSansCondensedRegular.name
     readonly property string secondExpandedFontFamily: encodeSansExpandedRegular.name
+
+    readonly property string thirdFontFamily: nunitoRegular.name
 
     readonly property string iconsFamily: fontAwesomeSolid.name
 

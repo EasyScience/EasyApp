@@ -56,17 +56,18 @@ EaElements.Dialog {
                     bottomPadding: EaStyle.Sizes.fontPixelSize * 0.5
                     verticalAlignment: Text.AlignVCenter
                     text: " " + appPrefixName
-                    font.family: EaStyle.Fonts.secondCondensedFontFamily
-                    font.weight: Font.ExtraLight
-                    font.pixelSize: EaStyle.Sizes.fontPixelSize * 3.5
+                    font.family: EaStyle.Fonts.thirdFontFamily
+                    font.weight: Font.Light
+                    font.pixelSize: EaStyle.Sizes.fontPixelSize * 3
                 }
 
                 EaElements.Label {
                     anchors.verticalCenter: parent.verticalCenter
                     bottomPadding: EaStyle.Sizes.fontPixelSize * 0.5
                     text: appSuffixName
-                    font.family: EaStyle.Fonts.secondCondensedFontFamily
-                    font.pixelSize: EaStyle.Sizes.fontPixelSize * 3.5
+                    font.family: EaStyle.Fonts.thirdFontFamily
+                    font.weight: Font.DemiBold
+                    font.pixelSize: EaStyle.Sizes.fontPixelSize * 3
                 }
             }
 
