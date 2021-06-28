@@ -11,6 +11,9 @@ import easyApp.Gui.Elements 1.0 as EaElements
 T.MenuItem {
     id: control
 
+    property int textFormat: Text.RichText
+    property int elide: Text.ElideMiddle
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
@@ -52,7 +55,8 @@ T.MenuItem {
         font: control.font
         verticalAlignment: Text.AlignVCenter
 
-        textFormat: Text.RichText
+        textFormat: control.textFormat
+        elide: control.elide
 
         text: control.text
 

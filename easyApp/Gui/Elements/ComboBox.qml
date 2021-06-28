@@ -17,6 +17,9 @@ T.ComboBox {
     property color backgroundColor: _backgroundColor()
     property color popupBackgroundColor: _popupBackgroundColor()
 
+    property int textFormat: Text.RichText
+    property int elide: Text.ElideMiddle
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
@@ -45,12 +48,25 @@ T.ComboBox {
     }
 
     delegate: EaElements.MenuItem {
+        id: delegate
+
         width: parent !== null ? parent.width : 0
         height: EaStyle.Sizes.comboBoxHeight
 
         font.family: control.font.family
 
-        text: control.textRole ? (Array.isArray(control.model) ? modelData[control.textRole] : model[control.textRole]) : modelData
+        textFormat: control.textFormat
+        elide: control.elide
+
+        text: (control.textRole ?
+                  (Array.isArray(control.model) ?
+                       modelData[control.textRole] :
+                       model[control.textRole]) :
+                  modelData)
+                .split('$TEXT_COLOR').join(EaStyle.Colors.themeForegroundMinor)
+                .split('$ICON_COLOR').join(EaStyle.Colors.isDarkTheme ? Qt.darker(EaStyle.Colors.themeForegroundMinor, 1.2) : Qt.lighter(EaStyle.Colors.themeForegroundMinor, 1.2))
+                .split('$ICONS_FAMILY').join(EaStyle.Fonts.iconsFamily)
+
         ///Material.foreground: control.currentIndex === index ? parent.Material.accent : parent.Material.foreground
 
         highlighted: control.highlightedIndex === index
@@ -78,7 +94,12 @@ T.ComboBox {
 
         /////height: 20
 
-        text: control.editable ? control.editText : control.displayText
+        text: (control.editable ?
+                   control.editText :
+                   control.displayText)
+        .split('$TEXT_COLOR').join(EaStyle.Colors.themeForegroundMinor)
+        .split('$ICON_COLOR').join(EaStyle.Colors.isDarkTheme ? Qt.darker(EaStyle.Colors.themeForegroundMinor, 1.2) : Qt.lighter(EaStyle.Colors.themeForegroundMinor, 1.2))
+        .split('$ICONS_FAMILY').join(EaStyle.Fonts.iconsFamily)
 
         enabled: control.editable
         ///autoScroll: control.editable
