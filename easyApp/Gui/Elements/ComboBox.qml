@@ -89,8 +89,8 @@ T.ComboBox {
 
     contentItem: Label {
         padding: EaStyle.Sizes.fontPixelSize * 0.5
-        leftPadding: control.editable ? 2 : control.mirrored ? 0 : 12
-        rightPadding: control.editable ? 2 : control.mirrored ? 12 : 0
+        leftPadding: control.editable ? 2 : control.mirrored ? EaStyle.Sizes.fontPixelSize * 1.0 : EaStyle.Sizes.fontPixelSize * 0.75
+        rightPadding: control.editable ? 2 : control.mirrored ? EaStyle.Sizes.fontPixelSize * 0.75 : EaStyle.Sizes.fontPixelSize * 1.0
 
         /////height: 20
 
@@ -110,7 +110,8 @@ T.ComboBox {
         font: control.font
         verticalAlignment: Text.AlignVCenter
 
-        textFormat: Text.RichText
+        textFormat: control.textFormat
+        elide: control.elide
 
         ///selectionColor: control.Material.accentColor
         ///selectedTextColor: control.Material.primaryHighlightedTextColor
