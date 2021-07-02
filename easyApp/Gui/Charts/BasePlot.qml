@@ -55,6 +55,7 @@ Rectangle {
 
     property color chartBackgroundColor: EaStyle.Colors.chartPlotAreaBackground
     property color chartForegroundColor: EaStyle.Colors.chartForeground
+    property color chartAxisColor: EaStyle.Colors.chartAxis
     property color chartGridLineColor: EaStyle.Colors.chartGridLine
     property color chartMinorGridLineColor: EaStyle.Colors.chartMinorGridLine
 

@@ -9,6 +9,7 @@ ChartView 1.0 ChartView.qml
 
 BasePlot 1.0 BasePlot.qml
 BaseBokeh 1.0 BaseBokeh.qml
+BaseBokeh2 1.0 BaseBokeh2.qml
 BaseQtCharts 1.0 BaseQtCharts.qml
 
 BaseChemDoodle 1.0 BaseChemDoodle.qml

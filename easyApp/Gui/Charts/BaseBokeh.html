@@ -1,0 +1,763 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:400">
+    <script type="text/javascript" src="bokeh-2.3.2.min.js"></script>
+    <script type="text/javascript" src="bokeh-widgets-2.3.2.min.js"></script>
+    <script type="text/javascript" src="bokeh-tables-2.3.2.min.js"></script>
+    <script type="text/javascript" src="bokeh-api-2.3.2.min.js"></script>
+    <style type="text/css">
+
+    /* Global variables */
+
+    :root {
+      --chartWidth:700;
+      --mainChartHeight:300;
+      --braggChartHeight:50;
+      --differenceChartHeight:100;
+      --xAxisChartHeight:50;
+
+      --measuredLineWidth:#555;
+      --calculatedLineWidth:#555;
+      --differenceLineWidth:#555;
+      --backgroundLineWidth:#555;
+
+      --fontPixelSize:14;
+
+      --xAxisTitle:x;
+      --yMainAxisTitle:y;
+      --yDifferenceAxisTitle:diff;
+
+      --chartBackgroundColor:#fff;
+      --chartForegroundColor:#000;
+      --chartAxisColor:#888;
+      --chartGridLineColor:#555;
+      --chartMinorGridLineColor:#555;
+
+      --measuredLineColor:#0f0;
+      --measuredAreaColor:#90f;
+      --calculatedLineColor:#f00;
+      --differenceLineColor:#555;
+      --braggTicksColor:#0af;
+      --backgroundLineColor:#555;
+      --differenceAreaColor:#555;
+    }
+
+    /* Standard elements */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html,
+    body {
+        height: 100%;
+    }
+
+    body {
+        overflow: hidden;
+        font-family: "PT Sans", sans-serif;
+        font-size: calc(var(--fontPixelSize) * 1px);
+    }
+
+    /* Bokeh specific */
+
+    .bk-logo {
+        display: none !important;
+    }
+
+    .bk-toolbar.bk-above {
+        position: absolute;
+        z-index: 1;
+        top: calc(0.5 * var(--fontPixelSize) * 1px);
+        right: calc(1.5 * var(--fontPixelSize) * 1px);
+    }
+
+    /* Chart main container */
+
+    #bk-chart-container {
+        /*
+        height: 520px;
+        width: 520px;
+        padding: calc(var(--fontPixelSize) * 1px);
+        background-color: #159;
+        */
+        background-color: #159;
+        /**/
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+    }
+    </style>
+</head>
+
+<body>
+    <div id="bk-chart-container">
+    </div>
+
+    <script>
+
+    //<button id='test-button'>Test Button</button>
+
+    /////////////
+    // FIRST PART
+    /////////////
+
+    const style = getComputedStyle(document.documentElement)
+
+    const main_tooltip = ("<div style=\"padding:2px\">\n<table>\n<tbody>\n<tr style=\"color:#bbbbbb\">\n   <td style=\"text-align:right\">x:&nbsp;</td>\n   <td style=\"text-align:right\">@x_meas{0.00}</td>\n   <td></td>\n</tr>\n<tr style=\"color:#03a9f4\">\n   <td style=\"text-align:right\">meas:&nbsp;</td>\n   <td style=\"text-align:right\">@y_meas{0.0}</td>\n   <td>&#177;&nbsp;@sy_meas{0.0}</td>\n</tr>\n<tr style=\"color:#ff5722\">\n   <td style=\"text-align:right\">calc:&nbsp;</td>\n   <td style=\"text-align:right\">@y_calc{0.0}</td>\n   <td></td>\n</tr>\n<tr style=\"color:#8bc34a\">\n   <td style=\"text-align:right\">diff:&nbsp;</td>\n   <td style=\"text-align:right\">@y_diff{0.0}</td>\n   <td></td>\n</tr>\n</tbody>\n</table>\n</div>")
+    const bragg_tooltip = ("<div style=\"padding:2px\">\n<span style=\"color:#bbbbbb\">x:&nbsp;@x_bragg{0.00}</span>\n&nbsp;\n<span style=\"color:#ff5722\">hkl:&nbsp;(@h_bragg @k_bragg @l_bragg)</span>\n</div>")
+
+    const measured_source = new Bokeh.ColumnDataSource()
+    const calculated_source = new Bokeh.ColumnDataSource()
+    const difference_source = new Bokeh.ColumnDataSource()
+    const bragg_source = new Bokeh.ColumnDataSource()
+    const background_source = new Bokeh.ColumnDataSource()
+
+    const charts = []
+
+    ///////////////////
+    // MAIN CHART (top)
+    ///////////////////
+
+    const main_chart = new Bokeh.Plotting.figure({
+        tools: "reset,undo,redo",
+
+        height: parseInt(style.getPropertyValue('--mainChartHeight')),
+        width: parseInt(style.getPropertyValue('--chartWidth')),
+
+        x_range: new Bokeh.Range1d({
+            start: 8.1,
+            end: 9.0
+        }),
+        y_range: new Bokeh.Range1d({
+            start: 400.0,
+            end: 700.0
+        }),
+
+        //y_axis_type: "log",
+
+        y_axis_label: style.getPropertyValue('--yMainAxisTitle'),
+
+        outline_line_color: style.getPropertyValue('--chartAxisColor'),
+        background: style.getPropertyValue('--chartBackgroundColor'),
+        background_fill_color: style.getPropertyValue('--chartBackgroundColor'),
+        border_fill_color: style.getPropertyValue('--chartBackgroundColor'),
+
+        min_border_right: 1.5 * parseInt(style.getPropertyValue('--fontPixelSize')),
+        min_border_top: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize')),
+        min_border_bottom: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize'))
+    })
+
+    main_chart.add_tools(new Bokeh.HoverTool({
+        tooltips: main_tooltip,
+        point_policy: "snap_to_data",
+        mode: "mouse"
+    }))
+
+    main_chart.add_tools(new Bokeh.BoxZoomTool())
+    main_chart.toolbar.active_drag = "box_zoom"
+    main_chart.add_tools(new Bokeh.PanTool())
+
+    main_chart.xaxis[0].axis_label_text_font_size = "0px"
+    main_chart.xaxis[0].axis_line_color = null
+    main_chart.xaxis[0].major_label_text_font_size = "0px"
+    main_chart.xaxis[0].major_tick_line_color = style.getPropertyValue('--chartGridLineColor')
+    main_chart.xaxis[0].major_tick_in = 0
+    main_chart.xaxis[0].major_tick_out = 0
+    main_chart.xaxis[0].minor_tick_line_color = style.getPropertyValue('--chartMinorGridLineColor')
+    main_chart.xaxis[0].minor_tick_out = 0
+
+    main_chart.yaxis[0].axis_label_text_font = "PT Sans"
+    main_chart.yaxis[0].axis_label_text_font_style = "normal"
+    main_chart.yaxis[0].axis_label_text_font_size = style.getPropertyValue('--fontPixelSize') + "px"
+    main_chart.yaxis[0].axis_label_text_color = style.getPropertyValue('--chartForegroundColor')
+    main_chart.yaxis[0].axis_label_standoff = parseInt(style.getPropertyValue('--fontPixelSize'))
+    main_chart.yaxis[0].axis_line_color = null
+    main_chart.yaxis[0].major_label_text_font = "PT Sans"
+    main_chart.yaxis[0].major_label_text_font_size = style.getPropertyValue('--fontPixelSize') + "px"
+    main_chart.yaxis[0].major_label_text_color = style.getPropertyValue('--chartForegroundColor')
+    main_chart.yaxis[0].major_tick_line_color = style.getPropertyValue('--chartGridLineColor')
+    main_chart.yaxis[0].major_tick_in = 0
+    main_chart.yaxis[0].major_tick_out = 0
+    main_chart.yaxis[0].minor_tick_line_color = style.getPropertyValue('--chartMinorGridLineColor')
+    main_chart.yaxis[0].minor_tick_out = 0
+
+    main_chart.xgrid[0].grid_line_color = style.getPropertyValue('--chartGridLineColor')
+    main_chart.ygrid[0].grid_line_color = style.getPropertyValue('--chartGridLineColor')
+
+    background_source.data.x_bkg = [8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9]
+    background_source.data.y_bkg = [610, 609, 581, 563, 540, 520, 507, 463, 434, 451]
+
+    const bkg_line = new Bokeh.Line({
+        x: {
+            field: "x_bkg"
+        },
+        y: {
+            field: "y_bkg"
+        },
+        line_color: style.getPropertyValue('--backgroundLineColor'),
+        line_dash: [4, 2],
+        line_width: parseInt(style.getPropertyValue('--backgroundLineWidth')),
+    })
+
+    main_chart.add_glyph(bkg_line, background_source)
+
+    // Add measured data to main chart
+
+    measured_source.data.x_meas = [8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9]
+    measured_source.data.y_meas = [610.57, 599.29, 595.29, 610.08, 580.67, 601.51, 598.15, 583.93, 578.18, 574.16]
+    measured_source.data.sy_meas = [10.79, 10.64, 10.6, 10.74, 10.49, 10.65, 10.62, 10.49, 10.46, 10.42]
+    measured_source.data.y_meas_upper = [621.36, 609.93, 605.89, 620.82, 591.16, 612.16, 608.77, 594.43, 588.63, 584.58]
+    measured_source.data.y_meas_lower = [599.78, 588.64, 584.69, 599.34, 570.18, 590.86, 587.53, 573.44, 567.72, 563.74]
+
+    const meas_line_top = new Bokeh.Line({
+        x: {
+            field: "x_meas"
+        },
+        y: {
+            field: "y_meas_upper"
+        },
+        line_color: style.getPropertyValue('--measuredLineColor'),
+        line_alpha: 0.6,
+        line_width: parseInt(style.getPropertyValue('--measuredLineWidth'))
+    })
+    const meas_line_bottom = new Bokeh.Line({
+        x: {
+            field: "x_meas"
+        },
+        y: {
+            field: "y_meas_lower"
+        },
+        line_color: style.getPropertyValue('--measuredLineColor'),
+        line_alpha: 0.6,
+        line_width: parseInt(style.getPropertyValue('--measuredLineWidth'))
+    })
+    const measArea = new Bokeh.VArea({
+        x: {
+            field: "x_meas"
+        },
+        y1: {
+            field: "y_meas_upper"
+        },
+        y2: {
+            field: "y_meas_lower"
+        },
+        fill_color: style.getPropertyValue('--measuredAreaColor'),
+        fill_alpha: 0.5
+    })
+
+    main_chart.add_glyph(measArea, measured_source)
+    main_chart.add_glyph(meas_line_top, measured_source)
+    main_chart.add_glyph(meas_line_bottom, measured_source)
+
+    // Add calculated data to main chart
+
+    calculated_source.data.x_calc = [8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9]
+    calculated_source.data.y_calc = [607.06, 604.25, 601.43, 598.62, 595.8, 592.99, 590.18, 587.37, 584.56, 581.74]
+
+    const calc_line = new Bokeh.Line({
+        x: {
+            field: "x_calc"
+        },
+        y: {
+            field: "y_calc"
+        },
+        line_color: style.getPropertyValue('--calculatedLineColor'),
+        line_width: parseInt(style.getPropertyValue('--calculatedLineWidth'))
+    })
+
+    main_chart.add_glyph(calc_line, calculated_source)
+
+    charts.push([main_chart])
+
+    /////////////////////////////
+    // BRAGG PEAKS CHART (middle)
+    /////////////////////////////
+
+    const bragg_chart = new Bokeh.Plotting.figure({
+        tools: "",
+
+        height: parseInt(style.getPropertyValue('--braggChartHeight')),
+        width: parseInt(style.getPropertyValue('--chartWidth')),
+
+        x_range: main_chart.x_range,
+        y_range: new Bokeh.Range1d({
+            start: -1,
+            end: 1
+        }),
+
+        outline_line_color: style.getPropertyValue('--chartAxisColor'),
+        background: style.getPropertyValue('--chartBackgroundColor'),
+        background_fill_color: style.getPropertyValue('--chartBackgroundColor'),
+        border_fill_color: style.getPropertyValue('--chartBackgroundColor'),
+        //border_fill_color: "green",
+
+        min_border_top: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize')),
+        min_border_bottom: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize'))
+    })
+
+    bragg_chart.add_tools(new Bokeh.HoverTool({
+        tooltips: bragg_tooltip,
+        point_policy: "snap_to_data",
+        mode: "mouse"
+    }))
+
+    bragg_chart.xaxis[0].axis_label_text_font_size = "0px"
+    bragg_chart.xaxis[0].axis_line_color = null
+    bragg_chart.xaxis[0].major_label_text_font_size = "0px"
+    bragg_chart.xaxis[0].major_tick_line_color = main_chart.xaxis[0].major_tick_line_color
+    bragg_chart.xaxis[0].major_tick_in = 0
+    bragg_chart.xaxis[0].major_tick_out = 0
+    bragg_chart.xaxis[0].minor_tick_line_color = main_chart.xaxis[0].minor_tick_line_color
+    bragg_chart.xaxis[0].minor_tick_out = 0
+
+    bragg_chart.yaxis[0].axis_line_color = null
+    bragg_chart.yaxis[0].major_tick_in = 0
+    bragg_chart.yaxis[0].major_tick_out = 0
+    bragg_chart.yaxis[0].minor_tick_out = 0
+    bragg_chart.yaxis[0].major_label_text_font_size = "0px"
+
+    bragg_chart.xgrid[0].grid_line_color = main_chart.xgrid[0].grid_line_color
+    bragg_chart.ygrid[0].grid_line_color = null
+
+    bragg_source.data.x_bragg = [8.2, 8.3, 8.5, 8.9]
+    bragg_source.data.y_bragg = [0, 0, 0, 0]
+    bragg_source.data.h_bragg = [1, 0, 1, 2]
+    bragg_source.data.k_bragg = [0, 1, 1, 0]
+    bragg_source.data.l_bragg = [0, 0, 0, 0]
+
+    const bragg_ticks = new Bokeh.Scatter({
+        x: {
+            field: "x_bragg"
+        },
+        y: {
+            field: "y_bragg"
+        },
+        marker: "dash",
+        size: 1.5 * parseInt(style.getPropertyValue('--fontPixelSize')),
+        line_color: style.getPropertyValue('--braggTicksColor'),
+        angle: Math.PI / 2.
+    })
+
+    bragg_chart.add_glyph(bragg_ticks, bragg_source)
+
+    charts.push([bragg_chart])
+
+    //////////////////////////////////
+    // DIFFERENCE CURVE CHART (bottom)
+    //////////////////////////////////
+
+    const difference_chart = new Bokeh.Plotting.figure({
+        tools: "reset",
+
+        height: parseInt(style.getPropertyValue('--differenceChartHeight')),
+        width: parseInt(style.getPropertyValue('--chartWidth')),
+
+        x_range: main_chart.x_range,
+
+        y_axis_label: style.getPropertyValue('--yDifferenceAxisTitle'),
+
+        outline_line_color: style.getPropertyValue('--chartAxisColor'),
+        background: style.getPropertyValue('--chartBackgroundColor'),
+        background_fill_color: style.getPropertyValue('--chartBackgroundColor'),
+        border_fill_color: style.getPropertyValue('--chartBackgroundColor'),
+        //border_fill_color: "blue",
+
+        min_border_top: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize')),
+        min_border_bottom: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize'))
+    })
+
+    difference_chart.add_tools(new Bokeh.HoverTool({
+        tooltips: main_tooltip,
+        point_policy: "snap_to_data",
+        mode: "mouse"
+    }))
+
+    difference_chart.add_tools(new Bokeh.BoxZoomTool())
+    difference_chart.toolbar.active_drag = "box_zoom"
+    difference_chart.add_tools(new Bokeh.PanTool())
+
+    difference_chart.xaxis[0].axis_label_text_font_size = "0px"
+    difference_chart.xaxis[0].axis_line_color = null
+    difference_chart.xaxis[0].major_label_text_font_size = "0px"
+    difference_chart.xaxis[0].major_tick_line_color = main_chart.xaxis[0].major_tick_line_color
+    difference_chart.xaxis[0].major_tick_in = 0
+    difference_chart.xaxis[0].major_tick_out = 0
+    difference_chart.xaxis[0].minor_tick_line_color = main_chart.xaxis[0].minor_tick_line_color
+    difference_chart.xaxis[0].minor_tick_out = 0
+
+    difference_chart.yaxis[0].axis_label_text_font = "PT Sans"
+    difference_chart.yaxis[0].axis_label_text_font_style = "normal"
+    difference_chart.yaxis[0].axis_label_text_font_size = style.getPropertyValue('--fontPixelSize') + "px"
+    difference_chart.yaxis[0].axis_label_text_color = main_chart.yaxis[0].axis_label_text_color
+    difference_chart.yaxis[0].axis_label_standoff = parseInt(style.getPropertyValue('--fontPixelSize'))
+    difference_chart.yaxis[0].axis_line_color = null
+    difference_chart.yaxis[0].major_label_text_font = "PT Sans"
+    difference_chart.yaxis[0].major_label_text_font_size = style.getPropertyValue('--fontPixelSize') + "px"
+    difference_chart.yaxis[0].major_label_text_color = main_chart.yaxis[0].major_label_text_color
+    difference_chart.yaxis[0].major_tick_line_color = main_chart.yaxis[0].major_tick_line_color
+    difference_chart.yaxis[0].major_tick_in = 0
+    difference_chart.yaxis[0].major_tick_out = 0
+    difference_chart.yaxis[0].minor_tick_line_color = main_chart.yaxis[0].minor_tick_line_color
+    difference_chart.yaxis[0].minor_tick_out = 0
+
+    difference_chart.xgrid[0].grid_line_color = main_chart.xgrid[0].grid_line_color
+    difference_chart.ygrid[0].grid_line_color = main_chart.ygrid[0].grid_line_color
+
+    difference_source.data.x_diff = [8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9]
+    difference_source.data.y_diff = [3.51, -4.96, -6.14, 11.47, -15.14, 8.52, 7.97, -3.43, -6.38, -7.58]
+    difference_source.data.y_diff_upper = [14.3, 5.68, 4.46, 22.21, -4.64, 19.17, 18.59, 7.06, 4.08, 2.84]
+    difference_source.data.y_diff_lower = [-7.28, -15.6, -16.74, 0.72, -25.63, -2.13, -2.65, -13.93, -16.83, -18]
+
+    const diff_line_top = new Bokeh.Line({
+        x: {
+            field: "x_diff"
+        },
+        y: {
+            field: "y_diff_upper"
+        },
+        line_color: style.getPropertyValue('--differenceLineColor'),
+        line_alpha: 0.6,
+        line_width: parseInt(style.getPropertyValue('--differenceLineWidth'))
+    })
+    const diff_line_bottom = new Bokeh.Line({
+        x: {
+            field: "x_diff"
+        },
+        y: {
+            field: "y_diff_lower"
+        },
+        line_color: style.getPropertyValue('--differenceLineColor'),
+        line_alpha: 0.6,
+        line_width: parseInt(style.getPropertyValue('--differenceLineWidth'))
+    })
+    const diffArea = new Bokeh.VArea({
+        x: {
+            field: "x_diff"
+        },
+        y1: {
+            field: "y_diff_upper"
+        },
+        y2: {
+            field: "y_diff_lower"
+        },
+        fill_color: style.getPropertyValue('--differenceAreaColor'),
+        fill_alpha: 0.5
+    })
+
+    difference_chart.add_glyph(diffArea, difference_source)
+    difference_chart.add_glyph(diff_line_top, difference_source)
+    difference_chart.add_glyph(diff_line_bottom, difference_source)
+
+    function differenceChartMeanY() {
+        let ySum = 0,
+            yCount = 0
+        for (let i in difference_source.data.x_diff) {
+            if (difference_chart.x_range.start <= difference_source.data.x_diff[i] && difference_source.data.x_diff[i] <= difference_chart.x_range.end) {
+                ySum += difference_source.data.y_diff[i]
+                yCount += 1
+            }
+        }
+        if (yCount > 0) {
+            return ySum / yCount
+        }
+        return 0
+    }
+
+    function differenceChartHalfRangeY() {
+        const mainChartRangeY = main_chart.y_range.end - main_chart.y_range.start
+        const mainChartAxesHeight = main_chart.height - main_chart.min_border_top - main_chart.min_border_bottom
+        const differenceChartAxesHeight = difference_chart.height - difference_chart.min_border_top - difference_chart.min_border_bottom
+        const differenceToMainChartHeightRatio = differenceChartAxesHeight / mainChartAxesHeight
+        const differenceChartRangeY = mainChartRangeY * differenceToMainChartHeightRatio
+        return 0.5 * differenceChartRangeY
+    }
+
+    difference_chart.y_range = new Bokeh.Range1d({
+        start: -100, //differenceChartMeanY() - differenceChartHalfRangeY(),
+        end: 100 //differenceChartMeanY() + differenceChartHalfRangeY()
+    })
+    main_chart.y_range.change.connect(function() {
+        difference_chart.y_range.start = differenceChartMeanY() - differenceChartHalfRangeY()
+        difference_chart.y_range.end = differenceChartMeanY() + differenceChartHalfRangeY()
+    })
+    difference_chart.ygrid[0].ticker.desired_num_ticks = 3
+    charts.push([difference_chart])
+
+    ////////////////////////////
+    // XAXIS CHART (very bottom)
+    ////////////////////////////
+
+    const xaxis_chart = new Bokeh.Plotting.figure({
+        tools: "",
+
+        height: parseInt(style.getPropertyValue('--xAxisChartHeight')),
+        width: parseInt(style.getPropertyValue('--chartWidth')),
+
+        x_range: main_chart.x_range,
+        y_range: new Bokeh.Range1d({
+            start: 0,
+            end: 1
+        }),
+
+        x_axis_label: style.getPropertyValue('--xAxisTitle'),
+
+        outline_line_color: null,
+        background: style.getPropertyValue('--chartBackgroundColor'),
+        background_fill_color: style.getPropertyValue('--chartBackgroundColor'),
+        border_fill_color: style.getPropertyValue('--chartBackgroundColor'),
+        //border_fill_color: "orange",
+
+        min_border_top: 0,
+        min_border_bottom: 0
+    })
+
+    xaxis_chart.xaxis[0].axis_label_text_font = "PT Sans"
+    xaxis_chart.xaxis[0].axis_label_text_font_style = "normal"
+    xaxis_chart.xaxis[0].axis_label_text_font_size = style.getPropertyValue('--fontPixelSize') + "px"
+    xaxis_chart.xaxis[0].axis_label_text_color = style.getPropertyValue('--chartForegroundColor')
+    xaxis_chart.xaxis[0].axis_label_standoff = parseInt(style.getPropertyValue('--fontPixelSize')) - 5
+    xaxis_chart.xaxis[0].axis_line_color = null
+    xaxis_chart.xaxis[0].major_label_text_font = "PT Sans"
+    xaxis_chart.xaxis[0].major_label_text_font_size = style.getPropertyValue('--fontPixelSize') + "px"
+    xaxis_chart.xaxis[0].major_label_text_color = main_chart.yaxis[0].major_label_text_color
+    xaxis_chart.xaxis[0].major_label_standoff = 0
+    xaxis_chart.xaxis[0].major_tick_line_color = null
+    xaxis_chart.xaxis[0].major_tick_in = 0
+    xaxis_chart.xaxis[0].major_tick_out = 0
+    xaxis_chart.xaxis[0].minor_tick_line_color = null
+    xaxis_chart.xaxis[0].minor_tick_out = 0
+
+    xaxis_chart.yaxis[0].axis_line_color = null
+    xaxis_chart.yaxis[0].major_tick_in = 0
+    xaxis_chart.yaxis[0].major_tick_out = 0
+    xaxis_chart.yaxis[0].minor_tick_out = 0
+    xaxis_chart.yaxis[0].major_label_text_font_size = "0px"
+
+    xaxis_chart.xgrid[0].grid_line_color = null
+    xaxis_chart.ygrid[0].grid_line_color = null
+
+    charts.push([xaxis_chart])
+
+    ////////////
+    // LAST PART
+    ////////////
+
+    const grid_options = {
+        toolbar_location: "above"
+    }
+    const gridplot = new Bokeh.Plotting.gridplot(charts, grid_options)
+
+    Bokeh.Plotting.show(gridplot, "#bk-chart-container")
+
+    ////////
+    // LOGIC
+    ////////
+
+    /*
+    function OnClick() {
+        main_chart.reset.emit()
+            //console.log("AAA", document.querySelector(".bk-tool-icon-reset"))
+            //console.log("BBB", document.getElementById("bk-tool-icon-reset"))
+            //document.getElementById("bk-tool-icon-reset").click()
+        document.querySelector(".bk-tool-icon-reset").click()
+    }
+    */
+
+    function hasData(data) {
+        return typeof data !== 'undefined' &&
+               Object.keys(data).length > 0 &&
+               typeof data.x !== 'undefined'
+    }
+
+    function setCalculatedData(has_data, data) {
+        if (!has_data) {
+            return
+        }
+        calculated_source.data.x_calc = data.x
+        calculated_source.data.y_calc = data.y
+        calculated_source.change.emit()
+    }
+
+    function setMeasuredData(has_data, data) {
+        if (!has_data) {
+            return
+        }
+        measured_source.data.x_meas = data.x
+        measured_source.data.y_meas = data.y
+        measured_source.data.sy_meas = data.sy
+        measured_source.data.y_meas_upper = data.y_upper
+        measured_source.data.y_meas_lower = data.y_lower
+        measured_source.change.emit()
+    }
+
+    function setDifferenceData(has_data, data) {
+        difference_chart.visible = has_data
+        if (!has_data) {
+            return
+        }
+        difference_source.data.x_diff = data.x
+        difference_source.data.y_diff = data.y
+        difference_source.data.y_diff_upper = data.y_upper
+        difference_source.data.y_diff_lower = data.y_lower
+        difference_source.change.emit()
+    }
+
+    function setBraggData(has_data, data) {
+        bragg_chart.visible = has_data
+        if (!has_data) {
+            return
+        }
+        bragg_source.data.x_bragg = data.x
+        bragg_source.data.y_bragg = data.y
+        bragg_source.data.h_bragg = data.h
+        bragg_source.data.k_bragg = data.k
+        bragg_source.data.l_bragg = data.l
+        bragg_source.change.emit()
+    }
+
+    function setBackgroundData(has_data, data) {
+        if (!has_data) {
+            return
+        }
+        background_source.data.x_bkg = data.x
+        background_source.data.y_bkg = data.y
+        background_source.change.emit()
+    }
+
+    function setInitPlotRanges(has_data, data) {
+        if (!has_data) {
+            return
+        }
+        main_chart.x_range.reset_start = data.min_x
+        main_chart.x_range.reset_end = data.max_x
+        main_chart.y_range.reset_start = data.min_y
+        main_chart.y_range.reset_end = data.max_y
+
+        difference_chart.y_range.reset_start = differenceChartMeanY() - differenceChartHalfRangeY()
+        difference_chart.y_range.reset_end = differenceChartMeanY() + differenceChartHalfRangeY()
+    }
+
+    function setPlotRanges(has_data, data) {
+        if (!has_data) {
+            return
+        }
+        main_chart.x_range.start = data.min_x
+        main_chart.x_range.end = data.max_x
+        main_chart.y_range.start = data.min_y
+        main_chart.y_range.end = data.max_y
+    }
+
+    function setChartLabels(labels) {
+        main_chart.yaxis[0].axis_label = labels.yMainAxisTitle
+        difference_chart.yaxis[0].axis_label = labels.yDifferenceAxisTitle
+        xaxis_chart.xaxis[0].axis_label = labels.xAxisTitle
+    }
+
+    function setChartColors(colors) {
+        document.getElementById("bk-chart-container").style['background-color'] = colors.chartBackgroundColor
+
+        main_chart.outline_line_color = colors.chartAxisColor
+        main_chart.background = colors.chartBackgroundColor
+        main_chart.background_fill_color = colors.chartBackgroundColor
+        main_chart.border_fill_color = colors.chartBackgroundColor
+
+        main_chart.xaxis[0].major_tick_line_color = colors.chartGridLineColor
+        main_chart.xaxis[0].minor_tick_line_color = colors.chartMinorGridLineColor
+
+        main_chart.yaxis[0].axis_label_text_color = colors.chartForegroundColor
+        main_chart.yaxis[0].major_label_text_color = colors.chartForegroundColor
+        main_chart.yaxis[0].major_tick_line_color = colors.chartGridLineColor
+        main_chart.yaxis[0].minor_tick_line_color = colors.chartMinorGridLineColor
+
+        main_chart.xgrid[0].grid_line_color = colors.chartGridLineColor
+        main_chart.ygrid[0].grid_line_color = colors.chartGridLineColor
+
+        bkg_line.line_color = colors.backgroundLineColor
+        meas_line_top.line_color = colors.measuredLineColor
+        meas_line_bottom.line_color = colors.measuredLineColor
+        measArea.fill_color = colors.measuredAreaColor
+        calc_line.line_color = colors.calculatedLineColor
+
+        bragg_chart.outline_line_color = main_chart.outline_line_color
+        bragg_chart.background = main_chart.background
+        bragg_chart.background_fill_color = main_chart.background_fill_color
+        bragg_chart.border_fill_color = main_chart.border_fill_color
+
+        bragg_chart.xaxis[0].major_tick_line_color = main_chart.xaxis[0].major_tick_line_color
+        bragg_chart.xaxis[0].minor_tick_line_color = main_chart.xaxis[0].minor_tick_line_color
+        bragg_chart.xgrid[0].grid_line_color = main_chart.xgrid[0].grid_line_color
+
+        bragg_ticks.line_color = colors.braggTicksColor
+
+        difference_chart.outline_line_color = main_chart.outline_line_color
+        difference_chart.background = main_chart.background
+        difference_chart.background_fill_color = main_chart.background_fill_color
+        difference_chart.border_fill_color = main_chart.border_fill_color
+
+        difference_chart.xaxis[0].major_tick_line_color = main_chart.xaxis[0].major_tick_line_color
+        difference_chart.xaxis[0].minor_tick_line_color = main_chart.xaxis[0].minor_tick_line_color
+        difference_chart.yaxis[0].axis_label_text_color = main_chart.yaxis[0].axis_label_text_color
+        difference_chart.yaxis[0].major_label_text_color = main_chart.yaxis[0].major_label_text_color
+        difference_chart.yaxis[0].major_tick_line_color = main_chart.yaxis[0].major_tick_line_color
+        difference_chart.xgrid[0].grid_line_color = main_chart.xgrid[0].grid_line_color
+        difference_chart.ygrid[0].grid_line_color = main_chart.ygrid[0].grid_line_color
+
+        diff_line_top.line_color = colors.differenceLineColor
+        diff_line_bottom.line_color = colors.differenceLineColor
+        diffArea.fill_color = colors.differenceAreaColor
+
+        xaxis_chart.background = main_chart.background
+        xaxis_chart.background_fill_color = main_chart.background_fill_color
+        xaxis_chart.border_fill_color = main_chart.border_fill_color
+
+        xaxis_chart.xaxis[0].axis_label_text_color = colors.chartForegroundColor
+        xaxis_chart.xaxis[0].major_label_text_color = main_chart.yaxis[0].major_label_text_color
+    }
+
+    function setChartSizes(sizes) {
+        main_chart.height = sizes.mainChartHeight
+        main_chart.width = sizes.chartWidth
+
+        bragg_chart.height = sizes.braggChartHeight
+        bragg_chart.width = sizes.chartWidth
+
+        difference_chart.height = sizes.differenceChartHeight
+        difference_chart.width = sizes.chartWidth
+
+        xaxis_chart.height = sizes.xAxisChartHeight
+        xaxis_chart.width = sizes.chartWidth
+
+        meas_line_top.line_width = sizes.measuredLineWidth
+        meas_line_bottom.line_width = sizes.measuredLineWidth
+
+        calc_line.line_width = sizes.calculatedLineWidth
+
+        diff_line_top.line_width = sizes.differenceLineWidth
+        diff_line_bottom.line_width = sizes.differenceLineWidth
+
+        bkg_line.line_width = sizes.backgroundLineWidth
+    }
+
+    function onTestButtonClicked() {
+        //document.getElementById("bk-chart-container").style['background-color'] = "red"
+        //bragg_chart.visible = false
+        console.log("!!", main_chart.x_range.start, main_chart.x_range.reset_start)
+    }
+
+    const testButton = document.getElementById("test-button")
+    testButton.addEventListener("click", onTestButtonClicked)
+
+    </script>
+
+</body>
+
+</html>
