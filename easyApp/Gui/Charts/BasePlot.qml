@@ -1,7 +1,7 @@
 import QtQuick 2.13
 
-import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Logic 1.0 as EaLogic
+import easyApp.Gui.Style 1.0 as EaStyle
 
 Rectangle {
     id: container
@@ -16,20 +16,20 @@ Rectangle {
     property var backgroundData: ({})
     property var plotRanges: ({})
 
-    property bool hasMeasuredData: typeof measuredData !== 'undefined'
-                                   && Object.keys(measuredData).length
-                                   && (typeof measuredData.x !== 'undefined'
-                                       || typeof measuredData.xy !== 'undefined')
-    property bool hasCalculatedData: typeof calculatedData !== 'undefined'
-                                     && Object.keys(calculatedData).length
-    property bool hasDifferenceData: typeof differenceData !== 'undefined'
-                                     && Object.keys(differenceData).length
-    property bool hasBraggData: typeof braggData !== 'undefined'
-                                && Object.keys(braggData).length
-    property bool hasBackgroundData: typeof backgroundData !== 'undefined'
-                                && Object.keys(backgroundData).length
-    property bool hasPlotRangesData: typeof plotRanges !== 'undefined'
-                                     && Object.keys(plotRanges).length
+//    property bool hasMeasuredData: typeof measuredData !== 'undefined'
+//                                   && Object.keys(measuredData).length
+//                                   && (typeof measuredData.x !== 'undefined'
+//                                       || typeof measuredData.xy !== 'undefined')
+//    property bool hasCalculatedData: typeof calculatedData !== 'undefined'
+//                                     && Object.keys(calculatedData).length
+//    property bool hasDifferenceData: typeof differenceData !== 'undefined'
+//                                     && Object.keys(differenceData).length
+//    property bool hasBraggData: typeof braggData !== 'undefined'
+//                                && Object.keys(braggData).length
+//    property bool hasBackgroundData: typeof backgroundData !== 'undefined'
+//                                && Object.keys(backgroundData).length
+//    property bool hasPlotRangesData: typeof plotRanges !== 'undefined'
+//                                     && Object.keys(plotRanges).length
 
     property int chartContainerWidth: container.width
     property int chartContainerHeight: container.height
@@ -41,10 +41,10 @@ Rectangle {
                                   - differenceChartHeight
                                   - chartToolButtonsHeight
                                   - xAxisChartHeight
-    property int braggChartHeight: hasBraggData
+    property int braggChartHeight: EaLogic.Utils.hasData(braggData)
                                    ? 3 * EaStyle.Sizes.fontPixelSize
                                    : 0
-    property int differenceChartHeight: hasDifferenceData
+    property int differenceChartHeight: EaLogic.Utils.hasData(differenceData)
                                         ? 8 * EaStyle.Sizes.fontPixelSize
                                         : 0
     property int xAxisChartHeight: 3 * EaStyle.Sizes.fontPixelSize
@@ -75,4 +75,5 @@ Rectangle {
     property int fontPixelSize: EaStyle.Sizes.fontPixelSize
 
     color: chartBackgroundColor
+
 }

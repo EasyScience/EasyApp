@@ -15,6 +15,7 @@ EaCharts.BasePlot {
 
     property int appScale: EaStyle.Sizes.defaultScale
     property int theme: EaStyle.Colors.theme
+    property bool loadSucceeded: false
 
     color: EaStyle.Colors.chartPlotAreaBackground
     Behavior on color { EaAnimations.ThemeChange {} }
@@ -32,6 +33,7 @@ EaCharts.BasePlot {
 
         anchors.fill: parent
         anchors.margins: 0
+        anchors.topMargin: 2
 
         backgroundColor: parent.color
 
@@ -39,17 +41,16 @@ EaCharts.BasePlot {
 
         onLoadingChanged: {
             if (loadRequest.status === WebEngineView.LoadSucceededStatus) {
-                setCalculatedData(hasCalculatedData, calculatedData)
-                setMeasuredData(hasMeasuredData, measuredData)
-                setDifferenceData(hasDifferenceData, differenceData)
-                setBraggData(hasBraggData, braggData)
-                setBackgroundData(hasBackgroundData, backgroundData)
+                loadSucceeded = true
+                print("-------------- LoadSucceededStatus", JSON.stringify(plotRanges))
 
-                //                setPlotRanges()
+                hideBraggChart()
+                hideDifferenceChart()
+                chartView.runJavaScript(`showToolbar(false)`)
 
-                //setInitPlotRanges(hasPlotRangesData, plotRanges)
+//                setChartSizesTimer.restart()
+                setChartSizes()
 
-                setChartSizesTimer.restart()
                 setChartLabels()
                 setChartColors()
             }
@@ -62,51 +63,42 @@ EaCharts.BasePlot {
 
     // On changes
 
-    onCalculatedDataChanged: setCalculatedData(hasCalculatedData, calculatedData)
-    onMeasuredDataChanged: setMeasuredData(hasMeasuredData, measuredData)
-    onDifferenceDataChanged: setDifferenceData(hasDifferenceData, differenceData)
-    onBraggDataChanged: setBraggData(hasBraggData, braggData)
-    onBackgroundDataChanged: setBackgroundData(hasBackgroundData, backgroundData)
-    onPlotRangesChanged: {
-        print("__________A plotRanges", JSON.stringify(plotRanges));
-        ////setInitPlotRanges(hasPlotRangesData, plotRanges)
+    onCalculatedDataChanged: if (loadSucceeded) { setCalculatedData(calculatedData); reset() }
+    onMeasuredDataChanged: if (loadSucceeded) { setMeasuredData(measuredData); reset() }
+    onDifferenceDataChanged: if (loadSucceeded) { setDifferenceData(differenceData); reset() }
+    onBraggDataChanged: if (loadSucceeded) { setBraggData(braggData); reset() }
+    onBackgroundDataChanged: if (loadSucceeded) { setBackgroundData(backgroundData); reset() }
+    onPlotRangesChanged: if (loadSucceeded) {
+        print("-------------- onPlotRangesChanged", JSON.stringify(plotRanges))
+        setInitPlotRanges(plotRanges)
+        setPlotRanges(plotRanges)
     }
 
-    onHasCalculatedDataChanged: setCalculatedData(hasCalculatedData, calculatedData)
-    onHasMeasuredDataChanged: setMeasuredData(hasMeasuredData, measuredData)
-    onHasDifferenceDataChanged: setDifferenceData(hasDifferenceData, differenceData)
-    onHasBraggDataChanged: setBraggData(hasBraggData, braggData)
-    onHasBackgroundDataChanged: setBackgroundData(hasBackgroundData, backgroundData)
-    onHasPlotRangesDataChanged: {
-        ////setInitPlotRanges(hasPlotRangesData, plotRanges)
-        ////setPlotRanges(hasPlotRangesData, plotRanges)
-    }
+    onMainChartHeightChanged: { print("+++++ onMainChartHeightChanged"); setChartSizes() }
+    onDifferenceChartHeightChanged: { print("+++++ onDifferenceChartHeightChanged"); setChartSizes() }
+    onBraggChartHeightChanged: { print("+++++ onBraggChartHeightChanged"); setChartSizes() }
 
-    onMainChartHeightChanged: {
-        ////setInitPlotRanges(hasPlotRangesData, plotRanges)
-        ////setPlotRanges(hasPlotRangesData, plotRanges)
-        setChartSizes()
-    }
-    onDifferenceChartHeightChanged: setChartSizes()
-    onBraggChartHeightChanged: setChartSizes()
+//    onWidthChanged: setChartSizesTimer.restart()
+//    onHeightChanged: setChartSizesTimer.restart()
+//    onAppScaleChanged: setChartSizesTimer.restart()
 
-    onWidthChanged: setChartSizesTimer.restart()
-    onHeightChanged: setChartSizesTimer.restart()
-    onAppScaleChanged: setChartSizesTimer.restart()
+
+    onYMainAxisTitleChanged: setChartLabels()
 
     onThemeChanged: setChartColors()
 
     // Timers
 
+    /*
     Timer {
         id: setChartDataTimer
         interval: 50
         onTriggered: {
-            setCalculatedData(hasCalculatedData, calculatedData)
-            setMeasuredData(hasMeasuredData, measuredData)
-            setDifferenceData(hasDifferenceData, differenceData)
-            setBraggData(hasBraggData, braggData)
-            setBackgroundData(hasBackgroundData, backgroundData)
+            setCalculatedData(calculatedData)
+            setMeasuredData(measuredData)
+            setDifferenceData(differenceData)
+            setBraggData(braggData)
+            setBackgroundData(backgroundData)
         }
     }
 
@@ -115,37 +107,166 @@ EaCharts.BasePlot {
         interval: 50
         onTriggered: setChartSizes()
     }
+    */
+
+    /////////////////////
+    // Chart tool buttons
+    /////////////////////
+
+    Row {
+        anchors.top: parent.top
+        anchors.right: parent.right
+
+        anchors.topMargin: EaStyle.Sizes.fontPixelSize
+        anchors.rightMargin: 1.5 * EaStyle.Sizes.fontPixelSize
+
+        spacing: 0.25 * EaStyle.Sizes.fontPixelSize
+
+        EaElements.TabButton {
+            property int pageLoading: chartView.loading
+            property string htmlButtonPrefix: "activateBoxZoom"
+            checkable: true
+            checked: true
+            autoExclusive: true
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "search-plus"
+            onClicked: {
+                chartView.runJavaScript(`${htmlButtonPrefix}Action()`)
+                setToolTipText(`${htmlButtonPrefix}Button`, this)
+            }
+            onPageLoadingChanged: {
+                if (pageLoading === WebEngineView.LoadStartedStatus) {
+                    setToolTipText(`${htmlButtonPrefix}Button`, this)
+                }
+            }
+        }
+
+        EaElements.TabButton {
+            property int pageLoading: chartView.loading
+            property string htmlButtonPrefix: "activatePan"
+            checkable: true
+            checked: false
+            autoExclusive: true
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "arrows-alt"
+            onClicked: {
+                chartView.runJavaScript(`${htmlButtonPrefix}Action()`)
+                setToolTipText(`${htmlButtonPrefix}Button`, this)
+            }
+            onPageLoadingChanged: {
+                if (pageLoading === WebEngineView.LoadStartedStatus) {
+                    setToolTipText(`${htmlButtonPrefix}Button`, this)
+                }
+            }
+        }
+
+        Item {
+            height: 1
+            width: parent.spacing
+        }
+
+        EaElements.TabButton {
+            property int pageLoading: chartView.loading
+            property string htmlButtonPrefix: "reset"
+            checkable: false
+            autoExclusive: false
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "sync-alt"
+            onClicked: {
+                chartView.runJavaScript(`${htmlButtonPrefix}Action()`)
+                setToolTipText(`${htmlButtonPrefix}Button`, this)
+            }
+            onPageLoadingChanged: {
+                if (pageLoading === WebEngineView.LoadStartedStatus) {
+                    setToolTipText(`${htmlButtonPrefix}Button`, this)
+                }
+            }
+        }
+
+        Item {
+            height: 1
+            width: parent.spacing
+        }
+
+        EaElements.TabButton {
+            property int pageLoading: chartView.loading
+            property string htmlButtonPrefix: "toggleHover"
+            checkable: true
+            checked: true
+            autoExclusive: false
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "comment-alt"
+            onClicked: chartView.runJavaScript(`${htmlButtonPrefix}Action()`)
+            onPageLoadingChanged: {
+                if (pageLoading === WebEngineView.LoadStartedStatus) {
+                    setToolTipText(`${htmlButtonPrefix}Button`, this)
+                }
+            }
+        }
+    }
 
     // Logic
 
-    function setCalculatedData(hasData, data) {
+    function reset() {
+        chartView.runJavaScript(`resetAction()`)
+    }
+
+    function hideDifferenceChart() {
+        chartView.runJavaScript(`hideDifferenceChart()`)
+    }
+
+    function hideBraggChart() {
+        chartView.runJavaScript(`hideBraggChart()`)
+    }
+
+    function setCalculatedData(data) {
+        const hasData = EaLogic.Utils.hasData(data)
+        print("------->>>>> setCalculatedData", hasData, JSON.stringify(data))
         chartView.runJavaScript(`setCalculatedData(${hasData}, ${JSON.stringify(data)})`)
     }
 
-    function setMeasuredData(hasData, data) {
+    function setMeasuredData(data) {
+        const hasData = EaLogic.Utils.hasData(data)
+        print("------->>>>> setMeasuredData", hasData, JSON.stringify(data))
         chartView.runJavaScript(`setMeasuredData(${hasData}, ${JSON.stringify(data)})`)
     }
 
-    function setDifferenceData(hasData, data) {
+    function setDifferenceData(data) {
+        const hasData = EaLogic.Utils.hasData(data)
+        print("------->>>>> setDifferenceData", hasData, JSON.stringify(data))
         chartView.runJavaScript(`setDifferenceData(${hasData}, ${JSON.stringify(data)})`)
     }
 
-    function setBraggData(hasData, data) {
+    function setBraggData(data) {
+        const hasData = EaLogic.Utils.hasData(data)
+        print("------->>>>> setBraggData", hasData, JSON.stringify(data))
         chartView.runJavaScript(`setBraggData(${hasData}, ${JSON.stringify(data)})`)
     }
 
-    function setBackgroundData(hasData, data) {
+    function setBackgroundData(data) {
+        const hasData = EaLogic.Utils.hasData(data)
+        print("------->>>>> setBackgroundData", hasData, JSON.stringify(data))
         chartView.runJavaScript(`setBackgroundData(${hasData}, ${JSON.stringify(data)})`)
     }
 
-    function setInitPlotRanges(hasRanges, ranges) {
-        print("_____======== setInitPlotRanges", JSON.stringify(ranges))
-        chartView.runJavaScript(`setInitPlotRanges(${hasRanges}, ${JSON.stringify(ranges)})`)
+    function setInitPlotRanges(ranges) {
+        const hasData = EaLogic.Utils.hasData(ranges)
+        print("------->>>>> setInitPlotRanges", hasData, JSON.stringify(ranges))
+        chartView.runJavaScript(`setInitPlotRanges(${hasData}, ${JSON.stringify(ranges)})`)
     }
 
-    function setPlotRanges(hasRanges, ranges) {
-        print("!!!!!======== setPlotRanges", JSON.stringify(ranges))
-        chartView.runJavaScript(`setPlotRanges(${hasRanges}, ${JSON.stringify(ranges)})`)
+    function setPlotRanges(ranges) {
+        const hasData = EaLogic.Utils.hasData(ranges)
+        print("------->>>>> setPlotRanges", hasData, JSON.stringify(ranges))
+        chartView.runJavaScript(`setPlotRanges(${hasData}, ${JSON.stringify(ranges)})`)
     }
 
     function setChartSizes() {
@@ -163,6 +284,7 @@ EaCharts.BasePlot {
 
             'fontPixelSize': plot.fontPixelSize
         }
+        //print("****** =====================", JSON.stringify(sizes))
         chartView.runJavaScript(`setChartSizes(${JSON.stringify(sizes)})`)
     }
 
@@ -172,6 +294,7 @@ EaCharts.BasePlot {
             'yMainAxisTitle': plot.yMainAxisTitle,
             'yDifferenceAxisTitle': plot.yDifferenceAxisTitle
         }
+        print("****** =====================", JSON.stringify(labels))
         chartView.runJavaScript(`setChartLabels(${JSON.stringify(labels)})`)
     }
 
@@ -192,6 +315,15 @@ EaCharts.BasePlot {
             'differenceAreaColor': plot.differenceAreaColor.toString()
         }
         chartView.runJavaScript(`setChartColors(${JSON.stringify(colors)})`)
+    }
+
+    function setToolTipText(htmlButton, qmlButton) {
+        chartView.runJavaScript(
+                    `${htmlButton}.getAttribute('data-tooltip')`,
+                    function(result) {
+                        qmlButton.ToolTip.text = result
+                    }
+                    )
     }
 
 }

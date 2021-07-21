@@ -4,10 +4,12 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=PT+Sans:400">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <script type="text/javascript" src="bokeh-2.3.2.min.js"></script>
     <script type="text/javascript" src="bokeh-widgets-2.3.2.min.js"></script>
     <script type="text/javascript" src="bokeh-tables-2.3.2.min.js"></script>
     <script type="text/javascript" src="bokeh-api-2.3.2.min.js"></script>
+
     <style type="text/css">
 
     /* Global variables */
@@ -19,12 +21,15 @@
       --differenceChartHeight:100;
       --xAxisChartHeight:50;
 
-      --measuredLineWidth:#555;
-      --calculatedLineWidth:#555;
-      --differenceLineWidth:#555;
-      --backgroundLineWidth:#555;
+      --measuredLineWidth:2;
+      --calculatedLineWidth:3;
+      --differenceLineWidth:2;
+      --backgroundLineWidth:2;
 
       --fontPixelSize:14;
+
+      --toolButtonHeight:calc(2.5 * var(--fontPixelSize));
+      --tooltipWidth:120;
 
       --xAxisTitle:x;
       --yMainAxisTitle:y;
@@ -33,16 +38,25 @@
       --chartBackgroundColor:#fff;
       --chartForegroundColor:#000;
       --chartAxisColor:#888;
-      --chartGridLineColor:#555;
+      --chartGridLineColor:#ccc;
       --chartMinorGridLineColor:#555;
 
       --measuredLineColor:#0f0;
-      --measuredAreaColor:#90f;
+      --measuredAreaColor:#aaf;
       --calculatedLineColor:#f00;
       --differenceLineColor:#555;
       --braggTicksColor:#0af;
       --backgroundLineColor:#555;
       --differenceAreaColor:#555;
+
+      --buttonBackgroundColor:#f4f4f4;
+      --buttonBackgroundHoveredColor:#fefefe;
+      --buttonForegroundColor:#333;
+      --buttonForegroundHoveredColor:#00a3e3;
+      --buttonBorderColor:#ddd;
+      --tooltipBackgroundColor:#e9e9e9;
+      --tooltipForegroundColor:#333;
+      --tooltipBorderColor:#ddd;
     }
 
     /* Standard elements */
@@ -70,11 +84,17 @@
         display: none !important;
     }
 
+    /*
     .bk-toolbar.bk-above {
         position: absolute;
         z-index: 1;
         top: calc(0.5 * var(--fontPixelSize) * 1px);
         right: calc(1.5 * var(--fontPixelSize) * 1px);
+    }
+    */
+
+    .bk-toolbar {
+        display: none !important;
     }
 
     /* Chart main container */
@@ -86,7 +106,9 @@
         padding: calc(var(--fontPixelSize) * 1px);
         background-color: #159;
         */
-        background-color: #159;
+        padding-top: calc(var(--toolButtonHeight) * 1px);
+
+        background-color: #eef;
         /**/
         position: relative;
         display: flex;
@@ -95,11 +117,77 @@
         width: 100%;
         height: 100%;
     }
+
+    /* Toolbar */
+
+    #toolbar {
+      position: absolute;
+      top: 0;
+      right: 0;
+      margin-top: calc(var(--fontPixelSize) * 1px);
+      margin-right: calc(1.5 * var(--fontPixelSize) * 1px);
+    }
+
+    #toolbar .toolbar-separator {
+      width: calc(0.25 * var(--fontPixelSize) * 1px);
+      margin-left: calc(0.25 * var(--fontPixelSize) * 1px);
+      display: inline-block;
+    }
+
+    #toolbar button {
+      width: calc(var(--toolButtonHeight) * 1px);
+      height: calc(var(--toolButtonHeight) * 1px);
+      margin-left: calc(0.25 * var(--fontPixelSize) * 1px);
+      font-size: calc(1.25 * var(--fontPixelSize) * 1px);
+      color: var(--buttonForegroundColor);
+      background: var(--buttonBackgroundColor);
+      border: 1px solid var(--buttonBorderColor);
+    }
+
+    #toolbar button:hover {
+      color: var(--buttonForegroundHoveredColor);
+      background: var(--buttonBackgroundHoveredColor);
+    }
+
+    #toolbar button:focus {
+      outline: 0;
+    }
+
+    /* Tooltips */
+
+    [data-tooltip] {
+      position: relative;
+    }
+
+    [data-tooltip]::after {
+      content: attr(data-tooltip);
+      display: inline-block;
+      white-space: nowrap;
+      position: absolute;
+      bottom: 100%;
+      left: 50%;
+      transform: translate(-50%, calc(-0.75 * var(--fontPixelSize) * 1px));
+      font-family: "PT Sans", sans-serif;
+      font-size: calc(var(--fontPixelSize) * 1px);
+      padding: calc(0.75 * var(--fontPixelSize) * 1px) calc(var(--fontPixelSize) * 1px);
+      background-color: var(--tooltipBackgroundColor);
+      color: var(--tooltipForegroundColor);
+      border: 1px solid var(--tooltipBorderColor);
+      border-radius: calc(0.25 * var(--fontPixelSize) * 1px);
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+
+    [data-tooltip]:hover::after {
+        opacity: 1;
+    }
+
     </style>
 </head>
 
 <body>
     <div id="bk-chart-container">
+        <div id="toolbar"></div>
     </div>
 
     <script>
@@ -112,8 +200,35 @@
 
     const style = getComputedStyle(document.documentElement)
 
-    const main_tooltip = ("<div style=\"padding:2px\">\n<table>\n<tbody>\n<tr style=\"color:#bbbbbb\">\n   <td style=\"text-align:right\">x:&nbsp;</td>\n   <td style=\"text-align:right\">@x_meas{0.00}</td>\n   <td></td>\n</tr>\n<tr style=\"color:#03a9f4\">\n   <td style=\"text-align:right\">meas:&nbsp;</td>\n   <td style=\"text-align:right\">@y_meas{0.0}</td>\n   <td>&#177;&nbsp;@sy_meas{0.0}</td>\n</tr>\n<tr style=\"color:#ff5722\">\n   <td style=\"text-align:right\">calc:&nbsp;</td>\n   <td style=\"text-align:right\">@y_calc{0.0}</td>\n   <td></td>\n</tr>\n<tr style=\"color:#8bc34a\">\n   <td style=\"text-align:right\">diff:&nbsp;</td>\n   <td style=\"text-align:right\">@y_diff{0.0}</td>\n   <td></td>\n</tr>\n</tbody>\n</table>\n</div>")
-    const bragg_tooltip = ("<div style=\"padding:2px\">\n<span style=\"color:#bbbbbb\">x:&nbsp;@x_bragg{0.00}</span>\n&nbsp;\n<span style=\"color:#ff5722\">hkl:&nbsp;(@h_bragg @k_bragg @l_bragg)</span>\n</div>")
+    const main_tooltip = (`<div style="padding:2px">
+                                <table><tbody>
+                                    <tr style="color:#bbbbbb">
+                                        <td style="text-align:right">x:&nbsp;</td>
+                                        <td style="text-align:right">@x_meas{0.00}</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="color:#03a9f4">
+                                        <td style="text-align:right">meas:&nbsp;</td>
+                                        <td style="text-align:right">@y_meas{0.0}</td>
+                                        <td>&#177;&nbsp;@sy_meas{0.0}</td>
+                                    </tr>
+                                    <tr style="color:#ff5722">
+                                        <td style="text-align:right">calc:&nbsp;</td>
+                                        <td style="text-align:right">@y_calc{0.0}</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr style="color:#8bc34a">
+                                        <td style="text-align:right">diff:&nbsp;</td>
+                                        <td style="text-align:right">@y_diff{0.0}</td>
+                                        <td></td>
+                                    </tr>
+                                </tbody></table>
+                           </div>`)
+
+    const bragg_tooltip = (`<div style="padding:2px">
+                                <span style="color:#bbbbbb">x:&nbsp;@x_bragg{0.00}</span>\n&nbsp;
+                                <span style="color:#ff5722">hkl:&nbsp;(@h_bragg @k_bragg @l_bragg)</span>
+                            </div>`)
 
     const measured_source = new Bokeh.ColumnDataSource()
     const calculated_source = new Bokeh.ColumnDataSource()
@@ -128,7 +243,7 @@
     ///////////////////
 
     const main_chart = new Bokeh.Plotting.figure({
-        tools: "reset,undo,redo",
+        tools: "reset",  // "reset,undo,redo"
 
         height: parseInt(style.getPropertyValue('--mainChartHeight')),
         width: parseInt(style.getPropertyValue('--chartWidth')),
@@ -142,8 +257,6 @@
             end: 700.0
         }),
 
-        //y_axis_type: "log",
-
         y_axis_label: style.getPropertyValue('--yMainAxisTitle'),
 
         outline_line_color: style.getPropertyValue('--chartAxisColor'),
@@ -151,20 +264,24 @@
         background_fill_color: style.getPropertyValue('--chartBackgroundColor'),
         border_fill_color: style.getPropertyValue('--chartBackgroundColor'),
 
-        min_border_right: 1.5 * parseInt(style.getPropertyValue('--fontPixelSize')),
-        min_border_top: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize')),
+        min_border_right: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize')),
+        min_border_top: 0.65 * parseInt(style.getPropertyValue('--fontPixelSize')),
         min_border_bottom: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize'))
     })
 
-    main_chart.add_tools(new Bokeh.HoverTool({
+    const box_zoom_tool = new Bokeh.BoxZoomTool()
+    const pan_tool = new Bokeh.PanTool()
+    const hover_tool = new Bokeh.HoverTool({
         tooltips: main_tooltip,
         point_policy: "snap_to_data",
+        //line_policy: 'nearest',
         mode: "mouse"
-    }))
+    })
 
-    main_chart.add_tools(new Bokeh.BoxZoomTool())
+    main_chart.add_tools(hover_tool)
+    main_chart.add_tools(box_zoom_tool)
+    main_chart.add_tools(pan_tool)
     main_chart.toolbar.active_drag = "box_zoom"
-    main_chart.add_tools(new Bokeh.PanTool())
 
     main_chart.xaxis[0].axis_label_text_font_size = "0px"
     main_chart.xaxis[0].axis_line_color = null
@@ -356,7 +473,7 @@
     //////////////////////////////////
 
     const difference_chart = new Bokeh.Plotting.figure({
-        tools: "reset",
+        tools: "reset,box_zoom,pan,hover",
 
         height: parseInt(style.getPropertyValue('--differenceChartHeight')),
         width: parseInt(style.getPropertyValue('--chartWidth')),
@@ -380,10 +497,6 @@
         point_policy: "snap_to_data",
         mode: "mouse"
     }))
-
-    difference_chart.add_tools(new Bokeh.BoxZoomTool())
-    difference_chart.toolbar.active_drag = "box_zoom"
-    difference_chart.add_tools(new Bokeh.PanTool())
 
     difference_chart.xaxis[0].axis_label_text_font_size = "0px"
     difference_chart.xaxis[0].axis_line_color = null
@@ -558,6 +671,85 @@
 
     Bokeh.Plotting.show(gridplot, "#bk-chart-container")
 
+    ///////
+    // INIT
+    ///////
+
+    showToolbar(true)
+
+    ////////
+    // TOOLS
+    ////////
+
+    // Actions (for buttons)
+
+    function activateBoxZoomAction() {
+        box_zoom_tool.active = true
+    }
+
+    function activatePanAction() {
+        pan_tool.active = true
+    }
+
+    function resetAction() {
+        main_chart.reset.emit()
+        //main_chart.reset.emit()  // Second reset is needed to adjust the left axis margins: DOESN'T WORK :( Manual click needed
+    }
+
+    function toggleHoverAction() {
+        hover_tool.active = !hover_tool.active
+    }
+
+    // Actions (without buttons)
+
+    function showToolbar(state) {
+        const toolbar = document.getElementById("toolbar")
+        if (state === true) {
+            toolbar.style.display = "block"
+        } else {
+            toolbar.style.display = "none"
+        }
+    }
+
+    // Buttons
+
+    const activateBoxZoomButton = document.createElement("button")
+    activateBoxZoomButton.innerHTML = "<i class='fas fa-search-plus'></i>"
+    activateBoxZoomButton.setAttribute("data-tooltip", "Box zoom")
+    activateBoxZoomButton.addEventListener("click", activateBoxZoomAction)
+
+    const activatePanButton = document.createElement("button")
+    activatePanButton.innerHTML = "<i class='fas fa-arrows-alt'></i>"
+    activatePanButton.setAttribute("data-tooltip", "Pan")
+    activatePanButton.addEventListener("click", activatePanAction)
+
+    const resetButton = document.createElement("button")
+    resetButton.innerHTML = "<i class='fas fa-sync-alt'></i>"
+    resetButton.setAttribute("data-tooltip", "Reset")
+    resetButton.addEventListener("click", resetAction)
+
+    const toggleHoverButton = document.createElement("button")
+    toggleHoverButton.innerHTML = "<i class='fas fa-comment-alt'></i>"
+    toggleHoverButton.setAttribute("data-tooltip", "Hover")
+    toggleHoverButton.addEventListener("click", toggleHoverAction)
+
+    function createToolbarSeparator() {
+        const element = document.createElement("span")
+        element.classList.toggle("toolbar-separator")
+        return element
+    }
+
+    // Toolbar
+
+    const toolbar = document.getElementById("toolbar")
+
+    toolbar.appendChild(activateBoxZoomButton)
+    toolbar.appendChild(activatePanButton)
+    toolbar.appendChild(createToolbarSeparator())
+    toolbar.appendChild(resetButton)
+    toolbar.appendChild(createToolbarSeparator())
+    toolbar.appendChild(toggleHoverButton)
+
     ////////
     // LOGIC
     ////////
@@ -571,6 +763,14 @@
         document.querySelector(".bk-tool-icon-reset").click()
     }
     */
+
+    function hideDifferenceChart() {
+        difference_chart.visible = false
+    }
+
+    function hideBraggChart() {
+        bragg_chart.visible = false
+    }
 
     function hasData(data) {
         return typeof data !== 'undefined' &&
@@ -747,14 +947,15 @@
         bkg_line.line_width = sizes.backgroundLineWidth
     }
 
+    /*
     function onTestButtonClicked() {
         //document.getElementById("bk-chart-container").style['background-color'] = "red"
         //bragg_chart.visible = false
         console.log("!!", main_chart.x_range.start, main_chart.x_range.reset_start)
     }
-
     const testButton = document.getElementById("test-button")
     testButton.addEventListener("click", onTestButtonClicked)
+    */
 
     </script>
 

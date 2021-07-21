@@ -71,3 +71,10 @@ function isQmlScene()
     }
     return false
 }
+
+function hasData(obj) {
+    if (typeof obj !== 'undefined' && Object.keys(obj).length) {
+        return true
+    }
+    return false
+}
