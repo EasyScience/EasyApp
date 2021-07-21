@@ -204,7 +204,7 @@
                                 <table><tbody>
                                     <tr style="color:#bbbbbb">
                                         <td style="text-align:right">x:&nbsp;</td>
-                                        <td style="text-align:right">@x_meas{0.00}</td>
+                                        <td style="text-align:right">@x{0.00}</td>
                                         <td></td>
                                     </tr>
                                     <tr style="color:#03a9f4">
@@ -230,9 +230,7 @@
                                 <span style="color:#ff5722">hkl:&nbsp;(@h_bragg @k_bragg @l_bragg)</span>
                             </div>`)
 
-    const measured_source = new Bokeh.ColumnDataSource()
-    const calculated_source = new Bokeh.ColumnDataSource()
-    const difference_source = new Bokeh.ColumnDataSource()
+    const main_source = new Bokeh.ColumnDataSource()
     const bragg_source = new Bokeh.ColumnDataSource()
     const background_source = new Bokeh.ColumnDataSource()
 
@@ -329,15 +327,15 @@
 
     // Add measured data to main chart
 
-    measured_source.data.x_meas = [8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9]
-    measured_source.data.y_meas = [610.57, 599.29, 595.29, 610.08, 580.67, 601.51, 598.15, 583.93, 578.18, 574.16]
-    measured_source.data.sy_meas = [10.79, 10.64, 10.6, 10.74, 10.49, 10.65, 10.62, 10.49, 10.46, 10.42]
-    measured_source.data.y_meas_upper = [621.36, 609.93, 605.89, 620.82, 591.16, 612.16, 608.77, 594.43, 588.63, 584.58]
-    measured_source.data.y_meas_lower = [599.78, 588.64, 584.69, 599.34, 570.18, 590.86, 587.53, 573.44, 567.72, 563.74]
+    main_source.data.x = [8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9]
+    main_source.data.y_meas = [610.57, 599.29, 595.29, 610.08, 580.67, 601.51, 598.15, 583.93, 578.18, 574.16]
+    main_source.data.sy_meas = [10.79, 10.64, 10.6, 10.74, 10.49, 10.65, 10.62, 10.49, 10.46, 10.42]
+    main_source.data.y_meas_upper = [621.36, 609.93, 605.89, 620.82, 591.16, 612.16, 608.77, 594.43, 588.63, 584.58]
+    main_source.data.y_meas_lower = [599.78, 588.64, 584.69, 599.34, 570.18, 590.86, 587.53, 573.44, 567.72, 563.74]
 
     const meas_line_top = new Bokeh.Line({
         x: {
-            field: "x_meas"
+            field: "x"
         },
         y: {
             field: "y_meas_upper"
@@ -348,7 +346,7 @@
     })
     const meas_line_bottom = new Bokeh.Line({
         x: {
-            field: "x_meas"
+            field: "x"
         },
         y: {
             field: "y_meas_lower"
@@ -357,9 +355,9 @@
         line_alpha: 0.6,
         line_width: parseInt(style.getPropertyValue('--measuredLineWidth'))
     })
-    const measArea = new Bokeh.VArea({
+    const meas_area = new Bokeh.VArea({
         x: {
-            field: "x_meas"
+            field: "x"
         },
         y1: {
             field: "y_meas_upper"
@@ -371,18 +369,17 @@
         fill_alpha: 0.5
     })
 
-    main_chart.add_glyph(measArea, measured_source)
-    main_chart.add_glyph(meas_line_top, measured_source)
-    main_chart.add_glyph(meas_line_bottom, measured_source)
+    main_chart.add_glyph(meas_area, main_source)
+    main_chart.add_glyph(meas_line_top, main_source)
+    main_chart.add_glyph(meas_line_bottom, main_source)
 
     // Add calculated data to main chart
 
-    calculated_source.data.x_calc = [8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9]
-    calculated_source.data.y_calc = [607.06, 604.25, 601.43, 598.62, 595.8, 592.99, 590.18, 587.37, 584.56, 581.74]
+    main_source.data.y_calc = [607.06, 604.25, 601.43, 598.62, 595.8, 592.99, 590.18, 587.37, 584.56, 581.74]
 
     const calc_line = new Bokeh.Line({
         x: {
-            field: "x_calc"
+            field: "x"
         },
         y: {
             field: "y_calc"
@@ -391,7 +388,7 @@
         line_width: parseInt(style.getPropertyValue('--calculatedLineWidth'))
     })
 
-    main_chart.add_glyph(calc_line, calculated_source)
+    main_chart.add_glyph(calc_line, main_source)
 
     charts.push([main_chart])
 
@@ -473,7 +470,7 @@
     //////////////////////////////////
 
     const difference_chart = new Bokeh.Plotting.figure({
-        tools: "reset,box_zoom,pan,hover",
+        tools: "reset",
 
         height: parseInt(style.getPropertyValue('--differenceChartHeight')),
         width: parseInt(style.getPropertyValue('--chartWidth')),
@@ -492,11 +489,7 @@
         min_border_bottom: 0.5 * parseInt(style.getPropertyValue('--fontPixelSize'))
     })
 
-    difference_chart.add_tools(new Bokeh.HoverTool({
-        tooltips: main_tooltip,
-        point_policy: "snap_to_data",
-        mode: "mouse"
-    }))
+    difference_chart.add_tools(hover_tool)
 
     difference_chart.xaxis[0].axis_label_text_font_size = "0px"
     difference_chart.xaxis[0].axis_line_color = null
@@ -525,14 +518,13 @@
     difference_chart.xgrid[0].grid_line_color = main_chart.xgrid[0].grid_line_color
     difference_chart.ygrid[0].grid_line_color = main_chart.ygrid[0].grid_line_color
 
-    difference_source.data.x_diff = [8.1, 8.2, 8.3, 8.4, 8.5, 8.6, 8.7, 8.8, 8.9, 9]
-    difference_source.data.y_diff = [3.51, -4.96, -6.14, 11.47, -15.14, 8.52, 7.97, -3.43, -6.38, -7.58]
-    difference_source.data.y_diff_upper = [14.3, 5.68, 4.46, 22.21, -4.64, 19.17, 18.59, 7.06, 4.08, 2.84]
-    difference_source.data.y_diff_lower = [-7.28, -15.6, -16.74, 0.72, -25.63, -2.13, -2.65, -13.93, -16.83, -18]
+    main_source.data.y_diff = [3.51, -4.96, -6.14, 11.47, -15.14, 8.52, 7.97, -3.43, -6.38, -7.58]
+    main_source.data.y_diff_upper = [14.3, 5.68, 4.46, 22.21, -4.64, 19.17, 18.59, 7.06, 4.08, 2.84]
+    main_source.data.y_diff_lower = [-7.28, -15.6, -16.74, 0.72, -25.63, -2.13, -2.65, -13.93, -16.83, -18]
 
     const diff_line_top = new Bokeh.Line({
         x: {
-            field: "x_diff"
+            field: "x"
         },
         y: {
             field: "y_diff_upper"
@@ -543,7 +535,7 @@
     })
     const diff_line_bottom = new Bokeh.Line({
         x: {
-            field: "x_diff"
+            field: "x"
         },
         y: {
             field: "y_diff_lower"
@@ -552,9 +544,9 @@
         line_alpha: 0.6,
         line_width: parseInt(style.getPropertyValue('--differenceLineWidth'))
     })
-    const diffArea = new Bokeh.VArea({
+    const diff_area = new Bokeh.VArea({
         x: {
-            field: "x_diff"
+            field: "x"
         },
         y1: {
             field: "y_diff_upper"
@@ -566,16 +558,16 @@
         fill_alpha: 0.5
     })
 
-    difference_chart.add_glyph(diffArea, difference_source)
-    difference_chart.add_glyph(diff_line_top, difference_source)
-    difference_chart.add_glyph(diff_line_bottom, difference_source)
+    difference_chart.add_glyph(diff_area, main_source)
+    difference_chart.add_glyph(diff_line_top, main_source)
+    difference_chart.add_glyph(diff_line_bottom, main_source)
 
     function differenceChartMeanY() {
         let ySum = 0,
             yCount = 0
-        for (let i in difference_source.data.x_diff) {
-            if (difference_chart.x_range.start <= difference_source.data.x_diff[i] && difference_source.data.x_diff[i] <= difference_chart.x_range.end) {
-                ySum += difference_source.data.y_diff[i]
+        for (let i in main_source.data.x) {
+            if (difference_chart.x_range.start <= main_source.data.x[i] && main_source.data.x[i] <= difference_chart.x_range.end) {
+                ySum += main_source.data.y_diff[i]
                 yCount += 1
             }
         }
@@ -782,21 +774,21 @@
         if (!has_data) {
             return
         }
-        calculated_source.data.x_calc = data.x
-        calculated_source.data.y_calc = data.y
-        calculated_source.change.emit()
+        main_source.data.x = data.x
+        main_source.data.y_calc = data.y
+        main_source.change.emit()
     }
 
     function setMeasuredData(has_data, data) {
         if (!has_data) {
             return
         }
-        measured_source.data.x_meas = data.x
-        measured_source.data.y_meas = data.y
-        measured_source.data.sy_meas = data.sy
-        measured_source.data.y_meas_upper = data.y_upper
-        measured_source.data.y_meas_lower = data.y_lower
-        measured_source.change.emit()
+        main_source.data.x = data.x
+        main_source.data.y_meas = data.y
+        main_source.data.sy_meas = data.sy
+        main_source.data.y_meas_upper = data.y_upper
+        main_source.data.y_meas_lower = data.y_lower
+        main_source.change.emit()
     }
 
     function setDifferenceData(has_data, data) {
@@ -804,11 +796,11 @@
         if (!has_data) {
             return
         }
-        difference_source.data.x_diff = data.x
-        difference_source.data.y_diff = data.y
-        difference_source.data.y_diff_upper = data.y_upper
-        difference_source.data.y_diff_lower = data.y_lower
-        difference_source.change.emit()
+        main_source.data.x = data.x
+        main_source.data.y_diff = data.y
+        main_source.data.y_diff_upper = data.y_upper
+        main_source.data.y_diff_lower = data.y_lower
+        main_source.change.emit()
     }
 
     function setBraggData(has_data, data) {
@@ -884,7 +876,7 @@
         bkg_line.line_color = colors.backgroundLineColor
         meas_line_top.line_color = colors.measuredLineColor
         meas_line_bottom.line_color = colors.measuredLineColor
-        measArea.fill_color = colors.measuredAreaColor
+        meas_area.fill_color = colors.measuredAreaColor
         calc_line.line_color = colors.calculatedLineColor
 
         bragg_chart.outline_line_color = main_chart.outline_line_color
@@ -913,7 +905,7 @@
 
         diff_line_top.line_color = colors.differenceLineColor
         diff_line_bottom.line_color = colors.differenceLineColor
-        diffArea.fill_color = colors.differenceAreaColor
+        diff_area.fill_color = colors.differenceAreaColor
 
         xaxis_chart.background = main_chart.background
         xaxis_chart.background_fill_color = main_chart.background_fill_color
