@@ -26,8 +26,8 @@ T.ComboBox {
                              implicitContentHeight + topPadding + bottomPadding,
                              implicitIndicatorHeight + topPadding + bottomPadding)
 
-    topInset: EaStyle.Sizes.fontPixelSize * 0.5
-    bottomInset: EaStyle.Sizes.fontPixelSize * 0.5
+    //topInset: EaStyle.Sizes.fontPixelSize * 0.5
+    //bottomInset: EaStyle.Sizes.fontPixelSize * 0.5
 
     leftPadding: padding + (!control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)
     rightPadding: padding + (control.mirrored || !indicator || !indicator.visible ? 0 : indicator.width + spacing)

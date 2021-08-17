@@ -54,7 +54,7 @@ Rectangle {
     // Fitting label
     EaElements.RunningLabel {
         text: "Fitting in progress"
-        running: !ExGlobals.Constants.proxy.isFitFinished
+        running: !ExGlobals.Constants.proxy.fitting.isFitFinished
     }
 
     // Status bar top border
