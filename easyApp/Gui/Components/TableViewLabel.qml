@@ -17,4 +17,6 @@ EaElements.Label {
 
     horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter
+
+    elide: Text.ElideMiddle
 }
