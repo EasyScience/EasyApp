@@ -170,6 +170,7 @@ EaElements.Dialog {
         Grid {
             columns: 2
             columnSpacing: EaStyle.Sizes.fontPixelSize
+            rowSpacing: EaStyle.Sizes.fontPixelSize
             verticalItemAlignment: Grid.AlignVCenter
 
             EaElements.Label {
@@ -228,6 +229,7 @@ EaElements.Dialog {
         Grid {
             columns: 2
             columnSpacing: EaStyle.Sizes.fontPixelSize
+            rowSpacing: EaStyle.Sizes.fontPixelSize
             verticalItemAlignment: Grid.AlignVCenter
 
             EaElements.Label {
@@ -275,6 +277,7 @@ EaElements.Dialog {
 
             columns: 2
             columnSpacing: EaStyle.Sizes.fontPixelSize
+            rowSpacing: EaStyle.Sizes.fontPixelSize
             verticalItemAlignment: Grid.AlignVCenter
 
             EaElements.Label {
