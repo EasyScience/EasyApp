@@ -63,15 +63,15 @@ EaCharts.BasePlot {
 
     // On changes
 
-    onCalculatedDataChanged: if (loadSucceeded) { setCalculatedData(calculatedData); reset() }
-    onMeasuredDataChanged: if (loadSucceeded) { setMeasuredData(measuredData); reset() }
-    onDifferenceDataChanged: if (loadSucceeded) { setDifferenceData(differenceData); reset() }
-    onBraggDataChanged: if (loadSucceeded) { setBraggData(braggData); reset() }
-    onBackgroundDataChanged: if (loadSucceeded) { setBackgroundData(backgroundData); reset() }
+    onCalculatedDataChanged: if (loadSucceeded) { setCalculatedData(calculatedData); print("-------> onCalculatedDataChanged", calculatedData.x.length, JSON.stringify(calculatedData)) }
+    onMeasuredDataChanged: if (loadSucceeded) { setMeasuredData(measuredData); print("-------> onMeasuredDataChanged", measuredData.x.length, JSON.stringify(measuredData)) }
+    onDifferenceDataChanged: if (loadSucceeded) { setDifferenceData(differenceData); print("-------> onDifferenceDataChanged", differenceData.x.length, JSON.stringify(differenceData)) }
+    onBraggDataChanged: if (loadSucceeded) { setBraggData(braggData); print("-------> onBraggDataChanged", JSON.stringify(braggData)) }
+    onBackgroundDataChanged: if (loadSucceeded) { setBackgroundData(backgroundData); print("-------> onBackgroundDataChanged", JSON.stringify(backgroundData)) }
     onPlotRangesChanged: if (loadSucceeded) {
-        print("-------------- onPlotRangesChanged", JSON.stringify(plotRanges))
-        setInitPlotRanges(plotRanges)
-        setPlotRanges(plotRanges)
+        // setInitPlotRanges(plotRanges)
+        setPlotRanges(plotRanges);
+        print("-------> onPlotRangesChanged", JSON.stringify(plotRanges))
     }
 
     onMainChartHeightChanged: { print("+++++ onMainChartHeightChanged"); setChartSizes() }

@@ -669,6 +669,12 @@
 
     showToolbar(true)
 
+
+    console.log("******* 1", main_chart.x_range.reset_start, main_chart.x_range.start)
+    //setPlotRanges(true, {"max_x":155.45,"max_y":2723.08,"min_x":20,"min_y":-79.96})
+    console.log("******* 2", main_chart.x_range.reset_start, main_chart.x_range.start)
+
+
     ////////
     // TOOLS
     ////////
@@ -686,6 +692,7 @@
     function resetAction() {
         main_chart.reset.emit()
         //main_chart.reset.emit()  // Second reset is needed to adjust the left axis margins: DOESN'T WORK :( Manual click needed
+        ///difference_chart.reset.emit()
     }
 
     function toggleHoverAction() {
@@ -838,7 +845,7 @@
         difference_chart.y_range.reset_end = differenceChartMeanY() + differenceChartHalfRangeY()
     }
 
-    function setPlotRanges(has_data, data) {
+    function setCurrentPlotRanges(has_data, data) {
         if (!has_data) {
             return
         }
@@ -846,6 +853,46 @@
         main_chart.x_range.end = data.max_x
         main_chart.y_range.start = data.min_y
         main_chart.y_range.end = data.max_y
+    }
+
+
+
+    function setPlotRanges(has_data, data) {
+        if (!has_data) {
+            return
+        }
+
+        if (main_chart.x_range.reset_start == null ||
+            main_chart.x_range.reset_end == null ||
+            main_chart.y_range.reset_start == null ||
+            main_chart.y_range.reset_end == null) {
+
+            setCurrentPlotRanges(has_data, data)
+        }
+
+        setInitPlotRanges(has_data, data)
+
+        //console.log("!!! R !!!", main_chart.x_range.reset_start, main_chart.x_range.reset_end, main_chart.y_range.reset_start, main_chart.y_range.reset_end)
+        //console.log("!!! N !!!", main_chart.x_range.start, main_chart.x_range.end, main_chart.y_range.start, main_chart.y_range.end)
+
+        if (main_chart.x_range.start == main_chart.x_range.reset_start &&
+            main_chart.x_range.end == main_chart.x_range.reset_end &&
+            main_chart.y_range.start == main_chart.y_range.reset_start &&
+            main_chart.y_range.end == main_chart.y_range.reset_end) {
+
+            console.log("!!! set ranges !!!")
+
+            setCurrentPlotRanges(has_data, data)
+            resetAction()
+        }
+
+//main_chart.x_range.start = data.min_x
+//main_chart.x_range.end = data.max_x
+//main_chart.y_range.start = data.min_y
+//main_chart.y_range.end = data.max_y
+
+//resetAction()
+
     }
 
     function setChartLabels(labels) {
