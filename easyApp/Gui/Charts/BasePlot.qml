@@ -15,6 +15,8 @@ Rectangle {
     property var braggData: ({})
     property var backgroundData: ({})
     property var plotRanges: ({})
+    property var sldData: ({})
+    property var sldPlotRanges: ({})
 
     property bool hasMeasuredData: typeof measuredData !== 'undefined'
                                    && Object.keys(measuredData).length
@@ -30,6 +32,10 @@ Rectangle {
                                 && Object.keys(backgroundData).length
     property bool hasPlotRangesData: typeof plotRanges !== 'undefined'
                                      && Object.keys(plotRanges).length
+    property bool hasSldData: typeof sldData !== 'undefined'
+                              && Object.keys(sldData).length
+    property bool hasSldPlotRangesData: typeof sldPlotRanges !== 'undefined'
+                                        && Object.keys(sldPlotRanges).length
 
     property int chartContainerWidth: container.width
     property int chartContainerHeight: container.height
@@ -39,6 +45,7 @@ Rectangle {
                                   - 2 * paddings
                                   - braggChartHeight
                                   - differenceChartHeight
+                                  - sldChartHeight
                                   - chartToolButtonsHeight
                                   - xAxisChartHeight
     property int braggChartHeight: hasBraggData
@@ -48,10 +55,16 @@ Rectangle {
                                         ? 8 * EaStyle.Sizes.fontPixelSize
                                         : 0
     property int xAxisChartHeight: 3 * EaStyle.Sizes.fontPixelSize
+    property int sldChartHeight: hasSldData
+                                 ? 20 * EaStyle.Sizes.fontPixelSize
+                                 : 0
 
     property string xAxisTitle: ''
+    property string xMainAxisTitle: ''
     property string yMainAxisTitle: ''
     property string yDifferenceAxisTitle: ''
+    property string xSldAxisTitle: ''
+    property string ySldAxisTitle: ''
 
     property color chartBackgroundColor: EaStyle.Colors.chartPlotAreaBackground
     property color chartForegroundColor: EaStyle.Colors.chartForeground
@@ -65,11 +78,13 @@ Rectangle {
     property color braggTicksColor: calculatedLineColor
     property color backgroundLineColor: EaStyle.Colors.chartAxis
     property color differenceAreaColor: differenceLineColor
+    property color sldLineColor: EaStyle.Colors.chartForegrounds[2]
 
     property int measuredLineWidth: 1
     property int calculatedLineWidth: 2
     property int differenceLineWidth: 1
     property int backgroundLineWidth: 2
+    property int sldLineWidth: 2
 
     property int fontPixelSize: EaStyle.Sizes.fontPixelSize
 
