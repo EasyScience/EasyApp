@@ -11,6 +11,7 @@ Rectangle {
 
     property var measuredData: ({})
     property var calculatedData: ({})
+    property var phaseData: ({})
     property var differenceData: ({})
     property var braggData: ({})
     property var backgroundData: ({})
@@ -22,6 +23,8 @@ Rectangle {
                                        || typeof measuredData.xy !== 'undefined')
     property bool hasCalculatedData: typeof calculatedData !== 'undefined'
                                      && Object.keys(calculatedData).length
+    property bool hasPhaseData: typeof phaseData !== 'undefined'
+                                     && Object.keys(phaseData).length
     property bool hasDifferenceData: typeof differenceData !== 'undefined'
                                      && Object.keys(differenceData).length
     property bool hasBraggData: typeof braggData !== 'undefined'
@@ -62,6 +65,7 @@ Rectangle {
     property color measuredAreaColor: measuredLineColor
     property color calculatedLineColor: EaStyle.Colors.chartForegrounds[1]
     property color differenceLineColor: EaStyle.Colors.chartForegrounds[2]
+    property color phaseLineColor: EaStyle.Colors.chartForegrounds[3]
     property color braggTicksColor: calculatedLineColor
     property color backgroundLineColor: EaStyle.Colors.chartAxis
     property color differenceAreaColor: differenceLineColor

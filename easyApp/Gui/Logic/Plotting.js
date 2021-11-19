@@ -99,7 +99,6 @@ function bokehChart(data, specs) {
     if (!data.hasMeasured && !data.hasCalculated && !data.hasPlotRanges) {
         return
     }
-
     // List of strings to be filled below
     let chart = []
 
@@ -111,7 +110,6 @@ function bokehChart(data, specs) {
     chart.push('const main_source = new Bokeh.ColumnDataSource()')
     chart.push('const bragg_source = new Bokeh.ColumnDataSource()')
     chart.push('const background_source = new Bokeh.ColumnDataSource()')
-
     // Charts array
     chart.push('const charts = []')
 
@@ -125,6 +123,9 @@ function bokehChart(data, specs) {
     }
     if (data.hasMeasured) {
         chart.push(...bokehAddMeasuredDataToMainChart(data, specs))
+    }
+    if (data.hasPhase) {
+        chart.push(...bokehAddPhaseDataToMainChart(data, specs))
     }
     if (data.hasCalculated) {
         chart.push(...bokehAddCalculatedDataToMainChart(data, specs))
@@ -466,6 +467,20 @@ function bokehAddCalculatedDataToMainChart(data, specs) {
             'main_chart.add_glyph(calcLine, main_source)']
 }
 
+function bokehAddPhaseDataToMainChart(data, specs) {
+    return [`main_source.data.x_phase = [${data.phase.x}]`,
+            `main_source.data.y_phase = [${data.phase.y}]`,
+
+            'const phaseLine = new Bokeh.Line({',
+            '    x: { field: "x_phase" },',
+            '    y: { field: "y_phase" },',
+            `    line_color: "${specs.phaseLineColor}",`,
+            `    line_width: ${specs.calculatedLineWidth}`,
+            '})',
+
+            'main_chart.add_glyph(phaseLine, main_source)']
+}
+
 function bokehAddDataToBraggChart(data, specs) {
     return [`bragg_source.data.x_bragg = [${data.bragg.x}]`,
             `bragg_source.data.y_bragg = [${data.bragg.y}]`,
@@ -531,8 +546,10 @@ function bokehMainTooltipRow(color, label, value, sigma='') {
 function bokehAddMainTooltip(data, specs) {
     const x_meas = bokehMainTooltipRow(EaStyle.Colors.themeForegroundDisabled, 'x', '@x_meas{0.00}')
     const x_calc = bokehMainTooltipRow(EaStyle.Colors.themeForegroundDisabled, 'x', '@x_calc{0.00}')
+    const x_phase = bokehMainTooltipRow(EaStyle.Colors.themeForegroundDisabled, 'x', '@x_calc{0.00}')
     const y_meas = bokehMainTooltipRow(specs.measuredLineColor, 'meas', '@y_meas{0.0}', '&#177;&nbsp;@sy_meas{0.0}')
     const y_calc = bokehMainTooltipRow(specs.calculatedLineColor, 'calc', '@y_calc{0.0}')
+    const y_phase = bokehMainTooltipRow(specs.calculatedLineColor, 'phase', '@y_phase{0.0}')
     const y_diff = bokehMainTooltipRow(specs.differenceLineColor, 'diff', '@y_diff{0.0}')
 
     let table = []
@@ -549,6 +566,9 @@ function bokehAddMainTooltip(data, specs) {
     }
     if (data.hasCalculated) {
         table.push(...y_calc)
+    }
+    if (data.hasPhase) {
+        table.push(...x_phase)
     }
     if (data.hasDifference) {
         table.push(...y_diff)

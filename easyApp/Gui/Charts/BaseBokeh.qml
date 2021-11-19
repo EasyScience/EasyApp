@@ -13,6 +13,7 @@ EaCharts.BasePlot {
     property var chartData: {
         'measured': plot.measuredData,
         'calculated': plot.calculatedData,
+        'phase': plot.phaseData,
         'difference': plot.differenceData,
         'bragg': plot.braggData,
         'background': plot.backgroundData,
@@ -20,6 +21,7 @@ EaCharts.BasePlot {
 
         'hasMeasured': plot.hasMeasuredData,
         'hasCalculated': plot.hasCalculatedData,
+        'hasPhase': plot.hasPhaseData,
         'hasDifference': plot.hasDifferenceData,
         'hasBragg': plot.hasBraggData,
         'hasBackground': plot.hasBackgroundData,
@@ -46,6 +48,7 @@ EaCharts.BasePlot {
         'measuredAreaColor': plot.measuredAreaColor,
         'calculatedLineColor': plot.calculatedLineColor,
         'differenceLineColor': plot.differenceLineColor,
+        'phaseLineColor' : plot.phaseLineColor,
         'braggTicksColor': plot.braggTicksColor,
         'backgroundLineColor': plot.backgroundLineColor,
         'differenceAreaColor': plot.differenceAreaColor,
@@ -130,7 +133,7 @@ EaCharts.BasePlot {
     */
 
     onHtmlChanged: {
-        //print(html)
+        // print(html)
         chartView.loadHtml(html)
     }
 }
