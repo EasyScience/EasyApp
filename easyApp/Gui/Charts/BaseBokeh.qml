@@ -57,6 +57,7 @@ EaCharts.BasePlot {
         'calculatedLineWidth': plot.calculatedLineWidth,
         'differenceLineWidth': plot.differenceLineWidth,
         'backgroundLineWidth': plot.backgroundLineWidth,
+        'phaseLineWidth': plot.phaseLineWidth,
 
         'fontPixelSize': plot.fontPixelSize
     }

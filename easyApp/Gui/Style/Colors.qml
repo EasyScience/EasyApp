@@ -94,7 +94,8 @@ QtObject {
 
     // Charts
     //property var chartForegrounds: ['#00a3e3', '#ff7f50', '#6b8e23']
-    property var chartForegrounds: isDarkTheme ? ['#81D4FA', '#FFAB91', '#C5E1A5', '#A9A9A9'] : ['#03A9F4', '#FF5722', '#8BC34A', '#A9A9A9']
+    property var chartForegrounds: isDarkTheme ? ['#EF9A9A', '#B0BEC5', '#C5E1A5'] : ['#F44336', '#607D8B', '#8BC34A']  // red (M), blue grey (M), light green (M)
+    property var chartForegroundsExtra: isDarkTheme ? ['#FFCC80', '#A5D6A7', '#81D4FA'] : ['#FF9800', '#4CAF50', '#03A9F4']  // orange (M), green (M), light blue (M)
     property color chartForeground: themeForeground
     property color chartBackground: mainContentBackground
     property color chartPlotAreaBackground: mainContentBackground

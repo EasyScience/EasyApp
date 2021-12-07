@@ -61,19 +61,20 @@ Rectangle {
     property color chartGridLineColor: EaStyle.Colors.chartGridLine
     property color chartMinorGridLineColor: EaStyle.Colors.chartMinorGridLine
 
-    property color measuredLineColor: EaStyle.Colors.chartForegrounds[0]
+    property color measuredLineColor: EaStyle.Colors.chartForegrounds[1]
     property color measuredAreaColor: measuredLineColor
-    property color calculatedLineColor: EaStyle.Colors.chartForegrounds[1]
-    property color differenceLineColor: EaStyle.Colors.chartForegrounds[2]
-    property color phaseLineColor: EaStyle.Colors.chartForegrounds[3]
+    property color calculatedLineColor: EaStyle.Colors.chartForegrounds[0]
+    property color differenceLineColor: EaStyle.Colors.chartForegrounds[1]
     property color braggTicksColor: calculatedLineColor
-    property color backgroundLineColor: EaStyle.Colors.chartAxis
+    property color backgroundLineColor: EaStyle.Colors.chartForegrounds[1]
     property color differenceAreaColor: differenceLineColor
+    property var phaseLineColor: EaStyle.Colors.chartForegroundsExtra
 
     property int measuredLineWidth: 1
     property int calculatedLineWidth: 2
     property int differenceLineWidth: 1
     property int backgroundLineWidth: 2
+    property int phaseLineWidth: 1
 
     property int fontPixelSize: EaStyle.Sizes.fontPixelSize
 
