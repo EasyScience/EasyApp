@@ -108,7 +108,6 @@ function bokehChart(data, specs) {
 
     // Data sources
     chart.push('const main_source = new Bokeh.ColumnDataSource()')
-    chart.push('const bragg_source = new Bokeh.ColumnDataSource()')
     // Charts array
     chart.push('const charts = []')
 
@@ -217,6 +216,10 @@ function bokehCreateMainChart(data, specs) {
 }
 
 function bokehCreateBraggChart(data, specs) {
+    const num_phases = Object.keys(data.bragg).length
+    const y_margin = 0.65
+    const y_min = -num_phases + 1 - y_margin
+    const y_max = y_margin
     return [`const bragg_chart = new Bokeh.Plotting.figure({`,
             `   tools: "",`,
 
@@ -224,7 +227,7 @@ function bokehCreateBraggChart(data, specs) {
             `   width: ${specs.chartWidth},`,
 
             `   x_range: main_chart.x_range,`,
-            `   y_range: new Bokeh.Range1d({ start: -1, end: 1 }),`,
+            `   y_range: new Bokeh.Range1d({ start: ${y_min}, end: ${y_max} }),`,
 
             `   outline_line_color: "${EaStyle.Colors.chartAxis}",`,
             `   background: "${specs.chartBackgroundColor}",`,
@@ -495,22 +498,27 @@ function bokehAddPhaseDataToMainChart(data, specs) {
 }
 
 function bokehAddDataToBraggChart(data, specs) {
-    return [`bragg_source.data.x_bragg = [${data.bragg.x}]`,
-            `bragg_source.data.y_bragg = [${data.bragg.y}]`,
-            `bragg_source.data.h_bragg = [${data.bragg.h}]`,
-            `bragg_source.data.k_bragg = [${data.bragg.k}]`,
-            `bragg_source.data.l_bragg = [${data.bragg.l}]`,
+    let out = []
+    for (const phase_index in data.bragg) {
+        out.push(`const bragg_source_${phase_index} = new Bokeh.ColumnDataSource()`)
 
-            `const braggTicks = new Bokeh.Scatter({`,
-            `   x: { field: "x_bragg" },`,
-            `   y: { field: "y_bragg" },`,
-            `   marker: "dash",`,
-            `   size: ${1.5 * specs.fontPixelSize},`,
-            `   line_color: "${specs.braggTicksColor}",`,
-            `   angle: ${Math.PI / 2.}`,
-            `})`,
+        out.push(`bragg_source_${phase_index}.data.x_bragg = [${data.bragg[phase_index].x}]`)
+        out.push(`bragg_source_${phase_index}.data.y_bragg = [${data.bragg[phase_index].y}]`)
+        out.push(`bragg_source_${phase_index}.data.h_bragg = [${data.bragg[phase_index].h}]`)
+        out.push(`bragg_source_${phase_index}.data.k_bragg = [${data.bragg[phase_index].k}]`)
+        out.push(`bragg_source_${phase_index}.data.l_bragg = [${data.bragg[phase_index].l}]`)
 
-            `bragg_chart.add_glyph(braggTicks, bragg_source)`]
+        out.push(`const braggTicks_${phase_index} = new Bokeh.Scatter({`)
+        out.push(`    x: { field: "x_bragg" },`)
+        out.push(`    y: { field: "y_bragg" },`)
+        out.push(`    marker: "dash",`)
+        out.push(`    size: ${1.5 * specs.fontPixelSize},`)
+        out.push(`    line_color: "${specs.braggTicksColor[phase_index]}",`)
+        out.push(`    angle: ${Math.PI / 2.}`)
+        out.push('})')
+        out.push(`bragg_chart.add_glyph(braggTicks_${phase_index}, bragg_source_${phase_index})`)
+    }
+    return out
 }
 
 function bokehAddDataToDiffChart(data, specs) {

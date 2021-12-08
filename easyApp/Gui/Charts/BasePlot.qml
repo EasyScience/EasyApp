@@ -29,6 +29,7 @@ Rectangle {
                                      && Object.keys(differenceData).length
     property bool hasBraggData: typeof braggData !== 'undefined'
                                 && Object.keys(braggData).length
+
     property bool hasBackgroundData: typeof backgroundData !== 'undefined'
                                 && Object.keys(backgroundData).length
     property bool hasPlotRangesData: typeof plotRanges !== 'undefined'
@@ -45,7 +46,7 @@ Rectangle {
                                   - chartToolButtonsHeight
                                   - xAxisChartHeight
     property int braggChartHeight: hasBraggData
-                                   ? 3 * EaStyle.Sizes.fontPixelSize
+                                   ? 3 * EaStyle.Sizes.fontPixelSize * Object.keys(braggData).length
                                    : 0
     property int differenceChartHeight: hasDifferenceData
                                         ? 8 * EaStyle.Sizes.fontPixelSize
@@ -65,10 +66,10 @@ Rectangle {
     property color measuredAreaColor: measuredLineColor
     property color calculatedLineColor: EaStyle.Colors.chartForegrounds[0]
     property color differenceLineColor: EaStyle.Colors.chartForegrounds[1]
-    property color braggTicksColor: calculatedLineColor
     property color backgroundLineColor: EaStyle.Colors.chartForegrounds[1]
     property color differenceAreaColor: differenceLineColor
     property var phaseLineColor: EaStyle.Colors.chartForegroundsExtra
+    property var braggTicksColor: phaseLineColor
 
     property int measuredLineWidth: 1
     property int calculatedLineWidth: 2
