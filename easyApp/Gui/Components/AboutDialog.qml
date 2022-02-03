@@ -130,7 +130,7 @@ EaElements.Dialog {
         // Footer
         EaElements.Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "© 2019-2021 • All rights reserved"
+            text: "© 2019-2022 • All rights reserved"
         }
     }
 
