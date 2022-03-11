@@ -2,6 +2,7 @@ import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtWebEngine 1.10
 
+import Gui.Globals 1.0 as ExGlobals
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Elements 1.0 as EaElements
 import easyApp.Gui.Logic 1.0 as EaLogic
@@ -25,7 +26,9 @@ EaCharts.BasePlot {
         'hasDifference': plot.hasDifferenceData,
         'hasBragg': plot.hasBraggData,
         'hasBackground': plot.hasBackgroundData,
-        'hasPlotRanges': plot.hasPlotRangesData
+        'hasPlotRanges': plot.hasPlotRangesData,
+        'isSpinPolarized': plot.isSpinPolarized,
+        'setSpinComponent': plot.setSpinComponent,
     }
 
     property var chartSpecs: {
@@ -80,7 +83,35 @@ EaCharts.BasePlot {
     /////////////////////
     // Chart tool buttons
     /////////////////////
+    Row {
+        visible: plot.isSpinPolarized
+        height: plot.isSpinPolarized ? 20 : 0
+        // anchors.horizontalCenter: parent.horizontalCenter
+        anchors.margins: plot.paddings
+        anchors.left: parent.left
 
+        spacing: 5
+
+        RadioButton {
+            text: qsTr("Up \uff0b Down")
+            checked: true // default
+            // We shouldn't be using direct proxy here, but instead
+            // have a property settable by the app code.
+            onClicked: ExGlobals.Constants.proxy.plotting1d.setSpinComponent("Sum")
+        }
+        RadioButton {
+            text: qsTr("Up \uff0d Down")
+            onClicked: ExGlobals.Constants.proxy.plotting1d.setSpinComponent("Difference")
+        }
+        RadioButton {
+            text: qsTr("Up")
+            onClicked: ExGlobals.Constants.proxy.plotting1d.setSpinComponent("Up")
+        }
+        RadioButton {
+            text: qsTr("Down")
+            onClicked: ExGlobals.Constants.proxy.plotting1d.setSpinComponent("Down")
+        }
+    }
     /*
     Row {
         anchors.top: parent.top
