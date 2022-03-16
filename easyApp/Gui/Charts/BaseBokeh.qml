@@ -83,33 +83,42 @@ EaCharts.BasePlot {
     /////////////////////
     // Chart tool buttons
     /////////////////////
+
+    ButtonGroup {
+        buttons: radio_row.children
+    }
+
     Row {
+        id: radio_row
         visible: plot.isSpinPolarized
         height: plot.isSpinPolarized ? 20 : 0
-        // anchors.horizontalCenter: parent.horizontalCenter
         anchors.margins: plot.paddings
-        anchors.left: parent.left
-
+        anchors.topMargin: plot.paddings - 0.25 * plot.fontPixelSize
+        anchors.left: chartView.left
+        anchors.top: chartView.top
         spacing: 5
 
-        RadioButton {
+        EaElements.RadioButton {
             text: qsTr("Up \uff0b Down")
-            checked: true // default
+            checked: ExGlobals.Constants.proxy.experiment.spinComponent === "Sum"
             // We shouldn't be using direct proxy here, but instead
             // have a property settable by the app code.
-            onClicked: ExGlobals.Constants.proxy.plotting1d.setSpinComponent("Sum")
+            onClicked: ExGlobals.Constants.proxy.experiment.setSpinComponent("Sum")
         }
-        RadioButton {
+        EaElements.RadioButton {
             text: qsTr("Up \uff0d Down")
-            onClicked: ExGlobals.Constants.proxy.plotting1d.setSpinComponent("Difference")
+            checked: ExGlobals.Constants.proxy.experiment.spinComponent === "Difference"
+            onClicked: ExGlobals.Constants.proxy.experiment.setSpinComponent("Difference")
         }
-        RadioButton {
+        EaElements.RadioButton {
             text: qsTr("Up")
-            onClicked: ExGlobals.Constants.proxy.plotting1d.setSpinComponent("Up")
+            checked: ExGlobals.Constants.proxy.experiment.spinComponent === "Up"
+            onClicked: ExGlobals.Constants.proxy.experiment.setSpinComponent("Up")
         }
-        RadioButton {
+        EaElements.RadioButton {
             text: qsTr("Down")
-            onClicked: ExGlobals.Constants.proxy.plotting1d.setSpinComponent("Down")
+            checked: ExGlobals.Constants.proxy.experiment.spinComponent === "Down"
+            onClicked: ExGlobals.Constants.proxy.experiment.setSpinComponent("Down")
         }
     }
     /*
