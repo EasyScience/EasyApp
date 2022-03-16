@@ -16,7 +16,7 @@ Rectangle {
     property var braggData: ({})
     property var backgroundData: ({})
     property var plotRanges: ({})
-    property var setSpinComponent: ({})
+    property var setSpinComponent: (string)
 
     property bool hasMeasuredData: typeof measuredData !== 'undefined'
                                    && Object.keys(measuredData).length
@@ -36,6 +36,7 @@ Rectangle {
     property bool hasPlotRangesData: typeof plotRanges !== 'undefined'
                                      && Object.keys(plotRanges).length
     property bool isSpinPolarized: false
+    property string spinComponent: 'Sum'
 
     property int chartContainerWidth: container.width
     property int chartContainerHeight: container.height

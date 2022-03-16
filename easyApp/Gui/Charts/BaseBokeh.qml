@@ -29,6 +29,7 @@ EaCharts.BasePlot {
         'hasPlotRanges': plot.hasPlotRangesData,
         'isSpinPolarized': plot.isSpinPolarized,
         'setSpinComponent': plot.setSpinComponent,
+        'spinComponent': plot.spinComponent,
     }
 
     property var chartSpecs: {
@@ -100,25 +101,23 @@ EaCharts.BasePlot {
 
         EaElements.RadioButton {
             text: qsTr("Up \uff0b Down")
-            checked: ExGlobals.Constants.proxy.experiment.spinComponent === "Sum"
-            // We shouldn't be using direct proxy here, but instead
-            // have a property settable by the app code.
-            onClicked: ExGlobals.Constants.proxy.experiment.setSpinComponent("Sum")
+            checked: plot.spinComponent === "Sum"
+            onClicked: plot.setSpinComponent("Sum")
         }
         EaElements.RadioButton {
             text: qsTr("Up \uff0d Down")
-            checked: ExGlobals.Constants.proxy.experiment.spinComponent === "Difference"
-            onClicked: ExGlobals.Constants.proxy.experiment.setSpinComponent("Difference")
+            checked: plot.spinComponent === "Difference"
+            onClicked: plot.setSpinComponent("Difference")
         }
         EaElements.RadioButton {
             text: qsTr("Up")
-            checked: ExGlobals.Constants.proxy.experiment.spinComponent === "Up"
-            onClicked: ExGlobals.Constants.proxy.experiment.setSpinComponent("Up")
+            checked: plot.spinComponent === "Up"
+            onClicked: plot.setSpinComponent("Up")
         }
         EaElements.RadioButton {
             text: qsTr("Down")
-            checked: ExGlobals.Constants.proxy.experiment.spinComponent === "Down"
-            onClicked: ExGlobals.Constants.proxy.experiment.setSpinComponent("Down")
+            checked: plot.spinComponent === "Down"
+            onClicked: plot.setSpinComponent("Down")
         }
     }
     /*
