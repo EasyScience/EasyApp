@@ -93,11 +93,12 @@ EaCharts.BasePlot {
         id: radio_row
         visible: plot.isSpinPolarized
         height: plot.isSpinPolarized ? 20 : 0
-        anchors.margins: plot.paddings
-        anchors.topMargin: plot.paddings - 0.25 * plot.fontPixelSize
-        anchors.left: chartView.left
-        anchors.top: chartView.top
-        spacing: 5
+        anchors.top: parent.top
+        anchors.left: parent.left
+        anchors.topMargin: plot.fontPixelSize
+        anchors.leftMargin: 75
+
+        spacing: 3
 
         EaElements.RadioButton {
             text: qsTr("Up \uff0b Down")
