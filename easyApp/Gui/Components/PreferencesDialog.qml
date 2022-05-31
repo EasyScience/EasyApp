@@ -211,12 +211,12 @@ EaElements.Dialog {
             }
 
             EaElements.Label {
-                visible: (ExGlobals.Constants.appName == 'easyDiffraction')
+                visible: ExGlobals.Constants.appName === 'easydiffraction'
                 text: qsTr("Structure plotting") + ":"
             }
 
             EaElements.ComboBox {
-                visible: (ExGlobals.Constants.appName == 'easyDiffraction')
+                visible: ExGlobals.Constants.appName === easyDiffraction'
                 model: ExGlobals.Constants.proxy.plotting3d.plotting3dLibs
                 onActivated: ExGlobals.Constants.proxy.plotting3d.current3dPlottingLib = currentValue
                 Component.onCompleted: {
