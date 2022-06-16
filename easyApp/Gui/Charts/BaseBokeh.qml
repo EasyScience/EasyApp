@@ -86,92 +86,62 @@ EaCharts.BasePlot {
     /////////////////////
 
     ButtonGroup {
-        buttons: radio_row.children
+        buttons: polarizePatternType.children
     }
 
     Row {
-        id: radio_row
+        id: polarizePatternType
+
         visible: plot.isSpinPolarized
-        height: plot.isSpinPolarized ? 20 : 0
+
         anchors.top: parent.top
         anchors.left: parent.left
-        anchors.topMargin: plot.fontPixelSize
-        anchors.leftMargin: 75
 
-        spacing: 3
+        anchors.topMargin: EaStyle.Sizes.fontPixelSize - spacing - 1
+        anchors.leftMargin: EaStyle.Sizes.fontPixelSize * 6 - 1 // This need to dynamically alligned to the Y-axis position
 
-        EaElements.RadioButton {
-            text: qsTr("Up \uff0b Down")
+        spacing: 0.25 * EaStyle.Sizes.fontPixelSize
+
+        EaElements.TabButton {
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight * 2.1
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "arrow-up plus arrow-down"
+            ToolTip.text: qsTr("Show sum: spin-up \uff0b spin-down")
             checked: plot.spinComponent === "Sum"
             onClicked: plot.setSpinComponent("Sum")
         }
-        EaElements.RadioButton {
-            text: qsTr("Up \uff0d Down")
+
+        EaElements.TabButton {
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight * 2.1
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "arrow-up minus arrow-down"
+            ToolTip.text: qsTr("Show difference: spin-up \uff0d spin-down")
             checked: plot.spinComponent === "Difference"
             onClicked: plot.setSpinComponent("Difference")
         }
-        EaElements.RadioButton {
-            text: qsTr("Up")
+
+        EaElements.TabButton {
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "arrow-up"
+            ToolTip.text: qsTr("Show single component: spin-up")
             checked: plot.spinComponent === "Up"
             onClicked: plot.setSpinComponent("Up")
         }
-        EaElements.RadioButton {
-            text: qsTr("Down")
+
+        EaElements.TabButton {
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "arrow-down"
+            ToolTip.text: qsTr("Show single component: spin-down")
             checked: plot.spinComponent === "Down"
             onClicked: plot.setSpinComponent("Down")
         }
     }
-    /*
-    Row {
-        anchors.top: parent.top
-        anchors.right: parent.right
-
-        anchors.topMargin: plot.fontPixelSize
-        anchors.rightMargin: plot.fontPixelSize
-
-        spacing: 3
-
-        EaElements.TabButton {
-            //checked: mainChart.allowZoom
-            autoExclusive: false
-            height: plot.chartToolButtonsHeight
-            width: plot.chartToolButtonsHeight
-            borderColor: EaStyle.Colors.chartAxis
-            fontIcon: "expand"
-            ToolTip.text: qsTr("Box zoom")
-            //onClicked: mainChart.allowZoom = !mainChart.allowZoom
-        }
-
-        EaElements.TabButton {
-            checkable: false
-            height: plot.chartToolButtonsHeight
-            width: plot.chartToolButtonsHeight
-            borderColor: EaStyle.Colors.chartAxis
-            fontIcon: "sync-alt"
-            ToolTip.text: qsTr("Reset")
-            //onClicked: mainChart.zoomReset()
-            onClicked: chartView.runJavaScript("OnClick()", function(result) {
-                console.log(result);
-                //var button = document.querySelector(".bk-tool-icon-reset");
-                //console.log("!!!!!!!!!!!!!!!!!", button)
-                //if (button) {
-                //  button.click();
-                //}
-            });
-        }
-
-        EaElements.TabButton {
-            //checked: mainChart.allowHover
-            autoExclusive: false
-            height: plot.chartToolButtonsHeight
-            width: plot.chartToolButtonsHeight
-            borderColor: EaStyle.Colors.chartAxis
-            fontIcon: "comment-alt"
-            ToolTip.text: qsTr("Hover")
-            //onClicked: mainChart.allowHover = !mainChart.allowHover
-        }
-    }
-    */
 
     onHtmlChanged: {
         // print(html)
