@@ -12,7 +12,7 @@ T.Button {
     id: control
 
     property int horizontalAlignment: Text.AlignHCenter
-    property int elide: Text.ElideMiddle
+    property int elide: Text.ElideRight
     property color color: enabled ?
                EaStyle.Colors.themeForeground :
                EaStyle.Colors.themeForegroundDisabled
