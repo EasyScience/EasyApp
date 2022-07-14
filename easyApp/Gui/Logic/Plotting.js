@@ -34,7 +34,7 @@ function chartHtml(head, chart, toolbar='') {
 ////////
 
 function bokehInfo() {
-    const version = '2.2.3'
+    const version = '2.4.3'
     return {
         version: version,
         url: `https://docs.bokeh.org/en/${version}`
