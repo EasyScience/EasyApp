@@ -95,10 +95,10 @@ EaCharts.BasePlot {
         visible: plot.isSpinPolarized
 
         anchors.top: parent.top
-        anchors.left: parent.left
+        anchors.right: parent.right
 
-        anchors.topMargin: EaStyle.Sizes.fontPixelSize - spacing - 1
-        anchors.leftMargin: EaStyle.Sizes.fontPixelSize * 6 - 1 // This need to dynamically alligned to the Y-axis position
+        anchors.topMargin: EaStyle.Sizes.toolButtonHeight + EaStyle.Sizes.fontPixelSize + spacing - 1
+        anchors.rightMargin: EaStyle.Sizes.fontPixelSize * 2.5 + spacing
 
         spacing: 0.25 * EaStyle.Sizes.fontPixelSize
 
