@@ -95,10 +95,10 @@ EaCharts.BasePlot {
         visible: plot.isSpinPolarized
 
         anchors.top: parent.top
-        anchors.right: parent.right
+        anchors.left: parent.left
 
-        anchors.topMargin: EaStyle.Sizes.toolButtonHeight + EaStyle.Sizes.fontPixelSize + spacing - 1
-        anchors.rightMargin: EaStyle.Sizes.fontPixelSize * 2.5 + spacing
+        anchors.topMargin: 0.5 * EaStyle.Sizes.fontPixelSize + spacing - 1
+        anchors.leftMargin: 6 * EaStyle.Sizes.fontPixelSize + 1
 
         spacing: 0.25 * EaStyle.Sizes.fontPixelSize
 
