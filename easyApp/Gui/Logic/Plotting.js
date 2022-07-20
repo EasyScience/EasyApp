@@ -97,8 +97,9 @@ function bokehHead(specs) {
 
 function bokehChart(data, specs) {
     if (!data.hasMeasured && !data.hasCalculated && !data.hasPlotRanges) {
-        return
+        return ""
     }
+
     // List of strings to be filled below
     let chart = []
 
