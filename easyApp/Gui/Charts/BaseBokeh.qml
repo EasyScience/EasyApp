@@ -107,7 +107,7 @@ EaCharts.BasePlot {
             width: EaStyle.Sizes.toolButtonHeight * 2.1
             borderColor: EaStyle.Colors.chartAxis
             fontIcon: "arrow-up plus arrow-down"
-            ToolTip.text: qsTr("Show sum: spin-up \uff0b spin-down")
+            ToolTip.text: qsTr("Show sum: spin-up \uff0b spin-down component")
             checked: plot.spinComponent === "Sum"
             onClicked: plot.setSpinComponent("Sum")
         }
@@ -117,7 +117,7 @@ EaCharts.BasePlot {
             width: EaStyle.Sizes.toolButtonHeight * 2.1
             borderColor: EaStyle.Colors.chartAxis
             fontIcon: "arrow-up minus arrow-down"
-            ToolTip.text: qsTr("Show difference: spin-up \uff0d spin-down")
+            ToolTip.text: qsTr("Show difference: spin-up \uff0d spin-down component")
             checked: plot.spinComponent === "Difference"
             onClicked: plot.setSpinComponent("Difference")
         }
