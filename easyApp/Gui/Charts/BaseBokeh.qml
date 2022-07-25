@@ -2,6 +2,7 @@ import QtQuick 2.13
 import QtQuick.Controls 2.13
 import QtWebEngine 1.10
 
+import Gui.Globals 1.0 as ExGlobals
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Elements 1.0 as EaElements
 import easyApp.Gui.Logic 1.0 as EaLogic
@@ -25,7 +26,10 @@ EaCharts.BasePlot {
         'hasDifference': plot.hasDifferenceData,
         'hasBragg': plot.hasBraggData,
         'hasBackground': plot.hasBackgroundData,
-        'hasPlotRanges': plot.hasPlotRangesData
+        'hasPlotRanges': plot.hasPlotRangesData,
+        'isSpinPolarized': plot.isSpinPolarized,
+        'setSpinComponent': plot.setSpinComponent,
+        'spinComponent': plot.spinComponent,
     }
 
     property var chartSpecs: {
@@ -81,57 +85,63 @@ EaCharts.BasePlot {
     // Chart tool buttons
     /////////////////////
 
-    /*
+    ButtonGroup {
+        buttons: polarizePatternType.children
+    }
+
     Row {
+        id: polarizePatternType
+
+        visible: plot.isSpinPolarized
+
         anchors.top: parent.top
-        anchors.right: parent.right
+        anchors.left: parent.left
 
-        anchors.topMargin: plot.fontPixelSize
-        anchors.rightMargin: plot.fontPixelSize
+        anchors.topMargin: 0.5 * EaStyle.Sizes.fontPixelSize + spacing - 1
+        anchors.leftMargin: 6 * EaStyle.Sizes.fontPixelSize + 1
 
-        spacing: 3
+        spacing: 0.25 * EaStyle.Sizes.fontPixelSize
 
         EaElements.TabButton {
-            //checked: mainChart.allowZoom
-            autoExclusive: false
-            height: plot.chartToolButtonsHeight
-            width: plot.chartToolButtonsHeight
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight * 2.1
             borderColor: EaStyle.Colors.chartAxis
-            fontIcon: "expand"
-            ToolTip.text: qsTr("Box zoom")
-            //onClicked: mainChart.allowZoom = !mainChart.allowZoom
+            fontIcon: "arrow-up plus arrow-down"
+            ToolTip.text: qsTr("Show sum: spin-up \uff0b spin-down component")
+            checked: plot.spinComponent === "Sum"
+            onClicked: plot.setSpinComponent("Sum")
         }
 
         EaElements.TabButton {
-            checkable: false
-            height: plot.chartToolButtonsHeight
-            width: plot.chartToolButtonsHeight
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight * 2.1
             borderColor: EaStyle.Colors.chartAxis
-            fontIcon: "sync-alt"
-            ToolTip.text: qsTr("Reset")
-            //onClicked: mainChart.zoomReset()
-            onClicked: chartView.runJavaScript("OnClick()", function(result) {
-                console.log(result);
-                //var button = document.querySelector(".bk-tool-icon-reset");
-                //console.log("!!!!!!!!!!!!!!!!!", button)
-                //if (button) {
-                //  button.click();
-                //}
-            });
+            fontIcon: "arrow-up minus arrow-down"
+            ToolTip.text: qsTr("Show difference: spin-up \uff0d spin-down component")
+            checked: plot.spinComponent === "Difference"
+            onClicked: plot.setSpinComponent("Difference")
         }
 
         EaElements.TabButton {
-            //checked: mainChart.allowHover
-            autoExclusive: false
-            height: plot.chartToolButtonsHeight
-            width: plot.chartToolButtonsHeight
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
             borderColor: EaStyle.Colors.chartAxis
-            fontIcon: "comment-alt"
-            ToolTip.text: qsTr("Hover")
-            //onClicked: mainChart.allowHover = !mainChart.allowHover
+            fontIcon: "arrow-up"
+            ToolTip.text: qsTr("Show single component: spin-up")
+            checked: plot.spinComponent === "Up"
+            onClicked: plot.setSpinComponent("Up")
+        }
+
+        EaElements.TabButton {
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "arrow-down"
+            ToolTip.text: qsTr("Show single component: spin-down")
+            checked: plot.spinComponent === "Down"
+            onClicked: plot.setSpinComponent("Down")
         }
     }
-    */
 
     onHtmlChanged: {
         // print(html)

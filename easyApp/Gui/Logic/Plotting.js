@@ -34,7 +34,7 @@ function chartHtml(head, chart, toolbar='') {
 ////////
 
 function bokehInfo() {
-    const version = '2.2.3'
+    const version = '2.4.3'
     return {
         version: version,
         url: `https://docs.bokeh.org/en/${version}`
@@ -97,8 +97,9 @@ function bokehHead(specs) {
 
 function bokehChart(data, specs) {
     if (!data.hasMeasured && !data.hasCalculated && !data.hasPlotRanges) {
-        return
+        return ""
     }
+
     // List of strings to be filled below
     let chart = []
 
@@ -573,7 +574,9 @@ function bokehAddMainTooltip(data, specs) {
     const y_diff = bokehMainTooltipRow(specs.differenceLineColor, 'diff', '@y_diff{0.0}')
     let y_phases = []
     for (const phase_index in data.phase) {
-        y_phases.push(bokehMainTooltipRow(specs.phaseLineColor[phase_index], `phase ${phase_index}`, `@y_phase_${phase_index}_upper{0.0}`))
+        if (typeof specs.phaseLineColor !== 'undefined') {
+            y_phases.push(bokehMainTooltipRow(specs.phaseLineColor[phase_index], `phase ${phase_index}`, `@y_phase_${phase_index}_upper{0.0}`))
+        }
     }
 
     let table = []
@@ -592,7 +595,9 @@ function bokehAddMainTooltip(data, specs) {
         table.push(...y_calc)
     }
     for (const phase_index in data.phase) {
-        table.push(...y_phases[phase_index])
+        if (typeof y_phases[phase_index] !== 'undefined') {
+            table.push(...y_phases[phase_index])
+        }
     }
     if (data.hasBackground) {
         table.push(...y_bkg)
