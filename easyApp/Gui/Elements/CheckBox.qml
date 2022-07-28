@@ -54,4 +54,10 @@ T.CheckBox {
                    EaStyle.Colors.themeForegroundDisabled
         Behavior on color { EaAnimations.ThemeChange {} }
     }
+
+    // ToolTip
+    EaElements.ToolTip {
+        text: control.ToolTip.text
+        visible: control.hovered && EaGlobals.Variables.showToolTips && text !== ""
+    }
 }

@@ -13,14 +13,22 @@ Rectangle {
     id: container
 
     property string cifStr: ""
-    onCifStrChanged: structureView.runJavaScript(`reloadCif(${cifStr})`)
+    onCifStrChanged: {
+        if (cifStr !== '""') {
+            structureView.runJavaScript(`reloadCif(${cifStr})`)
+        }
+    }
 
     //property int size: Math.min(width, height)
     //onWidthChanged: setChartSizes()
     //onHeightChanged: setChartSizes()
 
     property int appScale: EaStyle.Sizes.defaultScale
-    onAppScaleChanged: setChartSizes()
+    onAppScaleChanged: {
+        if (cifStr !== '""') {
+            setChartSizes()
+        }
+    }
 
     property int theme: EaStyle.Colors.theme
     onThemeChanged: setChartColors()
@@ -52,7 +60,7 @@ Rectangle {
         }
 
         onLoadingChanged: {
-            if (loadRequest.status === WebEngineView.LoadSucceededStatus) {
+            if (cifStr !== '""' && loadRequest.status === WebEngineView.LoadSucceededStatus) {
                 hideChartToolbar()
                 setChartSizes()
                 setChartColors()

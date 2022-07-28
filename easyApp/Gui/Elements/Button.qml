@@ -43,8 +43,10 @@ T.Button {
     //Mouse area to react on click events
     MouseArea {
         id: rippleArea
+
         anchors.fill: control
         hoverEnabled: true
+
         //onClicked: control.clicked()
         onPressed: mouse.accepted = false
     }

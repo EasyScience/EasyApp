@@ -216,7 +216,6 @@ EaElements.Dialog {
             }
 
             EaElements.ComboBox {
-                visible: ExGlobals.Constants.appName === 'easydiffraction'
                 model: ExGlobals.Constants.proxy.plotting3d.plotting3dLibs
                 onActivated: ExGlobals.Constants.proxy.plotting3d.current3dPlottingLib = currentValue
                 Component.onCompleted: {
