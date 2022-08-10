@@ -1,4 +1,4 @@
-import QtQuick 2.13
+import QtQuick
 
 import Globals 1.0 as Globals
 import Templates.Animations 1.0 as Animations

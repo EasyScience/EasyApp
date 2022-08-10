@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.13
+import QtQuick
+import QtQuick.Controls
 import QtQuick.Dialogs 1.3 as QtQuickDialogs1
 import Qt.labs.platform 1.1 as QtLabsPlatform1
 import Qt.labs.settings 1.0

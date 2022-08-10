@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.13
+import QtQuick
+import QtQuick.Controls
 import QtQuick.Controls.impl 2.13
 import QtQuick.Controls.Material 2.13
 import QtQuick.Controls.Material.impl 2.13
@@ -254,9 +254,9 @@ EaElements.Dialog {
             EaElements.ComboBox {
                 id: languageSelector
                 model: XmlListModel {
-                    xml: EaGlobals.Variables.translator.languagesAsXml()
+                    xml: EaGlobals.Variables.translator.languagesAsXml() // В настоящее время XmlListModel в Qt 6 не имеет свойства xml и функции get(), необходимых для работы сериализации и десериализации. https://radioprog.ru/post/1551
                     query: "/root/item"
-                    XmlRole {
+                    XmlListModelRole {
                         name: "name"
                         query: "name/string()"
                     }

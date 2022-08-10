@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtGraphicalEffects 1.13
+import QtQuick
+import Qt5Compat.GraphicalEffects // module "Qt5Compat.GraphicalEffects" is not installed --- https://bugreports.qt.io/browse/PYSIDE-1957
 
 RectangularGlow {
     // The 4 properties from CSS box-shadow, plus the inherited color property

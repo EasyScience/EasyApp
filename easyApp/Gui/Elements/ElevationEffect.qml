@@ -1,4 +1,4 @@
-import QtQuick 2.13
+import QtQuick
 
 ///import Templates.Controls 1.0
 
@@ -126,7 +126,7 @@ Item {
         // By rendering as a layer, the shadow will never show through the source item,
         // even when the source item's opacity is less than 1
         layer.enabled: true
-
+/*
         // The box shadows automatically pick up the size of the source Item and not
         // the size of the parent, so we don't need to worry about the extra padding
         // in the parent Item
@@ -162,7 +162,7 @@ Item {
             fullHeight: effect.fullHeight
             source: effect.sourceItem
         }
-
+*/
         ShaderEffect {
             property alias source: effect.source
 

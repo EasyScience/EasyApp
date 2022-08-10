@@ -1,4 +1,4 @@
-import QtQuick 2.13
+import QtQuick
 import QtQuick.Templates 2.13 as T
 
 import Globals 1.0 as Globals

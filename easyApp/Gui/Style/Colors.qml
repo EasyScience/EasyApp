@@ -1,6 +1,6 @@
 pragma Singleton
 
-import QtQuick 2.13
+import QtQuick
 import QtQuick.Controls.Material 2.13
 import Qt.labs.settings 1.0
 

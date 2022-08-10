@@ -1,6 +1,6 @@
 pragma Singleton
 
-import QtQuick 2.13
+import QtQuick
 import QtQuick.Window 2.13
 
 QtObject {

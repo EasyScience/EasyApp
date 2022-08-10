@@ -1,4 +1,4 @@
-import QtQuick 2.13
+import QtQuick
 
 import easyApp.Gui.Elements 1.0 as EaElements
 

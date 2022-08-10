@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.13
+import QtQuick
+import QtQuick.Controls
 import QtWebEngine 1.10
 
 import Gui.Globals 1.0 as ExGlobals

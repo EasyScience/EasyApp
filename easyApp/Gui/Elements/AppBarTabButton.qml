@@ -1,4 +1,4 @@
-import QtQuick 2.13
+import QtQuick
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Animations 1.0 as EaAnimations

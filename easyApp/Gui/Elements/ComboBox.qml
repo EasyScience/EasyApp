@@ -1,6 +1,6 @@
-import QtQuick 2.14
+import QtQuick
 import QtQuick.Window 2.14
-import QtQuick.Controls 2.14
+import QtQuick.Controls
 import QtQuick.Controls.impl 2.14
 import QtQuick.Templates 2.14 as T
 

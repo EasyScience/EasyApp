@@ -1,6 +1,6 @@
-import QtQuick 2.13
+import QtQuick
 import QtQuick.Templates 2.13 as T
-import QtGraphicalEffects 1.12
+//import Qt5Compat.GraphicalEffects
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Globals 1.0 as EaGlobals
@@ -97,13 +97,13 @@ T.ToolTip {
     background: Item{
         layer.enabled: true
         opacity: control.backgroundOpacity
-
+/*
         layer.effect: DropShadow {
             radius: 15
             samples: 50
             color: control.borderColor
         }
-
+*/
         Rectangle {
             x: -control.x - width / 2 + control.parent.width / 2
             y: control.y >= 0 ?
