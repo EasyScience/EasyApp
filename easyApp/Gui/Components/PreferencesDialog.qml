@@ -255,7 +255,7 @@ EaElements.Dialog {
                 id: languageSelector
                 model: XmlListModel {
                     xml: EaGlobals.Variables.translator.languagesAsXml()
-                    query: "/root/item"
+                    query: "/data/item"
                     XmlRole {
                         name: "name"
                         query: "name/string()"
