@@ -1,5 +1,5 @@
-import QtQuick 2.13
-import QtCharts 2.13
+import QtQuick 2.15
+import QtCharts 2.15
 
 import easyApp.Gui.Style 1.0 as EaStyle
 

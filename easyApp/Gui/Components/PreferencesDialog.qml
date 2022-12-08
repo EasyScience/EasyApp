@@ -1,9 +1,9 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.13
-import QtQuick.Controls.impl 2.13
-import QtQuick.Controls.Material 2.13
-import QtQuick.Controls.Material.impl 2.13
-import QtQuick.XmlListModel 2.13
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.Controls.impl 2.15
+import QtQuick.Controls.Material 2.15
+import QtQuick.Controls.Material.impl 2.15
+import QtQuick.XmlListModel 2.15
 import Qt.labs.settings 1.0
 
 import easyApp.Gui.Style 1.0 as EaStyle
