@@ -210,6 +210,7 @@ EaElements.Dialog {
                 }
             }
 
+            /*
             EaElements.Label {
                 text: qsTr("Structure plotting") + ":"
             }
@@ -221,6 +222,7 @@ EaElements.Dialog {
                     currentIndex = model.indexOf(ExGlobals.Constants.proxy.plotting3d.current3dPlottingLib)
                 }
             }
+            */
 
         }
 
