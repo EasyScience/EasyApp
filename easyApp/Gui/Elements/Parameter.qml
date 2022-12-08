@@ -26,5 +26,6 @@ EaElements.TextField {
         color: control.placeholderTextColor
 
         text: units
+        textFormat: Text.RichText
     }
 }

@@ -212,6 +212,7 @@ EaElements.Dialog {
 
             /*
             EaElements.Label {
+                visible: ExGlobals.Constants.appName === 'easydiffraction'
                 text: qsTr("Structure plotting") + ":"
             }
 
