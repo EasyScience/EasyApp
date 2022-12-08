@@ -14,3 +14,4 @@ BaseQtCharts 1.0 BaseQtCharts.qml
 BaseChemDoodle 1.0 BaseChemDoodle.qml
 
 ChartViewSimple1dPlotly 1.0 ChartViewSimple1dPlotly.qml
+ChartViewHeatmap2dPlotly 1.0 ChartViewHeatmap2dPlotly.qml
