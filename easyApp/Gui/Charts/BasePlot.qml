@@ -16,7 +16,7 @@ Rectangle {
     property var braggData: ({})
     property var backgroundData: ({})
     property var plotRanges: ({})
-    property var setSpinComponent: (string)
+    property var setSpinComponent: ""///(string)
 
     property bool hasMeasuredData: typeof measuredData !== 'undefined'
                                    && Object.keys(measuredData).length
