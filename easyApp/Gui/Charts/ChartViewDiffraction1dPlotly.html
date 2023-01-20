@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Mulish&display=swap">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.2.0/css/all.css">
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <style type="text/css">
+
+    :root {
+      --fontPixelSize:14;
+      --toolButtonHeight:calc(2.5 * var(--fontPixelSize));
+
+      --backgroundColor:#fff;
+      --foregroundColor:#333;
+      --buttonBackgroundColor:#f4f4f4;
+      --buttonBackgroundHoveredColor:#fefefe;
+      --buttonForegroundColor:#333;
+      --buttonForegroundHoveredColor:#00a3e3;
+      --buttonBorderColor:#ddd;
+      --tooltipBackgroundColor:#e9e9e9;
+      --tooltipForegroundColor:#333;
+      --tooltipBorderColor:#ddd;
+
+      --measuredLineWidth:1;
+      --calculatedLineWidth:2;
+      --differenceLineWidth:1;
+
+      --measuredScatterColor:#607D8B;
+      --measuredLineColor:#607D8B80;
+      --measuredAreaColor:#607D8B50;
+      --calculatedLineColor:#F44336;
+      --differenceLineColor:#607D8B80;
+      --differenceAreaColor:#607D8B50;
+      --backgroundLineColor:#607D8Ba0;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+      font-family: 'Mulish', sans-serif;
+      font-size: calc(var(--fontPixelSize) * 1px);
+    }
+
+    #plotContainer {
+      height: 100%;
+      width: 100%;
+      padding: calc(var(--fontPixelSize) * 1px);;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    #plotDiv { /* Plotly plot element */
+      z-index: 0;
+      width: 100%;
+      height: calc(100% - var(--fontPixelSize) * 1px + 4px);
+      margin-top: calc(-40px + var(--fontPixelSize) * 1px);
+    }
+
+    .modebar-container { /* Plotly toolbar */
+      display: none;
+    }
+
+    div.plotly-notifier { /* Plotly notifier element */
+      visibility: hidden;
+    }
+
+    #plotToolbar {
+      z-index: 1;
+    }
+
+    #plotToolbar .toolbar-separator {
+      width: calc(0.25 * var(--fontPixelSize) * 1px);
+      margin-left: calc(0.25 * var(--fontPixelSize) * 1px);
+      display: inline-block;
+    }
+
+    #plotToolbar button {
+      width: calc(var(--toolButtonHeight) * 1px);
+      height: calc(var(--toolButtonHeight) * 1px);
+      margin-left: calc(0.25 * var(--fontPixelSize) * 1px);
+      font-size: calc(1.25 * var(--fontPixelSize) * 1px);
+      color: var(--buttonForegroundColor);
+      background: var(--buttonBackgroundColor);
+      border: 1px solid var(--buttonBorderColor);
+    }
+
+    #plotToolbar button:hover {
+      color: var(--buttonForegroundHoveredColor);
+      background: var(--buttonBackgroundHoveredColor);
+    }
+
+    #plotToolbar button:focus {
+      outline: 0;
+    }
+
+    #plotToolbar button:active { /* On button pressed, but not released */
+    }
+
+    #plotToolbar button.highlighted { /* Highlighted buttons */
+      color: var(--buttonForegroundHoveredColor);
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div id='plotContainer'>
+    <div id='plotToolbar'></div>
+    <div id='plotDiv'></div>
+  </div>
+
+  <script>
+
+    let plotDiv = document.getElementById('plotDiv')
+
+    const style = getComputedStyle(document.documentElement)
+
+    let measuredMinusSigmaTrace = {
+      name: 'Meas - Sig',
+      xaxis: 'x3',
+      yaxis: 'y3',
+      x: [1, 2, 3, 4],
+      y: [3.5, 6.8, 0.3, 0],
+      mode: 'lines',
+      line: {
+        width: style.getPropertyValue('--measuredLineWidth'),
+        color: style.getPropertyValue('--measuredLineColor'),
+      },
+      showlegend: false,
+      hoverinfo: 'skip',
+    }
+
+    let measuredPlusSigmaTrace = {
+      name: 'Standard Deviation',
+      xaxis: 'x3',
+      yaxis: 'y3',
+      x: [1, 2, 3, 4],
+      y: [4.5, 9.48, 1.7, 0],
+      mode: 'lines',
+      line: {
+        width: style.getPropertyValue('--measuredLineWidth'),
+        color: style.getPropertyValue('--measuredLineColor'),
+      },
+      //legendgroup: 'legend_main',
+      hoverinfo: 'skip',
+      fill: 'tonexty',
+      fillcolor: style.getPropertyValue('--measuredAreaColor')
+    }
+
+
+    let measuredTrace = {
+      name: 'Measured',
+      xaxis: 'x3',
+      yaxis: 'y3',
+      x: [1, 2, 3, 4],
+      y: [4, 7, 1, 0],
+      mode: 'markers',
+      marker : {
+        symbol: 'circle',
+        color: style.getPropertyValue('--measuredScatterColor'),
+        size: 7,
+      },
+      //legendgroup: 'legend_main',
+    }
+
+    let calculatedTotalTrace = {
+      name: 'Calculated Total',
+      xaxis: 'x3',
+      yaxis: 'y3',
+      x: [1, 2, 3, 4],
+      y: [4.2, 6.5, 1.4, 0],
+      mode: 'lines',
+      line: {
+        width: style.getPropertyValue('--calculatedLineWidth'),
+        color: style.getPropertyValue('--calculatedLineColor'),
+      },
+      //legendgroup: 'legend_main',
+    }
+
+    let calculatedIndividualPhasesData = [
+      { x: [1, 2, 3, 4], y: [2.2, 4.5, 0.4, 0], color: '#FF9800', name: 'Phase A' },
+      { x: [1, 2, 3, 4], y: [2.0, 2.0, 1.0, 0], color: '#4CAF50', name: 'Phase B' },
+    ]
+    let calculatedIndividualTraces = []
+    for (const i in calculatedIndividualPhasesData) {
+      calculatedIndividualTraces.push({
+        name: 'Calculated ' + calculatedIndividualPhasesData[i].name,
+        xaxis: 'x3',
+        yaxis: 'y3',
+        x: calculatedIndividualPhasesData[i].x,
+        y: calculatedIndividualPhasesData[i].y,
+        mode: 'lines',
+        line: {
+          width: 1,
+          color: calculatedIndividualPhasesData[i].color,
+        },
+        fill: 'tozeroy',
+        fillcolor: calculatedIndividualPhasesData[i].color + '30'
+      })
+    }
+
+    let backgroundTrace = {
+      name: 'Background',
+      xaxis: 'x3',
+      yaxis: 'y3',
+      x: [1, 2, 3, 4],
+      y: [0.9, 1.1, 0.95, 0],
+      mode: 'lines',
+      line: {
+        dash: 'dot',
+        width: 2,
+        color: style.getPropertyValue('--backgroundLineColor'),
+      },
+      //legendgroup: 'legend_main',
+    }
+
+    let braggPeaksTrace = {
+      name: 'Bragg peaks',
+      xaxis: 'x2',
+      yaxis: 'y2',
+      x: [0.745, 0.75, 2.2],
+      y: [0, 0, 0],
+      mode: 'markers',
+      marker : {
+        symbol: 'line-ns-open',
+        size: 12,
+        line: {
+            width: 1,
+            color: "#bebada"
+        },
+      },
+      showlegend: false,
+    }
+
+    let residualMinusSigmaTrace = {
+      x: [0, 1, 2, 3],
+      y: [0, -1.5, 0.8, 0.3],
+      mode: 'lines',
+      line: {
+        width: style.getPropertyValue('--differenceLineWidth'),
+        color: style.getPropertyValue('--differenceLineColor'),
+      },
+      showlegend: false,
+      hoverinfo: 'skip',
+    }
+
+    let residualPlusSigmaTrace = {
+      x: [0, 1, 2, 3],
+      y: [0, -0.5, 1.2, 1.7],
+      mode: 'lines',
+      line: {
+        width: style.getPropertyValue('--differenceLineWidth'),
+        color: style.getPropertyValue('--differenceLineColor'),
+      },
+      showlegend: false,
+      hoverinfo: 'skip',
+      fill: 'tonexty',
+      fillcolor: style.getPropertyValue('--differenceAreaColor'),
+    }
+
+    let residualTrace = {
+      x: [0, 1, 2, 3],
+      y: [0, -1, 1, 1],
+      mode: 'markers',
+      marker : {
+        symbol: 'circle',
+        color: style.getPropertyValue('--measuredScatterColor'),
+        size: 7,
+      },
+      showlegend: false,
+      hoverinfo: 'skip',
+    }
+
+    let data = [ measuredMinusSigmaTrace,
+                 measuredPlusSigmaTrace,
+                 measuredTrace,
+
+                 ...calculatedIndividualTraces,
+
+                 calculatedTotalTrace,
+                 backgroundTrace,
+                 braggPeaksTrace,
+
+                 residualMinusSigmaTrace,
+                 residualPlusSigmaTrace,
+                 residualTrace ]
+
+    let layout = {
+      autosize: true,
+      margin: { l: 43, r: 3, b: 50, t: 40, pad: 0 },
+      showlegend: true,
+      legend: {
+        x: 0.99,
+        y: 0.99,
+        xanchor: 'right',
+        bgcolor: '#ffffffa0'
+      },
+      xaxis: {
+        title: '2theta (deg)',
+        automargin: true,
+        autorange: false,
+        range: [0, 4],
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        linecolor: '#ccc',
+        linewidth: 1,
+        mirror: 'ticks',
+      },
+      xaxis2: {
+        anchor: 'y2',
+        matches: 'x',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        linecolor: '#ccc',
+        linewidth: 1,
+        showticklabels: false,
+        mirror: 'ticks',
+      },
+      xaxis3: {
+        anchor: 'y3',
+        matches: 'x',
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        linecolor: '#ccc',
+        linewidth: 1,
+        showticklabels: false,
+        mirror: 'ticks',
+      },
+      yaxis: {
+        title: 'Residual',
+        domain: [0, 0.18],
+        automargin: true,
+        autorange: true,
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        linecolor: '#ccc',
+        linewidth: 1,
+        mirror: 'ticks',
+      },
+      yaxis2: {
+        title: 'Peaks',  // 'Bragg Peaks'
+        domain: [0.20, 0.26],
+        anchor: 'x2',
+        autorange: true,
+        showgrid: false,
+        zeroline: false,
+        showline: true,
+        linecolor: '#ccc',
+        linewidth: 1,
+        showticklabels: false,
+        mirror: 'ticks',
+      },
+      yaxis3: {
+        //type: 'log',
+        title: 'Intensity',
+        domain: [0.28, 1],
+        anchor: 'x3',
+        automargin: true,
+        autorange: true,
+        showgrid: true,
+        zeroline: false,
+        showline: true,
+        linecolor: '#ccc',
+        linewidth: 1,
+        mirror: 'ticks',
+      },
+    }
+
+    let config = {
+      displayModeBar: true,
+      displaylogo: false,
+    }
+
+    Plotly.newPlot(plotDiv, data, layout, config)
+
+    // Custom functions
+
+    function createToolbarSeparator() {
+      const element = document.createElement("span")
+      element.classList.toggle("toolbar-separator")
+      return element
+    }
+
+    function createPlotlyModebarDependentToolbarButton(conf, i) {
+      const plotly_button = document.querySelector(`a[data-val=${conf[i].plotly_data_val}]`)
+      const custom_button = document.createElement("button")
+      custom_button.id = conf[i].custom_id
+      if ('fa_icon' in conf[i]) {
+        custom_button.innerHTML = `<i class="${conf[i].fa_icon}"></i>`
+      } else if ('text' in conf[i]) {
+        custom_button.innerHTML = conf[i].text
+      }
+      custom_button.addEventListener("click", function() {
+        plotly_button.click()
+        highlightPlotlyModebarDependentButtons(conf)
+      })
+      return custom_button
+    }
+
+    function createPlotlyModebarIndependentToolbarButton(conf, i) {
+      const custom_button = document.createElement("button")
+      custom_button.id = conf[i].custom_id
+      if ('fa_icon' in conf[i]) {
+        custom_button.innerHTML = `<i class="${conf[i].fa_icon}"></i>`
+      } else if ('text' in conf[i]) {
+        custom_button.innerHTML = conf[i].text
+      }
+      custom_button.addEventListener("click", function() {
+        eval(conf[i].custom_action)()
+      })
+      return custom_button
+    }
+
+    function highlightPlotlyModebarDependentButtons(conf) {
+      for (const i in conf) {
+        if ('plotly_data_val' in conf[i]) {
+          const plotly_button = document.querySelector(`a[data-val=${conf[i].plotly_data_val}]`)
+          const custom_button = document.getElementById(conf[i].custom_id)
+          if (plotly_button.classList.contains("active")) {
+            custom_button.classList.add("highlighted")
+          } else {
+            custom_button.classList.remove("highlighted")
+          }
+        }
+      }
+    }
+
+    function createToolbarButtons(conf) {
+      const toolbar = document.getElementById("plotToolbar")
+      for (const i in conf) {
+        let element = {}
+        if (JSON.stringify(conf[i]) === '{}') {
+          element = createToolbarSeparator()
+        } else if ('plotly_data_val' in conf[i]) {
+          element = createPlotlyModebarDependentToolbarButton(conf, i)
+        } else if ('custom_action' in conf[i]) {
+          element = createPlotlyModebarIndependentToolbarButton(conf, i)
+        } else {
+          console.log('Error in toolbar button creation')
+        }
+        toolbar.appendChild(element)
+      }
+    }
+
+    function redrawPlot() {
+      Plotly.redraw(plotDiv)
+    }
+
+    function toggleLegendVisibility() {
+      if (layout.showlegend === true) {
+        layout.showlegend = false
+      } else if (layout.showlegend === false) {
+        layout.showlegend = true
+      }
+      redrawPlot()
+    }
+
+    // Create custom toolbar
+
+    conf = [//{'custom_id': 'custom_log', 'text': 'log', 'custom_action': 'logScaleY'},
+            {'custom_id': 'custom_log', 'fa_icon': 'fa-solid fa-circle-notch', 'custom_action': 'redrawPlot'},
+            {},
+            {'custom_id': 'custom_zoom', 'fa_icon': 'fa-solid fa-magnifying-glass', 'plotly_data_val': 'zoom'},
+            {'custom_id': 'custom_pan', 'fa_icon': 'fa-solid fa-arrows-up-down-left-right', 'plotly_data_val': 'pan'},
+            {},
+            {'custom_id': 'custom_reset', 'fa_icon': 'fa-solid fa-house-chimney', 'plotly_data_val': 'reset'}]
+
+    createToolbarButtons(conf)
+    highlightPlotlyModebarDependentButtons(conf)
+
+  </script>
+
+</body>
+
+</html>
