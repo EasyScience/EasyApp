@@ -422,6 +422,8 @@ function bokehAddBackgroundDataToMainChart(data, specs) {
 }
 
 function bokehAddMeasuredDataToMainChart(data, specs) {
+
+
     return [`main_source.data.x_meas = [${data.measured.x}]`,
             `main_source.data.y_meas = [${data.measured.y}]`,
             `main_source.data.sy_meas = [${data.measured.sy}]`,
@@ -453,9 +455,12 @@ function bokehAddMeasuredDataToMainChart(data, specs) {
             `main_chart.add_glyph(measArea, main_source)`,
             `main_chart.add_glyph(measLineTop, main_source)`,
             `main_chart.add_glyph(measLineBottom, main_source)`]
+
+
 }
 
 function bokehAddCalculatedDataToMainChart(data, specs) {
+
     return [`main_source.data.x_calc = [${data.calculated.x}]`,
             `main_source.data.y_calc = [${data.calculated.y}]`,
 
@@ -493,13 +498,17 @@ function bokehAddPhaseDataToMainChart(data, specs) {
         out.push('})')
         out.push(`main_chart.add_glyph(phaseArea_${phase_index}, main_source)`)
         out.push(`main_chart.add_glyph(phaseLine_${phase_index}, main_source)`)
+
     }
     return out
 }
 
 function bokehAddDataToBraggChart(data, specs) {
+
+
     let out = []
     for (const phase_index in data.bragg) {
+                            console.log("---", phase_index, data.bragg[phase_index].x.slice(0,200) )
         out.push(`const bragg_source_${phase_index} = new Bokeh.ColumnDataSource()`)
 
         out.push(`bragg_source_${phase_index}.data.x_bragg = [${data.bragg[phase_index].x}]`)
@@ -522,6 +531,10 @@ function bokehAddDataToBraggChart(data, specs) {
 }
 
 function bokehAddDataToDiffChart(data, specs) {
+
+
+
+
     return [`main_source.data.x_diff = [${data.difference.x}]`,
             `main_source.data.y_diff = [${data.difference.y}]`,
             `main_source.data.y_diff_upper = [${data.difference.y_upper}]`,
