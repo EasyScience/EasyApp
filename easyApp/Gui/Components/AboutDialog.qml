@@ -20,9 +20,10 @@ EaElements.Dialog {
     property string appDate: ""
     property string eulaUrl: ""
     property string oslUrl: ""
-    property string essIconPath: ""
-    property string essUrl: "https://ess.eu"
     property string description: ""
+    property var developerIcons: []
+    property string developerYearsFrom: ""
+    property string developerYearsTo: ""
 
     property string commit: ''
     property string commitUrl: ''
@@ -111,26 +112,33 @@ EaElements.Dialog {
             anchors.horizontalCenter: parent.horizontalCenter
             spacing: EaStyle.Sizes.fontPixelSize * 0.5
 
-            // Text
+            // About text
             EaElements.Label {
                 anchors.horizontalCenter: parent.horizontalCenter
                 horizontalAlignment: Text.AlignHCenter
                 text: description
             }
 
-            // ESS icon
-            EaElements.LinkedImage {
+            // Developer icons
+            Row {
                 anchors.horizontalCenter: parent.horizontalCenter
-                height: EaStyle.Sizes.fontPixelSize * 4
-                source: essIconPath
-                link: essUrl
+                spacing: EaStyle.Sizes.fontPixelSize
+                Repeater {
+                    model: developerIcons.length
+                    EaElements.LinkedImage {
+                        anchors.verticalCenter: parent.verticalCenter
+                        height: EaStyle.Sizes.fontPixelSize * developerIcons[index].heightScale
+                        source: developerIcons[index].icon
+                        link: developerIcons[index].url
+                    }
+                }
             }
         }
 
         // Footer
         EaElements.Label {
             anchors.horizontalCenter: parent.horizontalCenter
-            text: "© 2019-2022 • All rights reserved"
+            text: `© ${developerYearsFrom}-${developerYearsTo} • All rights reserved`
         }
     }
 
