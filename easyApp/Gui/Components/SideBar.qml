@@ -12,6 +12,8 @@ Item {
     property alias tabs: tabs.contentData
     property alias items: items.contentData
 
+    property alias continueButton: continueButton
+
     anchors.fill: parent
 
     // Sidebar tabs
@@ -44,7 +46,7 @@ Item {
         id: items
 
         anchors.top: tabs.bottom
-        anchors.bottom: sideBarContainer.bottom
+        anchors.bottom: continueButton.visible ? continueButton.top : sideBarContainer.bottom
         anchors.left: sideBarContainer.left
         anchors.right: sideBarContainer.right
 
@@ -52,5 +54,18 @@ Item {
         interactive: false
 
         currentIndex: tabs.currentIndex
+    }
+
+    EaElements.SideBarButton {
+        id: continueButton
+
+        anchors.bottom: sideBarContainer.bottom
+        anchors.left: sideBarContainer.left
+        anchors.right: sideBarContainer.right
+
+        anchors.margins: EaStyle.Sizes.fontPixelSize
+
+        fontIcon: "arrow-circle-right"
+        text: qsTr("Continue")
     }
 }
