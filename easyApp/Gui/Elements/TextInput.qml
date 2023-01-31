@@ -1,12 +1,21 @@
 import QtQuick 2.15
 import QtQuick.Templates 2.15 as T
+import QtQuick.Controls 2.15
+import QtQuick.Controls.impl 2.15
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Animations 1.0 as EaAnimations
 import easyApp.Gui.Elements 1.0 as EaElements
 
-TextInput {
+
+T.TextField {
     id: control
+
+    implicitWidth: implicitBackgroundWidth + leftInset + rightInset
+                   || Math.max(contentWidth, placeholder.implicitWidth) + leftPadding + rightPadding
+    implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
+                             contentHeight + topPadding + bottomPadding,
+                             placeholder.implicitHeight + topPadding + bottomPadding)
 
     selectByMouse: true
 
@@ -15,8 +24,9 @@ TextInput {
     font.bold: control.activeFocus ? true : false
 
     color: !enabled ? EaStyle.Colors.themeForegroundDisabled :
-                     rippleArea.containsMouse || control.activeFocus ? EaStyle.Colors.themeForegroundHovered :
-                                                                       EaStyle.Colors.themeForeground
+                     rippleArea.containsMouse || control.activeFocus ?
+                          EaStyle.Colors.themeForegroundHovered :
+                          EaStyle.Colors.themeForeground
     Behavior on color { EaAnimations.ThemeChange {} }
 
     selectionColor: EaStyle.Colors.themeAccent
@@ -25,7 +35,29 @@ TextInput {
     selectedTextColor: EaStyle.Colors.themeBackground
     Behavior on selectedTextColor { EaAnimations.ThemeChange {} }
 
+    placeholderTextColor: EaStyle.Colors.themeForegroundDisabled
+    Behavior on placeholderTextColor { EaAnimations.ThemeChange {} }
+
     cursorDelegate: EaElements.CursorDelegate { }
+
+    PlaceholderText {
+        id: placeholder
+        x: control.leftPadding
+        y: control.topPadding
+        width: control.width - (control.leftPadding + control.rightPadding)
+        height: control.height - (control.topPadding + control.bottomPadding)
+        text: control.placeholderText
+        font: control.font
+        color: control.placeholderTextColor
+        verticalAlignment: control.verticalAlignment
+        elide: Text.ElideRight
+        renderType: control.renderType
+        visible: !control.length && !control.preeditText && (!control.activeFocus || control.horizontalAlignment !== Qt.AlignHCenter)
+    }
+
+    background: Rectangle {
+        color: 'transparent'
+    }
 
     //Mouse area to react on click events
     MouseArea {
@@ -34,5 +66,4 @@ TextInput {
         hoverEnabled: true
         onPressed: mouse.accepted = false
     }
-
 }
