@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+  <style type="text/css">
+
+    :root {
+      --fontPixelSize:14;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      height: 100%;
+    }
+
+    body {
+      overflow: hidden;
+      font-size: calc(var(--fontPixelSize) * 1px);
+    }
+
+    #plotContainer {
+      height: 100%;
+      width: 100%;
+      padding: calc(var(--fontPixelSize) * 1px);;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    #plotDiv {
+      width: 100%;
+      height: 100%;
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+  <div id='plotContainer'>
+    <div id='plotDiv'></div>
+  </div>
+
+  <script>
+
+    ///////
+    // Data
+    ///////
+
+    // Default data
+    let data = {
+      x: [0,0,0,0,1,1,1,1],
+      y: [0,1,0,1,0,1,0,1],
+      z: [1,1,0,0,1,1,0,0],
+    }
+
+    /////////
+    // Plotly
+    /////////
+
+    // Default trace
+    let trace = {
+      x: data.x,
+      y: data.y,
+      z: data.z,
+      type: 'scatter3d',
+      mode: 'markers',
+    }
+
+    // Plot dataset
+    let plotTraces = [ trace ]
+
+    // Plot layout
+    let plotLayout = {
+      scene: {
+    		xaxis: {title: 'x-axis'},
+    		yaxis: {title: 'y-axis'},
+    		zaxis: {title: 'z-axis'},
+      },
+    }
+
+    // Plot config
+    let plotConfig = {
+      displayModeBar: true,
+      displaylogo: false,
+    }
+
+    // Create plot
+    Plotly.newPlot('plotDiv', plotTraces, plotLayout, plotConfig)
+
+    /////////////////////////////////////////
+    // Functionality to be accesable from QML
+    /////////////////////////////////////////
+
+    function redrawPlot() {
+      Plotly.redraw('plotDiv')
+    }
+
+    function setXAxisTitle(newTitle) {
+      plotLayout.scene.xaxis.title = newTitle
+    }
+
+    function setYAxisTitle(newTitle) {
+      plotLayout.scene.yaxis.title = newTitle
+    }
+
+    function setZAxisTitle(newTitle) {
+      plotLayout.scene.zaxis.title = newTitle
+    }
+
+  </script>
+</body>
+
+</html>
