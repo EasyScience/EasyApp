@@ -15,5 +15,6 @@ Image {
          anchors.fill: parent
          cursorShape: Qt.PointingHandCursor
          onClicked: Qt.openUrlExternally(link)
-    } // MouseArea
+    }
+
 }
