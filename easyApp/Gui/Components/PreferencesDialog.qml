@@ -10,7 +10,6 @@ import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Globals 1.0 as EaGlobals
 import easyApp.Gui.Elements 1.0 as EaElements
 
-import Gui.Globals 1.0 as ExGlobals
 
 EaElements.Dialog {
     id: dialog
@@ -115,7 +114,6 @@ EaElements.Dialog {
                 id: toolTipsCheckBox
                 checked: EaGlobals.Variables.showToolTips
                 onCheckedChanged: EaGlobals.Variables.showToolTips = checked
-                Component.onCompleted: ExGlobals.Variables.enableToolTipsCheckBox = this
             }
 
             EaElements.Label {
@@ -126,7 +124,6 @@ EaElements.Dialog {
                 id: userGuidesCheckBox
                 checked: EaGlobals.Variables.showUserGuides
                 onCheckedChanged: EaGlobals.Variables.showUserGuides = checked
-                Component.onCompleted: ExGlobals.Variables.enableUserGuidesCheckBox = this
             }
 
         }
@@ -188,7 +185,6 @@ EaElements.Dialog {
                         EaStyle.Colors.theme = EaStyle.Colors.SystemTheme
                 }
                 Component.onCompleted: {
-                    ExGlobals.Variables.themeSelector = this
                     if (EaStyle.Colors.theme === EaStyle.Colors.LightTheme)
                         currentIndex = 0
                     else if (EaStyle.Colors.theme === EaStyle.Colors.DarkTheme)
@@ -202,6 +198,7 @@ EaElements.Dialog {
                 text: qsTr("Data plotting") + ":"
             }
 
+            /*
             EaElements.ComboBox {
                 model: ExGlobals.Constants.proxy.plotting1d.libs
                 onActivated: ExGlobals.Constants.proxy.plotting1d.currentLib = currentValue
@@ -209,6 +206,7 @@ EaElements.Dialog {
                     currentIndex = model.indexOf(ExGlobals.Constants.proxy.plotting1d.currentLib)
                 }
             }
+            */
 
             /*
             EaElements.Label {
@@ -321,7 +319,6 @@ EaElements.Dialog {
         for (let i in buttons) {
             const button = buttons[i]
             if (button.text === 'OK') {
-                ExGlobals.Variables.preferencesOkButton = button
                 return
             }
         }

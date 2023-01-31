@@ -7,7 +7,6 @@ import easyApp.Gui.Animations 1.0 as EaAnimations
 import easyApp.Gui.Elements 1.0 as EaElements
 import easyApp.Gui.Components 1.0 as EaComponents
 
-import Gui.Pages.Home 1.0 as ExHomePage
 
 EaElements.ApplicationWindow {
     id: appWindow
@@ -41,8 +40,6 @@ EaElements.ApplicationWindow {
 
             color: EaStyle.Colors.appBarBackground
             Behavior on color { EaAnimations.ThemeChange {} }
-
-            opacity: 0
 
             EaComponents.AppBarLeftButtons {
                 id: appBarLeftButtons
@@ -110,7 +107,6 @@ EaElements.ApplicationWindow {
 
     // Application dialogs (invisible at the beginning)
     EaComponents.PreferencesDialog {}
-    ExHomePage.AboutDialog {}
 
     ///////////
     // Settings
@@ -124,4 +120,5 @@ EaElements.ApplicationWindow {
         property alias width: appWindow.width
         property alias height: appWindow.height
     }
+
 }
