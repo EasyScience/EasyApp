@@ -194,11 +194,11 @@ EaElements.Dialog {
                 }
             }
 
+            /*
             EaElements.Label {
                 text: qsTr("Data plotting") + ":"
             }
 
-            /*
             EaElements.ComboBox {
                 model: ExGlobals.Constants.proxy.plotting1d.libs
                 onActivated: ExGlobals.Constants.proxy.plotting1d.currentLib = currentValue
