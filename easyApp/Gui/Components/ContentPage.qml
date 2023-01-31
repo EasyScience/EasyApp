@@ -9,12 +9,12 @@ Item {
     id: page
 
     property string defaultInfo: ""
-    property alias mainContent: mainContentContainer.data
+    property alias mainView: mainViewContainer.data
     property alias sideBar: sideBarContainer.data
 
     // Main content
     Item {
-        id: mainContentContainer
+        id: mainViewContainer
 
         anchors.top: page.top
         anchors.bottom: page.bottom
@@ -27,10 +27,10 @@ Item {
     // Defaul info box
     Rectangle {
         visible: defaultInfo !== ""
-        anchors.top: mainContentContainer.top
-        anchors.bottom: mainContentContainer.bottom
-        anchors.left: mainContentContainer.left
-        anchors.right: mainContentContainer.right
+        anchors.top: mainViewContainer.top
+        anchors.bottom: mainViewContainer.bottom
+        anchors.left: mainViewContainer.left
+        anchors.right: mainViewContainer.right
 
         color: EaStyle.Colors.contentBackground
         Behavior on color { EaAnimations.ThemeChange {} }
