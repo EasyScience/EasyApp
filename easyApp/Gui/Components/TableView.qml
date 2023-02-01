@@ -92,12 +92,12 @@ Column {
         // Save/restore current view and index
         onModelStatusChanged: {
             // Save current view and index before xml model changed
-            if (modelStatus === XmlListModel.Loading) {
+            if (modelStatus === JsonListModel.Updating) {
                 lastOriginY = originY
                 lastContentY = contentY
                 lastCurrentIndex = currentIndex
             // Restore current index after xml model changed
-            } else if (modelStatus === XmlListModel.Ready) {
+            } else if (modelStatus === JsonListModel.Ready) {
                 highlightMoveDuration = 0
                 currentIndex = lastCurrentIndex
                 highlightMoveDuration = EaStyle.Sizes.tableHighlightMoveDuration
