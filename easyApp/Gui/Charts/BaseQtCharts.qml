@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtCharts 2.15
+import QtQuick
+import QtQuick.Controls
+import QtCharts
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Elements 1.0 as EaElements

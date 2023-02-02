@@ -1,5 +1,5 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 
 import Globals 1.0 as Globals
 import Templates.Animations 1.0 as Animations

@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Controls.Material 2.15
-import QtQuick.Controls.Material.impl 2.15
+import QtQuick
+import QtQuick.Controls.Material
+import QtQuick.Controls.Material.impl
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Animations 1.0 as EaAnimations

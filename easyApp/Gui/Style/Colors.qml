@@ -1,7 +1,7 @@
 pragma Singleton
 
-import QtQuick 2.15
-import QtQuick.Controls.Material 2.15
+import QtQuick
+import QtQuick.Controls.Material
 //import Qt.labs.settings 1.0
 import QtCore
 

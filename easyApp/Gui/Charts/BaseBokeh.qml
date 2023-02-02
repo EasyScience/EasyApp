@@ -1,6 +1,6 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtWebEngine 1.10
+import QtQuick
+import QtQuick.Controls
+import QtWebEngine
 
 import Gui.Globals 1.0 as ExGlobals
 import easyApp.Gui.Style 1.0 as EaStyle

@@ -2,9 +2,9 @@
 // SPDX-License-Identifier: BSD-3-Clause
 // © 2023 Contributors to the EasyExample project <https://github.com/EasyScience/EasyExampleApp>
 
-import QtQuick 2.15
-import QtQuick.Controls 2.15
-import QtWebEngine 1.10
+import QtQuick
+import QtQuick.Controls
+import QtWebEngine
 
 import easyApp.Gui.Elements 1.0 as EaElements
 

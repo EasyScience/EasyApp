@@ -14,7 +14,7 @@
  * https://github.com/keithel/JSONListModel
  */
 
-import QtQuick 2.15
+import QtQuick
 
 
 ListModel {

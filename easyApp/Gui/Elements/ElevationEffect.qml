@@ -1,4 +1,4 @@
-import QtQuick 2.15
+import QtQuick
 
 ///import Templates.Controls 1.0
 
