@@ -16,7 +16,7 @@ WebEngineView {
     width: parent.width
     height: parent.height
 
-    url: 'Plotly1dLine.html'
+    url: Qt.resolvedUrl("Plotly1dLine.html")
 
     onLoadSucceededStatusChanged: {
         if (loadSucceededStatus) {

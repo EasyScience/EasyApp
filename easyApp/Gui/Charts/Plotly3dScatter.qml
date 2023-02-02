@@ -17,7 +17,7 @@ WebEngineView {
     width: parent.width
     height: parent.height
 
-    url: 'Plotly3dScatter.html'
+    url:  Qt.resolvedUrl('Plotly3dScatter.html')
 
     onLoadSucceededStatusChanged: {
         if (loadSucceededStatus) {
