@@ -27,7 +27,9 @@ WebEngineView {
     }
 
     onLoadingChanged: {
-        if (loadRequest.status === WebEngineView.LoadSucceededStatus) {
+        // Bug "loadRequest" is not declared - https://bugreports.qt.io/browse/QTBUG-84746
+        //if (loadRequest.status === WebEngineView.LoadSucceededStatus) {
+        if (loadProgress === 100) {
             loadSucceededStatus = true
         }
     }
