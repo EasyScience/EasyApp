@@ -1,6 +1,6 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtQuick.XmlListModel 2.15
+//import QtQuick.XmlListModel 2.15
 
 import easyApp.Gui.Globals 1.0 as EaGlobals
 import easyApp.Gui.Style 1.0 as EaStyle
@@ -91,12 +91,12 @@ Column {
 
         // Save/restore current view and index
         onModelStatusChanged: {
-            // Save current view and index before xml model changed
+            // Save current view and index before model changed
             if (modelStatus === JsonListModel.Updating) {
                 lastOriginY = originY
                 lastContentY = contentY
                 lastCurrentIndex = currentIndex
-            // Restore current index after xml model changed
+            // Restore current index after model changed
             } else if (modelStatus === JsonListModel.Ready) {
                 highlightMoveDuration = 0
                 currentIndex = lastCurrentIndex
