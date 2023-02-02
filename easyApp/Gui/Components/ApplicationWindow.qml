@@ -1,5 +1,6 @@
 import QtQuick 2.15
-import Qt.labs.settings 1.0
+//import Qt.labs.settings 1.0
+import QtCore
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Globals 1.0 as EaGlobals
