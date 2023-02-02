@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
-import QtGraphicalEffects 1.12
+//import QtGraphicalEffects 1.13
+import Qt5Compat.GraphicalEffects
 import QtMultimedia 5.14
 import QtTest 1.14
 

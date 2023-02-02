@@ -1,6 +1,7 @@
 import QtQuick 2.15
 import QtQuick.Templates 2.15 as T
-import QtGraphicalEffects 1.12
+//import QtGraphicalEffects 1.13
+import Qt5Compat.GraphicalEffects
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Globals 1.0 as EaGlobals

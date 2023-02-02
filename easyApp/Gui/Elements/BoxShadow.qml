@@ -1,5 +1,6 @@
 import QtQuick 2.15
-import QtGraphicalEffects 1.13
+//import QtGraphicalEffects 1.13
+import Qt5Compat.GraphicalEffects
 
 RectangularGlow {
     // The 4 properties from CSS box-shadow, plus the inherited color property
