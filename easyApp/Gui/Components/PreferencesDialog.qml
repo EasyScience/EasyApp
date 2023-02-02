@@ -306,7 +306,7 @@ EaElements.Dialog {
     // Misc
 
     Settings {
-        fileName: EaGlobals.Variables.settingsFile
+        //location: EaGlobals.Variables.settingsFile // Gives WASM error on run
         category: 'Preferences'
         property alias checkUpdateOnAppStart: updatesCheckBox.checked
         property alias enableToolTips: toolTipsCheckBox.checked

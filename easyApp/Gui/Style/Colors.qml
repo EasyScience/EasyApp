@@ -122,7 +122,7 @@ QtObject {
     // Persistent settings
 
     property var settings: Settings {
-        fileName: EaGlobals.Variables.settingsFile
+        //location: EaGlobals.Variables.settingsFile // Gives WASM error on run
         category: 'Appearance'
         property alias theme: object.theme
     }

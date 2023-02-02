@@ -114,7 +114,7 @@ EaElements.ApplicationWindow {
     ///////////
 
     Settings {
-        fileName: EaGlobals.Variables.settingsFile
+        //location: EaGlobals.Variables.settingsFile // Gives WASM error on run
         category: 'AppGeometry'
         property alias x: appWindow.x
         property alias y: appWindow.y
