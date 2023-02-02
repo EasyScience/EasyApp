@@ -3,7 +3,7 @@ import QtQuick.Controls 2.15
 import QtQuick.Controls.impl 2.15
 import QtQuick.Controls.Material 2.15
 import QtQuick.Controls.Material.impl 2.15
-import QtQuick.XmlListModel 2.15
+//import QtQuick.XmlListModel 2.15
 //import Qt.labs.settings 1.0
 import QtCore
 
@@ -248,6 +248,7 @@ EaElements.Dialog {
                 }
             }
 
+            /*
             EaElements.Label {
                 text: qsTr("Language") + ":"
             }
@@ -269,6 +270,7 @@ EaElements.Dialog {
                 }
                onActivated: EaGlobals.Variables.translator.selectLanguage(currentIndex)
             }
+            */
 
         }
 
