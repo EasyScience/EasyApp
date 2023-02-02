@@ -2,10 +2,10 @@ pragma Singleton
 
 import QtQuick
 import QtQuick.Controls.Material
-//import Qt.labs.settings 1.0
-import QtCore
+import Qt.labs.settings // Will be removed in Qt 6.5. Use QtCore instead.
 
 import easyApp.Gui.Globals 1.0 as EaGlobals
+
 
 QtObject {
     id: object
@@ -122,7 +122,7 @@ QtObject {
     // Persistent settings
 
     property var settings: Settings {
-        //location: EaGlobals.Variables.settingsFile // Gives WASM error on run
+        fileName: EaGlobals.Variables.settingsFile // Gives WASM error on run
         category: 'Appearance'
         property alias theme: object.theme
     }

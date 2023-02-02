@@ -1,6 +1,5 @@
 import QtQuick
-//import Qt.labs.settings 1.0
-import QtCore
+import Qt.labs.settings // Will be removed in Qt 6.5. Use QtCore instead.
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Globals 1.0 as EaGlobals
@@ -114,7 +113,7 @@ EaElements.ApplicationWindow {
     ///////////
 
     Settings {
-        //location: EaGlobals.Variables.settingsFile // Gives WASM error on run
+        fileName: EaGlobals.Variables.settingsFile // Gives WASM error on run
         category: 'AppGeometry'
         property alias x: appWindow.x
         property alias y: appWindow.y
