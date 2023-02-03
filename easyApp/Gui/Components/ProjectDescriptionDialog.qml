@@ -1,8 +1,7 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Dialogs 1.3 as QtQuickDialogs1
-import Qt.labs.platform 1.1 as QtLabsPlatform1
-import Qt.labs.settings 1.0
+import Qt.labs.platform
+import Qt.labs.settings
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Globals 1.0 as EaGlobals
@@ -91,12 +90,10 @@ EaElements.Dialog {
         }
     }
 
-    QtQuickDialogs1.FileDialog {
+    FolderDialog {
         id: projectParentDirDialog
 
         title: qsTr("Choose project parent directory")
-        selectFolder: true
-        selectMultiple: false
 
         Component.onCompleted: folder = projectPathDict().parent
     }
