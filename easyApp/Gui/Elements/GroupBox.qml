@@ -1,45 +1,45 @@
 import QtQuick
-//import QtGraphicalEffects 1.13
+import QtQuick.Controls
 import QtQuick.Templates as T
-//import QtQuick.Controls
-//import QtQuick.Controls.impl
 
 import easyApp.Gui.Style 1.0 as EaStyle
+import easyApp.Gui.Globals 1.0 as EaGlobals
+import easyApp.Gui.Elements 1.0 as EaElements
 import easyApp.Gui.Animations 1.0 as EaAnimations
+
 
 T.GroupBox {
     id: control
 
-    default property alias contentItemData: contentItem.data
     property bool collapsible: true
-    property bool collapsed: collapsible ? true : false
+    property bool collapsed: false //collapsible ? true : false
     property bool last: false
 
     implicitWidth: parent.width
-                       //Math.max(parent.width,
-                       //titleArea.implicitWidth + leftPadding + rightPadding,
-                       //contentItem.implicitWidth + leftPadding + rightPadding)
-    implicitHeight: titleArea.implicitHeight + contentItem.height + spacing
-                    + topPadding + bottomPadding
+    implicitHeight: collapsed ?
+                        titleArea.height :
+                        titleArea.height + spacing + contentHeight + bottomPadding
 
-    spacing: 0 // between title and content
+    spacing: EaStyle.Sizes.fontPixelSize * 0.5 // between title and content
     padding: 0
-    topPadding: 0
-    bottomPadding: 0
-    leftPadding: 0
-    rightPadding: 0
+    topPadding: titleArea.height + spacing
+    bottomPadding: EaStyle.Sizes.fontPixelSize
+    leftPadding: EaStyle.Sizes.fontPixelSize
+    rightPadding: EaStyle.Sizes.fontPixelSize
 
-    title: "Untitled group"
-    //width: parent.width
+    clip: true
 
-    // Title area
+    font.pixelSize: EaStyle.Sizes.fontPixelSize
+
+    // Group box title area
+
     label: Button {
         id: titleArea
 
-        enabled: collapsible
+        enabled: control.collapsible
 
-        implicitHeight: EaStyle.Sizes.tabBarHeight
-        width: label.width
+        height: EaStyle.Sizes.tabBarHeight
+        width: control.width
 
         topInset: 0
         bottomInset: 0
@@ -47,51 +47,51 @@ T.GroupBox {
         checkable: false
         flat: true
 
-        // Custom icon
-        Label {
-            id: icon
-
-            width: font.pixelSize - 1
+        // Group box title layout
+        contentItem: Row {
+            id: titleLayout
 
             anchors.verticalCenter: parent.verticalCenter
-            anchors.left: titleArea.left
-            anchors.leftMargin: EaStyle.Sizes.fontPixelSize * 0.75
+            spacing: EaStyle.Sizes.fontPixelSize * 0.5
 
-            font.family: EaStyle.Fonts.iconsFamily
-            font.pixelSize: EaStyle.Sizes.fontPixelSize * 0.7
+            // Group box title icon
+            Label {
+                id: titleIcon
 
-            text: collapsible ? "play" : "circle"
+                anchors.verticalCenter: parent.verticalCenter
 
-            color: foregroundColor()
-            Behavior on color { EaAnimations.ThemeChange {} }
+                text: control.collapsible ? "play" : "circle"
 
-            transform: Rotation {
-                id: iconRotation
+                font.family: EaStyle.Fonts.iconsFamily
+                font.pixelSize: control.font.pixelSize * 0.7
 
-                origin.x: icon.width * 0.5
-                origin.y: icon.height * 0.5
+                color: control.foregroundColor()
+                Behavior on color { EaAnimations.ThemeChange {} }
 
-                Component.onCompleted: collapsed ? angle = 0 : angle = 90
+                transform: Rotation {
+                    id: titleIconRotation
+
+                    origin.x: titleIcon.width * 0.5
+                    origin.y: titleIcon.height * 0.5
+
+                    Component.onCompleted: control.collapsed ? angle = 0 : angle = 90
+                }
             }
-        }
 
-        // Custom text label
-        contentItem: null // reimplemented as label to support above icon rotation animation
-        Label {
-            id: label
+            // Group box title text
+            Label {
+                id: titleTextlabel
 
-            anchors.verticalCenter: parent.verticalCenter
-            anchors.left: icon.right
-            anchors.leftMargin: EaStyle.Sizes.fontPixelSize * 0.75
+                anchors.verticalCenter: parent.verticalCenter
 
-            font.family: EaStyle.Fonts.fontFamily
-            font.pixelSize: EaStyle.Sizes.fontPixelSize
-            //font.bold: true
+                text: control.title
 
-            text: control.title
+                font.family: EaStyle.Fonts.fontFamily
+                font.pixelSize: control.font.pixelSize
 
-            color: foregroundColor()
-            Behavior on color { EaAnimations.ThemeChange {} }
+                color: control.foregroundColor()
+                Behavior on color { EaAnimations.ThemeChange {} }
+            }
         }
 
         //Mouse area to react on click events
@@ -99,78 +99,59 @@ T.GroupBox {
             id: rippleArea
             anchors.fill: parent
             hoverEnabled: true
-            onPressed: mouse.accepted = false
+            onClicked: titleArea.clicked()
         }
 
-        // On clicked animation
+        // Folding-unfolding animation on title area clicked
         onClicked: collapsionAnimo.restart()
     }
 
-    // Content area
-    background: Column {
-        id: contentItem
+    // Group box content area
+    background: Rectangle {
+        id: contentArea
 
-        anchors.left: parent.left
-        anchors.right: parent.right
-        anchors.bottom: parent.bottom
-
-        anchors.leftMargin: icon.anchors.leftMargin
-        anchors.rightMargin: anchors.leftMargin
-
-        topPadding: EaStyle.Sizes.fontPixelSize * 0.5
-        bottomPadding: anchors.leftMargin * 1.5
-        leftPadding: icon.width * 0.5
-        rightPadding: 0
-
-        spacing: EaStyle.Sizes.sideBarPadding
-
-        //width: control.width
-        height: 0
-
-        clip: true
-
-        onImplicitHeightChanged: collapsed ? height = 0 : height = implicitHeight
-    }
-
-    // Horisontal border at the bottom
-    Rectangle {
-        visible: !last
-
-        y: control.height - height
+        y: titleArea.height
         width: control.width
-        height: EaStyle.Sizes.borderThickness
+        height: control.height - control.topPadding + control.bottomPadding
 
-        color: EaStyle.Colors.appBorder
-        Behavior on color { EaAnimations.ThemeChange {} }
+        color: 'transparent'
+
+
+        // Horisontal border at the bottom
+        Rectangle {
+            visible: !last
+
+            anchors.bottom: parent.bottom
+            anchors.bottomMargin: 6 + height // 6?
+
+            width: control.width
+            height: EaStyle.Sizes.borderThickness
+
+            color: EaStyle.Colors.appBorder
+            Behavior on color { EaAnimations.ThemeChange {} }
+        }
     }
 
     // Collapsion animation
+
     ParallelAnimation {
         id: collapsionAnimo
 
         NumberAnimation {
-            target: contentItem
-            property: "height"
-            to: collapsed ? contentItem.implicitHeight : 0
+            target: control
+            property: "implicitHeight"
+            to: control.collapsed ? control.contentHeight + titleArea.height : titleArea.height
             duration: 150
         }
 
         NumberAnimation {
-            target: iconRotation
+            target: titleIconRotation
             property: "angle"
-            to: collapsed ? 90 : 0
+            to: control.collapsed ? 90 : 0
             duration: 150
         }
 
-        onFinished: collapsed = !collapsed
-    }
-
-    // Collapse when disabled
-    onEnabledChanged: {
-        if (!enabled && collapsible) {
-            collapsed = false
-            collapsionAnimo.restart()
-        }
+        onFinished: control.collapsed = !control.collapsed
     }
 
     // Logic
@@ -182,4 +163,5 @@ T.GroupBox {
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }
+
 }
