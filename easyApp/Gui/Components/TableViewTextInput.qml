@@ -1,6 +1,6 @@
 import QtQuick
 
-import easyApp.Gui.Elements 1.0 as EaElements
+import easyApp.Gui.Elements as EaElements
 
 EaElements.TextInput {
     property string headerText: ""

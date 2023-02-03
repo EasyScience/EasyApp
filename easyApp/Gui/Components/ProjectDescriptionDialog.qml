@@ -3,10 +3,10 @@ import QtQuick.Controls
 import Qt.labs.platform
 import Qt.labs.settings
 
-import easyApp.Gui.Style 1.0 as EaStyle
-import easyApp.Gui.Globals 1.0 as EaGlobals
-import easyApp.Gui.Elements 1.0 as EaElements
-import easyApp.Gui.Logic 1.0 as EaLogic
+import easyApp.Gui.Style as EaStyle
+import easyApp.Gui.Globals as EaGlobals
+import easyApp.Gui.Elements as EaElements
+import easyApp.Gui.Logic as EaLogic
 
 EaElements.Dialog {
     id: dialog

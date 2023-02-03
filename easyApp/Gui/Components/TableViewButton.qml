@@ -1,7 +1,7 @@
 import QtQuick
 
-import easyApp.Gui.Elements 1.0 as EaElements
-import easyApp.Gui.Style 1.0 as EaStyle
+import easyApp.Gui.Elements as EaElements
+import easyApp.Gui.Style as EaStyle
 
 EaElements.SideBarButton {
     property string headerText: ""

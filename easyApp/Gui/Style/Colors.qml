@@ -4,7 +4,7 @@ import QtQuick
 import QtQuick.Controls.Material
 import Qt.labs.settings // Will be removed in Qt 6.5. Use QtCore instead.
 
-import easyApp.Gui.Globals 1.0 as EaGlobals
+import easyApp.Gui.Globals as EaGlobals
 
 
 QtObject {

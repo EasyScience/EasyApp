@@ -1,8 +1,8 @@
 import QtQuick
 import QtQuick.Templates as T
 
-import easyApp.Gui.Style 1.0 as EaStyle
-import easyApp.Gui.Animations 1.0 as EaAnimations
+import easyApp.Gui.Style as EaStyle
+import easyApp.Gui.Animations as EaAnimations
 
 T.ToolBar {
     id: control

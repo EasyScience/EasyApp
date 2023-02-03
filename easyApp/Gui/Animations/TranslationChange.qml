@@ -1,6 +1,6 @@
 import QtQuick
 
-import easyApp.Gui.Style 1.0 as EaStyle
+import easyApp.Gui.Style as EaStyle
 
 SequentialAnimation {
 

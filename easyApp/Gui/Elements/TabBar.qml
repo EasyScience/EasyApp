@@ -3,8 +3,8 @@ import QtQuick.Templates as T
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 
-import easyApp.Gui.Style 1.0 as EaStyle
-import easyApp.Gui.Animations 1.0 as EaAnimations
+import easyApp.Gui.Style as EaStyle
+import easyApp.Gui.Animations as EaAnimations
 
 T.TabBar {
     id: control

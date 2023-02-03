@@ -1,9 +1,9 @@
 import QtQuick
 import QtCharts
 
-import easyApp.Gui.Style 1.0 as EaStyle
+import easyApp.Gui.Style as EaStyle
 
-import Gui.Globals 1.0 as ExGlobals
+import Gui.Globals as ExGlobals
 
 ScatterSeries {
     property var customPoints: [] //[Qt.point(0, -1), Qt.point(10, 6)] //[{"x":0,"y":-1},{"x":10,"y":6}]

@@ -3,10 +3,10 @@ import QtQuick.Templates as T
 //import QtGraphicalEffects 1.13
 import Qt5Compat.GraphicalEffects
 
-import easyApp.Gui.Style 1.0 as EaStyle
-import easyApp.Gui.Globals 1.0 as EaGlobals
-import easyApp.Gui.Animations 1.0 as EaAnimations
-import easyApp.Gui.Elements 1.0 as EaElements
+import easyApp.Gui.Style as EaStyle
+import easyApp.Gui.Globals as EaGlobals
+import easyApp.Gui.Animations as EaAnimations
+import easyApp.Gui.Elements as EaElements
 
 
 T.ToolTip {

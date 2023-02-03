@@ -6,9 +6,9 @@ import QtQuick.Controls.Material.impl
 //import QtQuick.XmlListModel 2.15
 import Qt.labs.settings // Will be removed in Qt 6.5. Use QtCore instead.
 
-import easyApp.Gui.Style 1.0 as EaStyle
-import easyApp.Gui.Globals 1.0 as EaGlobals
-import easyApp.Gui.Elements 1.0 as EaElements
+import easyApp.Gui.Style as EaStyle
+import easyApp.Gui.Globals as EaGlobals
+import easyApp.Gui.Elements as EaElements
 
 
 EaElements.Dialog {

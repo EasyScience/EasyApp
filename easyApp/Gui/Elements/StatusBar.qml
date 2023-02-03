@@ -1,11 +1,11 @@
 import QtQuick
 import QtQuick.Controls
 
-import easyApp.Gui.Style 1.0 as EaStyle
-import easyApp.Gui.Animations 1.0 as EaAnimations
-import easyApp.Gui.Elements 1.0 as EaElements
+import easyApp.Gui.Style as EaStyle
+import easyApp.Gui.Animations as EaAnimations
+import easyApp.Gui.Elements as EaElements
 
-import Gui.Globals 1.0 as ExGlobals
+import Gui.Globals as ExGlobals
 
 Rectangle {
     id: statusBar
