@@ -1,6 +1,6 @@
 import QtQuick
 import QtQuick.Controls
-import Qt.labs.platform
+import QtQuick.Dialogs
 import Qt.labs.settings
 
 import EasyApp.Gui.Style as EaStyle
@@ -72,7 +72,7 @@ EaElements.Dialog {
                 horizontalAlignment: TextInput.AlignLeft
 
                 placeholderText: qsTr("Enter project location here")
-                text: EaLogic.Utils.urlToLocalFile(projectParentDirDialog.folder + EaLogic.Utils.osPathSep() + projectNameField.text)
+                text: EaLogic.Utils.urlToLocalFile(projectParentDirDialog.selectedFolder + EaLogic.Utils.osPathSep() + projectNameField.text)
 
                 EaElements.ToolButton {
                     id: chooseButton
@@ -95,7 +95,7 @@ EaElements.Dialog {
 
         title: qsTr("Choose project parent directory")
 
-        Component.onCompleted: folder = projectPathDict().parent
+        Component.onCompleted: selectedFolder = projectPathDict().parent
     }
 
     onAccepted: projectLocation = projectLocationField.text
