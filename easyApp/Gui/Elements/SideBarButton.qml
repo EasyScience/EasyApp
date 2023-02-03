@@ -93,7 +93,7 @@ T.Button {
         anchors.fill: parent
         hoverEnabled: true
         //onClicked: control.clicked() // Doesn't work as for Button or ToolButton
-        onPressed: mouse.accepted = false // Color doesn't changed onPressed
+        onPressed: mouse.accepted = false // Color doesn't changed onPressed + Generates warning: Parameter "mouse" is not declared. Injection of parameters into signal handlers is deprecated. Use JavaScript functions with formal parameters instead.
     }
 
     // Logic
