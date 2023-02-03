@@ -1,7 +1,7 @@
 import QtQuick
 import QtCharts
 
-import easyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Style as EaStyle
 
 import Gui.Globals as ExGlobals
 

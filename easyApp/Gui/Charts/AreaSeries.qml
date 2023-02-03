@@ -1,6 +1,6 @@
 import QtCharts
 
-import easyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Style as EaStyle
 
 AreaSeries {
     opacity: 0.5

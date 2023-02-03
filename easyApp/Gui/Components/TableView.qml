@@ -2,11 +2,11 @@ import QtQuick
 import QtQuick.Controls
 //import QtQuick.XmlListModel 2.15
 
-import easyApp.Gui.Globals as EaGlobals
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Animations as EaAnimations
-import easyApp.Gui.Elements as EaElements
-import easyApp.Gui.Components as EaComponents
+import EasyApp.Gui.Globals as EaGlobals
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Animations as EaAnimations
+import EasyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Components as EaComponents
 
 Column {
     property alias model: listView.model
@@ -139,7 +139,7 @@ Column {
 
             qmlString =
                     "import QtQuick \n" +
-                    "import easyApp.Gui.Components as EaComponents \n" +
+                    "import EasyApp.Gui.Components as EaComponents \n" +
                     "Component { \n" +
                         "EaComponents.TableViewHeader { \n" +
                             `${qmlString}` +

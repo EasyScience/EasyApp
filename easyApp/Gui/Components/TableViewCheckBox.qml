@@ -1,6 +1,6 @@
 import QtQuick
 
-import easyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Elements as EaElements
 
 EaElements.CheckBox {
     property string headerText: ""

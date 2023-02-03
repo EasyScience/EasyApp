@@ -2,7 +2,7 @@ pragma Singleton
 
 import QtQuick
 
-import easyApp.Gui.Logic as EaLogic
+import EasyApp.Gui.Logic as EaLogic
 
 QtObject {
 

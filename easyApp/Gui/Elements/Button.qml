@@ -3,8 +3,8 @@ import QtQuick.Templates as T
 import QtQuick.Controls
 import QtQuick.Controls.impl
 
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Animations as EaAnimations
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Animations as EaAnimations
 
 
 T.Button {

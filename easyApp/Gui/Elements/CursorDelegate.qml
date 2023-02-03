@@ -1,6 +1,6 @@
 import QtQuick
 
-import easyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Style as EaStyle
 
 Rectangle {
     id: cursor

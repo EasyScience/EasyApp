@@ -2,10 +2,10 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Templates as T
 
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Globals as EaGlobals
-import easyApp.Gui.Elements as EaElements
-import easyApp.Gui.Animations as EaAnimations
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Globals as EaGlobals
+import EasyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Animations as EaAnimations
 
 
 T.GroupBox {

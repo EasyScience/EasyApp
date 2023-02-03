@@ -1,7 +1,7 @@
 import QtQuick
 
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Logic as EaLogic
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Logic as EaLogic
 
 Rectangle {
     id: container

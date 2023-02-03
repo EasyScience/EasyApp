@@ -2,10 +2,10 @@ import QtQuick
 import QtQuick.Controls
 import QtWebEngine
 
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Animations as EaAnimations
-import easyApp.Gui.Elements as EaElements
-import easyApp.Gui.Logic as EaLogic
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Animations as EaAnimations
+import EasyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Logic as EaLogic
 
 import Gui.Globals as ExGlobals
 

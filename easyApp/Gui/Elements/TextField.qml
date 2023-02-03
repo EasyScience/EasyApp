@@ -3,9 +3,9 @@ import QtQuick.Templates as T
 import QtQuick.Controls
 import QtQuick.Controls.impl
 
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Animations as EaAnimations
-import easyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Animations as EaAnimations
+import EasyApp.Gui.Elements as EaElements
 
 T.TextField {
     id: control

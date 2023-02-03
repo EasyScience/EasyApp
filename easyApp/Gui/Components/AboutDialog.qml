@@ -4,9 +4,9 @@ import QtQuick.Controls.impl
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Globals as EaGlobals
-import easyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Globals as EaGlobals
+import EasyApp.Gui.Elements as EaElements
 
 import Gui.Globals as ExGlobals
 

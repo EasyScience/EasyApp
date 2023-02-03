@@ -2,9 +2,9 @@ import QtQuick
 import QtQuick.Controls
 import QtCharts
 
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Elements as EaElements
-import easyApp.Gui.Charts as EaCharts
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Charts as EaCharts
 
 import Gui.Globals as ExGlobals
 

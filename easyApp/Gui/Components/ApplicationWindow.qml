@@ -1,11 +1,11 @@
 import QtQuick
 import Qt.labs.settings // Will be removed in Qt 6.5. Use QtCore instead.
 
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Globals as EaGlobals
-import easyApp.Gui.Animations as EaAnimations
-import easyApp.Gui.Elements as EaElements
-import easyApp.Gui.Components as EaComponents
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Globals as EaGlobals
+import EasyApp.Gui.Animations as EaAnimations
+import EasyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Components as EaComponents
 
 
 EaElements.ApplicationWindow {

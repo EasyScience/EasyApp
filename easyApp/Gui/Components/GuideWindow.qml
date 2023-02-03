@@ -5,9 +5,9 @@ import QtQuick.Layouts 1.12
 //import QtGraphicalEffects 1.13
 import Qt5Compat.GraphicalEffects
 
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Globals as EaGlobals
-import easyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Globals as EaGlobals
+import EasyApp.Gui.Elements as EaElements
 
 import Gui.Globals as ExGlobals
 

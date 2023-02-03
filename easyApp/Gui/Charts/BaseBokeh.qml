@@ -3,10 +3,10 @@ import QtQuick.Controls
 import QtWebEngine
 
 import Gui.Globals as ExGlobals
-import easyApp.Gui.Style as EaStyle
-import easyApp.Gui.Elements as EaElements
-import easyApp.Gui.Logic as EaLogic
-import easyApp.Gui.Charts as EaCharts
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Logic as EaLogic
+import EasyApp.Gui.Charts as EaCharts
 
 EaCharts.BasePlot {
     id: plot
