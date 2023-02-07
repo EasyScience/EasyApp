@@ -15,13 +15,10 @@ Window {
     property alias appVersion: appVersionLabel.text
     property alias logoSource: splashScreenLogo.source
 
-    property alias applicationWindowSource: applicationWindowLoader.source
-    property var applicationWindowReference
-
     property bool initialGuiCompleted: false
-    onInitialGuiCompletedChanged: splashScreenLogoAnimo.stop()
+    property bool animationFinished: false
 
-    visible: true
+    visible: !animationFinished
 
     //x: Screen.width / 2 - width / 2
     //y: Screen.height / 2 - height / 2
@@ -72,20 +69,16 @@ Window {
 
                 target: splashScreenLogo
 
-                running: true
+                running: !initialGuiCompleted
                 alwaysRunToEnd: true
 
                 loops: Animation.Infinite
                 from: 0
                 to: 360 * 6
                 duration: 2000
-
                 easing.type: Easing.OutInElastic
 
-                onFinished: {
-                    splashScreen.visible = false
-                    applicationWindowReference.opacity = 1.0
-                }
+                onFinished: animationFinished = true
             }
         }
 
@@ -128,12 +121,4 @@ Window {
         }
     }
 
-    // Application window loader
-
-    Loader {
-        id: applicationWindowLoader
-
-        visible: status === Loader.Ready
-        asynchronous: true
-    }
 }
