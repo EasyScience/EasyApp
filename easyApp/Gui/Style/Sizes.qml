@@ -77,6 +77,11 @@ QtObject {
     // Scales
     property int defaultScale: 100
 
+    // Charts
+    property int measuredLineWidth: 1
+    property int calculatedLineWidth: 2
+    property int measuredScatterSize: 5
+
     // Functions
     function scalePx(size) {
         return Math.round(size * (defaultScale / 100))
