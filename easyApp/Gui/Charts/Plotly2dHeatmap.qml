@@ -12,7 +12,7 @@ WebEngineView {
     width: parent.width
     height: parent.height
 
-    url:  Qt.resolvedUrl('Plotly2dHeatmap.html')
+    url:  Qt.resolvedUrl('../Html/Plotly2dHeatmap.html')
 
     onLoadSucceededStatusChanged: {
         if (loadSucceededStatus) {

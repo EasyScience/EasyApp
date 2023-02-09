@@ -13,7 +13,7 @@ WebEngineView {
     width: parent.width
     height: parent.height
 
-    url: Qt.resolvedUrl('Plotly3dSurface.html')
+    url: Qt.resolvedUrl('../Html/Plotly3dSurface.html')
 
     onLoadSucceededStatusChanged: {
         if (loadSucceededStatus) {

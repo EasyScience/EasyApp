@@ -25,7 +25,7 @@ WebEngineView {
 
     backgroundColor: EaStyle.Colors.chartBackground
 
-    url: Qt.resolvedUrl("Plotly1dMeasVsCalc.html")
+    url: Qt.resolvedUrl("../Html/Plotly1dMeasVsCalc.html")
 
     onLoadSucceededStatusChanged: {
         if (loadSucceededStatus) {
@@ -47,6 +47,7 @@ WebEngineView {
     onLoadingChanged: {
         // Bug "loadRequest" is not declared - https://bugreports.qt.io/browse/QTBUG-84746
         //if (loadRequest.status === WebEngineView.LoadSucceededStatus) {
+        loadSucceededStatus = false
         if (loadProgress === 100) {
             loadSucceededStatus = true
         }
