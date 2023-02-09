@@ -75,6 +75,7 @@
     let trace = {
       x: data.x,
       y: data.y,
+      type: 'scatter', //'scattergl'
       mode: 'lines',
     }
 
@@ -133,6 +134,11 @@
 
     function setYAxisTitle(newTitle) {
       plotLayout.yaxis.title = newTitle
+    }
+
+    function setXyData(newData) {
+      trace.x = newData.x
+      trace.y = newData.y
     }
 
   </script>

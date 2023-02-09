@@ -1,26 +1,9 @@
 module Charts
 
-LineSeries 1.0 LineSeries.qml
-AreaSeries 1.0 AreaSeries.qml
-ScatterSeries 1.0 ScatterSeries.qml
-
-ValueAxis 1.0 ValueAxis.qml
-ChartView 1.0 ChartView.qml
-
-BasePlot 1.0 BasePlot.qml
-BaseBokeh 1.0 BaseBokeh.qml
-BaseQtCharts 1.0 BaseQtCharts.qml
-
-BaseChemDoodle 1.0 BaseChemDoodle.qml
-
 Plotly1dLine 1.0 Plotly1dLine.qml
+Plotly1dMeasVsCalc 1.0 Plotly1dMeasVsCalc.qml
+
 Plotly2dHeatmap 1.0 Plotly2dHeatmap.qml
+
 Plotly3dScatter 1.0 Plotly3dScatter.qml
 Plotly3dSurface 1.0 Plotly3dSurface.qml
-
-ChartViewBasic1dPlotly 1.0 ChartViewBasic1dPlotly.qml
-ChartViewSimple1dPlotly 1.0 ChartViewSimple1dPlotly.qml
-ChartViewHeatmap2dPlotly 1.0 ChartViewHeatmap2dPlotly.qml
-ChartViewSurface3dPlotly 1.0 ChartViewSurface3dPlotly.qml
-
-ChartViewDiffraction1dPlotly 1.0 ChartViewDiffraction1dPlotly.qml

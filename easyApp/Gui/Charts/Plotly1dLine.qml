@@ -6,8 +6,11 @@ WebEngineView {
     id: chartView
 
     property bool loadSucceededStatus: false
+
     property string xAxisTitle: ''
     property string yAxisTitle: ''
+
+    property var xyData: ({})
 
     width: parent.width
     height: parent.height
@@ -16,8 +19,9 @@ WebEngineView {
 
     onLoadSucceededStatusChanged: {
         if (loadSucceededStatus) {
-            setXAxisTitle(xAxisTitle)
-            setYAxisTitle(yAxisTitle)
+            setXAxisTitle()
+            setYAxisTitle()
+            setXyData()
             redrawPlot()
         }
     }
@@ -32,14 +36,21 @@ WebEngineView {
 
     onXAxisTitleChanged: {
         if (loadSucceededStatus) {
-            setXAxisTitle(newTitle)
+            setXAxisTitle()
             redrawPlot()
         }
     }
 
     onYAxisTitleChanged: {
         if (loadSucceededStatus) {
-            setYAxisTitle(newTitle)
+            setYAxisTitle()
+            redrawPlot()
+        }
+    }
+
+    onXyDataChanged: {
+        if (loadSucceededStatus) {
+            setXyData()
             redrawPlot()
         }
     }
@@ -50,12 +61,22 @@ WebEngineView {
         chartView.runJavaScript(`redrawPlot()`)
     }
 
-    function setXAxisTitle(newTitle) {
-        runJavaScript(`setXAxisTitle(${JSON.stringify(newTitle)})`)
+    function setXAxisTitle() {
+        runJavaScript(`setXAxisTitle(${JSON.stringify(xAxisTitle)})`)
     }
 
-    function setYAxisTitle(newTitle) {
-        runJavaScript(`setYAxisTitle(${JSON.stringify(newTitle)})`)
+    function setYAxisTitle() {
+        runJavaScript(`setYAxisTitle(${JSON.stringify(yAxisTitle)})`)
+    }
+
+    function setXyData() {
+        //runJavaScript(`setXyData(${JSON.stringify(xyData)})`, function(result) { console.log(JSON.stringify(result)); })
+        runJavaScript(`setXyData(${JSON.stringify(xyData)})`)
+    }
+
+    function redrawPlotWithAnimation() {
+        runJavaScript(`redrawPlotWithAnimation(${JSON.stringify(xyData)})`)
+
     }
 
 }
