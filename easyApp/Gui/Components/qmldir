@@ -32,3 +32,5 @@ TableViewComboBox 1.0 TableViewComboBox.qml
 TableViewButton 1.0 TableViewButton.qml
 
 JsonListModel 1.0 JsonListModel.qml
+
+BasicReport 1.0 BasicReport.qml
