@@ -10,8 +10,6 @@ WebEngineView {
 
     visible: false
 
-    property bool blank: true
-
     property bool loadSucceededStatus: false
 
     property string xAxisTitle: ''
@@ -27,10 +25,10 @@ WebEngineView {
 
     backgroundColor: EaStyle.Colors.chartBackground
 
-    url: blank ? Qt.resolvedUrl("../Html/BlankPage.html") : Qt.resolvedUrl("../Html/BasicReport.html")
+    url: Qt.resolvedUrl("../Html/BasicReport.html")
 
     onLoadSucceededStatusChanged: {
-        if (loadSucceededStatus && !blank) {
+        if (loadSucceededStatus) {
             setChartSizes()
             setChartColors()
 
@@ -52,6 +50,41 @@ WebEngineView {
         loadSucceededStatus = false
         if (loadProgress === 100) {
             loadSucceededStatus = true
+        }
+    }
+
+    onXAxisTitleChanged: {
+        if (loadSucceededStatus) {
+            setXAxisTitle()
+            redrawPlot()
+        }
+    }
+
+    onYAxisTitleChanged: {
+        if (loadSucceededStatus) {
+            setYAxisTitle()
+            redrawPlot()
+        }
+    }
+
+    onMeasuredXYDataChanged: {
+        if (loadSucceededStatus) {
+            setMeasuredXYData()
+            redrawPlot()
+        }
+    }
+
+    onCalculatedXYDataChanged: {
+        if (loadSucceededStatus) {
+            setCalculatedXYData()
+            redrawPlot()
+        }
+    }
+
+    onThemeChanged: {
+        if (loadSucceededStatus) {
+            setChartColors()
+            redrawPlot()
         }
     }
 

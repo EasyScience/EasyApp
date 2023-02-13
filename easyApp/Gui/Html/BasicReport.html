@@ -54,6 +54,7 @@
 
     table {
       width: 560px;
+      margin-bottom: 16px;
       border-collapse: collapse;
     }
     td, th {
@@ -110,7 +111,7 @@
 <body>
   <article>
 
-    <h1>Report</h1>
+    <h1>Summary report</h1>
 
     <section>
       <h2>Project</h2>
@@ -127,7 +128,7 @@
       <h2>Software</h2>
       <p>
         <b>Analysis:</b><a href="https://easydiffraction.org"> EasyExample v0.8.4-beta</a><br>
-        <b>Charts:</b><a href="https://docs.bokeh.org/en/2.4.3"> BokehJS v2.4.3</a><br>
+        <b>Charts:</b><a href="https://plotly.com/javascript/"> Plotly JavaScript v2.18.0</a><br>
         <b>Calculation engine:</b> CrysPy<br>
         <b>Minimization engine:</b> lmfit<br>
       </p>
@@ -135,28 +136,32 @@
 
     <section>
       <h2>Model</h2>
-      <p>
-        <b>Sine function:</b> y = sin(x)<br>
-      </p>
-    </section>
-
-    <section>
-      <h2>Simulation/Fitting</h2>
-      <div id='plotDiv'></div>
+      <table>
+        <tr> <td align="left"><b>Sine function:</b> y = A•sin[B•(x + C)] + D</td> </tr>
+      </table>
     </section>
 
     <section>
       <h2>Parameters</h2>
       <table>
         <tr> <th align="right">No.</th> <th align="left">Parameter</th> <th align="right">Value</th> <th align="left">Units</th> </tr>
-        <tr> <td align="right">1</td> <td align="left">Phases.PbSO4.lattice.length_a</td> <td align="right">8.4774</td> <td align="left">Å</td> </tr>
-        <tr> <td align="right">2</td> <td align="left">Phases.PbSO4.lattice.length_b</td> <td align="right">5.3960</td> <td align="left">Å</td> </tr>
-        <tr> <td align="right">3</td> <td align="left">Phases.PbSO4.lattice.length_c</td> <td align="right">6.9570</td> <td align="left">Å</td> </tr>
-        <tr> <td align="right">4</td> <td align="left">Phases.PbSO4.atoms.Pb.occupancy</td> <td align="right">1.0000</td> <td align="left"></td> </tr>
+        <tr> <td align="right">1</td> <td align="left">Amplitude A</td> <td align="right">8.4774</td> <td align="left">Å</td> </tr>
+        <tr> <td align="right">2</td> <td align="left">Period 2π/B</td> <td align="right">5.3960</td> <td align="left">Å</td> </tr>
+        <tr> <td align="right">3</td> <td align="left">Phase shift C</td> <td align="right">6.9570</td> <td align="left">Å</td> </tr>
+        <tr> <td align="right">4</td> <td align="left">Vertical shift D</td> <td align="right">1.0000</td> <td align="left"></td> </tr>
       </table>
     </section>
 
+    <section>
+      <h2>Fitting</h2>
+      <div id='plotDiv'></div>
+    </section>
+
   </article>
+
+
+
+
 
   <script>
 
