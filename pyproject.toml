@@ -1,0 +1,32 @@
+# Use hatch to build the application.
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+# Information about the EasyExampleApp project.
+# Note that while the project is called EasyExampleApp
+# the application itself is EasyExample.
+[project]
+name = "EasyExampleApp"
+version = "0.1.0-beta"
+description = "Advanced example of an application based on the EasyScience framework."
+authors = [
+  {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
+]
+maintainers = [
+  {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
+]
+license = "BSD-3-Clause"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: BSD License",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering",
+    "Development Status :: 4 - Beta"
+]
+requires-python = ">=3.8,<3.11"
+dependencies = [
+    'PySide6>=6.4.2',
+    'numpy>=1.24.2',
+    'EasyApp @ git+https://github.com/easyscience/EasyApp.git@new-easy-app'
+]
