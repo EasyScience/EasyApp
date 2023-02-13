@@ -7,9 +7,9 @@ build-backend = "hatchling.build"
 # Note that while the project is called EasyExampleApp
 # the application itself is EasyExample.
 [project]
-name = "EasyExampleApp"
-version = "0.1.0-beta"
-description = "Advanced example of an application based on the EasyScience framework."
+name = "EasyApp"
+version = "0.2.0-beta"
+description = "Graphical application skeleton in the EasyScience universe."
 authors = [
   {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
 ]
@@ -26,7 +26,5 @@ classifiers = [
 ]
 requires-python = ">=3.8,<3.11"
 dependencies = [
-    'PySide6>=6.4.2',
-    'numpy>=1.24.2',
-    'EasyApp @ git+https://github.com/easyscience/EasyApp.git@new-easy-app'
+    'PySide6>=6.4.2'
 ]
