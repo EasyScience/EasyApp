@@ -11,8 +11,8 @@ import EasyApp.Gui.Elements as EaElements
 EaElements.TextField {
     id: control
 
-    property string units: ""
-    property string title: ""
+    property string units: ''
+    property string title: ''
 
     rightPadding: unitsPlaceholder.width
 
@@ -20,7 +20,7 @@ EaElements.TextField {
     topPadding: topInset + padding
 
     width: parameterFieldWidth()
-    placeholderText: 'Amplitude'
+    placeholderText: ''
 
     EaElements.Label {
         enabled: false
