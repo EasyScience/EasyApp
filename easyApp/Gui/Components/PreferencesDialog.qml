@@ -200,10 +200,10 @@ EaElements.Dialog {
             }
 
             EaElements.ComboBox {
-                model: ExGlobals.Constants.proxy.plotting1d.libs
-                onActivated: ExGlobals.Constants.proxy.plotting1d.currentLib = currentValue
+                model: ExGlobals.Proxies.plottingProxy.plotting1d.libs
+                onActivated: ExGlobals.Proxies.plottingProxy.plotting1d.currentLib = currentValue
                 Component.onCompleted: {
-                    currentIndex = model.indexOf(ExGlobals.Constants.proxy.plotting1d.currentLib)
+                    currentIndex = model.indexOf(ExGlobals.Proxies.plottingProxy.plotting1d.currentLib)
                 }
             }
             */
