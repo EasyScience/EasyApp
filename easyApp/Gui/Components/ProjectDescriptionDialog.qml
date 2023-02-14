@@ -12,19 +12,25 @@ EaElements.Dialog {
     id: dialog
 
     property alias projectName: projectNameField.text
-    property alias projectShortDescription: projectShortDescriptionField.text
+    property alias projectDescription: projectDescriptionField.text
 
-    //property alias shortcuts: projectParentDirDialog.shortcuts
-
+    property string projectParentDirectory: ""
     property string projectLocation: ""
-    property int inputFieldWidth: EaStyle.Sizes.fontPixelSize * 30
 
-    title: qsTr("Project Description")
+    property int inputFieldWidth: EaStyle.Sizes.fontPixelSize * 35
+
+    title: qsTr("Create project")
 
     standardButtons: Dialog.Ok
 
+    onAccepted: projectLocation = projectLocationField.text
+
+    // Main layout
+
     Column {
-        spacing: EaStyle.Sizes.fontPixelSize * 1.0
+        spacing: EaStyle.Sizes.fontPixelSize
+
+        // Project name field
 
         Column {
             EaElements.Label {
@@ -38,25 +44,27 @@ EaElements.Dialog {
                 implicitWidth: inputFieldWidth
                 horizontalAlignment: TextInput.AlignLeft
                 placeholderText: qsTr("Enter project name here")
-
-                Component.onCompleted: text = projectPathDict().basename
             }
         }
+
+        // Project description field
 
         Column {
             EaElements.Label {
                 enabled: false
-                text: qsTr("Short description")
+                text: qsTr("Description")
             }
 
             EaElements.TextField {
-                id: projectShortDescriptionField
+                id: projectDescriptionField
 
                 implicitWidth: inputFieldWidth
                 horizontalAlignment: TextInput.AlignLeft
                 placeholderText: qsTr("Enter short project description here")
             }
         }
+
+        // Project location field
 
         Column {
             EaElements.Label {
@@ -68,14 +76,16 @@ EaElements.Dialog {
                 id: projectLocationField
 
                 implicitWidth: inputFieldWidth
-                rightPadding: chooseButton.width
+                rightPadding: chooseParentDirectoryButton.width
                 horizontalAlignment: TextInput.AlignLeft
 
                 placeholderText: qsTr("Enter project location here")
-                text: EaLogic.Utils.urlToLocalFile(projectParentDirDialog.selectedFolder + EaLogic.Utils.osPathSep() + projectNameField.text)
+                text: EaLogic.Utils.urlToLocalFile(projectParentDirectory) +
+                      EaLogic.Utils.osPathSep() +
+                      projectName.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).split(' ').join('')
 
                 EaElements.ToolButton {
-                    id: chooseButton
+                    id: chooseParentDirectoryButton
 
                     anchors.right: parent.right
 
@@ -90,31 +100,22 @@ EaElements.Dialog {
         }
     }
 
+    // Choose project parent directory dialog
+
     FolderDialog {
         id: projectParentDirDialog
 
         title: qsTr("Choose project parent directory")
-
-        Component.onCompleted: selectedFolder = projectPathDict().parent
+        selectedFolder: projectParentDirectory
+        onAccepted: projectParentDirectory = selectedFolder
     }
-
-    onAccepted: projectLocation = projectLocationField.text
 
     // Persistent settings
 
     Settings {
         fileName: EaGlobals.Variables.settingsFile
         category: 'Location'
-        property alias projectLocation: dialog.projectLocation
+        property alias defaultProjectParentDirectory: dialog.projectParentDirectory
     }
 
-    // Logic
-
-    function projectPathDict() {
-        const sep = EaLogic.Utils.osPathSep()
-        const array = projectLocation.split(sep)
-        const basename = array[array.length - 1]
-        const parent = array.slice(0, array.length - 1).join(sep)
-        return {'basename': basename, 'parent': parent}
-    }
 }
