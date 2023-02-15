@@ -82,7 +82,6 @@
       name: 'Measured',
       x: data.x,
       y: data.measured.y,
-      type: 'scattergl',
       mode: 'lines+markers',
       marker : { symbol: 'circle', size: 5 },
       line: { width: 1 },
@@ -93,7 +92,6 @@
       name: 'Calculated',
       x: data.x,
       y: data.calculated.y,
-      type: 'scattergl',
       mode: 'lines',
       line: { width: 1 }
     }
@@ -219,6 +217,16 @@
 
     function redrawPlot() {
       Plotly.redraw('plotDiv')
+    }
+
+    function toggleUseWebGL(useWebGL) {
+      if (useWebGL) {
+        measuredTrace.type = 'scattergl'
+        calculatedTrace.type = 'scattergl'
+      } else {
+        measuredTrace.type = 'scatter'
+        calculatedTrace.type = 'scatter'
+      }
     }
 
     function setXAxisTitle(newTitle) {

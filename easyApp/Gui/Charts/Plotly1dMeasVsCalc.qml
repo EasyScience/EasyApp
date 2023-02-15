@@ -20,6 +20,8 @@ WebEngineView {
 
     property int theme: EaStyle.Colors.theme
 
+    property bool useWebGL: false
+
     width: parent.width
     height: parent.height
 
@@ -29,6 +31,8 @@ WebEngineView {
 
     onLoadSucceededStatusChanged: {
         if (loadSucceededStatus) {
+            toggleUseWebGL()
+
             setChartSizes()
             setChartColors()
 
@@ -88,6 +92,8 @@ WebEngineView {
         }
     }
 
+    onUseWebGLChanged: toggleUseWebGL()
+
     // Logic
 
     function setChartSizes() {
@@ -134,6 +140,10 @@ WebEngineView {
 
     function setCalculatedXYData() {
         runJavaScript(`setCalculatedXYData(${JSON.stringify(calculatedXYData)})`)
+    }
+
+    function toggleUseWebGL() {
+        runJavaScript(`toggleUseWebGL(${JSON.stringify(useWebGL)})`)
     }
 
 }
