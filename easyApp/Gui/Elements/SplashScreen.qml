@@ -70,7 +70,7 @@ Window {
                 target: splashScreenLogo
 
                 running: !initialGuiCompleted
-                alwaysRunToEnd: true
+                //alwaysRunToEnd: true
 
                 loops: Animation.Infinite
                 from: 0
