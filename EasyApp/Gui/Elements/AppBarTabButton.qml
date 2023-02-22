@@ -60,11 +60,10 @@ EaElements.TabButton {
 
     //Mouse area to react on click events
     MouseArea {
-        id: rippleArea
+        id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        //onClicked: control.clicked() // Doesn't work as for Button or ToolButton
-        onPressed: mouse.accepted = false // Color doesn't changed onPressed + Generates warning: Parameter "mouse" is not declared. Injection of parameters into signal handlers is deprecated. Use JavaScript functions with formal parameters instead.
+        onPressed: (mouse) => mouse.accepted = false
     }
 
     // Logic
@@ -72,7 +71,7 @@ EaElements.TabButton {
     function backgroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeBackground
-        if (rippleArea.containsMouse)
+        if (mouseArea.containsMouse)
             return EaStyle.Colors.themeBackgroundHovered2
         return EaStyle.Colors.themeBackground
     }
@@ -80,7 +79,7 @@ EaElements.TabButton {
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (rippleArea.containsMouse || control.checked || control.down)
+        if (mouseArea.containsMouse || control.checked || control.down)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }

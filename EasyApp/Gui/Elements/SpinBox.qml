@@ -20,10 +20,10 @@ T.SpinBox {
 
     //Mouse area to react on click events
     MouseArea {
-        id: rippleArea
+        id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        onPressed: mouse.accepted = false
+        onPressed: (mouse) => mouse.accepted = false
     }
 
     validator: IntValidator {
@@ -130,7 +130,7 @@ T.SpinBox {
     function foregroundColor() {
         if (!enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (rippleArea.containsMouse || control.activeFocus)
+        if (mouseArea.containsMouse || control.activeFocus)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }
@@ -144,7 +144,7 @@ T.SpinBox {
     function borderColorBottom() {
         if (!enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (rippleArea.containsMouse || control.activeFocus)
+        if (mouseArea.containsMouse || control.activeFocus)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.appBarComboBoxBorder
     }

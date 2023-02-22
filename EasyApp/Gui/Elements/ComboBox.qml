@@ -41,10 +41,10 @@ T.ComboBox {
 
     //Mouse area to react on click events
     MouseArea {
-        id: rippleArea
-        anchors.fill: parent//control
+        id: mouseArea
+        anchors.fill: parent
         hoverEnabled: true
-        onPressed: mouse.accepted = false
+        onPressed: (mouse) => mouse.accepted = false
     }
 
     delegate: EaElements.MenuItem {
@@ -205,7 +205,7 @@ T.ComboBox {
     function _foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (rippleArea.containsMouse)
+        if (mouseArea.containsMouse)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }
@@ -213,7 +213,7 @@ T.ComboBox {
     function _borderColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeBackgroundDisabled
-        if (rippleArea.containsMouse)
+        if (mouseArea.containsMouse)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.appBarComboBoxBorder
     }

@@ -75,7 +75,9 @@ T.Button {
 
     // Background
     background: Rectangle {
-        implicitWidth: wide ? EaStyle.Sizes.sideBarContentWidth : (EaStyle.Sizes.sideBarContentWidth - EaStyle.Sizes.fontPixelSize) / 2
+        implicitWidth: wide ?
+                           EaStyle.Sizes.sideBarContentWidth :
+                           (EaStyle.Sizes.sideBarContentWidth - EaStyle.Sizes.fontPixelSize) / 2
         implicitHeight: EaStyle.Sizes.sideBarButtonHeight
 
         radius: control.radius
@@ -89,11 +91,10 @@ T.Button {
 
     //Mouse area to react on click events
     MouseArea {
-        id: rippleArea
+        id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        //onClicked: control.clicked() // Doesn't work as for Button or ToolButton
-        onPressed: mouse.accepted = false // Color doesn't changed onPressed + Generates warning: Parameter "mouse" is not declared. Injection of parameters into signal handlers is deprecated. Use JavaScript functions with formal parameters instead.
+        onPressed: (mouse) => mouse.accepted = false
     }
 
     // Logic
@@ -101,7 +102,7 @@ T.Button {
     function backgroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeBackgroundDisabled
-        if (rippleArea.containsMouse)
+        if (mouseArea.containsMouse)
             return EaStyle.Colors.themeBackgroundHovered1
         return EaStyle.Colors.themeBackground
     }
@@ -109,7 +110,7 @@ T.Button {
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (rippleArea.containsMouse || control.checked || control.down)
+        if (mouseArea.containsMouse || control.checked || control.down)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }
@@ -117,7 +118,7 @@ T.Button {
     function borderColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeBackgroundDisabled
-        if (rippleArea.containsMouse || control.checked || control.down)
+        if (mouseArea.containsMouse || control.checked || control.down)
             return EaStyle.Colors.appBarBackground
         return EaStyle.Colors.appBarComboBoxBorder
     }

@@ -42,13 +42,10 @@ T.Button {
 
     //Mouse area to react on click events
     MouseArea {
-        id: rippleArea
-
+        id: mouseArea
         anchors.fill: control
         hoverEnabled: true
-
-        //onClicked: control.clicked()
-        onPressed: mouse.accepted = false
+        onPressed: (mouse) => mouse.accepted = false
     }
 
     // Logic
@@ -56,7 +53,7 @@ T.Button {
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (rippleArea.containsMouse || control.checked || control.down)
+        if (mouseArea.containsMouse || control.checked || control.down)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }

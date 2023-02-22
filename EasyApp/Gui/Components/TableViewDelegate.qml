@@ -24,9 +24,9 @@ Rectangle {
     // Highligh row on click
     MouseArea {
         anchors.fill: parent
-        onPressed: {
+        onPressed: (mouse) => {
             parent.ListView.view.currentIndex = index
             mouse.accepted = false
-        }
+        }        
     }
 }

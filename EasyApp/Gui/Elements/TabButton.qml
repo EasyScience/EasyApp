@@ -86,29 +86,19 @@ T.TabButton {
 
     //Mouse area to react on click events
     MouseArea {
-        id: rippleArea
+        id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
         //onClicked: control.clicked() // Doesn't work as for Button or ToolButton
-        onPressed: mouse.accepted = false // Color doesn't changed onPressed
+        onPressed: (mouse) => mouse.accepted = false // Color doesn't changed onPressed
     }
 
     // Logic
 
-    /*
-    function backgroundColor() {
-        if (!control.enabled)
-            return "#00000000" //EaStyle.Colors.themeBackgroundDisabled
-        if (rippleArea.containsMouse)
-            return EaStyle.Colors.isDarkTheme ? "#22ffffff" : "#11000000" //EaStyle.Colors.themeBackgroundHovered
-        return "#00000000" //EaStyle.Colors.themeBackground
-    }
-    */
-
     function backgroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.contentBackground
-        if (rippleArea.containsMouse)
+        if (mouseArea.containsMouse)
             return EaStyle.Colors.themeBackgroundHovered1
         return EaStyle.Colors.contentBackground
     }
@@ -116,7 +106,7 @@ T.TabButton {
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (rippleArea.containsMouse || control.checked || control.down)
+        if (mouseArea.containsMouse || control.checked || control.down)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }

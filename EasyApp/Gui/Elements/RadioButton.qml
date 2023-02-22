@@ -46,21 +46,21 @@ T.RadioButton {
             //radius: Globals.Sizes.toolButtonHeight * 0.5
             radius: height * 0.5
 
-            color: rippleArea.containsMouse ?
-                       (rippleArea.containsPress ? // TODO: fix this, as currently containsPress is not catched because of onPressed: mouse.accepted = false
+            color: mouseArea.containsMouse ?
+                       (mouseArea.containsPress ? // TODO: fix this, as currently containsPress is not catched because of onPressed: mouse.accepted = false
                             Globals.Colors.appBarButtonBackgroundPressed :
                             Globals.Colors.appBarButtonBackgroundHovered) :
                         Globals.Colors.appBarButtonBackground
             Behavior on color {
                 PropertyAnimation {
-                    duration: rippleArea.containsMouse ? 500 : 0 //Globals.Variables.themeChangeTime
+                    duration: mouseArea.containsMouse ? 500 : 0 //Globals.Variables.themeChangeTime
                     alwaysRunToEnd: true
                     easing.type: Easing.OutCubic
                 }
             }
 
             MouseArea {
-                id: rippleArea
+                id: mouseArea
                 anchors.fill: parent
                 hoverEnabled: true
                 onPressed: mouse.accepted = false

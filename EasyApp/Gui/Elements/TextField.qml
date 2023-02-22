@@ -30,7 +30,7 @@ T.TextField {
     //font.bold: control.activeFocus ? true : false
 
     color: !enabled ? EaStyle.Colors.themeForegroundDisabled :
-                     rippleArea.containsMouse || control.activeFocus ?
+                     mouseArea.containsMouse || control.activeFocus ?
                           EaStyle.Colors.themeForegroundHovered :
                           EaStyle.Colors.themeForeground
     Behavior on color { EaAnimations.ThemeChange {} }
@@ -79,9 +79,9 @@ T.TextField {
 
     //Mouse area to react on click events
     MouseArea {
-        id: rippleArea
+        id: mouseArea
         anchors.fill: control
         hoverEnabled: true
-        onPressed: mouse.accepted = false
+        onPressed: (mouse) => mouse.accepted = false
     }
 }

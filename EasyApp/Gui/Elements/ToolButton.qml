@@ -64,11 +64,10 @@ T.ToolButton {
 
     //Mouse area to react on click events
     MouseArea {
-        id: rippleArea
+        id: mouseArea
         anchors.fill: parent
         hoverEnabled: true
-        //onClicked: control.clicked()
-        onPressed: mouse.accepted = false
+        onPressed: (mouse) => mouse.accepted = false
     }
 
     // Logic
@@ -76,7 +75,7 @@ T.ToolButton {
     function backgroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeBackgroundDisabled
-        if (rippleArea.containsMouse)
+        if (mouseArea.containsMouse)
             return EaStyle.Colors.themeBackgroundHovered2
         return EaStyle.Colors.themeBackground
     }
@@ -85,7 +84,7 @@ T.ToolButton {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
         if (!highlighted) {
-            if (control.checked || rippleArea.containsMouse)
+            if (control.checked || mouseArea.containsMouse)
                 return EaStyle.Colors.themeForegroundHovered
             return EaStyle.Colors.themeForeground
         }
