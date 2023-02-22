@@ -1,16 +1,21 @@
 # Use hatch to build the application.
 [build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
+requires = ["hatchling"]
+build-backend = "hatchling.build"
 
 # Information about the EasyExampleApp project.
 # Note that while the project is called EasyExampleApp
 # the application itself is EasyExample.
-[tool.poetry]
+[project]
 name = "EasyApp"
-version = "0.2.2-beta"
+version = "0.2.3-beta"
 description = "Graphical application skeleton in the EasyScience universe."
-authors = ["Andrew Sazonov <andrew.sazonov@ess.eu>"]
+authors = [
+  {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
+]
+maintainers = [
+  {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
+]
 license = "BSD-3-Clause"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -19,8 +24,7 @@ classifiers = [
     "Topic :: Scientific/Engineering",
     "Development Status :: 4 - Beta"
 ]
-packages = [ { include = "EasyApp" } ]  # Force to use capital letters in the installed EasyApp package
-
-[tool.poetry.dependencies]
-python = ">=3.8,<3.11"
-PySide6 = ">=6.4.2"
+requires-python = ">=3.8,<3.11"
+dependencies = [
+    'PySide6>=6.4.2'
+]
