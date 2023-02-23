@@ -48,11 +48,9 @@ WebEngineView {
         }
     }
 
-    onLoadingChanged: {
-        // Bug "loadRequest" is not declared - https://bugreports.qt.io/browse/QTBUG-84746
-        //if (loadRequest.status === WebEngineView.LoadSucceededStatus) {
+    onLoadingChanged: (loadRequest) => {
         loadSucceededStatus = false
-        if (loadProgress === 100) {
+        if (loadRequest.status === WebEngineView.LoadSucceededStatus) {
             loadSucceededStatus = true
         }
     }
@@ -92,7 +90,11 @@ WebEngineView {
         }
     }
 
-    onUseWebGLChanged: toggleUseWebGL()
+    onUseWebGLChanged: {
+        if (loadSucceededStatus) {
+            toggleUseWebGL()
+        }
+    }
 
     // Logic
 
