@@ -26,7 +26,7 @@ T.Slider {
         handleHovered: control.hovered
 
         EaElements.ToolTip {
-            visible: slider.pressed
+            visible: slider.pressed || slider.hovered
             text: control.value.toFixed(4)
         }
     }
