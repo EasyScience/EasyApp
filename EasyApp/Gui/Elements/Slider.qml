@@ -56,26 +56,3 @@ T.Slider {
         }
     }
 }
-
-
-
-
-
-/*
-T.Slider {
-
-
-    handle: Rectangle {
-        x: control.leftPadding + (control.horizontal ? control.visualPosition * (control.availableWidth - width) : (control.availableWidth - width) / 2)
-        y: control.topPadding + (control.horizontal ? (control.availableHeight - height) / 2 : control.visualPosition * (control.availableHeight - height))
-        implicitWidth: 28
-        implicitHeight: 28
-        radius: width / 2
-        color: control.pressed ? control.palette.light : control.palette.window
-        border.width: control.visualFocus ? 2 : 1
-        border.color: control.visualFocus ? control.palette.highlight : control.enabled ? control.palette.mid : control.palette.midlight
-    }
-
-
-}
-*/

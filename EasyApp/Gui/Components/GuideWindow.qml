@@ -46,8 +46,8 @@ Item {
                 onClicked: EaGlobals.Variables.showUserGuides = false
 
                 Component.onCompleted: {
-                    if (typeof ExGlobals.Variables.userGuidesLastDisableButton === 'undefined') {
-                        ExGlobals.Variables.userGuidesLastDisableButton = this
+                    if (typeof ExGlobals.Vars.userGuidesLastDisableButton === 'undefined') {
+                        ExGlobals.Vars.userGuidesLastDisableButton = this
                     }
                 }
             },
@@ -58,11 +58,11 @@ Item {
                 enabled: container.currentIndex < container.count - 1
                 onClicked: container.incrementCurrentIndex()
 
-                Component.onCompleted: ExGlobals.Variables.userGuidesNextButtons[container.appBarCurrentIndex].unshift(this)
+                Component.onCompleted: ExGlobals.Vars.userGuidesNextButtons[container.appBarCurrentIndex].unshift(this)
             }
         ]
 
-        onTextChanged: ExGlobals.Variables.userGuidesTextList[container.appBarCurrentIndex].unshift(text)
+        onTextChanged: ExGlobals.Vars.userGuidesTextList[container.appBarCurrentIndex].unshift(text)
     }
 
     // Logic
