@@ -15,8 +15,9 @@ WebEngineView {
     property string xAxisTitle: ''
     property string yAxisTitle: ''
 
-    property var measuredXYData: ({})
-    property var calculatedXYData: ({})
+    property var xData: []
+    property var measuredYData: []
+    property var calculatedYData: []
 
     property int theme: EaStyle.Colors.theme
 
@@ -39,10 +40,10 @@ WebEngineView {
             setXAxisTitle()
             setYAxisTitle()
 
-            setMeasuredXYData()
-            setCalculatedXYData()
-
-            redrawPlot()
+            emptyData()
+            setXData()
+            setMeasuredYData()
+            setCalculatedYData()
 
             visible = true
         }
@@ -69,17 +70,24 @@ WebEngineView {
         }
     }
 
-    onMeasuredXYDataChanged: {
+    onXDataChanged: {
         if (loadSucceededStatus) {
-            setMeasuredXYData()
+            setXData()
+        }
+    }
+
+    onMeasuredYDataChanged: {
+        if (loadSucceededStatus) {
+            setMeasuredYData()
             redrawPlot()
         }
     }
 
-    onCalculatedXYDataChanged: {
+    onCalculatedYDataChanged: {
         if (loadSucceededStatus) {
-            setCalculatedXYData()
-            redrawPlot()
+            //setCalculatedYData()
+            //redrawPlot()
+            redrawPlotWithNewCalculatedYData()
         }
     }
 
@@ -99,16 +107,19 @@ WebEngineView {
     // Logic
 
     function setChartSizes() {
+        print('setChartSizes is started')
         const sizes = {
             'fontPixelSize': EaStyle.Sizes.fontPixelSize,
             'measuredLineWidth': EaStyle.Sizes.measuredLineWidth,
             'calculatedLineWidth': EaStyle.Sizes.calculatedLineWidth,
             'measuredScatterSize': EaStyle.Sizes.measuredScatterSize
         }
-        runJavaScript(`setChartSizes(${JSON.stringify(sizes)})`, function(result) { print(result) })
+        runJavaScript(`setChartSizes(${JSON.stringify(sizes)})`,
+                      function(result) { print(result) })
     }
 
     function setChartColors() {
+        print('setChartColors is started')
         const colors = {
             'chartBackground': String(EaStyle.Colors.chartBackground),
             'chartPlotAreaBackground': String(EaStyle.Colors.chartPlotAreaBackground),
@@ -121,31 +132,53 @@ WebEngineView {
             'measuredLine': EaStyle.Colors.chartForegroundsExtra[2],
             'calculatedLine': EaStyle.Colors.chartForegrounds[0]
         }
-        runJavaScript(`setChartColors(${JSON.stringify(colors)})`, function(result) { print(result) })
+        runJavaScript(`setChartColors(${JSON.stringify(colors)})`,
+                      function(result) { print(result) })
     }
 
     function redrawPlot() {
-        chartView.runJavaScript(`redrawPlot()`)
+        runJavaScript(`redrawPlot()`)
+    }
+
+    function redrawPlotWithNewCalculatedYData() {
+        runJavaScript(`redrawPlotWithNewCalculatedYData(${JSON.stringify(calculatedYData)})`)
+    }
+
+    function toggleUseWebGL() {
+        print(`toggleUseWebGL is started: '${useWebGL}'`)
+        runJavaScript(`toggleUseWebGL(${JSON.stringify(useWebGL)})`,
+                      function(result) { print(result) })
     }
 
     function setXAxisTitle() {
+        print(`setXAxisTitle is started: '${xAxisTitle}'`)
         runJavaScript(`setXAxisTitle(${JSON.stringify(xAxisTitle)})`)
     }
 
     function setYAxisTitle() {
+        print(`setYAxisTitle is started: '${yAxisTitle}'`)
         runJavaScript(`setYAxisTitle(${JSON.stringify(yAxisTitle)})`)
     }
 
-    function setMeasuredXYData() {
-        runJavaScript(`setMeasuredXYData(${JSON.stringify(measuredXYData)})`)
+    function emptyData() {
+        print(`emptyData is started`)
+        runJavaScript(`emptyData()`,
+                      function(result) { print(result) })
     }
 
-    function setCalculatedXYData() {
-        runJavaScript(`setCalculatedXYData(${JSON.stringify(calculatedXYData)})`)
+    function setXData() {
+        print(`setXData is started: ${xData.length} points`)
+        runJavaScript(`setXData(${JSON.stringify(xData)})`,
+                      function(result) { print(result) })
     }
 
-    function toggleUseWebGL() {
-        runJavaScript(`toggleUseWebGL(${JSON.stringify(useWebGL)})`)
+    function setMeasuredYData() {
+        print(`setMeasuredYData is started: ${measuredYData.length} points`)
+        runJavaScript(`setMeasuredYData(${JSON.stringify(measuredYData)})`)
+    }
+
+    function setCalculatedYData() {
+        runJavaScript(`setCalculatedYData(${JSON.stringify(calculatedYData)})`)
     }
 
 }

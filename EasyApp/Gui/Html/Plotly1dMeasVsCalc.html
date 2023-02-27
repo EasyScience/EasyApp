@@ -221,6 +221,10 @@
       Plotly.redraw('plotDiv')
     }
 
+    function redrawPlotWithNewCalculatedYData(newData) {
+      Plotly.restyle('plotDiv', {y:[newData]}, [1])
+    }
+
     function toggleUseWebGL(useWebGL) {
       if (useWebGL) {
         measuredTrace.type = 'scattergl'
@@ -229,6 +233,7 @@
         measuredTrace.type = 'scatter'
         calculatedTrace.type = 'scatter'
       }
+      return('toggleUseWebGL is finished.')
     }
 
     function setXAxisTitle(newTitle) {
@@ -239,30 +244,27 @@
       plotLayout.yaxis.title = newTitle
     }
 
-    function setMeasuredXYData(newData) {
-      measuredTrace.x = newData.x
-      measuredTrace.y = newData.y
+    function emptyData() {
+      measuredTrace.x = []
+      measuredTrace.y = []
+      calculatedTrace.x = []
+      calculatedTrace.y = []
+      return('emptyData is finished')
     }
 
-    function setCalculatedXYData(newData) {
-      calculatedTrace.x = newData.x
-      calculatedTrace.y = newData.y
+    function setXData(newData) {
+      measuredTrace.x = newData
+      calculatedTrace.x = newData
+      return('setXData is finished')
     }
 
-    function deleteTrace(name) {
-      for (const i in plotTraces) {
-        if (plotTraces[i].name === name) {
-          Plotly.deleteTraces('plotDiv', parseInt(i))
-        }
-      }
-    }
+    function setMeasuredYData(newData) {
+      measuredTrace.y = newData
+      return('setMeasuredYData is finished')
+  }
 
-    function addTrace(name) {
-      if (name === 'Measured') {
-        Plotly.addTraces('plotDiv', measuredTrace)
-      } else if (name === 'Calculated') {
-        Plotly.addTraces('plotDiv', calculatedTrace)
-      }
+    function setCalculatedYData(newData) {
+      calculatedTrace.y = newData
     }
 
     ///////
