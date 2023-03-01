@@ -47,7 +47,7 @@ Rectangle {
             topPadding: (statusBar.height - 3 / 2 * font.pixelSize) * 0.5
             leftPadding: font.pixelSize
             color: EaStyle.Colors.statusBarForeground
-            text: model.label + ": " + model.value
+            text: model.name + ": " + model.value
         }
     }
 

@@ -6,7 +6,7 @@ import EasyApp.Gui.Animations as EaAnimations
 Rectangle {
     default property alias contentRowData: contentRow.data
 
-    width: parent === null ? 0 : parent.width
+    width: parent == null ? 0 : parent.width
     height: EaStyle.Sizes.tableRowHeight
 
     color: index % 2 ?
