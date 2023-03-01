@@ -471,4 +471,51 @@ Item {
         return success
     }
 
+    /*! \internal */
+    function qtest_compareInternalObjects(act, exp) {
+        var i;
+        var eq = true; // unless we can proove it
+        var aProperties = [], bProperties = []; // collection of strings
+
+        // comparing constructors is more strict than using instanceof
+        if (act.constructor !== exp.constructor) {
+            return false;
+        }
+
+        for (i in act) { // be strict: don't ensures hasOwnProperty and go deep
+            aProperties.push(i); // collect act's properties
+            if (!qtest_compareInternal(act[i], exp[i])) {
+                eq = false;
+                break;
+            }
+        }
+
+        for (i in exp) {
+            bProperties.push(i); // collect exp's properties
+        }
+
+        if (aProperties.length == 0 && bProperties.length == 0) { // at least a special case for QUrl
+            return eq && (JSON.stringify(act) == JSON.stringify(exp));
+        }
+
+        // Ensures identical properties name
+        return eq && qtest_compareInternal(aProperties.sort(), bProperties.sort());
+
+    }
+
+    /*! \internal */
+    function qtest_compareInternalArrays(actual, expected) {
+        if (actual.length != expected.length) {
+            return false
+        }
+
+        for (var i = 0, len = actual.length; i < len; i++) {
+            if (!qtest_compareInternal(actual[i], expected[i])) {
+                return false
+            }
+        }
+
+        return true
+    }
+
 }
