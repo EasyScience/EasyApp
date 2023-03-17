@@ -21,8 +21,8 @@ EaElements.Dialog {
                    bottomPadding +
                    EaStyle.Sizes.fontPixelSize * 9
 
-    visible: EaGlobals.Variables.showAppPreferencesDialog
-    onClosed: EaGlobals.Variables.showAppPreferencesDialog = false
+    visible: EaGlobals.Vars.showAppPreferencesDialog
+    onClosed: EaGlobals.Vars.showAppPreferencesDialog = false
 
     title: qsTr("Preferences")
 
@@ -51,7 +51,7 @@ EaElements.Dialog {
             text: qsTr("Prompts")
             ToolTip.text: qsTr("")
 
-            Component.onCompleted: EaGlobals.Variables.promptsTab = this
+            Component.onCompleted: EaGlobals.Vars.promptsTab = this
         }
 
         EaElements.AppBarTabButton {
@@ -65,7 +65,7 @@ EaElements.Dialog {
             text: qsTr("Appearance")
             ToolTip.text: qsTr("")
 
-            Component.onCompleted: EaGlobals.Variables.appearanceTab = this
+            Component.onCompleted: EaGlobals.Vars.appearanceTab = this
         }
 
         EaElements.AppBarTabButton {
@@ -112,8 +112,8 @@ EaElements.Dialog {
 
             EaElements.CheckBox {
                 id: toolTipsCheckBox
-                checked: EaGlobals.Variables.showToolTips
-                onCheckedChanged: EaGlobals.Variables.showToolTips = checked
+                checked: EaGlobals.Vars.showToolTips
+                onCheckedChanged: EaGlobals.Vars.showToolTips = checked
             }
 
             EaElements.Label {
@@ -122,8 +122,8 @@ EaElements.Dialog {
 
             EaElements.CheckBox {
                 id: userGuidesCheckBox
-                checked: EaGlobals.Variables.showUserGuides
-                onCheckedChanged: EaGlobals.Variables.showUserGuides = checked
+                checked: EaGlobals.Vars.showUserGuides
+                onCheckedChanged: EaGlobals.Vars.showUserGuides = checked
             }
 
         }
@@ -146,8 +146,8 @@ EaElements.Dialog {
                 EaElements.CheckBox {
                     id: updatesCheckBox
                     padding: 0
-                    checked: EaGlobals.Variables.checkUpdateOnAppStart
-                    onCheckedChanged: EaGlobals.Variables.checkUpdateOnAppStart = checked
+                    checked: EaGlobals.Vars.checkUpdateOnAppStart
+                    onCheckedChanged: EaGlobals.Vars.checkUpdateOnAppStart = checked
                 }
             }
 
@@ -156,8 +156,8 @@ EaElements.Dialog {
                 highlighted: true
                 text: qsTr("Check now")
                 onClicked: {
-                    EaGlobals.Variables.updater.silentCheck = false
-                    EaGlobals.Variables.updater.checkUpdate()
+                    EaGlobals.Vars.updater.silentCheck = false
+                    EaGlobals.Vars.updater.checkUpdate()
                 }
             }
         }
@@ -202,20 +202,20 @@ EaElements.Dialog {
 
             EaElements.ComboBox {
                 model: ['Plotly', 'QtCharts']
-                onActivated: EaGlobals.Variables.currentLib1d = currentValue
-                Component.onCompleted: currentIndex = model.indexOf(EaGlobals.Variables.currentLib1d)
+                onActivated: EaGlobals.Vars.currentLib1d = currentValue
+                Component.onCompleted: currentIndex = model.indexOf(EaGlobals.Vars.currentLib1d)
             }
 
             EaElements.CheckBox {
                 text: {
-                    if (EaGlobals.Variables.currentLib1d === 'QtCharts') {
+                    if (EaGlobals.Vars.currentLib1d === 'QtCharts') {
                         return qsTr("Use OpenGL")
-                    } else if (EaGlobals.Variables.currentLib1d === 'Plotly') {
+                    } else if (EaGlobals.Vars.currentLib1d === 'Plotly') {
                         return qsTr("Use WebGL")
                     }
                 }
-                onCheckedChanged: EaGlobals.Variables.useOpenGL
-                Component.onCompleted: checked = EaGlobals.Variables.useOpenGL
+                onCheckedChanged: EaGlobals.Vars.useOpenGL
+                Component.onCompleted: checked = EaGlobals.Vars.useOpenGL
             }
 
             /*
@@ -265,7 +265,7 @@ EaElements.Dialog {
             EaElements.ComboBox {
                 id: languageSelector
                 model: XmlListModel {
-                    xml: EaGlobals.Variables.translator.languagesAsXml()
+                    xml: EaGlobals.Vars.translator.languagesAsXml()
                     query: "/root/item"
                     XmlRole {
                         name: "name"
@@ -273,11 +273,11 @@ EaElements.Dialog {
                     }
                     onStatusChanged: {
                         if (status === XmlListModel.Ready) {
-                            languageSelector.currentIndex = EaGlobals.Variables.translator.defaultLanguageIndex()
+                            languageSelector.currentIndex = EaGlobals.Vars.translator.defaultLanguageIndex()
                         }
                     }
                 }
-               onActivated: EaGlobals.Variables.translator.selectLanguage(currentIndex)
+               onActivated: EaGlobals.Vars.translator.selectLanguage(currentIndex)
             }
             */
 
@@ -317,7 +317,7 @@ EaElements.Dialog {
     // Misc
 
     Settings {
-        fileName: EaGlobals.Variables.settingsFile // Gives WASM error on run
+        fileName: EaGlobals.Vars.settingsFile // Gives WASM error on run
         category: 'Preferences'
         property alias checkUpdateOnAppStart: updatesCheckBox.checked
         property alias enableToolTips: toolTipsCheckBox.checked

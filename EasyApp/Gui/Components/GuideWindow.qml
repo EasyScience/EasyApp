@@ -17,15 +17,15 @@ Item {
     property var container
     property alias text: tooltip.text
 
-    property int appBarCurrentIndex: EaGlobals.Variables.appBarCurrentIndex
+    property int appBarCurrentIndex: EaGlobals.Vars.appBarCurrentIndex
     onAppBarCurrentIndexChanged: container.setCurrentIndex(0)
 
     EaElements.ToolTip {
         id: tooltip
 
         parent: item.parent
-        visible: !EaGlobals.Variables.showAppPreferencesDialog &&
-                 EaGlobals.Variables.showUserGuides &&
+        visible: !EaGlobals.Vars.showAppPreferencesDialog &&
+                 EaGlobals.Vars.showUserGuides &&
                  appBarCurrentIndex === container.appBarCurrentIndex &&
                  container.currentIndex === indexOf(container.contentModel.children, item)
 
@@ -43,7 +43,7 @@ Item {
 
             EaElements.Button {
                 text: qsTr("Disable")
-                onClicked: EaGlobals.Variables.showUserGuides = false
+                onClicked: EaGlobals.Vars.showUserGuides = false
 
                 Component.onCompleted: {
                     if (typeof ExGlobals.Vars.userGuidesLastDisableButton === 'undefined') {

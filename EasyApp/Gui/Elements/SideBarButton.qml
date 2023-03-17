@@ -34,7 +34,7 @@ T.Button {
     // ToolTip
     EaElements.ToolTip {
         text: control.ToolTip.text
-        visible: control.hovered && EaGlobals.Variables.showToolTips && text !== ""
+        visible: control.hovered && EaGlobals.Vars.showToolTips && text !== ""
     }
 
     // Icon with text label

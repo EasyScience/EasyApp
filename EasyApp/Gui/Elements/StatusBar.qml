@@ -13,7 +13,7 @@ Rectangle {
     //property alias text: label.text
     property alias model: listView.model
 
-    //visible: EaGlobals.Variables.showAppStatusBar
+    //visible: EaGlobals.Vars.showAppStatusBar
 
     //Component.onCompleted: y = visible ? 0 : height
 

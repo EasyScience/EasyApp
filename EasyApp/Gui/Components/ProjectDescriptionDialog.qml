@@ -113,7 +113,7 @@ EaElements.Dialog {
     // Persistent settings
 
     Settings {
-        fileName: EaGlobals.Variables.settingsFile
+        fileName: EaGlobals.Vars.settingsFile
         category: 'Location'
         property alias defaultProjectParentDirectory: dialog.projectParentDirectory
     }

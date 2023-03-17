@@ -21,7 +21,7 @@ T.ApplicationWindow {
     property string webDate: 'updater.webDate'
 
     visible: true
-    flags: EaGlobals.Variables.appWindowFlags
+    flags: EaGlobals.Vars.appWindowFlags
 
     x: EaStyle.Sizes.appWindowX
     y: EaStyle.Sizes.appWindowY
@@ -47,7 +47,7 @@ T.ApplicationWindow {
         onUpdateNotFound: updateNotFoundDialog.open()
         onUpdateFailed: updateFailedDialog.open()
 
-        Component.onCompleted: EaGlobals.Variables.updater = this
+        Component.onCompleted: EaGlobals.Vars.updater = this
     }
 
     // Check update on app start (if needed)
@@ -55,7 +55,7 @@ T.ApplicationWindow {
     Timer {
         interval: 2000
         repeat: false
-        running: EaGlobals.Variables.checkUpdateOnAppStart
+        running: EaGlobals.Vars.checkUpdateOnAppStart
         onTriggered: {
             updater.silentCheck = true
             updater.checkUpdate()

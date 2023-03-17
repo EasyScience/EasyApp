@@ -55,8 +55,8 @@ EaElements.ApplicationWindow {
                 anchors.verticalCenter: parent.verticalCenter
                 anchors.horizontalCenter: parent.horizontalCenter
 
-                currentIndex: EaGlobals.Variables.appBarCurrentIndex
-                onCurrentIndexChanged: EaGlobals.Variables.appBarCurrentIndex = currentIndex
+                currentIndex: EaGlobals.Vars.appBarCurrentIndex
+                onCurrentIndexChanged: EaGlobals.Vars.appBarCurrentIndex = currentIndex
             }
 
             EaComponents.AppBarRightButtons {
@@ -113,7 +113,7 @@ EaElements.ApplicationWindow {
     ///////////
 
     Settings {
-        fileName: EaGlobals.Variables.settingsFile // Gives WASM error on run
+        fileName: EaGlobals.Vars.settingsFile // Gives WASM error on run
         category: 'AppGeometry'
         property alias x: appWindow.x
         property alias y: appWindow.y
