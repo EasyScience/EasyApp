@@ -40,10 +40,7 @@ WebEngineView {
             setXAxisTitle()
             setYAxisTitle()
 
-            emptyData()
-            setXData()
-            setMeasuredYData()
-            setCalculatedYData()
+            emptyData()  // remove default data from html
 
             visible = true
         }
@@ -174,7 +171,8 @@ WebEngineView {
 
     function setMeasuredYData() {
         print(`setMeasuredYData is started: ${measuredYData.length} points`)
-        runJavaScript(`setMeasuredYData(${JSON.stringify(measuredYData)})`)
+        runJavaScript(`setMeasuredYData(${JSON.stringify(measuredYData)})`,
+                      function(result) { print(result) })
     }
 
     function setCalculatedYData() {

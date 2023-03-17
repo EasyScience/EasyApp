@@ -225,6 +225,10 @@
       Plotly.restyle('plotDiv', {y:[newData]}, [1])
     }
 
+    function redrawPlotWithNewCalculatedYJson(newJson) {
+      Plotly.restyle('plotDiv', newJson, [1])
+    }
+
     function toggleUseWebGL(useWebGL) {
       if (useWebGL) {
         measuredTrace.type = 'scattergl'
