@@ -89,7 +89,7 @@ ListView {
     onOriginYChanged: contentY = originY + (lastContentY - lastOriginY)
 
     // Default current index
-    Component.onCompleted: currentIndex = 0
+    //Component.onCompleted: currentIndex = 0
 
     // Logic
 
