@@ -57,4 +57,8 @@ QtObject {
         AnalysisPageIndex = 4,
         SummaryPageIndex = 5
     }
+
+    // Chart
+    property string currentLib1d: "QtCharts"//"Plotly"
+    property bool useOpenGL: false
 }

@@ -165,7 +165,7 @@ EaElements.Dialog {
         // Appearance tab content
 
         Grid {
-            columns: 2
+            columns: 3
             columnSpacing: EaStyle.Sizes.fontPixelSize
             rowSpacing: EaStyle.Sizes.fontPixelSize
             verticalItemAlignment: Grid.AlignVCenter
@@ -194,19 +194,29 @@ EaElements.Dialog {
                 }
             }
 
-            /*
+            EaElements.Label { text: ' ' }
+
             EaElements.Label {
-                text: qsTr("Data plotting") + ":"
+                text: qsTr("1D plotting") + ":"
             }
 
             EaElements.ComboBox {
-                model: ExGlobals.Proxies.plottingProxy.plotting1d.libs
-                onActivated: ExGlobals.Proxies.plottingProxy.plotting1d.currentLib = currentValue
-                Component.onCompleted: {
-                    currentIndex = model.indexOf(ExGlobals.Proxies.plottingProxy.plotting1d.currentLib)
-                }
+                model: ['Plotly', 'QtCharts']
+                onActivated: EaGlobals.Variables.currentLib1d = currentValue
+                Component.onCompleted: currentIndex = model.indexOf(EaGlobals.Variables.currentLib1d)
             }
-            */
+
+            EaElements.CheckBox {
+                text: {
+                    if (EaGlobals.Variables.currentLib1d === 'QtCharts') {
+                        return qsTr("Use OpenGL")
+                    } else if (EaGlobals.Variables.currentLib1d === 'Plotly') {
+                        return qsTr("Use WebGL")
+                    }
+                }
+                onCheckedChanged: EaGlobals.Variables.useOpenGL
+                Component.onCompleted: checked = EaGlobals.Variables.useOpenGL
+            }
 
             /*
             EaElements.Label {

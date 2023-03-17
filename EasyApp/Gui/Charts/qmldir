@@ -1,9 +1,10 @@
 module Charts
 
-Plotly1dLine 1.0 Plotly1dLine.qml
-Plotly1dMeasVsCalc 1.0 Plotly1dMeasVsCalc.qml
+Plotly1dLine Plotly1dLine.qml
+Plotly1dMeasVsCalc Plotly1dMeasVsCalc.qml
+QtCharts1dMeasVsCalc QtCharts1dMeasVsCalc.qml
 
-Plotly2dHeatmap 1.0 Plotly2dHeatmap.qml
+Plotly2dHeatmap Plotly2dHeatmap.qml
 
-Plotly3dScatter 1.0 Plotly3dScatter.qml
-Plotly3dSurface 1.0 Plotly3dSurface.qml
+Plotly3dScatter Plotly3dScatter.qml
+Plotly3dSurface Plotly3dSurface.qml
