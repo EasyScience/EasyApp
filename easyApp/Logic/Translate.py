@@ -2,12 +2,11 @@ __author__ = "github.com/AndrewSazonov"
 __version__ = "0.0.1"
 
 import os
-from dicttoxml import dicttoxml
 
 from PySide2.QtCore import QObject, QTranslator, QLocale, Slot
 from PySide2.QtWidgets import QApplication
 from PySide2.QtQml import QQmlApplicationEngine
-
+from easyCore.Utils.io.xml import XMLSerializer
 
 class Translator(QObject):
     def __init__(self, app, engine, translations_path, languages):
@@ -56,8 +55,7 @@ class Translator(QObject):
 
     @Slot(result=str)
     def languagesAsXml(self):
-        xml = dicttoxml(self._languages, attr_type=False)
-        xml = xml.decode()
+        xml = XMLSerializer().encode({"item": self._languages})
         return xml
 
     @Slot(result=int)

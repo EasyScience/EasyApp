@@ -1,6 +1,6 @@
-import QtQuick 2.13
-import QtQuick.Controls 2.13
-import QtQuick.XmlListModel 2.13
+import QtQuick 2.15
+import QtQuick.Controls 2.15
+import QtQuick.XmlListModel 2.15
 
 import easyApp.Gui.Globals 1.0 as EaGlobals
 import easyApp.Gui.Style 1.0 as EaStyle
@@ -138,7 +138,7 @@ Column {
             }
 
             qmlString =
-                    "import QtQuick 2.13 \n" +
+                    "import QtQuick 2.15 \n" +
                     "import easyApp.Gui.Components 1.0 as EaComponents \n" +
                     "Component { \n" +
                         "EaComponents.TableViewHeader { \n" +

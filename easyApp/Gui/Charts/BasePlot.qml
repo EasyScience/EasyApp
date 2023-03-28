@@ -1,4 +1,4 @@
-import QtQuick 2.13
+import QtQuick 2.15
 
 import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Logic 1.0 as EaLogic
@@ -16,7 +16,7 @@ Rectangle {
     property var braggData: ({})
     property var backgroundData: ({})
     property var plotRanges: ({})
-    property var setSpinComponent: (string)
+    property var setSpinComponent: ""///(string)
 
     property bool hasMeasuredData: typeof measuredData !== 'undefined'
                                    && Object.keys(measuredData).length

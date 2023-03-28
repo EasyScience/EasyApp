@@ -1,4 +1,4 @@
-import QtQuick 2.13
+import QtQuick 2.15
 import Qt.labs.settings 1.0
 
 import easyApp.Gui.Style 1.0 as EaStyle
