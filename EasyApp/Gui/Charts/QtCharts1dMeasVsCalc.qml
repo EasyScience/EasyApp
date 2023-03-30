@@ -9,6 +9,7 @@ ChartView {
     id: chartView
 
     property alias measSerie: measSerie
+    property alias bkgSerie: bkgSerie
     property alias calcSerie: calcSerie
     property bool useOpenGL: false
     property string xAxisTitle: ""
@@ -44,6 +45,18 @@ ChartView {
         borderWidth: 1
         color: 'cornflowerblue'
         borderColor: this.color
+    }
+
+    LineSeries {
+        id: bkgSerie
+
+        axisX: axisX
+        axisY: axisY
+
+        useOpenGL: chartView.useOpenGL
+
+        color: 'grey'
+        width: 2
     }
 
     LineSeries {
