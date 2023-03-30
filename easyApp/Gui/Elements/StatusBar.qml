@@ -5,17 +5,11 @@ import easyApp.Gui.Style 1.0 as EaStyle
 import easyApp.Gui.Animations 1.0 as EaAnimations
 import easyApp.Gui.Elements 1.0 as EaElements
 
-import Gui.Globals 1.0 as ExGlobals
-
 Rectangle {
     id: statusBar
 
-    //property alias text: label.text
     property alias model: listView.model
-
-    //visible: EaGlobals.Variables.showAppStatusBar
-
-    //Component.onCompleted: y = visible ? 0 : height
+    property alias fittingInProgress: fittingInProgressLabel.running
 
     width: parent.width
     height: parent.height
@@ -53,6 +47,7 @@ Rectangle {
 
     // Fitting label
     EaElements.RunningLabel {
+        id: fittingInProgressLabel
         text: "Fitting in progress"
         ///running: !ExGlobals.Constants.proxy.fitting.isFitFinished
     }
@@ -69,12 +64,4 @@ Rectangle {
         Behavior on color { EaAnimations.ThemeChange {} }
     }
 
-    /*
-    // Show-hide status bar animation
-    Behavior on visible {
-        InterfaceAnimations.BarShow {
-            parentTarget: statusBar
-        }
-    }
-    */
 }

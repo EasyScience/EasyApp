@@ -17,31 +17,31 @@ Item {
     anchors.rightMargin: EaStyle.Sizes.fontPixelSize
     anchors.verticalCenter: parent.verticalCenter
 
-    Row {
-        EaElements.Label { text: control.text; color: control.color }
-        EaElements.Label { id: dot1; text: '.'; color: control.color }
-        EaElements.Label { id: dot2; text: '.'; color: control.color }
-        EaElements.Label { id: dot3; text: '.'; color: control.color }
+    EaElements.Label {
+        id: label
+        text: control.text
+        color: control.color
+        font.bold: true
     }
 
     SequentialAnimation {
         running: control.running
         loops: Animation.Infinite
 
-        SequentialAnimation {
-            PropertyAnimation { target: dot1; property: 'opacity'; to: 1; duration: 500 }
-            PropertyAnimation { target: dot2; property: 'opacity'; to: 1; duration: 500 }
-            PropertyAnimation { target: dot3; property: 'opacity'; to: 1; duration: 500 }
+        PropertyAnimation {
+            target: label
+            property: 'opacity'
+            to: 1
+            duration: 750
+            easing: Easing.OutExpo
         }
 
-        PauseAnimation { duration: 250 }
-
-        ParallelAnimation {
-            PropertyAction { target: dot1; property: 'opacity'; value: 0 }
-            PropertyAction { target: dot2; property: 'opacity'; value: 0 }
-            PropertyAction { target: dot3; property: 'opacity'; value: 0 }
+        PropertyAnimation {
+            target: label
+            property: 'opacity'
+            to: 0
+            duration: 750
+            easing: Easing.OutExpo
         }
-
-        PauseAnimation { duration: 250 }
     }
 }
