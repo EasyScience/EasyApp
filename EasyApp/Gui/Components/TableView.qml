@@ -123,7 +123,7 @@ ListView {
         qmlString =
                 "import QtQuick \n" +
                 "import EasyApp.Gui.Components as EaComponents \n" +
-                "Component { \n" +
+                "Component { \n" +  // Warning by qt.qml.typecompiler: Using a Component as the root of a qmldocument is deprecated: types defined in qml documents are automatically wrapped into Components when needed.
                     "EaComponents.TableViewHeader { \n" +
                         `${qmlString}` +
                      "} \n" +
