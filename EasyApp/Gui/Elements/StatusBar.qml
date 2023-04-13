@@ -47,14 +47,13 @@ Rectangle {
             topPadding: (statusBar.height - 3 / 2 * font.pixelSize) * 0.5
             leftPadding: font.pixelSize
             color: EaStyle.Colors.statusBarForeground
-            text: model.name + ": " + model.value
+            text: model.label + ": " + model.value
         }
     }
 
     // Fitting label
     EaElements.RunningLabel {
         text: "Fitting in progress"
-        ///running: !ExGlobals.Constants.proxy.fitting.isFitFinished
     }
 
     // Status bar top border
