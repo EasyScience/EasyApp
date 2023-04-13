@@ -1,7 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import QtQuick.Dialogs
-import Qt.labs.settings
+import QtCore
 
 import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Globals as EaGlobals
@@ -113,7 +113,7 @@ EaElements.Dialog {
     // Persistent settings
 
     Settings {
-        fileName: EaGlobals.Vars.settingsFile
+        location: EaGlobals.Vars.settingsFile
         category: 'Location'
         property alias defaultProjectParentDirectory: dialog.projectParentDirectory
     }

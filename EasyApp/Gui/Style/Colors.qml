@@ -2,7 +2,7 @@ pragma Singleton
 
 import QtQuick
 import QtQuick.Controls.Material
-import Qt.labs.settings // Will be removed in Qt 6.5. Use QtCore instead.
+import QtCore
 
 import EasyApp.Gui.Globals as EaGlobals
 
@@ -122,7 +122,7 @@ QtObject {
     // Persistent settings
 
     property var settings: Settings {
-        fileName: EaGlobals.Vars.settingsFile // Gives WASM error on run
+        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
         category: 'Appearance'
         property alias theme: object.theme
     }

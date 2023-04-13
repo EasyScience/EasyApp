@@ -4,7 +4,7 @@ import QtQuick.Controls.impl
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 //import QtQuick.XmlListModel 2.15
-import Qt.labs.settings // Will be removed in Qt 6.5. Use QtCore instead.
+import QtCore
 
 import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Globals as EaGlobals
@@ -317,7 +317,7 @@ EaElements.Dialog {
     // Misc
 
     Settings {
-        fileName: EaGlobals.Vars.settingsFile // Gives WASM error on run
+        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
         category: 'Preferences'
         property alias checkUpdateOnAppStart: updatesCheckBox.checked
         property alias enableToolTips: toolTipsCheckBox.checked
