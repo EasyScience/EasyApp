@@ -13,7 +13,7 @@ ListView {
 
     property alias defaultInfoText: defaultInfoLabel.text
     property int maxRowCountShow: EaStyle.Sizes.tableMaxRowCountShow
-    property int modelStatus: model.status
+    //property int modelStatus: model.status
     property int lastOriginY: 0
     property int lastContentY: 0
     property int lastCurrentIndex: 0
@@ -38,7 +38,7 @@ ListView {
 
     // Default info, if no rows added
     Rectangle {
-        visible: model.count === 0
+        visible: listView.count === 0
         width: listView.width
         height: EaStyle.Sizes.tableRowHeight * 2
         color: EaStyle.Colors.themeBackground
@@ -54,7 +54,7 @@ ListView {
 
     // Table border
     Rectangle {
-        anchors.fill: parent
+        anchors.fill: listView
         color: "transparent"
         border.color: EaStyle.Colors.appBarComboBoxBorder
         Behavior on border.color { EaAnimations.ThemeChange {} }
@@ -70,6 +70,7 @@ ListView {
         }
     }
 
+    /*
     // Save-restore current view and index
     onModelStatusChanged: {
         // Save current view and index before model changed
@@ -87,6 +88,7 @@ ListView {
 
     // Restore current view after xml model changed
     onOriginYChanged: contentY = originY + (lastContentY - lastOriginY)
+    */
 
     // Default current index
     //Component.onCompleted: currentIndex = 0
