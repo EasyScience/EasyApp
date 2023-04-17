@@ -4,6 +4,7 @@ import EasyApp.Gui.Elements as EaElements
 
 EaElements.Label {
     property string headerText: ""
+    property bool flexibleWidth: false
 
     height: parent.height
     width: parent.height

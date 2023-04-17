@@ -12,6 +12,8 @@ ListView {
     id: listView
 
     property alias defaultInfoText: defaultInfoLabel.text
+    property var headerLabelItems: headerItem.children[0].children
+    property int contentItemChildrenLength: contentItem.children.length
     property int maxRowCountShow: EaStyle.Sizes.tableMaxRowCountShow
     //property int modelStatus: model.status
     property int lastOriginY: 0
@@ -28,6 +30,9 @@ ListView {
     clip: true
     headerPositioning: ListView.OverlayHeader
     boundsBehavior: Flickable.StopAtBounds
+
+    onHeaderLabelItemsChanged: setWidthOfFlexibleColumnForHeader()
+    onContentItemChildrenLengthChanged: widthAndAlignmentChangeTimer.start()
 
     // Highlight current row
     highlightMoveDuration: EaStyle.Sizes.tableHighlightMoveDuration
@@ -52,22 +57,17 @@ ListView {
         }
     }
 
+    // Empty header row
+    header: EaComponents.TableViewHeader {}
+
+    delegate: EaComponents.TableViewDelegate {}
+
     // Table border
     Rectangle {
         anchors.fill: listView
         color: "transparent"
         border.color: EaStyle.Colors.appBarComboBoxBorder
         Behavior on border.color { EaAnimations.ThemeChange {} }
-    }
-
-    // Create table header
-    onCountChanged: {
-        if (header != null)
-            return
-        if (count > 0) {
-            header = createHeader()
-            positionViewAtBeginning()
-        }
     }
 
     /*
@@ -93,84 +93,48 @@ ListView {
     // Default current index
     //Component.onCompleted: currentIndex = 0
 
-    // Logic
-
-    function createHeader() {
-        const tableViewDelegate = listView.contentItem.children[0]
-        if (typeof tableViewDelegate === "undefined")
-            return null
-
-        const firstTableRow = tableViewDelegate.children[0]
-        if (typeof firstTableRow === "undefined")
-            return null
-
-        let qmlString = ''
-        const cells = firstTableRow.children
-        for (let cellIndex in cells) {
-            const alignmentTypes = { 1: 'Text.AlignLeft', 2: 'Text.AlignRight', 4: 'Text.AlignHCenter', 8: 'Text.AlignJustify' }
-            const horizontalAlignment = alignmentTypes[cells[cellIndex].horizontalAlignment]
-            const width = cells[cellIndex].width
-            const headerText = cells[cellIndex].headerText
-            qmlString +=
-                    "EaComponents.TableViewLabel { \n" +
-                        `textFormat: Text.RichText \n` +
-                        `text: '${headerText}' \n` +
-                        `width: ${width} \n` +
-                        `horizontalAlignment: ${horizontalAlignment} \n` +
-                    "} \n"
-        }
-
-        qmlString =
-                "import QtQuick \n" +
-                "import EasyApp.Gui.Components as EaComponents \n" +
-                "Component { \n" +  // Warning by qt.qml.typecompiler: Using a Component as the root of a qmldocument is deprecated: types defined in qml documents are automatically wrapped into Components when needed.
-                    "EaComponents.TableViewHeader { \n" +
-                        `${qmlString}` +
-                     "} \n" +
-                "} \n"
-
-        const headerObj = Qt.createQmlObject(qmlString, listView)
-
-        return headerObj
+    Timer {
+        id: widthAndAlignmentChangeTimer
+        interval: 10
+        onTriggered: setAllColumnsWidthAndAlignment()
     }
 
-    /*
-    function calcFlexibleColumnWidth() {
-        const tableViewDelegate = listView.contentItem.children[0]
-        if (typeof tableViewDelegate === "undefined")
-            return
+    // Logic
 
-        const firstTableRow = tableViewDelegate.children[0]
-        if (typeof firstTableRow === "undefined")
-            return
-
+    function flexibleColumnWidth() {
         let fixedColumnsWidth = 0
-        const cells = firstTableRow.children
-        for (let cellIndex in cells)
-            fixedColumnsWidth += cells[cellIndex].width
-
-        const spacingWidth = EaStyle.Sizes.tableColumnSpacing * (cells.length - 1)
+        for (let item of headerLabelItems) {
+            if (!item.flexibleWidth) {
+                fixedColumnsWidth += item.width
+            }
+        }
         const allColumnWidth = listView.width
-        const flexibleColumnWidth = allColumnWidth - fixedColumnsWidth - spacingWidth
-
+        const spacingWidth = EaStyle.Sizes.tableColumnSpacing * (headerLabelItems.length - 1)
+        const borderThickness = EaStyle.Sizes.borderThickness * 2
+        const flexibleColumnWidth = allColumnWidth -
+                                  fixedColumnsWidth -
+                                  spacingWidth -
+                                  borderThickness
         return flexibleColumnWidth
     }
 
-    function updateFlexibleColumnWidth(width) {
-        const tableRows = listView.contentItem.children
-        for (let rowIndex in tableRows) {
-            const tableRow = tableRows[rowIndex].children[0]
-            if (typeof tableRow === "undefined")
-                return
-
-            const cells = tableRow.children
-            for (let cellIndex in cells)
-                if (cells[cellIndex].width === 0)
-                    cells[cellIndex].width = width
+    function setWidthOfFlexibleColumnForHeader() {
+        for (let item of headerLabelItems) {
+            if (item.flexibleWidth) {
+                item.width = flexibleColumnWidth()
+            }
         }
     }
-    */
+
+    function setAllColumnsWidthAndAlignment() {
+        for (let item of contentItem.children) {
+            if (item instanceof TableViewDelegate) {
+                for (let columnIndex in item.children[0].children) {
+                    item.children[0].children[columnIndex].width = headerLabelItems[columnIndex].width
+                    item.children[0].children[columnIndex].horizontalAlignment = headerLabelItems[columnIndex].horizontalAlignment
+                }
+            }
+        }
+    }
 
 }
-
-
