@@ -15,6 +15,11 @@ WebEngineView {
     property string xAxisTitle: ''
     property string yAxisTitle: ''
 
+    property real xMin: 0
+    property real xMax: 1
+    property real yMin: 0
+    property real yMax: 1
+
     property var xData: []
     property var measuredYData: []
     property var calculatedYData: []
@@ -40,6 +45,11 @@ WebEngineView {
             setXAxisTitle()
             setYAxisTitle()
 
+            setXMin()
+            setXMax()
+            setYMin()
+            setYMax()
+
             emptyData()  // remove default data from html
 
             visible = true
@@ -63,6 +73,34 @@ WebEngineView {
     onYAxisTitleChanged: {
         if (loadSucceededStatus) {
             setYAxisTitle()
+            redrawPlot()
+        }
+    }
+
+    onXMinChanged: {
+        if (loadSucceededStatus) {
+            setXMin()
+            redrawPlot()
+        }
+    }
+
+    onXMaxChanged: {
+        if (loadSucceededStatus) {
+            setXMax()
+            redrawPlot()
+        }
+    }
+
+    onYMinChanged: {
+        if (loadSucceededStatus) {
+            setYMin()
+            redrawPlot()
+        }
+    }
+
+    onYMaxChanged: {
+        if (loadSucceededStatus) {
+            setYMax()
             redrawPlot()
         }
     }
@@ -155,6 +193,26 @@ WebEngineView {
     function setYAxisTitle() {
         print(`setYAxisTitle is started: '${yAxisTitle}'`)
         runJavaScript(`setYAxisTitle(${JSON.stringify(yAxisTitle)})`)
+    }
+
+    function setXMin() {
+        print(`setXMin is started: '${xMin}'`)
+        runJavaScript(`setXMin(${xMin})`)
+    }
+
+    function setXMax() {
+        print(`setXMax is started: '${xMax}'`)
+        runJavaScript(`setXMax(${xMax})`)
+    }
+
+    function setYMin() {
+        print(`setYMin is started: '${yMin}'`)
+        runJavaScript(`setYMin(${yMin})`)
+    }
+
+    function setYMax() {
+        print(`setYMax is started: '${yMax}'`)
+        runJavaScript(`setYMax(${yMax})`)
     }
 
     function emptyData() {

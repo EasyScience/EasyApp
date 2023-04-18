@@ -248,6 +248,22 @@
       plotLayout.yaxis.title = newTitle
     }
 
+    function setXMin(newValue) {
+      plotLayout.xaxis.range[0] = newValue
+    }
+
+    function setXMax(newValue) {
+      plotLayout.xaxis.range[1] = newValue
+    }
+
+    function setYMin(newValue) {
+      plotLayout.yaxis.range[0] = newValue
+    }
+
+    function setYMax(newValue) {
+      plotLayout.yaxis.range[1] = newValue
+    }
+
     function emptyData() {
       measuredTrace.x = []
       measuredTrace.y = []
@@ -265,7 +281,7 @@
     function setMeasuredYData(newData) {
       measuredTrace.y = newData
       return('setMeasuredYData is finished')
-  }
+    }
 
     function setCalculatedYData(newData) {
       calculatedTrace.y = newData
