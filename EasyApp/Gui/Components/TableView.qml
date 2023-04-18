@@ -15,10 +15,6 @@ ListView {
     property var headerLabelItems: headerItem.children[0].children
     property int contentItemChildrenLength: contentItem.children.length
     property int maxRowCountShow: EaStyle.Sizes.tableMaxRowCountShow
-    //property int modelStatus: model.status
-    property int lastOriginY: 0
-    property int lastContentY: 0
-    property int lastCurrentIndex: 0
 
     enabled: count > 0
 
@@ -41,6 +37,20 @@ ListView {
         color: listView.count > 1 ? EaStyle.Colors.tableHighlight : "transparent"
     }
 
+    // Empty header row
+    header: EaComponents.TableViewHeader {}
+
+    // Empty content rows
+    delegate: EaComponents.TableViewDelegate {}
+
+    // Table border
+    Rectangle {
+        anchors.fill: listView
+        color: "transparent"
+        border.color: EaStyle.Colors.appBarComboBoxBorder
+        Behavior on border.color { EaAnimations.ThemeChange {} }
+    }
+
     // Default info, if no rows added
     Rectangle {
         visible: listView.count === 0
@@ -57,42 +67,7 @@ ListView {
         }
     }
 
-    // Empty header row
-    header: EaComponents.TableViewHeader {}
-
-    delegate: EaComponents.TableViewDelegate {}
-
-    // Table border
-    Rectangle {
-        anchors.fill: listView
-        color: "transparent"
-        border.color: EaStyle.Colors.appBarComboBoxBorder
-        Behavior on border.color { EaAnimations.ThemeChange {} }
-    }
-
-    /*
-    // Save-restore current view and index
-    onModelStatusChanged: {
-        // Save current view and index before model changed
-        if (modelStatus === JsonListModel.Updating) {
-            lastOriginY = originY
-            lastContentY = contentY
-            lastCurrentIndex = currentIndex
-        // Restore current index after model changed
-        } else if (modelStatus === JsonListModel.Ready) {
-            highlightMoveDuration = 0
-            currentIndex = lastCurrentIndex
-            highlightMoveDuration = EaStyle.Sizes.tableHighlightMoveDuration
-        }
-    }
-
-    // Restore current view after xml model changed
-    onOriginYChanged: contentY = originY + (lastContentY - lastOriginY)
-    */
-
-    // Default current index
-    //Component.onCompleted: currentIndex = 0
-
+    // Width and alignment change timer
     Timer {
         id: widthAndAlignmentChangeTimer
         interval: 10
