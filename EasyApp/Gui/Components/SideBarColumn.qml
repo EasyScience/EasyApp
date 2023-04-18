@@ -3,13 +3,16 @@ import QtQuick.Controls
 
 import EasyApp.Gui.Style as EaStyle
 
-// Basic controls area
+
 Flickable {
 
-    default property alias content: basicControlsContainer.data
+    default property alias content: column.data
+    readonly property int childrenCount: column.children.length
 
-    contentHeight: basicControlsContainer.height
-    contentWidth: basicControlsContainer.width
+    //enabled: childrenCount
+
+    contentHeight: column.height
+    contentWidth: column.width
 
     clip: true
     flickableDirection: Flickable.VerticalFlick
@@ -20,8 +23,9 @@ Flickable {
     }
 
     Column {
-        id: basicControlsContainer
+        id: column
 
-        width: EaStyle.Sizes.sideBarWidth // ???
+        width: EaStyle.Sizes.sideBarWidth
     }
+
 }
