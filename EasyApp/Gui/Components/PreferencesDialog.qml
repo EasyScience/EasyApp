@@ -295,18 +295,18 @@ EaElements.Dialog {
         // Develop tab content
 
         Grid {
-            enabled: false
-
             columns: 2
             columnSpacing: EaStyle.Sizes.fontPixelSize
             rowSpacing: EaStyle.Sizes.fontPixelSize
             verticalItemAlignment: Grid.AlignVCenter
 
             EaElements.Label {
+                enabled: false
                 text: qsTr("Logging to") + ":"
             }
 
             EaElements.ComboBox {
+                enabled: false
                 model: ["Disabled", "Terminal", "File"]
                 currentIndex: 1
             }
@@ -316,8 +316,10 @@ EaElements.Dialog {
             }
 
             EaElements.ComboBox {
-                model: ["Info", "Debug", "Warning"]
-                currentIndex: 1
+                id: loggingLevelSelector
+                model: ["Debug", "Critical"]
+                currentIndex: model.indexOf(EaGlobals.Vars.loggingLevel)
+                onActivated: EaGlobals.Vars.loggingLevel = currentValue
             }
         }
 
@@ -353,6 +355,12 @@ EaElements.Dialog {
         location: EaGlobals.Vars.settingsFile // Gives WASM error on run
         category: 'Preferences.Appearance'
         property alias currentLib1d: currentLib1dSelector.currentValue
+    }
+
+    Settings {
+        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
+        category: 'Preferences.Develop'
+        property alias loggingLevel: loggingLevelSelector.currentValue
     }
 
     // Logic
