@@ -26,7 +26,7 @@ QtObject {
     readonly property string settingsFile: typeof pySettingsPath !== "undefined" && pySettingsPath !== null ?
                                                Qt.resolvedUrl(pySettingsPath) :
                                                Qt.resolvedUrl('settings.ini')
-    onSettingsFileChanged: print("Persistent application settings path:", settingsFile)
+    //onSettingsFileChanged: print("Persistent application settings path:", settingsFile)
 
     // Application parameters
     readonly property int appWindowFlags: Qt.Window | Qt.WindowFullscreenButtonHint // Qt.FramelessWindowHint | Qt.Dialog
@@ -66,7 +66,7 @@ QtObject {
     }
 
     // Chart
-    property string currentLib1d: "Plotly"
+    property string currentLib1d: "QtCharts"
     property bool useOpenGL: false
 
     // Persistent settings
