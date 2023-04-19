@@ -201,12 +201,19 @@ EaElements.Dialog {
             }
 
             EaElements.ComboBox {
+                id: currentLib1dSelector
                 model: ['Plotly', 'QtCharts']
-                onActivated: EaGlobals.Vars.currentLib1d = currentValue
-                Component.onCompleted: currentIndex = model.indexOf(EaGlobals.Vars.currentLib1d)
+                //onActivated: EaGlobals.Vars.currentLib1d = currentValue
+                onActivated: EaGlobals.Vars.currentLib1d === currentValue ?
+                                 restartRequiredLabel.visible = false :
+                                 restartRequiredLabel.visible = true
+                currentIndex: model.indexOf(EaGlobals.Vars.currentLib1d)
+                //Component.onCompleted: currentIndex = model.indexOf(EaGlobals.Vars.currentLib1d)
             }
 
+            /*
             EaElements.CheckBox {
+                id: useOpenGL1dCheckBox
                 text: {
                     if (EaGlobals.Vars.currentLib1d === 'QtCharts') {
                         return qsTr("Use OpenGL")
@@ -214,9 +221,11 @@ EaElements.Dialog {
                         return qsTr("Use WebGL")
                     }
                 }
-                onCheckedChanged: EaGlobals.Vars.useOpenGL
-                Component.onCompleted: checked = EaGlobals.Vars.useOpenGL
+                checked: EaGlobals.Vars.useOpenGL
+                onCheckedChanged: EaGlobals.Vars.useOpenGL = checked
+                //Component.onCompleted: checked = EaGlobals.Vars.useOpenGL
             }
+            */
 
             /*
             EaElements.Label {
@@ -314,14 +323,36 @@ EaElements.Dialog {
 
     }
 
-    // Misc
+    // Info label
+
+    Label {
+        id: restartRequiredLabel
+
+        visible: false
+        anchors.top: view.bottom
+        text: qsTr('Application restart is required for changes to take effect.')
+        color: EaStyle.Colors.themeForegroundHighlight
+    }
+
+    // Persistent settings
 
     Settings {
         location: EaGlobals.Vars.settingsFile // Gives WASM error on run
-        category: 'Preferences'
-        property alias checkUpdateOnAppStart: updatesCheckBox.checked
+        category: 'Preferences.Prompts'
         property alias enableToolTips: toolTipsCheckBox.checked
         property alias enableUserGuides: userGuidesCheckBox.checked
+    }
+
+    Settings {
+        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
+        category: 'Preferences.Updates'
+        property alias checkUpdateOnAppStart: updatesCheckBox.checked
+    }
+
+    Settings {
+        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
+        category: 'Preferences.Appearance'
+        property alias currentLib1d: currentLib1dSelector.currentValue
     }
 
     // Logic

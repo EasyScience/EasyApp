@@ -1,14 +1,17 @@
 pragma Singleton
 
 import QtQuick
+import QtCore
 
 import EasyApp.Gui.Logic as EaLogic
 
+
 QtObject {
+    id: object
 
     // Python objects
-    readonly property bool isTestMode: typeof _isTestMode !== "undefined" && _isTestMode !== null ?
-                                          _isTestMode :
+    readonly property bool isTestMode: typeof pyIsTestMode !== "undefined" && pyIsTestMode !== null ?
+                                          pyIsTestMode :
                                           false
 
     readonly property var projectConfig: typeof _projectConfig !== "undefined" && _projectConfig !== null ?
@@ -20,9 +23,10 @@ QtObject {
                                           new EaLogic.Translate.Translator()
 
     // Settings
-    readonly property string settingsFile: typeof _settingsPath !== "undefined" && _settingsPath !== null ?
-                                               _settingsPath :
-                                               'settings.ini'
+    readonly property string settingsFile: typeof pySettingsPath !== "undefined" && pySettingsPath !== null ?
+                                               Qt.resolvedUrl(pySettingsPath) :
+                                               Qt.resolvedUrl('settings.ini')
+    onSettingsFileChanged: print("Persistent application settings path:", settingsFile)
 
     // Application parameters
     readonly property int appWindowFlags: Qt.Window | Qt.WindowFullscreenButtonHint // Qt.FramelessWindowHint | Qt.Dialog
@@ -59,6 +63,15 @@ QtObject {
     }
 
     // Chart
-    property string currentLib1d: "QtCharts"//"Plotly"
+    property string currentLib1d: "Plotly"
     property bool useOpenGL: false
+
+    // Persistent settings
+
+    property var settings: Settings {
+        location: settingsFile // Gives WASM error on run
+        category: 'Preferences.Appearance'
+        property alias currentLib1d: object.currentLib1d
+    }
+
 }

@@ -14,9 +14,7 @@ QtObject {
     enum Themes { LightTheme = 0, DarkTheme, SystemTheme }
     property int theme: Colors.Themes.SystemTheme
     property bool isSystemThemeDark: typeof _isSystemThemeDark === 'undefined' ||
-                                     _isSystemThemeDark === null ?
-                                         false :
-                                         _isSystemThemeDark
+                                    _isSystemThemeDark
     property bool isDarkTheme: {
         if (theme === Colors.Themes.DarkTheme) {
             return true
@@ -123,7 +121,7 @@ QtObject {
 
     property var settings: Settings {
         location: EaGlobals.Vars.settingsFile // Gives WASM error on run
-        category: 'Appearance'
+        category: 'Preferences.Appearance'
         property alias theme: object.theme
     }
 

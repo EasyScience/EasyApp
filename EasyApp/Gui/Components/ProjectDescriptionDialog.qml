@@ -113,8 +113,8 @@ EaElements.Dialog {
     // Persistent settings
 
     Settings {
-        location: EaGlobals.Vars.settingsFile
-        category: 'Location'
+        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
+        category: 'Project.Location'
         property alias defaultProjectParentDirectory: dialog.projectParentDirectory
     }
 
