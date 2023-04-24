@@ -39,7 +39,7 @@ ChartView {
         axisX: axisX
         axisY: axisY
 
-        useOpenGL: false //chartView.useOpenGL
+        useOpenGL: chartView.useOpenGL
 
         markerSize: 5
         borderWidth: 1
