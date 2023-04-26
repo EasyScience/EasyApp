@@ -317,7 +317,7 @@ EaElements.Dialog {
 
             EaElements.ComboBox {
                 id: loggingLevelSelector
-                model: ["Debug", "Info", "Critical", "Disabled"]
+                model: ["Debug", "Info", "Error", "Disabled"]
                 currentIndex: model.indexOf(EaGlobals.Vars.loggingLevel)
                 onActivated: EaGlobals.Vars.loggingLevel = currentValue
             }
