@@ -1,21 +1,15 @@
-import QtQuick
-import QtQuick.Controls
+import QtQuick 2.15
+import QtQuick.Controls 2.15
 
-import EasyApp.Gui.Style as EaStyle
-import EasyApp.Gui.Animations as EaAnimations
-import EasyApp.Gui.Elements as EaElements
-
-import Gui.Globals as ExGlobals
+import easyApp.Gui.Style 1.0 as EaStyle
+import easyApp.Gui.Animations 1.0 as EaAnimations
+import easyApp.Gui.Elements 1.0 as EaElements
 
 Rectangle {
     id: statusBar
 
-    //property alias text: label.text
     property alias model: listView.model
-
-    //visible: EaGlobals.Vars.showAppStatusBar
-
-    //Component.onCompleted: y = visible ? 0 : height
+    property alias fittingInProgress: fittingInProgressLabel.running
 
     width: parent.width
     height: parent.height
@@ -44,7 +38,6 @@ Rectangle {
         }
 
         delegate: EaElements.Label {
-            visible: model.value
             topPadding: (statusBar.height - 3 / 2 * font.pixelSize) * 0.5
             leftPadding: font.pixelSize
             color: EaStyle.Colors.statusBarForeground
@@ -54,7 +47,9 @@ Rectangle {
 
     // Fitting label
     EaElements.RunningLabel {
+        id: fittingInProgressLabel
         text: "Fitting in progress"
+        ///running: !ExGlobals.Constants.proxy.fitting.isFitFinished
     }
 
     // Status bar top border
@@ -69,12 +64,4 @@ Rectangle {
         Behavior on color { EaAnimations.ThemeChange {} }
     }
 
-    /*
-    // Show-hide status bar animation
-    Behavior on visible {
-        InterfaceAnimations.BarShow {
-            parentTarget: statusBar
-        }
-    }
-    */
 }
