@@ -33,7 +33,6 @@ Item {
             property: 'opacity'
             to: 1
             duration: 750
-            easing: Easing.OutExpo
         }
 
         PropertyAnimation {
@@ -41,7 +40,6 @@ Item {
             property: 'opacity'
             to: 0
             duration: 750
-            easing: Easing.OutExpo
         }
     }
 }
