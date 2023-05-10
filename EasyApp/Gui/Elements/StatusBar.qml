@@ -1,9 +1,9 @@
 import QtQuick 2.15
 import QtQuick.Controls 2.15
 
-import easyApp.Gui.Style 1.0 as EaStyle
-import easyApp.Gui.Animations 1.0 as EaAnimations
-import easyApp.Gui.Elements 1.0 as EaElements
+import EasyApp.Gui.Style 1.0 as EaStyle
+import EasyApp.Gui.Animations 1.0 as EaAnimations
+import EasyApp.Gui.Elements 1.0 as EaElements
 
 Rectangle {
     id: statusBar
