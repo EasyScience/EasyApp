@@ -80,11 +80,11 @@ class Logger:
         self._print(msg, level, category, funcName, filePath, lineNo)
 
     def _print(self, msg, level, category, funcName, filePath, lineNo):
+        msg = msg.replace('file://', '')
         rest = Logger.rest(msg, 100)
         msg = self._formattedConsoleMsg(msg, level, category, funcName, filePath, lineNo)
         self._logger.debug(msg)
         if rest:
-            rest = self._colorize(rest, level, category)
             self._logger.debug(rest)
 
     def _getLevelFromSettings(self):
@@ -144,11 +144,10 @@ class Logger:
             parent = os.path.join(cwd, '..')
             start = os.path.abspath(parent)
             relativePath = os.path.relpath(filePath, start)
-            fileUrl = f'file://{relativePath}'
+            fileUrl = f'file:///{relativePath}'
             sourceUrl = f'{fileUrl}:{lineNo}'
         except:
             pass
-        #print(msg)
         txt = f'{self._count:>5d} {self._timing()} {category:>4} {level:<7} {msg:<100.100} {funcName:<34.34} {sourceUrl}'
         txt = self._colorize(txt, level, category)
         return txt
