@@ -57,7 +57,7 @@ class Logger:
         level = 'error'
         self._pyMessageHandler(level, msg)
 
-    def qmlMessageHandler(self, msgType, context, message):
+    def qmlMessageHandler(self, msgType, context, msg):
         level = Logger.qtMsgTypeToCustomLevel(msgType)
         if LOGGER_LEVELS[level] < LOGGER_LEVELS[self._level]:
             return
@@ -67,8 +67,7 @@ class Logger:
         if filePath == '':
             filePath = None
         lineNo = context.line
-        msg = self._formattedConsoleMsg(message, level, category, funcName, filePath, lineNo)
-        self._logger.debug(msg)
+        self._print(msg, level, category, funcName, filePath, lineNo)
 
     def _pyMessageHandler(self, level, msg):
         if LOGGER_LEVELS[level] < LOGGER_LEVELS[self._level]:
@@ -78,8 +77,15 @@ class Logger:
         funcName = caller.function
         filePath = os.path.relpath(caller.filename)
         lineNo = caller.lineno
+        self._print(msg, level, category, funcName, filePath, lineNo)
+
+    def _print(self, msg, level, category, funcName, filePath, lineNo):
+        rest = Logger.rest(msg, 100)
         msg = self._formattedConsoleMsg(msg, level, category, funcName, filePath, lineNo)
         self._logger.debug(msg)
+        if rest:
+            rest = self._colorize(rest, level, category)
+            self._logger.debug(rest)
 
     def _getLevelFromSettings(self):
         # NEED FIX: Duplication from main.py
@@ -142,6 +148,7 @@ class Logger:
             sourceUrl = f'{fileUrl}:{lineNo}'
         except:
             pass
+        #print(msg)
         txt = f'{self._count:>5d} {self._timing()} {category:>4} {level:<7} {msg:<100.100} {funcName:<34.34} {sourceUrl}'
         txt = self._colorize(txt, level, category)
         return txt
@@ -156,6 +163,12 @@ class Logger:
             QtMsgType.QtSystemMsg: 'error',
             QtMsgType.QtFatalMsg: 'error'
         }[msgType]
+
+    @staticmethod
+    def rest(s, n):
+        splitted = [' '*28*bool(i) + s[i: i + n] for i in range(0, len(s), n)]
+        joined = '\n'.join(splitted[1:])
+        return joined
 
 
 console = Logger()
