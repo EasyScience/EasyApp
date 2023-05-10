@@ -23,7 +23,7 @@ EaCharts.QtCharts1dBase {
 
         markerSize: 5
         borderWidth: 1
-        color: 'cornflowerblue'
+        color: EaStyle.Colors.chartForegroundsExtra[2]
         borderColor: this.color
     }
 
@@ -35,7 +35,7 @@ EaCharts.QtCharts1dBase {
 
         useOpenGL: chartView.useOpenGL
 
-        color: 'grey'
+        color: EaStyle.Colors.chartForegrounds[1]
         width: 2
     }
 
@@ -47,7 +47,7 @@ EaCharts.QtCharts1dBase {
 
         useOpenGL: chartView.useOpenGL
 
-        color: 'coral'
+        color: EaStyle.Colors.chartForegrounds[0]
         width: 2
     }
 

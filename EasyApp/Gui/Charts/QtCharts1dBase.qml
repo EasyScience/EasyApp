@@ -2,7 +2,9 @@ import QtQuick
 import QtQuick.Controls
 import QtCharts
 
+import EasyApp.Gui.Animations as EaAnimations
 import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Charts as EaCharts
 
 
 ChartView {
@@ -12,8 +14,8 @@ ChartView {
 
     property alias axisX: axisX
     property alias axisY: axisY
-    property alias xAxisTitle: axisX.titleText
-    property alias yAxisTitle: axisY.titleText
+    property alias xAxisTitle: axisX.title
+    property alias yAxisTitle: axisY.title
     property alias xMin: axisX.min
     property alias xMax: axisX.max
     property alias yMin: axisY.min
@@ -26,18 +28,38 @@ ChartView {
     anchors.margins: -12 // Reset default margins
 
     antialiasing: true
+
     legend.visible: false
+    legend.alignment: Qt.AlignBottom
+    legend.font.family: EaStyle.Fonts.fontFamily
+    legend.font.pixelSize: EaStyle.Sizes.fontPixelSize
+    legend.markerShape: Legend.MarkerShapeRectangle
+    legend.labelColor: EaStyle.Colors.chartForeground
+    Behavior on legend.labelColor { EaAnimations.ThemeChange {} }
 
     backgroundRoundness: 0
+    backgroundColor: EaStyle.Colors.chartBackground
+    Behavior on backgroundColor { EaAnimations.ThemeChange {} }
+
+    titleFont.family: EaStyle.Fonts.fontFamily
+    titleFont.pixelSize: EaStyle.Sizes.fontPixelSize
+    titleFont.bold: true
+    titleColor: EaStyle.Colors.chartForeground
+    /* BREAKS ANIMATION !
+    Behavior on titleColor { Animations.ThemeChange {} }
+    */
+
+    plotAreaColor: EaStyle.Colors.chartPlotAreaBackground
+    Behavior on plotAreaColor { EaAnimations.ThemeChange {} }
 
     //animationDuration: EaStyle.Times.chartAnimation
     //animationOptions: ChartView.SeriesAnimations
 
-    ValueAxis {
+    EaCharts.QtCharts1dValueAxis {
         id: axisX
     }
 
-    ValueAxis {
+    EaCharts.QtCharts1dValueAxis {
         id: axisY
     }
 
