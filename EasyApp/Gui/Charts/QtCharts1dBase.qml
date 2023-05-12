@@ -21,6 +21,9 @@ ChartView {
     property alias yMin: axisY.min
     property alias yMax: axisY.max
 
+    property alias xAxisTitleVisible: axisX.titleVisible
+    property alias xAxisLabelsVisible: axisX.labelsVisible
+
     anchors.top: parent.top
     anchors.bottom: parent.bottom
     anchors.left: parent.left
@@ -57,6 +60,9 @@ ChartView {
 
     EaCharts.QtCharts1dValueAxis {
         id: axisX
+
+        //onMaxChanged: console.info(`onMaxChanged new max: ${max}`)
+        //onRangeChanged: console.info(`onRangeChanged new max: ${max}`)
     }
 
     EaCharts.QtCharts1dValueAxis {
