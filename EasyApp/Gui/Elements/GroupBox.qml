@@ -41,7 +41,8 @@ T.GroupBox {
 
         height: EaStyle.Sizes.tabBarHeight
         width: control.width
-
+        anchors.left: control.left
+        anchors.leftMargin: EaStyle.Sizes.fontPixelSize * 0.5
         topInset: 0
         bottomInset: 0
 
