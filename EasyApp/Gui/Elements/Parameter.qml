@@ -19,8 +19,12 @@ EaElements.TextField {
     topInset: title === '' ? 0 : EaStyle.Sizes.fontPixelSize * 1.5
     topPadding: topInset + padding
 
-    width: parameterFieldWidth()
+    width: (EaStyle.Sizes.sideBarContentWidth -
+            (parent.children.length - 1) * EaStyle.Sizes.fontPixelSize) /
+           parent.children.length
     placeholderText: ''
+
+    onAccepted: focus = false
 
     EaElements.Label {
         enabled: false
@@ -41,4 +45,5 @@ EaElements.TextField {
         text: units
         textFormat: Text.RichText
     }
+
 }
