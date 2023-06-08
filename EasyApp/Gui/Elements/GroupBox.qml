@@ -13,7 +13,7 @@ T.GroupBox {
     id: control
 
     property bool collapsible: true
-    property bool collapsed: false //collapsible ? true : false
+    property bool collapsed: collapsible ? true : false
     property bool last: false
 
     implicitWidth: parent.width
