@@ -6,5 +6,5 @@ import EasyApp.Gui.Style as EaStyle
 
 Row {
     //width: parent.width
-    spacing: EaStyle.Sizes.groupBoxSpacing
+    spacing: EaStyle.Sizes.groupBoxSpacing * 0.5
 }

@@ -7,7 +7,7 @@ EaElements.Label {
     property bool flexibleWidth: false
 
     height: parent.height
-    width: parent.height
+    width: parent.height  // ???
 
     bottomInset: 4
     topInset: 4

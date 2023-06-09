@@ -20,7 +20,7 @@ EaElements.TextField {
     topPadding: topInset + padding
 
     width: (EaStyle.Sizes.sideBarContentWidth -
-            (parent.children.length - 1) * EaStyle.Sizes.fontPixelSize) /
+            (parent.children.length - 1) * EaStyle.Sizes.fontPixelSize * 0.5) /
            parent.children.length
     placeholderText: ''
 
@@ -28,6 +28,8 @@ EaElements.TextField {
 
     EaElements.Label {
         enabled: false
+        anchors.left: parent.left
+        anchors.leftMargin: EaStyle.Sizes.fontPixelSize * 0.15
         text: control.title
     }
 
