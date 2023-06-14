@@ -27,9 +27,11 @@ EaElements.TextField {
     onAccepted: focus = false
 
     EaElements.Label {
-        enabled: false
-        anchors.left: parent.left
-        anchors.leftMargin: EaStyle.Sizes.fontPixelSize * 0.15
+        anchors.right: parent.right
+        rightPadding: unitsPlaceholder.width
+
+        color: EaStyle.Colors.themeForegroundMinor
+
         text: control.title
     }
 

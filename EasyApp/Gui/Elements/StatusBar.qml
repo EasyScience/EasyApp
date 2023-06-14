@@ -38,6 +38,7 @@ Rectangle {
         }
 
         delegate: EaElements.Label {
+            visible: model.value !== '' && model.value !== 'None'
             topPadding: (statusBar.height - 3 / 2 * font.pixelSize) * 0.5
             leftPadding: font.pixelSize
             color: EaStyle.Colors.statusBarForeground
