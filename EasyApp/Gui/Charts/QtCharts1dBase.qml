@@ -11,18 +11,8 @@ ChartView {
     id: chartView
 
     property bool useOpenGL: false
-
     property alias axisX: axisX
     property alias axisY: axisY
-    property alias xAxisTitle: axisX.title
-    property alias yAxisTitle: axisY.title
-    property alias xMin: axisX.min
-    property alias xMax: axisX.max
-    property alias yMin: axisY.min
-    property alias yMax: axisY.max
-
-    property alias xAxisTitleVisible: axisX.titleVisible
-    property alias xAxisLabelsVisible: axisX.labelsVisible
 
     anchors.top: parent.top
     anchors.bottom: parent.bottom
@@ -55,14 +45,11 @@ ChartView {
     plotAreaColor: EaStyle.Colors.chartPlotAreaBackground
     Behavior on plotAreaColor { EaAnimations.ThemeChange {} }
 
-    //animationDuration: EaStyle.Times.chartAnimation
-    //animationOptions: ChartView.SeriesAnimations
+    animationOptions: ChartView.SeriesAnimations
+    animationDuration: EaStyle.Times.chartAnimation
 
     EaCharts.QtCharts1dValueAxis {
         id: axisX
-
-        //onMaxChanged: console.info(`onMaxChanged new max: ${max}`)
-        //onRangeChanged: console.info(`onRangeChanged new max: ${max}`)
     }
 
     EaCharts.QtCharts1dValueAxis {

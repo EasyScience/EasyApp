@@ -65,6 +65,7 @@ QtObject {
     // Content
     property color contentBackground: isDarkTheme ? "#3a3a3a" : "#f4f4f4"
     property color mainContentBackground: isDarkTheme ? "#444" : "#fff"
+    property color mainContentBackgroundHalfTransparent: isDarkTheme ? "#E6444444" : "#E6ffffff"
 
     // SideBar
     property color sideBarButtonBackground: appBarBackground

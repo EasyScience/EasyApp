@@ -13,8 +13,7 @@ EaCharts.QtCharts1dBase {
     property alias bkgSerie: bkgSerie
     property alias calcSerie: calcSerie
 
-    property string calcSerieColor: EaStyle.Colors.chartForegrounds[0]
-
+    /*
     ScatterSeries {
         id: measSerie
 
@@ -27,6 +26,19 @@ EaCharts.QtCharts1dBase {
         borderWidth: 1
         color: EaStyle.Colors.chartForegroundsExtra[2]
         borderColor: this.color
+    }
+    */
+
+    LineSeries {
+        id: measSerie
+
+        axisX: chartView.axisX
+        axisY: chartView.axisY
+
+        useOpenGL: chartView.useOpenGL
+
+        color: EaStyle.Colors.chartForegroundsExtra[2]
+        width: 2
     }
 
     LineSeries {
@@ -49,7 +61,7 @@ EaCharts.QtCharts1dBase {
 
         useOpenGL: chartView.useOpenGL
 
-        color: calcSerieColor
+        color: EaStyle.Colors.chartForegrounds[0]
         width: 2
     }
 

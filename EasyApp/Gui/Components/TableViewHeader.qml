@@ -11,7 +11,7 @@ Rectangle {
     width: parent === null ? 0 : parent.width
     height: EaStyle.Sizes.tableRowHeight
 
-    color: EaStyle.Colors.themeBackground
+    color: EaStyle.Colors.contentBackground //EaStyle.Colors.themeBackground
     Behavior on color { EaAnimations.ThemeChange {} }
 
     Row {
