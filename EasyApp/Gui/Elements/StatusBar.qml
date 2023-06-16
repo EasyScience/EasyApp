@@ -8,8 +8,7 @@ import EasyApp.Gui.Elements 1.0 as EaElements
 Rectangle {
     id: statusBar
 
-    property alias model: listView.model
-    property alias fittingInProgress: fittingInProgressLabel.running
+    default property alias contentRowData: contentRow.data
 
     width: parent.width
     height: parent.height
@@ -17,39 +16,19 @@ Rectangle {
     color: EaStyle.Colors.statusBarBackground
     Behavior on color { EaAnimations.ThemeChange {} }
 
-    // Status bar main content
-    ListView {
-        id: listView
+    // main content container
+    Row {
+        id: contentRow
 
-        width: statusBar.width
-        height: statusBar.height
-        spacing: EaStyle.Sizes.fontPixelSize
-        orientation: ListView.Horizontal
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
 
-        model: ListModel {
-            ListElement {
-                label: "Label1"
-                value: "Value1"
-            }
-            ListElement {
-                label: "Label2"
-                value: "Value2"
-            }
-        }
+        anchors.leftMargin: EaStyle.Sizes.fontPixelSize
+        anchors.rightMargin: EaStyle.Sizes.fontPixelSize
 
-        delegate: EaElements.Label {
-            visible: model.value !== '' && model.value !== 'None'
-            topPadding: (statusBar.height - 3 / 2 * font.pixelSize) * 0.5
-            leftPadding: font.pixelSize
-            color: EaStyle.Colors.statusBarForeground
-            text: model.label + ": " + model.value
-        }
-    }
-
-    // Fitting label
-    EaElements.RunningLabel {
-        id: fittingInProgressLabel
-        text: "Fitting in progress"
+        spacing: EaStyle.Sizes.fontPixelSize * 1.5
     }
 
     // Status bar top border

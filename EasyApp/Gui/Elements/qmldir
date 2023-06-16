@@ -23,6 +23,7 @@ SpinBox 1.0 SpinBox.qml
 SideBarButton 1.0 SideBarButton.qml
 SplashScreen 1.0 SplashScreen.qml
 StatusBar 1.0 StatusBar.qml
+StatusBarItem 1.0 StatusBarItem.qml
 TabBar 1.0 TabBar.qml
 TabButton 1.0 TabButton.qml
 TextArea 1.0 TextArea.qml
