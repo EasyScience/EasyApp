@@ -4,23 +4,34 @@ import QtCharts
 
 import EasyApp.Gui.Animations as EaAnimations
 import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Elements as EaElements
 import EasyApp.Gui.Charts as EaCharts
 
 
-ChartView {
-    id: chartView
+Rectangle {
+    id: container
 
+    default property alias chartViewData: chartView.data
+    property bool allowZoom: true
+    property bool useOpenGL: false
+    property alias plotArea: chartView.plotArea
     property alias axisX: axisX
     property alias axisY: axisY
-    property bool useOpenGL: false
-    property bool allowZoom: true
-    property bool allowHover: true
+
+    //property alias bkgSerie: bkgSerie
+
+
+    color: 'red'
+
+ChartView {
+    id: chartView
 
     anchors.top: parent.top
     anchors.bottom: parent.bottom
     anchors.left: parent.left
     anchors.right: parent.right
     anchors.margins: -12 // Reset default margins
+    anchors.topMargin: EaStyle.Sizes.toolButtonHeight
 
     antialiasing: true
 
@@ -33,7 +44,7 @@ ChartView {
     Behavior on legend.labelColor { EaAnimations.ThemeChange {} }
 
     backgroundRoundness: 0
-    backgroundColor: EaStyle.Colors.chartBackground
+    backgroundColor: "blue"//EaStyle.Colors.chartBackground
     Behavior on backgroundColor { EaAnimations.ThemeChange {} }
 
     titleFont.family: EaStyle.Fonts.fontFamily
@@ -44,7 +55,7 @@ ChartView {
     Behavior on titleColor { Animations.ThemeChange {} }
     */
 
-    plotAreaColor: EaStyle.Colors.chartPlotAreaBackground
+    plotAreaColor: "green"//EaStyle.Colors.chartPlotAreaBackground
     Behavior on plotAreaColor { EaAnimations.ThemeChange {} }
 
     animationOptions: ChartView.SeriesAnimations
@@ -52,11 +63,42 @@ ChartView {
 
     EaCharts.QtCharts1dValueAxis {
         id: axisX
+        //min:0
+        //max:3
+
     }
 
     EaCharts.QtCharts1dValueAxis {
         id: axisY
+        //min:0
+        //max:2
     }
+
+/*
+    LineSeries {
+      //   XYPoint { x: 0; y: 0.5 }
+        // XYPoint { x: 0.5; y: 2.5 }
+
+         axisX: container.axisX
+         axisY: container.axisY
+
+    }
+
+    LineSeries {
+        id: bkgSerie
+
+        axisX: container.axisX
+        axisY: container.axisY
+
+        useOpenGL: chartView.useOpenGL
+
+        color: EaStyle.Colors.chartForegrounds[1]
+        width: 2
+
+        Component.onCompleted: console.error(`bbbbbbbb ${container.axisX}`)
+
+    }
+    */
 
     // Zoom rectangle
     Rectangle{
@@ -65,7 +107,7 @@ ChartView {
         property int yScaleZoom: 0
         visible: false
         transform: Scale { origin.x: 0; origin.y: 0; xScale: recZoom.xScaleZoom; yScale: recZoom.yScaleZoom}
-        border.color: EaStyle.Colors.appBorder
+        border.color: "#999"
         border.width: 1
         opacity: 0.9
         color: "transparent"
@@ -114,10 +156,63 @@ ChartView {
         }
     }
 
+
+
+    // Tool buttons
+    Row {
+        id: toolButtons
+
+        x: chartView.plotArea.x + chartView.plotArea.width - width - EaStyle.Sizes.fontPixelSize
+        y: chartView.plotArea.y - height - EaStyle.Sizes.fontPixelSize
+
+        spacing: 0.25 * EaStyle.Sizes.fontPixelSize
+
+        EaElements.TabButton {
+            checked: allowZoom
+            autoExclusive: false
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "expand"
+            ToolTip.text: qsTr("Box zoom")
+            onClicked: allowZoom = !allowZoom
+        }
+
+        EaElements.TabButton {
+            checkable: false
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "sync-alt"
+            ToolTip.text: qsTr("Reset")
+            onClicked: chartView.zoomReset()
+        }
+
+        EaElements.TabButton {
+/////            checked: chartView.allowHover
+            autoExclusive: false
+            height: EaStyle.Sizes.toolButtonHeight
+            width: EaStyle.Sizes.toolButtonHeight
+            borderColor: EaStyle.Colors.chartAxis
+            fontIcon: "comment-alt"
+            ToolTip.text: qsTr("Hover")
+////            onClicked: allowHover = !allowHover
+        }
+    }
+    // Tool buttons
+
+
+
+
     // Right mouse button events
     MouseArea {
         anchors.fill: chartView
         acceptedButtons: Qt.RightButton
         onClicked: chartView.zoomReset()
     }
+}
+
+Component.onCompleted: console.error('BBBBBBBBBBBB')
+
+
 }
