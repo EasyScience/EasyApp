@@ -9,4 +9,6 @@ EaElements.TextInput {
     height: parent.height
     horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter
+
+    onAccepted: focus = false
 }
