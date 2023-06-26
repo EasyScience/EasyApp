@@ -19,7 +19,7 @@ T.CheckBox {
 
     spacing: EaStyle.Sizes.fontPixelSize * 0.5
     padding: EaStyle.Sizes.fontPixelSize * 0.5
-    verticalPadding: padding + EaStyle.Sizes.fontPixelSize * 0.5
+    verticalPadding: 0//padding + EaStyle.Sizes.fontPixelSize * 0.5
 
     tristate: false
 
