@@ -103,6 +103,8 @@ EaElements.Dialog {
 
         Grid {
             columns: 2
+            topPadding: EaStyle.Sizes.fontPixelSize * 0.5
+            rowSpacing: EaStyle.Sizes.fontPixelSize * 1.5
             columnSpacing: EaStyle.Sizes.fontPixelSize
             verticalItemAlignment: Grid.AlignVCenter
 
