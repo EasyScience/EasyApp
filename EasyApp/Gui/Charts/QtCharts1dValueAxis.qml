@@ -8,6 +8,8 @@ import EasyApp.Gui.Globals 1.0 as EaGlobals
 
 ValueAxis {
     property string title: ""
+    property real minAfterReset: 0
+    property real maxAfterReset: 1
 
     lineVisible: false // Hide axes lines (only grid is visible)
 

@@ -17,12 +17,6 @@ ChartView {
     property bool allowZoom: true
     property bool allowHover: true
 
-    property bool detectXYChange: true
-    property real initialXMin: 0
-    property real initialXMax: 0
-    property real initialYMin: 0
-    property real initialYMax: 0
-
     anchors.top: parent.top
     anchors.bottom: parent.bottom
     anchors.left: parent.left
@@ -57,29 +51,35 @@ ChartView {
     animationOptions: ChartView.SeriesAnimations
     animationDuration: EaStyle.Times.chartAnimation
 
+    // X-axis
     EaCharts.QtCharts1dValueAxis {
         id: axisX
-        onMinChanged: if (detectXYChange) initialXMin = axisX.min
-        onMaxChanged: if (detectXYChange) initialXMax = axisX.max
     }
 
+    // Y-axis
     EaCharts.QtCharts1dValueAxis {
         id: axisY
-        onMinChanged: if (detectXYChange) initialYMin = axisY.min
-        onMaxChanged: if (detectXYChange) initialYMax = axisY.max
     }
 
     // Zoom rectangle
     Rectangle{
         id: recZoom
+
         property int xScaleZoom: 0
         property int yScaleZoom: 0
+
         visible: false
-        transform: Scale { origin.x: 0; origin.y: 0; xScale: recZoom.xScaleZoom; yScale: recZoom.yScaleZoom}
+        transform: Scale {
+            origin.x: 0
+            origin.y: 0
+            xScale: recZoom.xScaleZoom
+            yScale: recZoom.yScaleZoom
+        }
         border.color: EaStyle.Colors.appBorder
         border.width: 1
         opacity: 0.9
         color: "transparent"
+
         Rectangle {
             anchors.fill: parent
             opacity: 0.5
@@ -87,56 +87,10 @@ ChartView {
         }
     }
 
-    // Pan with left mouse button
-    MouseArea {
-        property real initialMouseX: 0
-        property real initialMouseY: 0
-        property int deltaX: 0
-        property int deltaY: 0
-        property int threshold: 1
-        enabled: !allowZoom
-        anchors.fill: chartView
-        acceptedButtons: Qt.LeftButton
-        onPressed: {
-            initialMouseX = mouseX
-            initialMouseY = mouseY
-        }
-        onMouseXChanged: {
-            deltaX = Math.round(mouseX - initialMouseX)
-            initialMouseX = mouseX
-        }
-        onMouseYChanged: {
-            deltaY = Math.round(mouseY - initialMouseY)
-            initialMouseY = mouseY
-        }
-        onDeltaXChanged: {
-            detectXYChange = false
-            if (deltaX > threshold)
-                chartView.scrollLeft(deltaX)
-            else if (deltaX < -threshold)
-                chartView.scrollRight(-deltaX)
-            detectXYChange = true
-        }
-        onDeltaYChanged: {
-            detectXYChange = false
-            if (deltaY > threshold)
-                chartView.scrollUp(deltaY)
-            else if (deltaY < -threshold)
-                chartView.scrollDown(-deltaY)
-            detectXYChange = true
-        }
-    }
-
-    // Reset axes with right mouse button (after move)
-    MouseArea {
-        enabled: !allowZoom
-        anchors.fill: chartView
-        acceptedButtons: Qt.RightButton
-        onClicked: resetMove()
-    }
-
     // Zoom with left mouse button
     MouseArea {
+        id: zoomMouseArea
+
         enabled: allowZoom
         anchors.fill: chartView
         acceptedButtons: Qt.LeftButton
@@ -173,25 +127,54 @@ ChartView {
         }
     }
 
-    // Reset axes with right mouse button (after zoom)
+    // Pan with left mouse button
     MouseArea {
-        enabled: allowZoom
+        property real pressedX
+        property real pressedY
+        property int threshold: 1
+
+        enabled: !zoomMouseArea.enabled
+        anchors.fill: chartView
+        acceptedButtons: Qt.LeftButton
+        onPressed: {
+            pressedX = mouseX
+            pressedY = mouseY
+        }
+        onMouseXChanged: Qt.callLater(update)
+        onMouseYChanged: Qt.callLater(update)
+
+        function update() {
+            const dx = mouseX - pressedX
+            const dy = mouseY - pressedY
+            pressedX = mouseX
+            pressedY = mouseY
+
+            if (dx > threshold)
+                chartView.scrollLeft(dx)
+            else if (dx < -threshold)
+                chartView.scrollRight(-dx)
+            if (dy > threshold)
+                chartView.scrollUp(dy)
+            else if (dy < -threshold)
+                chartView.scrollDown(-dy)
+        }
+    }
+
+    // Reset axes with right mouse button
+    MouseArea {
         anchors.fill: chartView
         acceptedButtons: Qt.RightButton
-        onClicked: resetZoom()
+        onClicked: resetAxes()
     }
 
     // Logic
 
-    function resetMove() {
-        axisX.min = initialXMin
-        axisX.max = initialXMax
-        axisY.min = initialYMin
-        axisY.max = initialYMax
-    }
-
-    function resetZoom() {
-        chartView.zoomReset()
+    function resetAxes() {
+        //chartView.zoomReset()
+        axisX.min = axisX.minAfterReset
+        axisX.max = axisX.maxAfterReset
+        axisY.min = axisY.minAfterReset
+        axisY.max = axisY.maxAfterReset
     }
 
 }
