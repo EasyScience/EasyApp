@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 
 import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Elements as EaElements
 
 
 Flickable {
@@ -17,7 +18,7 @@ Flickable {
     clip: true
     flickableDirection: Flickable.VerticalFlick
 
-    ScrollBar.vertical: ScrollBar {
+    ScrollBar.vertical: EaElements.ScrollBar {
         policy: ScrollBar.AsNeeded
         interactive: false
     }
