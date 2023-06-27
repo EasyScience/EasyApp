@@ -13,6 +13,7 @@ EaElements.TextField {
 
     property string units: ''
     property string title: ''
+    property bool fit: false
 
     rightPadding: unitsPlaceholder.width
 
@@ -24,6 +25,8 @@ EaElements.TextField {
            parent.children.length
     placeholderText: ''
 
+    font.bold: fit
+
     onAccepted: focus = false
 
     EaElements.Label {
@@ -32,6 +35,7 @@ EaElements.TextField {
 
         color: EaStyle.Colors.themeForegroundMinor
 
+        font.bold: false
         text: control.title
     }
 
