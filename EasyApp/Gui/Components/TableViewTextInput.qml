@@ -81,7 +81,7 @@ EaElements.TextInput {
                 // Header
                 EaElements.Label {
                     color: EaStyle.Colors.themeForegroundMinor
-                    text: 'name'
+                    text: 'cif name'
                 }
                 EaElements.Label {
                     color: EaStyle.Colors.themeForegroundMinor

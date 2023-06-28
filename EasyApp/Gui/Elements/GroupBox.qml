@@ -21,7 +21,7 @@ T.GroupBox {
                         titleArea.height :
                         titleArea.height + spacing + contentHeight + bottomPadding
 
-    spacing: EaStyle.Sizes.fontPixelSize * 0.5 // between title and content
+    spacing: title === '' ? 0 : EaStyle.Sizes.fontPixelSize * 0.5 // between title and content
     padding: 0
     topPadding: titleArea.height + spacing
     bottomPadding: EaStyle.Sizes.fontPixelSize
@@ -37,9 +37,10 @@ T.GroupBox {
     label: Button {
         id: titleArea
 
+        visible: title !== ''
         enabled: control.collapsible
 
-        height: EaStyle.Sizes.tabBarHeight
+        height: title === '' ? 0 : EaStyle.Sizes.tabBarHeight
         width: control.width
         anchors.left: control.left
         anchors.leftMargin: EaStyle.Sizes.fontPixelSize * 0.5
