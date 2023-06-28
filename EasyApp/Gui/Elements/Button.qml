@@ -24,6 +24,9 @@ T.Button {
     horizontalPadding: 0
     */
 
+    font.family: EaStyle.Fonts.fontFamily
+    font.pixelSize: EaStyle.Sizes.fontPixelSize
+
     flat: true
 
     // Icon text
@@ -45,6 +48,9 @@ T.Button {
         id: mouseArea
         anchors.fill: control
         hoverEnabled: true
+        cursorShape: control.checked ?
+                         Qt.PointingHandCursor :
+                         Qt.ArrowCursor
         onPressed: (mouse) => mouse.accepted = false
     }
 

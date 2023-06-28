@@ -18,6 +18,7 @@ GroupRow 1.0 GroupRow.qml
 LinkedImage 1.0 LinkedImage.qml
 Label 1.0 Label.qml
 RunningLabel 1.0 RunningLabel.qml
+Menu 1.0 Menu.qml
 MenuItem 1.0 MenuItem.qml
 ScrollBar 1.0 ScrollBar.qml
 ScrollIndicator 1.0 ScrollIndicator.qml

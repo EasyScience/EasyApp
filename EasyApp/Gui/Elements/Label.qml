@@ -12,6 +12,8 @@ T.Label {
     font.family: EaStyle.Fonts.fontFamily
     font.pixelSize: EaStyle.Sizes.fontPixelSize
 
+    //textFormat: Text.StyledText
+
     color: enabled ?
                EaStyle.Colors.themeForeground :
                EaStyle.Colors.themeForegroundDisabled //Material.foreground : Material.hintTextColor
