@@ -19,7 +19,8 @@ EaElements.TextInput {
                              'name': 'default',
                              'prettyName': '',
                              'units': '',
-                             'url': ''}
+                             'url': '',
+                             'cifDict': ''}
 
     property var value: parameter.value ?? 0.0
     property int idx: parameter.idx ?? 0
@@ -31,6 +32,7 @@ EaElements.TextInput {
     property string prettyName: parameter.prettyName ?? ''
     property string units: parameter.units ?? ''
     property string url: parameter.url ?? ''
+    property string cifDict: parameter.cifDict ?? ''
 
     property alias fitCheckBox: fitCheckBox
 
@@ -81,7 +83,7 @@ EaElements.TextInput {
                 // Header
                 EaElements.Label {
                     color: EaStyle.Colors.themeForegroundMinor
-                    text: 'cif name'
+                    text: control.cifDict ? 'cif name' : 'cif-like name'
                 }
                 EaElements.Label {
                     color: EaStyle.Colors.themeForegroundMinor
