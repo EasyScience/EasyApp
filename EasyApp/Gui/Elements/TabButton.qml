@@ -13,6 +13,7 @@ import EasyApp.Gui.Elements as EaElements
 T.TabButton {
     id: control
 
+    property bool highlighted: false
     property string fontIcon: ""
     property color borderColor: "transparent"
 
@@ -106,8 +107,11 @@ T.TabButton {
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (mouseArea.containsMouse || control.checked || control.down)
-            return EaStyle.Colors.themeForegroundHovered
-        return EaStyle.Colors.themeForeground
+        if (!highlighted) {
+            if (mouseArea.containsMouse || control.checked || control.down)
+                return EaStyle.Colors.themeForegroundHovered
+            return EaStyle.Colors.themeForeground
+        }
+        return EaStyle.Colors.themeForegroundHighlight
     }
 }
