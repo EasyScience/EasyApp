@@ -28,7 +28,7 @@ Rectangle {
         anchors.leftMargin: EaStyle.Sizes.fontPixelSize
         anchors.rightMargin: EaStyle.Sizes.fontPixelSize
 
-        spacing: EaStyle.Sizes.fontPixelSize * 1.5
+        spacing: EaStyle.Sizes.fontPixelSize * 1.2
     }
 
     // Status bar top border
