@@ -22,8 +22,23 @@ EaElements.TextField {
                              'url': '',
                              'cifDict': ''}
 
-    property var value: parameter.value ?? 0.0
-    property real error: parameter.error ?? 0.0
+    property var value: {
+        if (typeof parameter.value === 'undefined') {
+            return ''
+        } else if (typeof parameter.value === 'number') {
+            return parameter.value.toFixed(4)
+        } else {
+            return parameter.value
+        }
+    }
+    property string error: {
+        if (typeof parameter.error === 'undefined') {
+            return 0.0.toFixed(4)
+        } else {
+            return parameter.error.toFixed(4)
+        }
+    }
+
     property bool fittable: parameter.fittable ?? false
     property bool fit: parameter.fit ?? false
     property string name: parameter.name ?? 'default'
@@ -122,7 +137,7 @@ EaElements.TextField {
                     text: 'value'
                 }
                 EaElements.Label {
-                    visible: control.fittable && control.error !== 0
+                    visible: control.fittable && control.error !== 0.0.toFixed(4)
                     color: EaStyle.Colors.themeForegroundMinor
                     text: 'error'
                 }
@@ -145,7 +160,7 @@ EaElements.TextField {
                     font.bold: control.fit
                 }
                 EaElements.Label {
-                    visible: control.fittable && control.error !== 0
+                    visible: control.fittable && control.error !== 0.0.toFixed(4)
                     text: control.error
                 }
                 EaElements.CheckBox {
