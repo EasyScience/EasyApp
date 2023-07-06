@@ -21,6 +21,7 @@ EaElements.TextField {
                              'units': '',
                              'url': '',
                              'cifDict': ''}
+    //onParameterChanged: console.error(JSON.stringify(parameter))
 
     property var value: {
         if (typeof parameter.value === 'undefined') {
