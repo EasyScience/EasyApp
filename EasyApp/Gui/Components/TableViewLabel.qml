@@ -1,8 +1,12 @@
 import QtQuick
+import QtQuick.Controls
 
+import EasyApp.Gui.Globals as EaGlobals
 import EasyApp.Gui.Elements as EaElements
 
 EaElements.Label {
+    id: control
+
     property bool flexibleWidth: false
 
     height: parent.height
@@ -19,4 +23,18 @@ EaElements.Label {
     verticalAlignment: Text.AlignVCenter
 
     elide: Text.ElideMiddle
+
+    EaElements.ToolTip {
+        text: control.ToolTip.text
+        visible: text !== "" &&
+                 control.truncated &&
+                 mouseArea.containsMouse &&
+                 EaGlobals.Vars.showToolTips
+    }
+
+    MouseArea {
+        id: mouseArea
+        anchors.fill: parent
+        hoverEnabled: true
+    }
 }
