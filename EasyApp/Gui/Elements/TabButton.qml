@@ -16,6 +16,7 @@ T.TabButton {
     property bool highlighted: false
     property string fontIcon: ""
     property string iconColor: ""
+    property string backgroundColor: getBackgroundColor()
     property color borderColor: "transparent"
 
     width: Math.max(implicitBackgroundWidth + leftInset + rightInset,
@@ -79,7 +80,7 @@ T.TabButton {
     background: Rectangle {
         implicitHeight: EaStyle.Sizes.tabBarHeight
 
-        color: backgroundColor()
+        color: backgroundColor
         Behavior on color { EaAnimations.ThemeChange {} }
 
         border.color: borderColor
@@ -97,7 +98,7 @@ T.TabButton {
 
     // Logic
 
-    function backgroundColor() {
+    function getBackgroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.contentBackground
         if (mouseArea.containsMouse)
