@@ -15,6 +15,7 @@ T.TabButton {
 
     property bool highlighted: false
     property string fontIcon: ""
+    property string iconColor: ""
     property color borderColor: "transparent"
 
     width: Math.max(implicitBackgroundWidth + leftInset + rightInset,
@@ -56,7 +57,7 @@ T.TabButton {
 
                 text: control.fontIcon
 
-                color: foregroundColor()
+                color: iconColor ? iconColor : foregroundColor()
                 Behavior on color { EaAnimations.ThemeChange {} }
             }
 

@@ -23,7 +23,7 @@ T.TextField {
     font.pixelSize: EaStyle.Sizes.fontPixelSize
     font.bold: control.activeFocus ? true : false
 
-    color: !enabled ? EaStyle.Colors.themeForegroundDisabled :
+    color: !enabled || readOnly ? EaStyle.Colors.themeForegroundDisabled :
                      mouseArea.containsMouse || control.activeFocus ?
                           EaStyle.Colors.themeForegroundHovered :
                           EaStyle.Colors.themeForeground

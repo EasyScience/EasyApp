@@ -22,9 +22,24 @@ EaElements.TextInput {
                              'url': '',
                              'cifDict': ''}
 
-    property var value: parameter.value ?? 0.0
+    property var value: {
+        if (typeof parameter.value === 'undefined') {
+            return 0
+        } else if (typeof parameter.value === 'number') {
+            return parseFloat(parameter.value.toFixed(4))
+        } else {
+            return parameter.value
+        }
+    }
+    property var error: {
+        if (typeof parameter.error === 'undefined') {
+            return 0
+        } else {
+            return parseFloat(parameter.error.toFixed(4))
+        }
+    }
+
     property int idx: parameter.idx ?? 0
-    property real error: parameter.error ?? 0.0
     property bool fittable: parameter.fittable ?? false
     property bool fit: parameter.fit ?? false
     property string loopName: parameter.loopName ?? ''
@@ -36,13 +51,14 @@ EaElements.TextInput {
 
     property alias fitCheckBox: fitCheckBox
 
-    enabled: parameter.enabled ?? true
+    readOnly: !parameter.enabled ?? false
 
     height: parent.height
+
     horizontalAlignment: Text.AlignHCenter
     verticalAlignment: Text.AlignVCenter
 
-    text: typeof value === "number" ? control.value.toFixed(4) : control.value
+    text: control.value
     font.bold: control.fit && enabled
 
     onAccepted: focus = false
@@ -95,7 +111,7 @@ EaElements.TextInput {
                     text: 'error'
                 }
                 EaElements.Label {
-                    visible: control.fittable
+                    visible: control.fittable && !control.readOnly
                     color: EaStyle.Colors.themeForegroundMinor
                     text: 'vary'
                 }
@@ -118,7 +134,7 @@ EaElements.TextInput {
                 }
                 EaElements.CheckBox {
                     id: fitCheckBox
-                    visible: control.fittable
+                    visible: control.fittable && !control.readOnly
                     padding: 0
                     checked: control.fit
                 }

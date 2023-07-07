@@ -25,18 +25,18 @@ EaElements.TextField {
 
     property var value: {
         if (typeof parameter.value === 'undefined') {
-            return ''
+            return 0
         } else if (typeof parameter.value === 'number') {
-            return parameter.value.toFixed(4)
+            return parseFloat(parameter.value.toFixed(4))
         } else {
             return parameter.value
         }
     }
-    property string error: {
+    property var error: {
         if (typeof parameter.error === 'undefined') {
-            return 0.0.toFixed(4)
+            return 0
         } else {
-            return parameter.error.toFixed(4)
+            return parseFloat(parameter.error.toFixed(4))
         }
     }
 
@@ -50,7 +50,7 @@ EaElements.TextField {
 
     property alias fitCheckBox: fitCheckBox
 
-    enabled: parameter.enabled ?? true
+    readOnly: !parameter.enabled ?? false
 
     rightPadding: unitsPlaceholder.width
     topInset: control.prettyName === '' ? 0 : EaStyle.Sizes.fontPixelSize * 1.5
@@ -61,7 +61,6 @@ EaElements.TextField {
            parent.children.length
 
     text: control.value
-    placeholderText: control.units
     font.bold: control.fit && enabled
 
     onAccepted: focus = false
@@ -76,6 +75,7 @@ EaElements.TextField {
         font.bold: false
         text: control.prettyName
     }
+    // Title
 
     // Units
     PlaceholderText {
@@ -94,6 +94,7 @@ EaElements.TextField {
         text: control.units
         textFormat: Text.RichText
     }
+    // Units
 
     // Mouse area
     MouseArea {
@@ -138,12 +139,12 @@ EaElements.TextField {
                     text: 'value'
                 }
                 EaElements.Label {
-                    visible: control.fittable && control.error !== 0.0.toFixed(4)
+                    visible: control.fittable && control.error !== 0
                     color: EaStyle.Colors.themeForegroundMinor
                     text: 'error'
                 }
                 EaElements.Label {
-                    visible: control.fittable
+                    visible: control.fittable && !control.readOnly
                     color: EaStyle.Colors.themeForegroundMinor
                     text: 'vary'
                 }
@@ -161,12 +162,12 @@ EaElements.TextField {
                     font.bold: control.fit
                 }
                 EaElements.Label {
-                    visible: control.fittable && control.error !== 0.0.toFixed(4)
+                    visible: control.fittable && control.error !== 0
                     text: control.error
                 }
                 EaElements.CheckBox {
                     id: fitCheckBox
-                    visible: control.fittable
+                    visible: control.fittable && !control.readOnly
                     padding: 0
                     checked: control.fit
                 }

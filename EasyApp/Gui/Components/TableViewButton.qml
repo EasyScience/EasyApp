@@ -3,19 +3,18 @@ import QtQuick
 import EasyApp.Gui.Elements as EaElements
 import EasyApp.Gui.Style as EaStyle
 
-EaElements.SideBarButton {
+EaElements.TabButton {
     property string headerText: ""
     property int horizontalAlignment: Text.AlignHCenter
 
-    property int inset: 6
-
-    leftInset: inset / 2
-    rightInset: inset / 2
-    topInset: inset / 2
-    bottomInset: inset / 2
-
-    y: -1
+    topInset: 3
+    bottomInset: 3
+    leftInset: 2
+    rightInset: 2
 
     height: EaStyle.Sizes.tableRowHeight
     width: EaStyle.Sizes.tableRowHeight
+
+    borderColor: EaStyle.Colors.chartAxis
+
 }
