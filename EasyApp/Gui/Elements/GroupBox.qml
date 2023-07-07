@@ -41,7 +41,8 @@ T.GroupBox {
         enabled: control.collapsible
 
         height: title === '' ? 0 : EaStyle.Sizes.tabBarHeight
-        width: control.width
+        width: titleLayout.childrenRect.width + anchors.leftMargin + EaStyle.Sizes.fontPixelSize * 0.5
+
         anchors.left: control.left
         anchors.leftMargin: EaStyle.Sizes.fontPixelSize * 0.5
         topInset: 0
