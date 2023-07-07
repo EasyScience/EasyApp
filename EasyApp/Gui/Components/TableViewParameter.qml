@@ -6,7 +6,6 @@ import EasyApp.Gui.Elements as EaElements
 EaElements.TextInput {
     id: control
 
-    property string headerText: ""
     property bool flexibleWidth: false
 
     property var parameter: {'value': 0.0,

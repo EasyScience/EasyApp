@@ -41,6 +41,7 @@ build
 ..*
 *.log
 *.zip
+settings.ini*
 temp.cif
 .ci/
 .idea/

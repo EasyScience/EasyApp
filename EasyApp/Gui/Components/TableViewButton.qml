@@ -4,7 +4,6 @@ import EasyApp.Gui.Elements as EaElements
 import EasyApp.Gui.Style as EaStyle
 
 EaElements.TabButton {
-    property string headerText: ""
     property int horizontalAlignment: Text.AlignHCenter
 
     topInset: 3

@@ -17,7 +17,6 @@ T.Button {
                EaStyle.Colors.themeForeground :
                EaStyle.Colors.themeForegroundDisabled
     property color backgroundColor: "transparent"
-    property string headerText: ""
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
