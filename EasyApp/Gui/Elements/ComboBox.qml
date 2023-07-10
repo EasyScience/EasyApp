@@ -20,6 +20,8 @@ T.ComboBox {
     property int textFormat: Text.RichText
     property int elide: Text.ElideMiddle
 
+    property var contentItemLabel: contentItemLabel
+
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitContentWidth + leftPadding + rightPadding)
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
@@ -88,7 +90,10 @@ T.ComboBox {
     }
 
     contentItem: Label {
-        padding: EaStyle.Sizes.fontPixelSize * 0.5
+        id: contentItemLabel
+
+        topPadding: EaStyle.Sizes.fontPixelSize * 0.5
+        bottomPadding: EaStyle.Sizes.fontPixelSize * 0.5
         leftPadding: control.editable ? 2 : control.mirrored ? EaStyle.Sizes.fontPixelSize * 1.0 : EaStyle.Sizes.fontPixelSize * 0.75
         rightPadding: control.editable ? 2 : control.mirrored ? EaStyle.Sizes.fontPixelSize * 0.75 : EaStyle.Sizes.fontPixelSize * 1.0
 
