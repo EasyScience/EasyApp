@@ -12,6 +12,7 @@ T.Button {
     id: control
 
     property bool wide: false
+    property bool showBackground: true
     property bool smallIcon: false
     property int radius: 2
     property string fontIcon: ""
@@ -83,6 +84,8 @@ T.Button {
 
     // Background
     background: Rectangle {
+        visible: showBackground
+
         implicitWidth: wide ?
                            EaStyle.Sizes.sideBarContentWidth :
                            (EaStyle.Sizes.sideBarContentWidth - EaStyle.Sizes.fontPixelSize) / 2

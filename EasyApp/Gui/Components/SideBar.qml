@@ -49,13 +49,12 @@ Item {
     EaElements.SideBarButton {
         id: continueButton
 
-        anchors.bottom: sideBarContainer.bottom
-        anchors.left: sideBarContainer.left
-        anchors.right: sideBarContainer.right
+        showBackground: false
 
-        anchors.margins: EaStyle.Sizes.fontPixelSize
-        anchors.leftMargin: 2 * EaStyle.Sizes.fontPixelSize
-        anchors.rightMargin: 2 * EaStyle.Sizes.fontPixelSize
+        anchors.bottom: sideBarContainer.bottom
+        anchors.horizontalCenter: sideBarContainer.horizontalCenter
+
+        anchors.bottomMargin: 0.5 * EaStyle.Sizes.fontPixelSize
 
         fontIcon: "arrow-circle-right"
         text: qsTr("Continue")
