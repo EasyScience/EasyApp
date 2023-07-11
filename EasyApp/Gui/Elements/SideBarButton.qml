@@ -28,6 +28,8 @@ T.Button {
     padding: 0
     spacing: EaStyle.Sizes.fontPixelSize * 0.5
 
+    flat: true
+
     font.family: EaStyle.Fonts.fontFamily
     font.pixelSize: EaStyle.Sizes.fontPixelSize
 

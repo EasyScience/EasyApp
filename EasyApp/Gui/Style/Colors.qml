@@ -119,7 +119,6 @@ QtObject {
     property color grey: isDarkTheme ? "#222": "#666"
     property color orange: isDarkTheme ? '#FFCC80' : '#FF9800'
 
-
     // Persistent settings
 
     property var settings: Settings {
