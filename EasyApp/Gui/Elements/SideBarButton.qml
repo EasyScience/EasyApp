@@ -38,6 +38,7 @@ T.Button {
         text: control.ToolTip.text
         visible: control.hovered && EaGlobals.Vars.showToolTips && text !== ""
     }
+    // ToolTip
 
     // Icon with text label
     contentItem: Item {
@@ -47,7 +48,9 @@ T.Button {
 
             // Icon
             Label {
+                id: iconLabel
                 anchors.verticalCenter: parent.verticalCenter
+
 
                 font.family: EaStyle.Fonts.iconsFamily
                 font.pixelSize: smallIcon ?
@@ -59,6 +62,7 @@ T.Button {
                 color: foregroundColor()
                 Behavior on color { EaAnimations.ThemeChange {} }
             }
+            // Icon
 
             // Text label
             Label {
@@ -72,8 +76,10 @@ T.Button {
                 color: foregroundColor()
                 Behavior on color { EaAnimations.ThemeChange {} }
             }
+            // Text label
         }
     }
+    // Icon with text label
 
     // Background
     background: Rectangle {
@@ -90,6 +96,7 @@ T.Button {
         border.color: borderColor()//control.hovered ? EaStyle.Colors.themeBackground : EaStyle.Colors.appBarBorder
         Behavior on border.color { EaAnimations.ThemeChange {} }
     }
+    // Background
 
     //Mouse area to react on click events
     MouseArea {
@@ -98,6 +105,7 @@ T.Button {
         hoverEnabled: true
         onPressed: (mouse) => mouse.accepted = false
     }
+    //Mouse area to react on click events
 
     // Logic
 

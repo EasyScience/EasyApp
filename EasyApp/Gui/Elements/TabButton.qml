@@ -14,6 +14,7 @@ T.TabButton {
     id: control
 
     property bool highlighted: false
+    property bool outlineIcon: false
     property string fontIcon: ""
     property string iconColor: ""
     property string backgroundColor: getBackgroundColor()
@@ -60,6 +61,30 @@ T.TabButton {
 
                 color: iconColor ? iconColor : foregroundColor()
                 Behavior on color { EaAnimations.ThemeChange {} }
+
+                // Icon outline
+                Repeater {
+                    model: 9
+
+                    Label {
+                        x: 0.5 * (index % 3 - 1)
+                        y: 0.5 * (Math.floor(index / 3) - 1)
+                        z: -2
+
+                        font.family: parent.font.family
+                        font.pixelSize: parent.font.pixelSize
+
+                        opacity: outlineIcon ? 1 : 0
+
+                        color: EaStyle.Colors.isDarkTheme ?
+                                   Qt.lighter(iconColor, 1.6) :
+                                   Qt.darker(iconColor, 1.6)
+                        Behavior on color { EaAnimations.ThemeChange {} }
+
+                        text: parent.text
+                    }
+                }
+                // Icon outline
             }
 
             // Text label
