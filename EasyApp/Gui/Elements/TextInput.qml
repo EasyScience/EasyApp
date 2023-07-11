@@ -11,10 +11,11 @@ import EasyApp.Gui.Elements as EaElements
 T.TextField {
     id: control
 
-    property bool warning: false
+    property bool warned: false
+    property bool minored: false
 
-    implicitWidth: implicitBackgroundWidth + leftInset + rightInset
-                   || Math.max(contentWidth, placeholder.implicitWidth) + leftPadding + rightPadding
+    implicitWidth: implicitBackgroundWidth + leftInset + rightInset ||
+                   Math.max(contentWidth, placeholder.implicitWidth) + leftPadding + rightPadding
     implicitHeight: Math.max(implicitBackgroundHeight + topInset + bottomInset,
                              contentHeight + topPadding + bottomPadding,
                              placeholder.implicitHeight + topPadding + bottomPadding)
@@ -25,9 +26,9 @@ T.TextField {
     font.pixelSize: EaStyle.Sizes.fontPixelSize
     font.bold: control.activeFocus ? true : false
 
-    color: warning ?
+    color: warned ?
                EaStyle.Colors.red :
-               !enabled || readOnly ? EaStyle.Colors.themeForegroundDisabled :
+               !enabled || readOnly || minored ? EaStyle.Colors.themeForegroundDisabled :
                      mouseArea.containsMouse || control.activeFocus ?
                           EaStyle.Colors.themeForegroundHovered :
                           EaStyle.Colors.themeForeground
@@ -42,7 +43,7 @@ T.TextField {
     placeholderTextColor: EaStyle.Colors.themeForegroundDisabled
     Behavior on placeholderTextColor { EaAnimations.ThemeChange {} }
 
-    cursorDelegate: EaElements.CursorDelegate { }
+    cursorDelegate: EaElements.CursorDelegate {}
 
     PlaceholderText {
         id: placeholder

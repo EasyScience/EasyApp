@@ -10,7 +10,7 @@ import EasyApp.Gui.Elements as EaElements
 T.TextField {
     id: control
 
-    property bool warning: false
+    property bool warned: false
 
     implicitWidth: implicitBackgroundWidth + leftInset + rightInset
                    || Math.max(contentWidth, placeholder.implicitWidth) + leftPadding + rightPadding
@@ -31,7 +31,7 @@ T.TextField {
     font.pixelSize: EaStyle.Sizes.fontPixelSize
     //font.bold: control.activeFocus ? true : false
 
-    color: warning ?
+    color: warned ?
                EaStyle.Colors.red :
                !enabled || readOnly ? EaStyle.Colors.themeForegroundDisabled :
                      mouseArea.containsMouse || control.activeFocus ?

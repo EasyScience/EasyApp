@@ -50,7 +50,7 @@ EaElements.TextInput {
 
     property alias fitCheckBox: fitCheckBox
 
-    readOnly: !parameter.enabled ?? false
+    minored: !parameter.enabled ?? false
 
     height: parent.height
 
