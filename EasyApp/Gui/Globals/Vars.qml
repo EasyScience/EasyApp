@@ -39,6 +39,7 @@ QtObject {
     property bool showToolTips: true
     property bool showUserGuides: false
     property bool showProjectDescriptionDialog: false
+    property bool autoCollapseSideBarGroups: true
 
     // Updater
     property bool checkUpdateOnAppStart: isTestMode ? false : true

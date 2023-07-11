@@ -9,6 +9,7 @@ import QtCore
 import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Globals as EaGlobals
 import EasyApp.Gui.Elements as EaElements
+import EasyApp.Gui.Components as EaComponents
 
 
 EaElements.Dialog {
@@ -213,6 +214,8 @@ EaElements.Dialog {
                 //Component.onCompleted: currentIndex = model.indexOf(EaGlobals.Vars.currentLib1d)
             }
 
+            EaElements.Label { text: ' ' }
+
             /*
             EaElements.CheckBox {
                 id: useOpenGL1dCheckBox
@@ -243,6 +246,22 @@ EaElements.Dialog {
                 }
             }
             */
+
+            EaElements.Label {
+                topPadding: autoCollapseCheckBox.topPadding
+                text: qsTr("Auto collapse") + ":"
+                ToolTip.text: qsTr("Auto collapse for side bar groups")  // NEED FIX: Implement tooltip as in EaComponents.TableViewLabel
+            }
+
+            EaElements.CheckBox {
+                id: autoCollapseCheckBox
+                topPadding: 0.5 * EaStyle.Sizes.fontPixelSize
+                leftPadding: -3
+                checked: EaGlobals.Vars.autoCollapseSideBarGroups
+                onCheckedChanged: EaGlobals.Vars.autoCollapseSideBarGroups = checked
+            }
+
+            EaElements.Label { text: ' ' }
 
         }
 
@@ -357,6 +376,12 @@ EaElements.Dialog {
         location: EaGlobals.Vars.settingsFile // Gives WASM error on run
         category: 'Preferences.Appearance'
         property alias currentLib1d: currentLib1dSelector.currentValue
+    }
+
+    Settings {
+        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
+        category: 'Preferences.Appearance'
+        property alias autoCollapseSideBarGroups: autoCollapseCheckBox.checked
     }
 
     Settings {

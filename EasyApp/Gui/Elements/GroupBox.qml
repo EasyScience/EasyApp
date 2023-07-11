@@ -12,14 +12,26 @@ import EasyApp.Gui.Animations as EaAnimations
 T.GroupBox {
     id: control
 
+    property var titleArea: titleArea
     property bool collapsible: true
     property bool collapsed: collapsible ? true : false
-    property bool last: false
+    property bool lastCollapsedState: collapsible ? true : false
+    property bool last: {
+        if (parent.children.length) {
+            const lastGroupBox = parent.children[parent.children.length - 1]  // NEED FIX: Check if last item is GroupBox
+            if (lastGroupBox === control) {
+                return true
+            }
+            return false
+        }
+        return false
+    }
 
     implicitWidth: parent.width
     implicitHeight: collapsed ?
                         titleArea.height :
                         titleArea.height + spacing + contentHeight + bottomPadding
+    Behavior on implicitHeight { EaAnimations.ThemeChange { duration: 500 } }
 
     spacing: title === '' ? 0 : EaStyle.Sizes.fontPixelSize * 0.5 // between title and content
     padding: 0
@@ -31,6 +43,21 @@ T.GroupBox {
     clip: true
 
     font.pixelSize: EaStyle.Sizes.fontPixelSize
+
+    onCollapsedChanged: {
+        collapsed === !collapsed
+        if (collapsed || !EaGlobals.Vars.autoCollapseSideBarGroups) {
+            return
+        }
+        // Collapse all other sidebar groups on this page
+        for (const groupBox of parent.children) {
+            if (groupBox.toString().startsWith('GroupBox_QMLTYPE') && groupBox !== control) {  // groupBox instanceof GroupBox doesn't work
+                if (groupBox.collapsible && !groupBox.collapsed) {
+                    groupBox.collapsed = true
+                }
+            }
+        }
+    }
 
     // Group box title area
 
@@ -78,7 +105,8 @@ T.GroupBox {
                     origin.x: titleIcon.width * 0.5
                     origin.y: titleIcon.height * 0.5
 
-                    Component.onCompleted: control.collapsed ? angle = 0 : angle = 90
+                    angle: control.collapsed ? 0 : 90
+                    Behavior on angle { EaAnimations.ThemeChange { duration: 500 } }
                 }
             }
 
@@ -107,7 +135,7 @@ T.GroupBox {
         }
 
         // Folding-unfolding animation on title area clicked
-        onClicked: collapsionAnimo.restart()
+        onClicked: control.collapsed = !control.collapsed
     }
 
     // Group box content area
@@ -119,7 +147,6 @@ T.GroupBox {
         height: control.height - control.topPadding + control.bottomPadding
 
         color: 'transparent'
-
 
         // Horisontal border at the bottom
         Rectangle {
@@ -134,28 +161,6 @@ T.GroupBox {
             color: EaStyle.Colors.appBorder
             Behavior on color { EaAnimations.ThemeChange {} }
         }
-    }
-
-    // Collapsion animation
-
-    ParallelAnimation {
-        id: collapsionAnimo
-
-        NumberAnimation {
-            target: control
-            property: "implicitHeight"
-            to: control.collapsed ? control.contentHeight + titleArea.height : titleArea.height
-            duration: 150
-        }
-
-        NumberAnimation {
-            target: titleIconRotation
-            property: "angle"
-            to: control.collapsed ? 90 : 0
-            duration: 150
-        }
-
-        onFinished: control.collapsed = !control.collapsed
     }
 
     // Logic
