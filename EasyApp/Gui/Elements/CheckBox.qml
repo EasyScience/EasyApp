@@ -58,6 +58,8 @@ T.CheckBox {
     // ToolTip
     EaElements.ToolTip {
         text: control.ToolTip.text
-        visible: control.hovered && EaGlobals.Vars.showToolTips && text !== ""
+        visible: text !== "" &&
+                 control.hovered &&
+                 EaGlobals.Vars.showToolTips
     }
 }

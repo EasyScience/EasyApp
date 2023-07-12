@@ -250,7 +250,6 @@ EaElements.Dialog {
             EaElements.Label {
                 topPadding: autoCollapseCheckBox.topPadding
                 text: qsTr("Auto collapse") + ":"
-                ToolTip.text: qsTr("Auto collapse for side bar groups")  // NEED FIX: Implement tooltip as in EaComponents.TableViewLabel
             }
 
             EaElements.CheckBox {
@@ -259,6 +258,7 @@ EaElements.Dialog {
                 leftPadding: -3
                 checked: EaGlobals.Vars.autoCollapseSideBarGroups
                 onCheckedChanged: EaGlobals.Vars.autoCollapseSideBarGroups = checked
+                ToolTip.text: qsTr("Auto collapse for side bar groups")
             }
 
             EaElements.Label { text: ' ' }
