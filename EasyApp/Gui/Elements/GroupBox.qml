@@ -33,7 +33,7 @@ T.GroupBox {
                         titleArea.height + spacing + contentHeight + bottomPadding
     Behavior on implicitHeight { EaAnimations.ThemeChange { duration: 500 } }
 
-    spacing: title === '' ? 0 : 0.5 * EaStyle.Sizes.fontPixelSize  // between title and content
+    spacing: title === '' ? EaStyle.Sizes.fontPixelSize : 0.5 * EaStyle.Sizes.fontPixelSize  // between title and content
     padding: 0
     topPadding: titleArea.height + spacing
     bottomPadding: EaStyle.Sizes.fontPixelSize
