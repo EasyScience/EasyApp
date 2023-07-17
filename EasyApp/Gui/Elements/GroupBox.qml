@@ -13,6 +13,7 @@ T.GroupBox {
     id: control
 
     property var titleArea: titleArea
+    property string icon: ''
     property bool collapsible: true
     property bool collapsed: collapsible ? true : false
     property bool lastCollapsedState: collapsible ? true : false
@@ -36,7 +37,7 @@ T.GroupBox {
     spacing: title === '' ? EaStyle.Sizes.fontPixelSize : 0.5 * EaStyle.Sizes.fontPixelSize  // between title and content
     padding: 0
     topPadding: titleArea.height + spacing
-    bottomPadding: EaStyle.Sizes.fontPixelSize
+    bottomPadding: title === '' ? 0 : EaStyle.Sizes.fontPixelSize
     leftPadding: EaStyle.Sizes.fontPixelSize
     rightPadding: EaStyle.Sizes.fontPixelSize
 
@@ -85,9 +86,9 @@ T.GroupBox {
             anchors.verticalCenter: parent.verticalCenter
             spacing: EaStyle.Sizes.fontPixelSize * 0.5
 
-            // Group box title icon
+            // Group box collapse icon
             Label {
-                id: titleIcon
+                id: collapseIcon
 
                 anchors.verticalCenter: parent.verticalCenter
 
@@ -100,14 +101,31 @@ T.GroupBox {
                 Behavior on color { EaAnimations.ThemeChange {} }
 
                 transform: Rotation {
-                    id: titleIconRotation
+                    id: collapseIconRotation
 
-                    origin.x: titleIcon.width * 0.5
-                    origin.y: titleIcon.height * 0.5
+                    origin.x: collapseIcon.width * 0.5
+                    origin.y: collapseIcon.height * 0.5
 
                     angle: control.collapsed ? 0 : 90
                     Behavior on angle { EaAnimations.ThemeChange { duration: 500 } }
                 }
+            }
+
+            // Group box title icon
+            Label {
+                visible: control.icon
+
+                width: control.font.pixelSize
+                horizontalAlignment: Text.AlignHCenter
+                anchors.verticalCenter: parent.verticalCenter
+
+                text: control.icon
+
+                font.family: EaStyle.Fonts.iconsFamily
+                font.pixelSize: control.font.pixelSize
+
+                color: control.foregroundColor()
+                Behavior on color { EaAnimations.ThemeChange {} }
             }
 
             // Group box title text
