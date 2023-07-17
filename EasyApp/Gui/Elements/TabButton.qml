@@ -55,7 +55,7 @@ T.TabButton {
             // Icon
             Label {
                 font.family: EaStyle.Fonts.iconsFamily
-                font.pixelSize: control.font.pixelSize * 1.25
+                font.pixelSize: control.font.pixelSize
 
                 text: control.fontIcon
 
