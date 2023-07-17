@@ -186,7 +186,7 @@ T.GroupBox {
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (rippleArea.containsMouse)
+        if (rippleArea.containsMouse || !control.collapsed)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }
