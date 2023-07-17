@@ -1,55 +1,124 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Templates as T
+import QtQuick.Controls
+import QtQuick.Controls.impl
 
-import EasyApp.Gui.Style 1.0 as EaStyle
-import EasyApp.Gui.Animations 1.0 as EaAnimations
-import EasyApp.Gui.Elements 1.0 as EaElements
+import EasyApp.Gui.Style as EaStyle
+import EasyApp.Gui.Globals as EaGlobals
+import EasyApp.Gui.Animations as EaAnimations
+import EasyApp.Gui.Elements as EaElements
 
-Row {
-    property string key: ''
-    property string value: ''
+T.Button {
+    id: control
 
-    visible: value !== ''
+    property string keyIcon: ''
+    property string keyText: ''
+    property string valueText: ''
 
+    visible: valueText !== ''
+
+    implicitWidth: implicitContentWidth + leftPadding + rightPadding
+    implicitHeight: implicitContentHeight + topPadding + bottomPadding
+    leftInset: 0
+    rightInset: 0
+    topInset: 0
+    bottomInset: 0
+    padding: 0
     spacing: EaStyle.Sizes.fontPixelSize * 0.5
-    height: parent.height
+    anchors.verticalCenter: parent.verticalCenter
 
-    EaElements.Label {
-        height: parent.height
-        verticalAlignment: Text.AlignVCenter
-        color: EaStyle.Colors.isDarkTheme ? "#777": "#888"
-        text: key
-    }
+    font.family: EaStyle.Fonts.fontFamily
+    font.pixelSize: EaStyle.Sizes.fontPixelSize
 
-    EaElements.Label {
-        id: valueLabel
+    // contentItem
+    contentItem: Item {
+        implicitWidth: row.width
+        implicitHeight: row.height
 
-        height: parent.height
-        verticalAlignment: Text.AlignVCenter
-        color: EaStyle.Colors.isDarkTheme ? "#aaa": "#555"
-        text: value
+        // contentItem row layout
+        Row {
+            id: row
+            spacing: control.spacing
+            anchors.verticalCenter: parent.verticalCenter
 
-        onTextChanged: {
-            valueLabel.color = EaStyle.Colors.themeForegroundHovered
-            colorResetAnimo.restart()
-        }
+            // key icon
+            Label {
+                text: control.keyIcon
 
-        SequentialAnimation {
-            id: colorResetAnimo
-            alwaysRunToEnd: false
+                height: font.pixelSize
+                verticalAlignment: Text.AlignVCenter
 
-            PauseAnimation {
-                alwaysRunToEnd: false
-                duration: 1000
+                font.family: EaStyle.Fonts.iconsFamily
+                font.pixelSize: control.font.pixelSize
+
+                color: EaStyle.Colors.statusBarIconForeground
+                Behavior on color { EaAnimations.ThemeChange {} }
             }
+            // key icon
 
-            PropertyAnimation {
-                alwaysRunToEnd: false
-                target: valueLabel
-                property: 'color'
-                to: EaStyle.Colors.isDarkTheme ? "#aaa": "#555"
-                duration: 1000
+            // key text
+            Label {
+                text: control.keyText
+
+                visible: control.parent.width > EaStyle.Sizes.appWindowWidthWXGA
+
+                height: font.pixelSize
+                verticalAlignment: Text.AlignVCenter
+
+                font.family: control.font.family
+                font.pixelSize: control.font.pixelSize
+
+                color: EaStyle.Colors.statusBarTextForeground
+                Behavior on color { EaAnimations.ThemeChange {} }
             }
+            // key text
+
+            // value text
+            Label {
+                id: valueLabel
+
+                text: control.valueText
+                onTextChanged: {
+                    color = EaStyle.Colors.themeForegroundHovered
+                    colorResetAnimo.restart()
+                }
+
+                height: font.pixelSize
+                verticalAlignment: Text.AlignVCenter
+
+                font.family: control.font.family
+                font.pixelSize: control.font.pixelSize
+
+                color: EaStyle.Colors.themeForeground
+                Behavior on color { EaAnimations.ThemeChange {} }
+
+                EaAnimations.ColorReset {
+                    id: colorResetAnimo
+
+                    target: valueLabel
+                    to: EaStyle.Colors.themeForeground
+                }
+            }
+            // value text
+
         }
+        // contentItem row layout
     }
+    // contentItem
+
+    // background
+    background: Rectangle {
+        color: 'transparent'
+    }
+    // background
+
+    // ToolTip
+    EaElements.ToolTip {
+        text: control.ToolTip.text
+        visible: text !== "" &&
+                 control.hovered &&
+                 EaGlobals.Vars.showToolTips
+    }
+    // ToolTip
+
 }

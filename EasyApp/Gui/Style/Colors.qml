@@ -74,8 +74,9 @@ QtObject {
     property color sideBarButtonForeground: isDarkTheme ? "#ccc" : "#444"
 
     // Status bar
-    readonly property color statusBarBackground: appBarBackground
-    readonly property color statusBarForeground: isDarkTheme ? "#aaa" : "#666"
+    property color statusBarBackground: appBarBackground
+    property color statusBarTextForeground: isDarkTheme ? "#888": "#777"
+    property color statusBarIconForeground: isDarkTheme ? "#666": "#999"
 
     // Dialogs
     property color dialogBackground: contentBackground//themeBackground
