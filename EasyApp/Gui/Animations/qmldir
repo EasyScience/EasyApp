@@ -1,4 +1,5 @@
 module Animations
 
-TranslationChange 1.0 TranslationChange.qml
-ThemeChange 1.0 ThemeChange.qml
+ColorReset ColorReset.qml
+ThemeChange ThemeChange.qml
+TranslationChange TranslationChange.qml
