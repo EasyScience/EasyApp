@@ -43,6 +43,7 @@ EaElements.Dialog {
 
                 implicitWidth: inputFieldWidth
                 horizontalAlignment: TextInput.AlignLeft
+                validator: RegularExpressionValidator { regularExpression: /^[a-zA-Z][a-zA-Z0-9]{1,30}$/ }
                 placeholderText: qsTr("Enter project name here")
             }
         }
@@ -60,7 +61,7 @@ EaElements.Dialog {
 
                 implicitWidth: inputFieldWidth
                 horizontalAlignment: TextInput.AlignLeft
-                placeholderText: qsTr("Enter short project description here")
+                placeholderText: qsTr("Enter project description here")
             }
         }
 
@@ -82,7 +83,8 @@ EaElements.Dialog {
                 placeholderText: qsTr("Enter project location here")
                 text: EaLogic.Utils.urlToLocalFile(projectParentDirectory) +
                       EaLogic.Utils.osPathSep() +
-                      projectName.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).split(' ').join('')
+                      projectName
+                      //projectName.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).split(' ').join('')
 
                 EaElements.ToolButton {
                     id: chooseParentDirectoryButton
