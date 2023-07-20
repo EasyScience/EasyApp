@@ -12,16 +12,23 @@ ListView {
     id: listView
 
     property alias defaultInfoText: defaultInfoLabel.text
+    property bool showHeader: true
+    property bool tallRows: false
     property var headerLabelItems: headerItem.children[0].children
     property int contentItemChildrenLength: contentItem.children.length
     property int maxRowCountShow: EaStyle.Sizes.tableMaxRowCountShow
+    property int tableRowHeight: tallRows ?
+                                     1.5 * EaStyle.Sizes.tableRowHeight :
+                                     EaStyle.Sizes.tableRowHeight
 
     enabled: count > 0
 
     width: EaStyle.Sizes.sideBarContentWidth
-    height: count > 0 ?
-                EaStyle.Sizes.tableRowHeight * (Math.min(count, maxRowCountShow) + 1 ) :
-                EaStyle.Sizes.tableRowHeight * (Math.min(count, maxRowCountShow) + 2 )
+    height: count === 0 ?
+                2 * EaStyle.Sizes.tableRowHeight :
+                showHeader ?
+                    tableRowHeight * (Math.min(count, maxRowCountShow) + 1 ) :
+                    tableRowHeight * (Math.min(count, maxRowCountShow))
 
     clip: true
     headerPositioning: ListView.OverlayHeader
@@ -34,14 +41,17 @@ ListView {
     highlightMoveDuration: EaStyle.Sizes.tableHighlightMoveDuration
     highlight: Rectangle {
         z: 2 // To display highlight rect above delegate
-        color: listView.count > 1 ? EaStyle.Colors.tableHighlight : "transparent"
+        color: mouseHoverHandler.hovered ?
+                   EaStyle.Colors.tableHighlight :
+                   "transparent"
+        Behavior on color { EaAnimations.ThemeChange {} }
     }
 
     // Empty header row
-    header: EaComponents.TableViewHeader {}
+    //header: EaComponents.TableViewHeader {}
 
     // Empty content rows
-    delegate: EaComponents.TableViewDelegate {}
+    //delegate: EaComponents.TableViewDelegate {}
 
     // Table border
     Rectangle {
@@ -57,6 +67,7 @@ ListView {
         width: listView.width
         height: EaStyle.Sizes.tableRowHeight * 2
         color: EaStyle.Colors.themeBackground
+
         Behavior on color { EaAnimations.ThemeChange {} }
 
         EaElements.Label {
@@ -72,6 +83,20 @@ ListView {
         id: widthAndAlignmentChangeTimer
         interval: 10
         onTriggered: setAllColumnsWidthAndAlignment()
+    }
+
+    // HoverHandler to react on hover events
+    // Hide current row highlight if table is not hovered
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: Qt.PointingHandCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${listView} [TableView.qml] hovered`)
+            }
+        }
     }
 
     // Logic

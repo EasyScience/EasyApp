@@ -7,6 +7,7 @@ import EasyApp.Gui.Animations as EaAnimations
 T.Label {
     id: control
 
+    property bool selected: false
     property color backgroundColor: "transparent"
 
     font.family: EaStyle.Fonts.fontFamily
@@ -14,9 +15,11 @@ T.Label {
 
     //textFormat: Text.StyledText
 
-    color: enabled ?
-               EaStyle.Colors.themeForeground :
-               EaStyle.Colors.themeForegroundDisabled //Material.foreground : Material.hintTextColor
+    color: selected ?
+               EaStyle.Colors.themeForegroundHovered :
+               enabled ?
+                   EaStyle.Colors.themeForeground :
+                   EaStyle.Colors.themeForegroundDisabled
     Behavior on color { EaAnimations.ThemeChange {} }
 
     linkColor: hoveredLink ?
@@ -35,6 +38,7 @@ T.Label {
     MouseArea {
         anchors.fill: parent
         acceptedButtons: Qt.NoButton
+        hoverEnabled: false
         cursorShape: parent.hoveredLink ?
                          Qt.PointingHandCursor :
                          Qt.ArrowCursor

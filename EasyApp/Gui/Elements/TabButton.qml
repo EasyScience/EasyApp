@@ -14,7 +14,6 @@ T.TabButton {
     id: control
 
     property bool highlighted: false
-    property bool outlineIcon: false
     property string fontIcon: ""
     property string iconColor: ""
     property string backgroundColor: getBackgroundColor()
@@ -39,7 +38,9 @@ T.TabButton {
     // ToolTip
     EaElements.ToolTip {
         text: control.ToolTip.text
-        visible: control.hovered && EaGlobals.Vars.showToolTips && text !== ""
+        visible: text !== "" &&
+                 control.hovered &&
+                 EaGlobals.Vars.showToolTips
     }
 
     // Icon with text label
@@ -61,31 +62,7 @@ T.TabButton {
 
                 color: iconColor ? iconColor : foregroundColor()
                 Behavior on color { EaAnimations.ThemeChange {} }
-
-                // Icon outline
-                Repeater {
-                    model: 9
-
-                    Label {
-                        x: 0.5 * (index % 3 - 1)
-                        y: 0.5 * (Math.floor(index / 3) - 1)
-                        z: -2
-
-                        font.family: parent.font.family
-                        font.pixelSize: parent.font.pixelSize
-
-                        opacity: outlineIcon ? 1 : 0
-
-                        color: EaStyle.Colors.isDarkTheme ?
-                                   Qt.lighter(iconColor, 1.6) :
-                                   Qt.darker(iconColor, 1.6)
-                        Behavior on color { EaAnimations.ThemeChange {} }
-
-                        text: parent.text
-                    }
-                }
-                // Icon outline
-            }
+           }
 
             // Text label
             Label {
@@ -116,9 +93,21 @@ T.TabButton {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        hoverEnabled: true
-        //onClicked: control.clicked() // Doesn't work as for Button or ToolButton
-        onPressed: (mouse) => mouse.accepted = false // Color doesn't changed onPressed
+        hoverEnabled: false
+        onPressed: (mouse) => mouse.accepted = false
+    }
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: Qt.PointingHandCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [TabButton.qml] hovered`)
+            }
+        }
     }
 
     // Logic
@@ -126,7 +115,7 @@ T.TabButton {
     function getBackgroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.contentBackground
-        if (mouseArea.containsMouse)
+        if (mouseHoverHandler.hovered)
             return EaStyle.Colors.themeBackgroundHovered1
         return EaStyle.Colors.contentBackground
     }
@@ -135,7 +124,7 @@ T.TabButton {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
         if (!highlighted) {
-            if (mouseArea.containsMouse || control.checked || control.down)
+            if (mouseHoverHandler.hovered || control.checked || control.down)
                 return EaStyle.Colors.themeForegroundHovered
             return EaStyle.Colors.themeForeground
         }

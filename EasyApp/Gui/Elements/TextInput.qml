@@ -12,6 +12,7 @@ T.TextField {
     id: control
 
     property bool warned: false
+    property bool selected: false
     property bool minored: false
 
     implicitWidth: implicitBackgroundWidth + leftInset + rightInset ||
@@ -28,10 +29,11 @@ T.TextField {
 
     color: warned ?
                EaStyle.Colors.red :
-               !enabled || readOnly || minored ? EaStyle.Colors.themeForegroundDisabled :
-                     mouseArea.containsMouse || control.activeFocus ?
-                          EaStyle.Colors.themeForegroundHovered :
-                          EaStyle.Colors.themeForeground
+               !enabled || readOnly || minored ?
+                   EaStyle.Colors.themeForegroundDisabled :
+                   focus || selected || mouseHoverHandler.hovered ?
+                       EaStyle.Colors.themeForegroundHovered :
+                       EaStyle.Colors.themeForeground
     Behavior on color { EaAnimations.ThemeChange {} }
 
     selectionColor: EaStyle.Colors.themeAccent
@@ -68,7 +70,20 @@ T.TextField {
     MouseArea {
         id: mouseArea
         anchors.fill: control
-        hoverEnabled: true
+        hoverEnabled: false
         onPressed: (mouse) => mouse.accepted = false
+    }
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: Qt.IBeamCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [TextInput.qml] hovered`)
+            }
+        }
     }
 }

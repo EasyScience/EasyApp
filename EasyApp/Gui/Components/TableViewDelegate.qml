@@ -4,10 +4,14 @@ import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Animations as EaAnimations
 
 Rectangle {
-    default property alias contentRowData: contentRow.data
+    id: control
 
-    width: parent == null ? 0 : parent.width
-    height: EaStyle.Sizes.tableRowHeight
+    default property alias contentRowData: contentRow.data
+    property alias mouseArea: mouseArea
+    property Item tableView: parent === null ? null : parent.parent
+
+    implicitWidth: parent == null ? 0 : parent.width
+    implicitHeight: tableView.tableRowHeight
 
     color: index % 2 ?
                EaStyle.Colors.themeBackgroundHovered2 :
@@ -21,12 +25,26 @@ Rectangle {
         spacing: EaStyle.Sizes.tableColumnSpacing
     }
 
-    // Highligh row on click
+    //Mouse area to react on click events
     MouseArea {
+        id: mouseArea
         anchors.fill: parent
-        onPressed: (mouse) => {
-            parent.ListView.view.currentIndex = index
-            mouse.accepted = false
-        }        
+        hoverEnabled: false
+        onPressed: (mouse) => mouse.accepted = false
     }
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: Qt.CrossCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [TableViewDelegate.qml] hovered`)
+                parent.ListView.view.currentIndex = index
+            }
+        }
+    }
+
 }

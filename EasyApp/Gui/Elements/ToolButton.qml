@@ -66,8 +66,21 @@ T.ToolButton {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        hoverEnabled: true
+        hoverEnabled: false
         onPressed: (mouse) => mouse.accepted = false
+    }
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: Qt.PointingHandCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [ToolButton.qml] hovered`)
+            }
+        }
     }
 
     // Logic
@@ -75,7 +88,7 @@ T.ToolButton {
     function backgroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeBackgroundDisabled
-        if (mouseArea.containsMouse)
+        if (mouseHoverHandler.hovered)
             return EaStyle.Colors.themeBackgroundHovered2
         return EaStyle.Colors.themeBackground
     }
@@ -84,7 +97,7 @@ T.ToolButton {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
         if (!highlighted) {
-            if (control.checked || mouseArea.containsMouse)
+            if (control.checked || mouseHoverHandler.hovered)
                 return EaStyle.Colors.themeForegroundHovered
             return EaStyle.Colors.themeForeground
         }

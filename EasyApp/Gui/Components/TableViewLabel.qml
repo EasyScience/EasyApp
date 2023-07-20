@@ -8,6 +8,7 @@ EaElements.Label {
     id: control
 
     property bool flexibleWidth: false
+    readonly property alias hovered: mouseHoverHandler.hovered
 
     height: parent.height
     width: parent.height  // ???
@@ -35,6 +36,18 @@ EaElements.Label {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        hoverEnabled: true
+        hoverEnabled: false
+    }
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [TableViewLabel.qml] hovered`)
+            }
+        }
     }
 }

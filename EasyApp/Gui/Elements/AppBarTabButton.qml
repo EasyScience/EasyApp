@@ -62,8 +62,21 @@ EaElements.TabButton {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        hoverEnabled: true
+        hoverEnabled: false
         onPressed: (mouse) => mouse.accepted = false
+    }
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: Qt.PointingHandCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [AppBarTabButton.qml] hovered`)
+            }
+        }
     }
 
     // Logic
@@ -71,7 +84,7 @@ EaElements.TabButton {
     function backgroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeBackground
-        if (mouseArea.containsMouse)
+        if (mouseHoverHandler.hovered)
             return EaStyle.Colors.themeBackgroundHovered2
         return EaStyle.Colors.themeBackground
     }
@@ -79,7 +92,7 @@ EaElements.TabButton {
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (mouseArea.containsMouse || control.checked || control.down)
+        if (mouseHoverHandler.hovered || control.checked || control.down)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }

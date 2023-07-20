@@ -70,11 +70,13 @@ EaElements.TextInput {
             if (mouse.button === Qt.RightButton) {
                 contextMenu.popup()
             }
+            mouse.accepted = false
         }
         onPressAndHold: (mouse) => {
             if (mouse.source === Qt.MouseEventNotSynthesized) {
                 contextMenu.popup()
             }
+            mouse.accepted = false
         }
         // Menu
         EaElements.Menu {
@@ -144,4 +146,17 @@ EaElements.TextInput {
         // Menu
     }
     // Mouse area
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: Qt.UpArrowCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [TableViewParameter.qml] hovered`)
+            }
+        }
+    }
 }
