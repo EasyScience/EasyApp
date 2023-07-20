@@ -63,6 +63,7 @@ EaElements.TabButton {
         id: mouseArea
         anchors.fill: parent
         hoverEnabled: false
+        cursorShape: undefined //Qt.PointingHandCursor
         onPressed: (mouse) => mouse.accepted = false
     }
 

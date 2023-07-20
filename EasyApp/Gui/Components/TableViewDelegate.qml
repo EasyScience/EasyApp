@@ -11,7 +11,7 @@ Rectangle {
     property Item tableView: parent === null ? null : parent.parent
 
     implicitWidth: parent == null ? 0 : parent.width
-    implicitHeight: tableView.tableRowHeight
+    implicitHeight: tableView === null ? EaStyle.Sizes.tableRowHeight : tableView.tableRowHeight
 
     color: index % 2 ?
                EaStyle.Colors.themeBackgroundHovered2 :
@@ -29,6 +29,8 @@ Rectangle {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
+        propagateComposedEvents: true
+        cursorShape: undefined //Qt.PointingHandCursor
         hoverEnabled: false
         onPressed: (mouse) => mouse.accepted = false
     }
@@ -37,8 +39,8 @@ Rectangle {
     HoverHandler {
         id: mouseHoverHandler
         acceptedDevices: PointerDevice.AllDevices
+        cursorShape: Qt.PointingHandCursor
         blocking: false
-        cursorShape: Qt.CrossCursor
         onHoveredChanged: {
             if (hovered) {
                 //console.error(`${control} [TableViewDelegate.qml] hovered`)

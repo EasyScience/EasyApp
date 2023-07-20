@@ -25,8 +25,8 @@ TableView 1.0 TableView.qml
 TableViewHeader 1.0 TableViewHeader.qml
 TableViewDelegate 1.0 TableViewDelegate.qml
 TableViewLabel 1.0 TableViewLabel.qml
-TableViewLabelControl 1.0 TableViewLabelControl.qml
-TableViewDoubleLabelControl 1.0 TableViewDoubleLabelControl.qml
+TableViewAdvancedLabel 1.0 TableViewAdvancedLabel.qml
+TableViewTwoRowsAdvancedLabel 1.0 TableViewTwoRowsAdvancedLabel.qml
 TableViewParameter 1.0 TableViewParameter.qml
 TableViewCheckBox 1.0 TableViewCheckBox.qml
 TableViewComboBox 1.0 TableViewComboBox.qml

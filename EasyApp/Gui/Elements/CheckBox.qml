@@ -62,4 +62,18 @@ T.CheckBox {
                  control.hovered &&
                  EaGlobals.Vars.showToolTips
     }
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: !enabled ? Qt.ArrowCursor : Qt.PointingHandCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [TextInput.qml] hovered`)
+            }
+        }
+    }
+
 }

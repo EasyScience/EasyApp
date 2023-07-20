@@ -105,17 +105,29 @@ T.Button {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
-        hoverEnabled: true
+        hoverEnabled: false
+        cursorShape: undefined //Qt.PointingHandCursor
         onPressed: (mouse) => mouse.accepted = false
     }
-    //Mouse area to react on click events
 
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: Qt.PointingHandCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [TabButton.qml] hovered`)
+            }
+        }
+    }
     // Logic
 
     function backgroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeBackgroundDisabled
-        if (mouseArea.containsMouse)
+        if (mouseHoverHandler.hovered)
             return EaStyle.Colors.themeBackgroundHovered1
         return EaStyle.Colors.themeBackground
     }
@@ -123,7 +135,7 @@ T.Button {
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (mouseArea.containsMouse || control.checked || control.down)
+        if (mouseHoverHandler.hovered || control.checked || control.down)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }
@@ -131,7 +143,7 @@ T.Button {
     function borderColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeBackgroundDisabled
-        if (mouseArea.containsMouse || control.checked || control.down)
+        if (mouseHoverHandler.hovered || control.checked || control.down)
             return EaStyle.Colors.appBarBackground
         return EaStyle.Colors.appBarComboBoxBorder
     }

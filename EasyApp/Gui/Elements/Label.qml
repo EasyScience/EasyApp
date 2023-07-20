@@ -39,9 +39,10 @@ T.Label {
         anchors.fill: parent
         acceptedButtons: Qt.NoButton
         hoverEnabled: false
+        //cursorShape: undefined  // prevents changing the cursor
         cursorShape: parent.hoveredLink ?
                          Qt.PointingHandCursor :
-                         Qt.ArrowCursor
+                         undefined //Qt.ArrowCursor
     }
 
     onLinkActivated: Qt.openUrlExternally(link)

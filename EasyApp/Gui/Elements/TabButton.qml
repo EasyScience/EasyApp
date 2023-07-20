@@ -93,6 +93,7 @@ T.TabButton {
     MouseArea {
         id: mouseArea
         anchors.fill: parent
+        cursorShape: undefined //Qt.PointingHandCursor
         hoverEnabled: false
         onPressed: (mouse) => mouse.accepted = false
     }

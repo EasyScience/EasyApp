@@ -65,6 +65,7 @@ EaElements.TextInput {
     // Mouse area
     MouseArea {
         anchors.fill: parent
+        cursorShape: undefined //Qt.PointingHandCursor
         acceptedButtons: Qt.RightButton
         onClicked: (mouse) => {
             if (mouse.button === Qt.RightButton) {
@@ -152,7 +153,7 @@ EaElements.TextInput {
         id: mouseHoverHandler
         acceptedDevices: PointerDevice.AllDevices
         blocking: false
-        cursorShape: Qt.UpArrowCursor
+        //cursorShape: undefined //Qt.PointingHandCursor
         onHoveredChanged: {
             if (hovered) {
                 //console.error(`${control} [TableViewParameter.qml] hovered`)

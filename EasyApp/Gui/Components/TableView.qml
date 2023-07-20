@@ -91,7 +91,6 @@ ListView {
         id: mouseHoverHandler
         acceptedDevices: PointerDevice.AllDevices
         blocking: false
-        cursorShape: Qt.PointingHandCursor
         onHoveredChanged: {
             if (hovered) {
                 //console.error(`${listView} [TableView.qml] hovered`)

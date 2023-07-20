@@ -126,10 +126,10 @@ T.Button {
         id: mouseHoverHandler
         acceptedDevices: PointerDevice.AllDevices
         blocking: false
-        cursorShape: Qt.UpArrowCursor
+        cursorShape: Qt.PointingHandCursor
         onHoveredChanged: {
             if (hovered) {
-                //console.error(`${control} [TableViewDoubleLabelControl.qml] hovered`)
+                console.error(`${control} [TableViewTwoRowsAdvancedLabel.qml] hovered`)
             }
         }
     }
@@ -139,7 +139,7 @@ T.Button {
         text: control.ToolTip.text
         visible: text !== "" &&
                  valueLabel.truncated &&
-                 control.parent.parent.mouseArea.containsMouse &&
+                 mouseHoverHandler.hovered &&
                  EaGlobals.Vars.showToolTips
     }
     // ToolTip

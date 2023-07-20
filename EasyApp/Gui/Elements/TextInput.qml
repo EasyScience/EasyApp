@@ -70,6 +70,7 @@ T.TextField {
     MouseArea {
         id: mouseArea
         anchors.fill: control
+        cursorShape: undefined  // prevents changing the cursor
         hoverEnabled: false
         onPressed: (mouse) => mouse.accepted = false
     }
@@ -86,4 +87,5 @@ T.TextField {
             }
         }
     }
+
 }

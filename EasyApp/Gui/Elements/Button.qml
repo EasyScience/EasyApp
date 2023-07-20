@@ -47,19 +47,33 @@ T.Button {
     MouseArea {
         id: mouseArea
         anchors.fill: control
-        hoverEnabled: true
-        cursorShape: control.checked ?
-                         Qt.PointingHandCursor :
-                         Qt.ArrowCursor
+        cursorShape: undefined  // prevents changing the cursor
+        hoverEnabled: false
         onPressed: (mouse) => mouse.accepted = false
     }
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: control.checked ?
+                         Qt.PointingHandCursor :
+                         Qt.PointingHandCursor //ArrowCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [TextInput.qml] hovered`)
+            }
+        }
+    }
+
 
     // Logic
 
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (mouseArea.containsMouse || control.checked || control.down)
+        if (mouseHoverHandler.hovered || control.checked || control.down)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }

@@ -34,7 +34,7 @@ T.TextField {
     color: warned ?
                EaStyle.Colors.red :
                !enabled || readOnly ? EaStyle.Colors.themeForegroundDisabled :
-                     mouseArea.containsMouse || control.activeFocus ?
+                     mouseHoverHandler.hovered || control.activeFocus ?
                           EaStyle.Colors.themeForegroundHovered :
                           EaStyle.Colors.themeForeground
     Behavior on color { EaAnimations.ThemeChange {} }
@@ -66,18 +66,22 @@ T.TextField {
     }
 
     background: Rectangle {
-        color: control.activeFocus ?
-                   EaStyle.Colors.appBarComboBoxBackgroundHovered :
-                        control.hovered ?
-                            EaStyle.Colors.appBarComboBoxBackgroundHovered :
-                            EaStyle.Colors.appBarComboBoxBackground
+        color: !enabled || readOnly ?
+                   EaStyle.Colors.appBarComboBoxBackground :
+                       control.activeFocus ?
+                       EaStyle.Colors.appBarComboBoxBackgroundHovered :
+                            control.hovered ?
+                                EaStyle.Colors.appBarComboBoxBackgroundHovered :
+                                EaStyle.Colors.appBarComboBoxBackground
         Behavior on color { EaAnimations.ThemeChange {} }
 
-        border.color: control.activeFocus ?
-                          EaStyle.Colors.themeForegroundHovered :
-                                control.hovered ?
-                                    EaStyle.Colors.themeForegroundHovered :
-                                    EaStyle.Colors.appBarComboBoxBorder
+        border.color: !enabled || readOnly ?
+                          EaStyle.Colors.themeForegroundDisabled :
+                          control.activeFocus ?
+                              EaStyle.Colors.themeForegroundHovered :
+                                    control.hovered ?
+                                        EaStyle.Colors.themeForegroundHovered :
+                                        EaStyle.Colors.appBarComboBoxBorder
         Behavior on border.color { EaAnimations.ThemeChange {} }
     }
 
@@ -85,7 +89,21 @@ T.TextField {
     MouseArea {
         id: mouseArea
         anchors.fill: control
-        hoverEnabled: true
+        cursorShape: undefined  // prevents changing the cursor
+        hoverEnabled: false
         onPressed: (mouse) => mouse.accepted = false
+    }
+
+    // HoverHandler to react on hover events
+    HoverHandler {
+        id: mouseHoverHandler
+        acceptedDevices: PointerDevice.AllDevices
+        blocking: false
+        cursorShape: !enabled || readOnly ? Qt.ArrowCursor : Qt.IBeamCursor
+        onHoveredChanged: {
+            if (hovered) {
+                //console.error(`${control} [TextInput.qml] hovered`)
+            }
+        }
     }
 }

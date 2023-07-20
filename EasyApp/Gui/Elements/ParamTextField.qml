@@ -95,10 +95,12 @@ EaElements.TextField {
     }
     // Units
 
-    // Mouse area
+    //Mouse area to react on click events
     MouseArea {
         anchors.fill: parent
         acceptedButtons: Qt.RightButton
+        cursorShape: undefined  // prevents changing the cursor
+        hoverEnabled: false
         onClicked: (mouse) => {
             if (mouse.button === Qt.RightButton) {
                 contextMenu.popup()
@@ -177,5 +179,4 @@ EaElements.TextField {
         // Menu
     }
     // Mouse area
-
 }

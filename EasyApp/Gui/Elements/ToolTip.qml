@@ -20,7 +20,7 @@ T.ToolTip {
     property int borderRadius: 0.25 * EaStyle.Sizes.fontPixelSize
     property int textFormat: Text.PlainText //Text.RichText
 
-    property int enterAnimationDuration: 500
+    property int enterAnimationDuration: 1000
     property int exitAnimationDuration: 500
 
     property int guidesCount: 0

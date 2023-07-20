@@ -146,10 +146,25 @@ T.GroupBox {
 
         //Mouse area to react on click events
         MouseArea {
-            id: rippleArea
+            id: mouseArea
             anchors.fill: parent
-            hoverEnabled: true
+            hoverEnabled: false
+            cursorShape: undefined  // prevents changing the cursor
             onClicked: titleArea.clicked()
+            //onPressed: (mouse) => mouse.accepted = false
+        }
+
+        // HoverHandler to react on hover events
+        HoverHandler {
+            id: mouseHoverHandler
+            acceptedDevices: PointerDevice.AllDevices
+            blocking: false
+            cursorShape: Qt.PointingHandCursor
+            onHoveredChanged: {
+                if (hovered) {
+                    //console.error(`${control} [TextInput.qml] hovered`)
+                }
+            }
         }
 
         // Folding-unfolding animation on title area clicked
@@ -186,7 +201,7 @@ T.GroupBox {
     function foregroundColor() {
         if (!control.enabled)
             return EaStyle.Colors.themeForegroundDisabled
-        if (rippleArea.containsMouse || !control.collapsed)
+        if (mouseHoverHandler.hovered || !control.collapsed)
             return EaStyle.Colors.themeForegroundHovered
         return EaStyle.Colors.themeForeground
     }
