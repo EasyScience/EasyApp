@@ -34,7 +34,7 @@ QtObject {
     property int groupBoxSpacing: fontPixelSize
     property int sideBarPadding: fontPixelSize
     property int sideBarContentWidth: sideBarWidth - groupBoxSpacing - sideBarPadding
-    property int sideBarButtonHeight: Math.round(fontPixelSize * 2.5)
+    property int sideBarButtonHeight: Math.round(fontPixelSize * 2.75)
 
     // Sidebar Table
     property int tableColumnSpacing: Math.round(fontPixelSize * 0.25)  // Math.round(fontPixelSize * 0.5)

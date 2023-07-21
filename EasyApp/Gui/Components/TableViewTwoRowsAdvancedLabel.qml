@@ -129,7 +129,7 @@ T.Button {
         cursorShape: Qt.PointingHandCursor
         onHoveredChanged: {
             if (hovered) {
-                console.error(`${control} [TableViewTwoRowsAdvancedLabel.qml] hovered`)
+                //console.error(`${control} [TableViewTwoRowsAdvancedLabel.qml] hovered`)
             }
         }
     }
