@@ -43,7 +43,7 @@ EaElements.Dialog {
 
                 implicitWidth: inputFieldWidth
                 horizontalAlignment: TextInput.AlignLeft
-                validator: RegularExpressionValidator { regularExpression: /^[a-zA-Z][a-zA-Z0-9_-\.]{1,30}$/ }
+                validator: RegularExpressionValidator { regularExpression: /^[a-zA-Z][a-zA-Z0-9_\-\.]{1,30}$/ }
                 placeholderText: qsTr("Enter project name here")
             }
         }
