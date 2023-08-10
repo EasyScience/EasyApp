@@ -70,11 +70,12 @@ QtObject {
     property int paramNameFormat: 0
     enum ParamNameFormats {
         ShortestWithIconsAndPrettyLabels = 0,
-        ReducedWithIconsAndPrettyLabels,
-        FullWithIconsAndPrettyLabels,
-        FullWithPrettyLabels,
-        FullWithLabels,
-        FullWithIndices }
+        //ReducedWithIconsAndPrettyLabels,
+        //FullWithIconsAndPrettyLabels,
+        //FullWithPrettyLabels,
+        //FullWithLabels,
+        //FullWithIndices,
+        PlainFullWithLabels }
 
     // Chart
     property string currentLib1d: "QtCharts"
