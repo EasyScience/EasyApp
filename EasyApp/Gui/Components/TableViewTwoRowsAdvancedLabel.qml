@@ -58,7 +58,7 @@ T.Button {
                     font.family: EaStyle.Fonts.iconsFamily
                     font.pixelSize: control.font.pixelSize
 
-                    color: control.checked || mouseHoverHandler.hovered ?
+                    color: control.checked ?  // || mouseHoverHandler.hovered ?
                                EaStyle.Colors.themeForegroundHovered :
                                EaStyle.Colors.themeForeground
                     Behavior on color { EaAnimations.ThemeChange {} }
@@ -75,7 +75,7 @@ T.Button {
                     font.family: control.font.family
                     font.pixelSize: control.font.pixelSize
 
-                    color: control.checked || mouseHoverHandler.hovered ?
+                    color: control.checked ?  // || mouseHoverHandler.hovered ?
                                EaStyle.Colors.themeForegroundHovered :
                                EaStyle.Colors.themeForeground
                     Behavior on color { EaAnimations.ThemeChange {} }
@@ -95,6 +95,7 @@ T.Button {
                 verticalAlignment: Text.AlignVCenter
                 elide: control.elide
 
+                textFormat: Text.RichText
                 font.family: control.font.family
                 font.pixelSize: control.font.pixelSize
 

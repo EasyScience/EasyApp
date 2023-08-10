@@ -19,6 +19,7 @@ EaElements.ComboBox {
                              'fit': false,
                              'name': 'default',
                              'prettyName': '',
+                             'title': '',
                              'units': '',
                              'url': '',
                              'cifDict': ''}
@@ -45,6 +46,7 @@ EaElements.ComboBox {
     property bool fit: parameter.fit ?? false
     property string name: parameter.name ?? 'default'
     property string prettyName: parameter.prettyName ?? ''
+    property string title: parameter.title ?? ''
     property string units: parameter.units ?? ''
     property string url: parameter.url ?? ''
     property string cifDict: parameter.cifDict ?? ''
@@ -53,7 +55,7 @@ EaElements.ComboBox {
 
     enabled: model.length
 
-    topInset: control.prettyName === '' ? 0 : EaStyle.Sizes.fontPixelSize * 1.5
+    topInset: control.title === '' ? 0 : EaStyle.Sizes.fontPixelSize * 1.5
     topPadding: topInset + padding
 
     width: (EaStyle.Sizes.sideBarContentWidth -
@@ -74,7 +76,7 @@ EaElements.ComboBox {
         color: EaStyle.Colors.themeForegroundMinor
 
         font.bold: false
-        text: control.prettyName
+        text: control.title
     }
     // Title
 

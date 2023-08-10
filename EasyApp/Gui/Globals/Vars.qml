@@ -66,6 +66,16 @@ QtObject {
         SummaryPageIndex = 5
     }
 
+    // Parameter name formats
+    property int paramNameFormat: 0
+    enum ParamNameFormats {
+        ShortestWithIconsAndPrettyLabels = 0,
+        ReducedWithIconsAndPrettyLabels,
+        FullWithIconsAndPrettyLabels,
+        FullWithPrettyLabels,
+        FullWithLabels,
+        FullWithIndices }
+
     // Chart
     property string currentLib1d: "QtCharts"
     property bool useOpenGL: false
@@ -82,6 +92,12 @@ QtObject {
         location: settingsFile // Gives WASM error on run
         category: 'Preferences.Develop'
         property alias loggingLevel: object.loggingLevel
+    }
+
+    property var settings3: Settings {
+        location: settingsFile // Gives WASM error on run
+        category: 'Pages.Analysis'
+        property alias paramNameFormat: object.paramNameFormat
     }
 
 }

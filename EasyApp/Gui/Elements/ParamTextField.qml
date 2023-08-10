@@ -3,8 +3,8 @@ import QtQuick.Templates as T
 import QtQuick.Controls
 import QtQuick.Controls.impl
 
+import EasyApp.Gui.Logic as EaLogic
 import EasyApp.Gui.Style as EaStyle
-import EasyApp.Gui.Animations as EaAnimations
 import EasyApp.Gui.Elements as EaElements
 
 
@@ -18,24 +18,27 @@ EaElements.TextField {
                              'fit': false,
                              'name': 'default',
                              'prettyName': '',
+                             'title': '',
                              'units': '',
                              'url': '',
                              'cifDict': ''}
 
     property var value: {
         if (typeof parameter.value === 'undefined') {
-            return 0
+            return ''
         } else if (typeof parameter.value === 'number') {
-            return parseFloat(parameter.value.toFixed(4))
+            return EaLogic.Utils.toErrSinglePrecision(parameter.value, parameter.error)
         } else {
             return parameter.value
         }
     }
     property var error: {
         if (typeof parameter.error === 'undefined') {
-            return 0
+            return ''
+        } else if (typeof parameter.value === 'number') {
+            return EaLogic.Utils.toSinglePrecision(parameter.error)
         } else {
-            return parseFloat(parameter.error.toFixed(4))
+            return parameter.error
         }
     }
 
@@ -43,6 +46,7 @@ EaElements.TextField {
     property bool fit: parameter.fit ?? false
     property string name: parameter.name ?? 'default'
     property string prettyName: parameter.prettyName ?? ''
+    property string title: parameter.title ?? ''
     property string units: parameter.units ?? ''
     property string url: parameter.url ?? ''
     property string cifDict: parameter.cifDict ?? ''
@@ -52,7 +56,7 @@ EaElements.TextField {
     readOnly: !parameter.enabled ?? false
 
     rightPadding: unitsPlaceholder.width
-    topInset: control.prettyName === '' ? 0 : EaStyle.Sizes.fontPixelSize * 1.5
+    topInset: control.title === '' ? 0 : EaStyle.Sizes.fontPixelSize * 1.5
     topPadding: topInset + padding
 
     width: (EaStyle.Sizes.sideBarContentWidth -
@@ -72,7 +76,7 @@ EaElements.TextField {
         color: EaStyle.Colors.themeForegroundMinor
 
         font.bold: false
-        text: control.prettyName
+        text: control.title
     }
     // Title
 
@@ -140,7 +144,7 @@ EaElements.TextField {
                     text: 'value'
                 }
                 EaElements.Label {
-                    visible: control.fittable && control.error !== 0
+                    visible: control.fittable && control.error !== ''
                     color: EaStyle.Colors.themeForegroundMinor
                     text: 'error'
                 }
@@ -163,7 +167,7 @@ EaElements.TextField {
                     font.bold: control.fit
                 }
                 EaElements.Label {
-                    visible: control.fittable && control.error !== 0
+                    visible: control.fittable && control.error !== ''
                     text: control.error
                 }
                 EaElements.CheckBox {

@@ -4,7 +4,7 @@ import QtQuick
 import QtQuick.Controls.Material
 import QtCore
 
-import EasyApp.Gui.Globals as EaGlobals
+///import EasyApp.Gui.Globals as EaGlobals
 
 
 QtObject {
@@ -123,7 +123,7 @@ QtObject {
     // Persistent settings
 
     property var settings: Settings {
-        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
+///        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
         category: 'Preferences.Appearance'
         property alias theme: object.theme
     }

@@ -130,7 +130,9 @@ ListView {
             if (item instanceof TableViewDelegate) {
                 for (let columnIndex in item.children[0].children) {
                     item.children[0].children[columnIndex].width = headerLabelItems[columnIndex].width
-                    item.children[0].children[columnIndex].horizontalAlignment = headerLabelItems[columnIndex].horizontalAlignment
+                    if (typeof item.children[0].children[columnIndex].horizontalAlignment !== 'undefined') {
+                        item.children[0].children[columnIndex].horizontalAlignment = headerLabelItems[columnIndex].horizontalAlignment
+                    }
                 }
             }
         }

@@ -3,12 +3,15 @@ import QtQuick.Templates as T
 import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 
+import EasyApp.Gui.Logic as EaLogic
 import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Animations as EaAnimations
 import EasyApp.Gui.Elements as EaElements
 
 T.Slider {
     id: control
+
+    property alias toolTipText: toolTip.text
 
     implicitWidth: Math.max(implicitBackgroundWidth + leftInset + rightInset,
                             implicitHandleWidth + leftPadding + rightPadding)
@@ -26,8 +29,10 @@ T.Slider {
         handleHovered: control.hovered
 
         EaElements.ToolTip {
+            id: toolTip
+
             visible: slider.pressed || slider.hovered
-            text: control.value.toFixed(4)
+            //text: EaLogic.Utils.toDefaultPrecision(control.value)
         }
     }
 

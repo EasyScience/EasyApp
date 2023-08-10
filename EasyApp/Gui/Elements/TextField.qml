@@ -33,10 +33,13 @@ T.TextField {
 
     color: warned ?
                EaStyle.Colors.red :
-               !enabled || readOnly ? EaStyle.Colors.themeForegroundDisabled :
-                     mouseHoverHandler.hovered || control.activeFocus ?
-                          EaStyle.Colors.themeForegroundHovered :
-                          EaStyle.Colors.themeForeground
+               !enabled ?
+                   EaStyle.Colors.themeForegroundDisabled :
+                       readOnly ?
+                           EaStyle.Colors.themeForegroundMinor :
+                           mouseHoverHandler.hovered || control.activeFocus ?
+                               EaStyle.Colors.themeForegroundHovered :
+                               EaStyle.Colors.themeForeground
     Behavior on color { EaAnimations.ThemeChange {} }
 
     selectionColor: EaStyle.Colors.themeAccent
@@ -66,22 +69,14 @@ T.TextField {
     }
 
     background: Rectangle {
-        color: !enabled || readOnly ?
-                   EaStyle.Colors.appBarComboBoxBackground :
-                       control.activeFocus ?
-                       EaStyle.Colors.appBarComboBoxBackgroundHovered :
-                            control.hovered ?
-                                EaStyle.Colors.appBarComboBoxBackgroundHovered :
-                                EaStyle.Colors.appBarComboBoxBackground
+        color: enabled && !readOnly && (control.activeFocus || control.hovered) ?
+                   EaStyle.Colors.appBarComboBoxBackgroundHovered :
+                   EaStyle.Colors.appBarComboBoxBackground
         Behavior on color { EaAnimations.ThemeChange {} }
 
-        border.color: !enabled || readOnly ?
-                          EaStyle.Colors.themeForegroundDisabled :
-                          control.activeFocus ?
-                              EaStyle.Colors.themeForegroundHovered :
-                                    control.hovered ?
-                                        EaStyle.Colors.themeForegroundHovered :
-                                        EaStyle.Colors.appBarComboBoxBorder
+        border.color: enabled && !readOnly && (control.activeFocus || control.hovered) ?
+                          EaStyle.Colors.themeForegroundHovered :
+                          EaStyle.Colors.appBarComboBoxBorder
         Behavior on border.color { EaAnimations.ThemeChange {} }
     }
 
