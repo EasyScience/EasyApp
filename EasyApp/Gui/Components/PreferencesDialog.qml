@@ -205,6 +205,7 @@ EaElements.Dialog {
 
             EaElements.ComboBox {
                 id: currentLib1dSelector
+                enabled: false
                 model: ['Plotly', 'QtCharts']
                 //onActivated: EaGlobals.Vars.currentLib1d = currentValue
                 onActivated: EaGlobals.Vars.currentLib1d === currentValue ?
