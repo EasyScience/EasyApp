@@ -83,11 +83,11 @@ QtObject {
 
     // Persistent settings
 
-    property var settings1: Settings {
-        location: settingsFile // Gives WASM error on run
-        category: 'Preferences.Appearance'
-        property alias currentLib1d: object.currentLib1d
-    }
+    //property var settings1: Settings {
+    //    location: settingsFile // Gives WASM error on run
+    //    category: 'Preferences.Appearance'
+    //    property alias currentLib1d: object.currentLib1d
+    //}
 
     property var settings2: Settings {
         location: settingsFile // Gives WASM error on run
