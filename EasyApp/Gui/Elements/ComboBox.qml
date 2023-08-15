@@ -66,7 +66,7 @@ T.ComboBox {
                        model[control.textRole]) :
                   modelData)
                 .split('$TEXT_COLOR').join(EaStyle.Colors.themeForegroundMinor)
-                .split('$ICON_COLOR').join(EaStyle.Colors.isDarkTheme ? Qt.darker(EaStyle.Colors.themeForegroundMinor, 1.2) : Qt.lighter(EaStyle.Colors.themeForegroundMinor, 1.2))
+                .split('$ICON_COLOR').join(EaStyle.Colors.isDarkPalette ? Qt.darker(EaStyle.Colors.themeForegroundMinor, 1.2) : Qt.lighter(EaStyle.Colors.themeForegroundMinor, 1.2))
                 .split('$ICONS_FAMILY').join(EaStyle.Fonts.iconsFamily)
 
         ///Material.foreground: control.currentIndex === index ? parent.Material.accent : parent.Material.foreground
@@ -103,7 +103,7 @@ T.ComboBox {
                    control.editText :
                    control.displayText)
         .split('$TEXT_COLOR').join(EaStyle.Colors.themeForegroundMinor)
-        .split('$ICON_COLOR').join(EaStyle.Colors.isDarkTheme ? Qt.darker(EaStyle.Colors.themeForegroundMinor, 1.2) : Qt.lighter(EaStyle.Colors.themeForegroundMinor, 1.2))
+        .split('$ICON_COLOR').join(EaStyle.Colors.isDarkPalette ? Qt.darker(EaStyle.Colors.themeForegroundMinor, 1.2) : Qt.lighter(EaStyle.Colors.themeForegroundMinor, 1.2))
         .split('$ICONS_FAMILY').join(EaStyle.Fonts.iconsFamily)
 
         enabled: control.editable
