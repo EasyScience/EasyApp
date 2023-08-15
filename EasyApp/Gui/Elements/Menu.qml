@@ -4,6 +4,8 @@ import QtQuick.Controls.Material
 import QtQuick.Controls.Material.impl
 import QtQuick.Window
 
+import EasyApp.Gui.Style as EaStyle
+
 T.Menu {
     id: control
 
@@ -51,7 +53,7 @@ T.Menu {
         implicitHeight: control.Material.menuItemHeight
 
         radius: 3
-        color: control.Material.dialogColor
+        color: EaStyle.Colors.themeBackground
 
         layer.enabled: control.Material.elevation > 0
         layer.effect: ElevationEffect {
