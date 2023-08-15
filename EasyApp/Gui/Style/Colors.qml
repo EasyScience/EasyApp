@@ -4,7 +4,7 @@ import QtQuick
 import QtQuick.Controls.Material
 import QtCore
 
-///import EasyApp.Gui.Globals as EaGlobals
+import EasyApp.Gui.Globals as EaGlobals
 
 
 QtObject {
@@ -13,21 +13,10 @@ QtObject {
     // Theme
     enum Themes { LightTheme = 0, DarkTheme, SystemTheme }
     property int theme: Colors.Themes.SystemTheme
+    onThemeChanged: console.debug(`App color theme: ${theme} (0 - light, 1 - dark, 2 - system)`)
 
     property int systemColorScheme: -1
-    onSystemColorSchemeChanged: {
-        if (theme === Colors.Themes.SystemTheme) {
-            if (systemColorScheme === Qt.ColorScheme.Light) {
-                theme = Colors.Themes.LightTheme
-            } else if (systemColorScheme === Qt.ColorScheme.Dark) {
-                theme = Colors.Themes.DarkTheme
-            } else if (systemColorScheme === Qt.ColorScheme.Unknown) {
-                theme = Colors.Themes.LightTheme
-            } else {
-                theme = Colors.Themes.LightTheme
-            }
-        }
-    }
+    onSystemColorSchemeChanged: console.debug(`System color scheme: ${systemColorScheme} (0 - unknown, 1 - light, 2 - dark)`)
 
     property bool isDarkPalette: {
         if (theme === Colors.Themes.DarkTheme) {
@@ -144,7 +133,7 @@ QtObject {
     // Persistent settings
 
     property var settings: Settings {
-///        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
+        location: EaGlobals.Vars.settingsFile // Gives WASM error on run
         category: 'Preferences.Appearance'
         property alias theme: object.theme
     }
