@@ -46,7 +46,7 @@ QtObject {
     property var updater
 
     // Logging
-    property string loggingLevel: "Debug"
+    property string loggingLevel: "Error"
 
     // Screenshots control
     property bool saveScreenshotsRunning: false

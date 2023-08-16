@@ -33,7 +33,6 @@ class Logger:
         self._count = 0
         self._level = self._getLevelFromSettings()
         self._getLevelFromSettings()
-        #self._timestamp = QTime.currentTime().toString("hh:mm:ss.zzz")
         self._startTime = time.time()
 
         #self._consoleFormat = logging.Formatter('{asctime}.{msecs:03.0f} {message}', datefmt='%H:%M:%S', style='{')
@@ -89,7 +88,7 @@ class Logger:
 
     def _getLevelFromSettings(self):
         # NEED FIX: Duplication from main.py
-        appName = 'EasyExample'
+        appName = 'EasyDiffraction'  # NEED FIX
         homeDirPath = pathlib.Path.home()
         settingsIniFileName = 'settings.ini'
         settingsIniFilePath = str(homeDirPath.joinpath(f'.{appName}', settingsIniFileName))
