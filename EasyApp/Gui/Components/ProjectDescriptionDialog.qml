@@ -14,8 +14,9 @@ EaElements.Dialog {
     property alias projectName: projectNameField.text
     property alias projectDescription: projectDescriptionField.text
 
-    property string projectParentDirectory: ""
     property string projectLocation: ""
+    property string projectParentDirectory: ""
+    property string defaultProjectParentDirectory: projectLocation
 
     property int inputFieldWidth: EaStyle.Sizes.fontPixelSize * 35
 
@@ -81,10 +82,9 @@ EaElements.Dialog {
                 horizontalAlignment: TextInput.AlignLeft
 
                 placeholderText: qsTr("Enter project location here")
-                text: EaLogic.Utils.urlToLocalFile(projectParentDirectory) +
-                      EaLogic.Utils.osPathSep() +
-                      projectName
-                      //projectName.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase()).split(' ').join('')
+                text: projectParentDirectory ?
+                          EaLogic.Utils.urlToLocalFile(projectParentDirectory) + EaLogic.Utils.osPathSep() + projectName :
+                          defaultProjectParentDirectory + EaLogic.Utils.osPathSep() + projectName
 
                 EaElements.ToolButton {
                     id: chooseParentDirectoryButton
@@ -117,7 +117,7 @@ EaElements.Dialog {
     Settings {
         location: EaGlobals.Vars.settingsFile // Gives WASM error on run
         category: 'Project.Location'
-        property alias defaultProjectParentDirectory: dialog.projectParentDirectory
+        property alias projectParentDirectory: dialog.projectParentDirectory
     }
 
 }
