@@ -4,8 +4,10 @@ import re
 import urllib.request
 import sys
 
-from PySide2.QtCore import QObject, QProcess, Property, Signal, Slot
-from PySide2.QtWidgets import QApplication
+from PySide6.QtCore import QObject, QProcess, Property, Signal, Slot
+from PySide6.QtWidgets import QApplication
+
+from EasyApp.Logic.Logging import console
 
 
 class Updater(QObject):
@@ -44,7 +46,7 @@ class Updater(QObject):
 
     @Slot()
     def checkUpdate(self):
-        print(f"* Updater checkUpdate called")
+        console.debug(f"Updater checkUpdate called")
 
         if self._process.state() == QProcess.Running:
             return
@@ -57,7 +59,7 @@ class Updater(QObject):
         """
         Start the external maintenance tool as detached process
         """
-        print(f"* Updater installUpdate called")
+        console.debug(f"Updater installUpdate called")
 
         if self._process.state() == QProcess.Running:
             return
@@ -109,7 +111,7 @@ class Updater(QObject):
         return process
 
     def _onStarted(self):
-        print("* Updater process started")
+        console.debug("Updater process started")
         self._web_version = ""
         self._web_date = ""
         self._error_message = ""
@@ -118,7 +120,7 @@ class Updater(QObject):
         self.errorMessageChanged.emit()
 
     def _onFinished(self, exit_code: int, exit_status: QProcess.ExitStatus):
-        print(f"* Updater process finished with exit code: '{exit_code}' and exit status: '{exit_status}'")
+        console.debug(f"Updater process finished with exit code: '{exit_code}' and exit status: '{exit_status}'")
 
         # Get updater process output and error, if any
         std_out = self._process.readAllStandardOutput().data().decode('utf-8')
@@ -126,13 +128,13 @@ class Updater(QObject):
 
         # Debug printing
         if std_out:
-            print(f"* Updater standard output:\n{std_out}")
+            console.debug(f"Updater standard output:\n{std_out}")
         if std_err:
-            print(f"* Updater standard error:\n{std_err}")
+            console.debug(f"Updater standard error:\n{std_err}")
 
         # Something went wrong
         if exit_code != 0 or exit_status != QProcess.ExitStatus.NormalExit:
-            print(f"* Updater process failed")
+            console.debug(f"Updater process failed")
             self._error_message = f"Updater process finished with\n* exit code: {exit_code} \n* exit status: {exit_status}"
             self.errorMessageChanged.emit()
             if not self.silentCheck:
@@ -140,7 +142,7 @@ class Updater(QObject):
             return
 
         # Process finished succesfully
-        print(f"* Updater process succeeded; checking for updates...")
+        console.debug(f"Updater process succeeded; checking for updates...")
 
         # Check if a new version of any of the app component is found
         pattern = r'<update.*version="([A-Za-z0-9.-]*)".*/>'
@@ -148,13 +150,13 @@ class Updater(QObject):
 
         # No new versions are found
         if not matches:
-            print("* Updater did not find any updates")
+            console.debug("Updater did not find any updates")
             if not self.silentCheck:
                 self.updateNotFound.emit()
             return
 
         # New version is found
-        print(f"* Updater found component(s) with new version(s): {matches}")
+        console.debug(f"Updater found component(s) with new version(s): {matches}")
         self._web_version = matches[0]  # TODO: Update this if multiple components are available
         self._web_date = self._getWebDate()
         self._release_notes = self._getReleaseNotes()
@@ -166,7 +168,7 @@ class Updater(QObject):
         self.updateFound.emit()
 
     def _onErrorOccurred(self, error):
-        print(f"* Updater process got error: '{error}'")
+        console.debug(f"Updater process got error: '{error}'")
         self._error_message = error
         self.errorMessageChanged.emit()
         if not self.silentCheck:
@@ -177,7 +179,7 @@ class Updater(QObject):
         try:
             return pathlib.Path(path).read_text()
         except Exception as exception:
-            print(f"* Failed to read local file {path} with exception {exception}")
+            console.debug(f"Failed to read local file {path} with exception {exception}")
             return ""
 
     def _getWebChangelog(self):
@@ -186,7 +188,7 @@ class Updater(QObject):
             with urllib.request.urlopen(url) as f:
                 return f.read().decode('utf-8')
         except Exception as exception:
-            print(f"* Failed to read web file {url} with exception {exception}")
+            console.debug(f"Failed to read web file {url} with exception {exception}")
             return ""
 
     def _getReleaseNotes(self):
