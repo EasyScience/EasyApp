@@ -274,6 +274,7 @@ EaElements.Dialog {
             rowSpacing: EaStyle.Sizes.fontPixelSize
             verticalItemAlignment: Grid.AlignVCenter
 
+            // Zoom
             EaElements.Label {
                 text: qsTr("Zoom") + ":"
             }
@@ -287,30 +288,23 @@ EaElements.Dialog {
                     EaStyle.Sizes.defaultScale = parseInt(currentText)
                 }
             }
+            // Zoom
 
-            /*
+            // Language
             EaElements.Label {
                 text: qsTr("Language") + ":"
             }
 
             EaElements.ComboBox {
-                id: languageSelector
-                model: XmlListModel {
-                    xml: EaGlobals.Vars.translator.languagesAsXml()
-                    query: "/root/item"
-                    XmlRole {
-                        name: "name"
-                        query: "name/string()"
-                    }
-                    onStatusChanged: {
-                        if (status === XmlListModel.Ready) {
-                            languageSelector.currentIndex = EaGlobals.Vars.translator.defaultLanguageIndex()
-                        }
-                    }
-                }
-               onActivated: EaGlobals.Vars.translator.selectLanguage(currentIndex)
+                valueRole: "code"
+                textRole: "name"
+
+                model: EaGlobals.Vars.translator.languages
+
+                onActivated: EaGlobals.Vars.translator.selectLanguage(currentIndex)
+                Component.onCompleted: currentIndex = EaGlobals.Vars.translator.defaultLanguageIndex
             }
-            */
+            // Language
 
         }
 

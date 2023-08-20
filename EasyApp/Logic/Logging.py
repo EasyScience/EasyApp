@@ -80,7 +80,7 @@ class Logger:
 
     def _print(self, msg, level, category, funcName, filePath, lineNo):
         msg = msg.replace('file://', '')
-        rest = Logger.rest(msg, 100)
+        rest = Logger.rest(msg, 105)
         msg = self._formattedConsoleMsg(msg, level, category, funcName, filePath, lineNo)
         self._logger.debug(msg)
         if rest:

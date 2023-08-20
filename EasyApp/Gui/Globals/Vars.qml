@@ -18,8 +18,8 @@ QtObject {
                                              _projectConfig :
                                              EaLogic.ProjectConfig.projectConfig()
 
-    readonly property var translator: typeof _translator !== "undefined" && _translator !== null ?
-                                          _translator :
+    readonly property var translator: typeof pyTranslator !== "undefined" && pyTranslator !== null ?
+                                          pyTranslator :
                                           new EaLogic.Translate.Translator()
 
     // Settings
