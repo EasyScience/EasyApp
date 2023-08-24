@@ -17,9 +17,10 @@ EaElements.ComboBox {
                              'enabled': true,
                              'fittable': false,
                              'fit': false,
+                             'category': '',
                              'name': 'default',
                              'prettyName': '',
-                             'title': '',
+                             'shortPrettyName': '',
                              'units': '',
                              'url': '',
                              'cifDict': ''}
@@ -44,9 +45,10 @@ EaElements.ComboBox {
 
     property bool fittable: parameter.fittable ?? false
     property bool fit: parameter.fit ?? false
+    property string category: parameter.category ?? ''
     property string name: parameter.name ?? 'default'
     property string prettyName: parameter.prettyName ?? ''
-    property string title: parameter.title ?? ''
+    property string shortPrettyName: parameter.shortPrettyName ?? ''
     property string units: parameter.units ?? ''
     property string url: parameter.url ?? ''
     property string cifDict: parameter.cifDict ?? ''
@@ -55,7 +57,7 @@ EaElements.ComboBox {
 
     enabled: model.length
 
-    topInset: control.title === '' ? 0 : EaStyle.Sizes.fontPixelSize * 1.5
+    topInset: control.shortPrettyName === '' ? 0 : EaStyle.Sizes.fontPixelSize * 1.5
     topPadding: topInset + padding
 
     width: (EaStyle.Sizes.sideBarContentWidth -
@@ -76,7 +78,7 @@ EaElements.ComboBox {
         color: EaStyle.Colors.themeForegroundMinor
 
         font.bold: false
-        text: control.title
+        text: control.shortPrettyName
     }
     // Title
 
@@ -136,11 +138,10 @@ EaElements.ComboBox {
 
                 // Content
                 EaElements.Button {
-                    text: control.name
+                    text: `${control.category}.${control.name}`
                     checked: true
                     onClicked: Qt.openUrlExternally(control.url)
                 }
-
                 EaElements.Label {
                     text: control.value
                     font.bold: control.fit

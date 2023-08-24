@@ -15,7 +15,7 @@ EaElements.TextInput {
                              'enabled': true,
                              'fittable': false,
                              'fit': false,
-                             'loopName': '',
+                             'category': '',
                              'name': 'default',
                              'prettyName': '',
                              'title': '',
@@ -45,7 +45,7 @@ EaElements.TextInput {
     property int idx: parameter.idx ?? 0
     property bool fittable: parameter.fittable ?? false
     property bool fit: parameter.fit ?? false
-    property string loopName: parameter.loopName ?? ''
+    property string category: parameter.category ?? ''
     property string name: parameter.name ?? 'default'
     property string prettyName: parameter.prettyName ?? ''
     property string title: parameter.title ?? ''
@@ -126,11 +126,10 @@ EaElements.TextInput {
 
                 // Content
                 EaElements.Button {
-                    text: `${control.loopName}${control.name}`
+                    text: `${control.category}.${control.name}`
                     checked: true
                     onClicked: Qt.openUrlExternally(control.url)
                 }
-
                 EaElements.Label {
                     text: control.value
                     font.bold: control.fit

@@ -75,6 +75,7 @@ QtObject {
         //FullWithPrettyLabels,
         //FullWithLabels,
         //FullWithIndices,
+        PlainShortWithLabels,
         PlainFullWithLabels }
 
     // Chart
