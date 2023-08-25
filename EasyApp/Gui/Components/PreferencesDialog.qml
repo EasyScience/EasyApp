@@ -120,11 +120,13 @@ EaElements.Dialog {
             }
 
             EaElements.Label {
-               text: qsTr("Enable user guides") + ":"
+                enabled: false
+                text: qsTr("Enable user guides") + ":"
             }
 
             EaElements.CheckBox {
                 id: userGuidesCheckBox
+                enabled: false
                 checked: EaGlobals.Vars.showUserGuides
                 onCheckedChanged: EaGlobals.Vars.showUserGuides = checked
             }
@@ -200,6 +202,7 @@ EaElements.Dialog {
             EaElements.Label { text: ' ' }
 
             EaElements.Label {
+                enabled: false
                 text: qsTr("1D plotting") + ":"
             }
 
