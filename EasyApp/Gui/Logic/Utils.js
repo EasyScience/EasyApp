@@ -154,31 +154,31 @@ function toSamePrecision(x, y) {
 // https://gist.github.com/davidselassie/3838522
 
 function roundAway(x) {
-  // Rounds a number to the next integer away from 0.
+  // Rounds a number to the next integer away from 0
   //
   // Args:
-  //   x - Number to round.
+  //   x - Number to round
   // Returns:
-  //   rounded - Next integer from x away from 0.
+  //   rounded - Next integer from x away from 0
 
   if (x >= 0) {
-    return Math.ceil(x);
+    return Math.ceil(x)
   } else {
-    return Math.floor(x);
+    return Math.floor(x)
   }
 }
 
 function roundToIndex(x, index) {
-  // Rounds a number to a given index around the decimal point.
+  // Rounds a number to a given index around the decimal point
   //
   // Args:
-  //   x - Number to round.
-  //   index - Index of the least significan digit; 0 is the decimal point.
+  //   x - Number to round
+  //   index - Index of the least significan digit; 0 is the decimal point
   // Returns:
-  //   rounded - Number rounded using the least signficant digit.
+  //   rounded - Number rounded using the least signficant digit
 
-  var power = Math.pow(10, -index);
-  return Math.round(x * power) / power;
+  var power = Math.pow(10, -index)
+  return Math.round(x * power) / power
 }
 
 function toFixedUncertainty(x, dx) {
@@ -186,52 +186,59 @@ function toFixedUncertainty(x, dx) {
   // an uncertainty value.
   //
   // Args:
-  //   x - Number to print.
-  //   dx - Uncertainty in x.
+  //   x - Number to print
+  //   dx - Uncertainty in x
   // Returns:
-  //   x_string - String with x properly rounded given dx.
+  //   x_string - String with x properly rounded given dx
 
-  // If there is no uncertainty, return the entire number.
+  // If there is no uncertainty, return the entire number
   if (dx === undefined || dx === 0) {
       ////return x.toString();
       return toDefaultPrecision(x)
   }
 
-  // Find out the least significant digit using the uncertainty.
-  var roundingIndex = roundAway(Math.log(dx) / Math.log(10));
+  // Find out the least significant digit using the uncertainty
+  var roundingIndex = roundAway(Math.log(dx) / Math.log(10))
   // Round using that number of digits.
-  var roundedString = roundToIndex(x, roundingIndex).toString();
+  var roundedString = roundToIndex(x, roundingIndex).toString()
 
-  // Now we have to only show the digits that are significant.
+  // Now we have to only show the digits that are significant
 
-  // If we're rounding a whole number.
+  // If we're rounding a whole number
   if (roundingIndex >= 0) {
-    // Find out if we want more significant digits that we have.
-    var overshot = roundingIndex - roundedString.length + 1;
+    // Find out if we want more significant digits that we have
+    var overshot = roundingIndex - roundedString.length + 1
     if (overshot <= 0) {
       return roundedString;
     // If so, add more 0s on the beginning.
     } else {
       return Array(overshot + 1).join('0') + roundedString;
     }
-  // If we're rounding to a decimal place.
+  // If we're rounding to a decimal place
   } else {
     var decimalIndex = roundedString.indexOf('.');
     // If there isn't a '.', we're rounding to 0 if we got here.
     if (decimalIndex < 0) {
-      roundedString = '0.';
-      decimalIndex = 1;
+      roundedString = '0.'
+      decimalIndex = 1
     }
 
-    // Find out if the least significant digit is off the end of the
-    // number.
-    var lastIndex = decimalIndex + 1 - roundingIndex;
-    var overshot = lastIndex - roundedString.length;
+    // Find out if the least significant digit is off the end of the number
+    var lastIndex = decimalIndex + 1 - roundingIndex
+    var overshot = lastIndex - roundedString.length
     if (overshot <= 0) {
-      return roundedString.slice(0, lastIndex);
+      return roundedString.slice(0, lastIndex)
     // If so, add more 0s to show the precision we have.
     } else {
-      return roundedString + Array(overshot + 1).join('0');
+      return roundedString + Array(overshot + 1).join('0')
     }
   }
 }
+
+
+// Consider using python backend
+// Either
+// from uncertainties import ufloat
+// or
+// from decimal import Decimal
+// paramStr = str(Decimal(valueStr).quantize(Decimal(errorStr)))  # Sets value precision to be the same as for the standard uncertainty
