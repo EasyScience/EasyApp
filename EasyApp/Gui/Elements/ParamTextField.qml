@@ -25,12 +25,6 @@ EaElements.TextField {
                              'cifDict': ''}
 
     property var value: {
-
-        if (typeof parameter === 'string') {
-            return parameter}
-        if (typeof parameter === 'number') {
-            return EaLogic.Utils.toErrSinglePrecision(parameter, 0.0)}
-
         if (typeof parameter.value === 'undefined') {
             return ''
         } else if (typeof parameter.value === 'number') {
