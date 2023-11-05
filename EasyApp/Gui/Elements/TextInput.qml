@@ -30,7 +30,7 @@ T.TextField {
     color: warned ?
                EaStyle.Colors.red :
                !enabled || readOnly || minored ?
-                   EaStyle.Colors.themeForegroundDisabled :
+                   EaStyle.Colors.themeForegroundMinor :
                    focus || selected || mouseHoverHandler.hovered ?
                        EaStyle.Colors.themeForegroundHovered :
                        EaStyle.Colors.themeForeground
