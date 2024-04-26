@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 # the application itself is EasyExample.
 [project]
 name = "EasyApp"
-version = "0.2.4-beta"
+version = "0.3.0-beta"
 description = "Graphical application skeleton in the EasyScience universe."
 authors = [
   {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
@@ -26,5 +26,5 @@ classifiers = [
 ]
 requires-python = ">=3.8,<3.13"
 dependencies = [
-    'PySide6==6.5.3'  # Never version fails with QtQuick3D rendering on macOS: Particles not supported due to missing RGBA32F and RGBA16F texture format support; No GLSL shader code found (versions tried:  QList(120) ) in baked shader
+    'PySide6>=6.7.0'
 ]
