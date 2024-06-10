@@ -15,13 +15,6 @@ from PySide6.QtCore import Property
 from EasyApp.Logic.Logging import console
 
 
-# _EMPTY_DATA = {
-#     'name': '',
-#     'description': '',
-#     'location': '',
-#     'creationDate': ''
-# }
-
 _DEFAULT_DATA = {
     'name': 'PyProxy',
     'description': 'Default project description from PY proxy',

@@ -10,10 +10,6 @@ import Globals as Globals
 
 EaComponents.ApplicationWindow {
 
-    appName: "app name"
-    appVersion: "app version"
-    appDate: "app date"
-
     onClosing: Qt.quit()
 
     Component.onCompleted: {
