@@ -1,0 +1,42 @@
+import QmlProject 1.1
+
+Project {
+    mainFile: "main.qml"
+
+    // List of module and plugin directories passed to QML runtime
+    importPaths: [
+        ".",
+        "../../..",
+    ]
+
+    // Include .qml files from specified directory and its subdirectories
+    QmlFiles {
+        directory: "."
+    }
+    QmlFiles {
+        directory: "../../.."
+    }
+
+    // Include .js files from specified directory and its subdirectories
+    JavaScriptFiles {
+        directory: "."
+    }
+    JavaScriptFiles {
+        directory: "../../.."
+    }
+
+    // Include Module Definition Files (qmldir), as well as .ts and .qrc
+    // from specified directory and its subdirectories
+    Files {
+        directory: "."
+        filter: "qmldir;*.ts;*.qrc;*.html"
+        recursive: true
+    }
+    Files {
+        directory: "../../.."
+        filter: "qmldir;*.ts;*.qrc;*.html"
+        recursive: true
+    }
+
+//    mainUiFile: "Components/Pages/Project/Page.qml"
+}

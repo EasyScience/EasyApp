@@ -8,7 +8,6 @@ import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Globals as EaGlobals
 import EasyApp.Gui.Elements as EaElements
 
-import Gui.Globals as ExGlobals
 
 EaElements.Dialog {
     property string appIconPath: ""

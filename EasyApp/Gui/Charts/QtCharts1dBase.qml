@@ -51,16 +51,6 @@ ChartView {
     animationOptions: ChartView.SeriesAnimations
     animationDuration: EaStyle.Times.chartAnimation
 
-    // X-axis
-    EaCharts.QtCharts1dValueAxis {
-        id: axisX
-    }
-
-    // Y-axis
-    EaCharts.QtCharts1dValueAxis {
-        id: axisY
-    }
-
     // Zoom rectangle
     Rectangle{
         id: recZoom

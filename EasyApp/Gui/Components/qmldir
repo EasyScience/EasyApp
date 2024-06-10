@@ -31,6 +31,8 @@ TableViewParameter 1.0 TableViewParameter.qml
 TableViewCheckBox 1.0 TableViewCheckBox.qml
 TableViewComboBox 1.0 TableViewComboBox.qml
 TableViewButton 1.0 TableViewButton.qml
+TableViewLabelControl 1.0 TableViewLabelControl.qml
+TableViewTextInput 1.0 TableViewTextInput.qml
 
 JsonListModel 1.0 JsonListModel.qml
 

@@ -305,7 +305,7 @@ EaElements.Dialog {
                 model: EaGlobals.Vars.translator.languages
 
                 onActivated: EaGlobals.Vars.translator.selectLanguage(currentIndex)
-                Component.onCompleted: currentIndex = EaGlobals.Vars.translator.defaultLanguageIndex
+                Component.onCompleted: currentIndex = EaGlobals.Vars.translator.defaultLanguageIndex()
             }
             // Language
 

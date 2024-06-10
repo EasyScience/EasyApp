@@ -45,3 +45,4 @@ settings.ini*
 temp.cif
 .ci/
 .idea/
+.vscode/

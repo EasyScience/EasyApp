@@ -41,6 +41,7 @@ RemoteController 1.0 RemoteController.qml
 Slider 1.0 Slider.qml
 SliderHandle 1.0 SliderHandle.qml
 
+Parameter 1.0 Parameter.qml
 ParamTextField 1.0 ParamTextField.qml
 ParamComboBox 1.0 ParamComboBox.qml
 RadioButton 1.0 RadioButton.qml
