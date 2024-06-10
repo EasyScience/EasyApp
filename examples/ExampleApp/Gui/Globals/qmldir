@@ -3,4 +3,5 @@ module Globals
 singleton Vars Vars.qml
 singleton Refs Refs.qml
 singleton Configs Configs.qml
-singleton Proxies Proxies.qml
+singleton BackendProxy BackendProxy.qml
+singleton QmlProxy QmlProxy.qml

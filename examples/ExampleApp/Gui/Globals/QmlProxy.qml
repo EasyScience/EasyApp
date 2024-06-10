@@ -17,13 +17,9 @@ import Globals as Globals
 
 QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS > Reset Code Model"
 
-    property var main: typeof proxy !== 'undefined' && proxy !== null ?
-                                         proxy:
-                                         qmlProxy
-
-
-
-    readonly property var qmlProxy: QtObject {
+    // property var main: typeof proxy !== 'undefined' && proxy !== null ?
+    //                                      proxy:
+    //                                      qmlProxy
 
         //////////
         // Logger
@@ -202,7 +198,6 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
             }
         }
     }
-}
 /*
         /////////////
         // Experiment

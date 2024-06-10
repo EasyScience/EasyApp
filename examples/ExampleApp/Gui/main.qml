@@ -39,12 +39,12 @@ EaComponents.ApplicationWindow {
             Component.onCompleted: Globals.Refs.app.appbar.resetStateButton = this
         },
         EaElements.ToolButton {
-            enabled: Globals.Proxies.main.project.created &&
-                    Globals.Proxies.main.project.needSave
+            enabled: Globals.BackendProxy.main.project.created &&
+                    Globals.BackendProxy.main.project.needSave
             highlighted: true
             fontIcon: "save"
             ToolTip.text: qsTr("Save current state of the project")
-            onClicked: Globals.Proxies.main.project.save()
+            onClicked: Globals.BackendProxy.main.project.save()
         }
 
     ]

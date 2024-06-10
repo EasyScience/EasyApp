@@ -12,16 +12,16 @@ EaComponents.ProjectDescriptionDialog {
     onClosed: EaGlobals.Vars.showProjectDescriptionDialog = false
 
     onAccepted: {
-        Globals.Proxies.main.project.editData('name', projectName)
-        Globals.Proxies.main.project.editData('description', projectDescription)
-        Globals.Proxies.main.project.editData('location', projectLocation)
-        Globals.Proxies.main.project.create()
+        Globals.BackendProxy.main.project.editData('name', projectName)
+        Globals.BackendProxy.main.project.editData('description', projectDescription)
+        Globals.BackendProxy.main.project.editData('location', projectLocation)
+        Globals.BackendProxy.main.project.create()
     }
 
     Component.onCompleted: {
-        projectName = Globals.Proxies.main.project.data.name
-        projectDescription = Globals.Proxies.main.project.data.description
-        projectLocation = Globals.Proxies.main.project.data.location
+        projectName = Globals.BackendProxy.main.project.data.name
+        projectDescription = Globals.BackendProxy.main.project.data.description
+        projectLocation = Globals.BackendProxy.main.project.data.location
     }
 }
 

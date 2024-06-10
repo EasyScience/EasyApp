@@ -20,7 +20,7 @@ EaComponents.TableView {
 
     /*
     model: EaComponents.JsonListModel {
-        json: JSON.stringify(Globals.Proxies.main.project.examples)
+        json: JSON.stringify(Globals.BackendProxy.main.project.examples)
         query: "$[*]"
     }
     */
@@ -28,7 +28,7 @@ EaComponents.TableView {
     // We only use the length of the model object defined in backend logic and
     // directly access that model in every row using the TableView index property.
 
-    model: Globals.Proxies.main.project.examples.length
+    model: Globals.BackendProxy.main.project.examples.length
 
 
     // Header row
@@ -68,13 +68,13 @@ EaComponents.TableView {
         }
 
         EaComponents.TableViewLabel {
-            text: Globals.Proxies.main.project.examples[index].name
+            text: Globals.BackendProxy.main.project.examples[index].name
         }
 
         EaComponents.TableViewLabelControl {
             width: headerItem.width
-            text: Globals.Proxies.main.project.examples[index].description
-            ToolTip.text: Globals.Proxies.main.project.examples[index].description
+            text: Globals.BackendProxy.main.project.examples[index].description
+            ToolTip.text: Globals.BackendProxy.main.project.examples[index].description
         }
 
         EaComponents.TableViewButton {

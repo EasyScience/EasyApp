@@ -22,7 +22,7 @@ if __name__ == "__main__":
     engine.addImportPath(qml_dir)
     engine.load(qml_dir / "main.qml")
 
-    # Expose the Python objects to QML
+    # Use the PyProxy as backend to QML
     engine.rootContext().setContextProperty('proxy', PyProxy())
 
     if not engine.rootObjects():

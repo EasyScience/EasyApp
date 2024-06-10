@@ -9,7 +9,7 @@ import EasyApp.Gui.Components as EaComponents
 import Globals as Globals
 
 EaComponents.ContentPage {
-    defaultInfo: Globals.Proxies.main.project.created ?
+    defaultInfo: Globals.BackendProxy.main.project.created ?
                      "" :
                      qsTr("No project created / opened")
 
@@ -34,7 +34,7 @@ EaComponents.ContentPage {
             Loader { source: 'SideBarAdvanced/SideBar.qml' }
         ]
 
-        continueButton.text: Globals.Proxies.main.project.created ?
+        continueButton.text: Globals.BackendProxy.main.project.created ?
                                  qsTr("Continue") :
                                  qsTr("Continue without project")
 

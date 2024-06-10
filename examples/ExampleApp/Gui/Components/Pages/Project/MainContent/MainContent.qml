@@ -29,8 +29,8 @@ Rectangle {
             font.family: EaStyle.Fonts.secondFontFamily
             font.pixelSize: EaStyle.Sizes.fontPixelSize * 3
             font.weight: Font.ExtraLight
-            text: Globals.Proxies.main.project.data.name
-            onEditingFinished: Globals.Proxies.main.project.editData('name', text)
+            text: Globals.BackendProxy.main.project.data.name
+            onEditingFinished: Globals.BackendProxy.main.project.editData('name', text)
         }
 
         // Project info
@@ -45,8 +45,8 @@ Rectangle {
                 text: qsTr("Description:")
             }
             EaElements.TextInput {
-                text: Globals.Proxies.main.project.data.description
-                onEditingFinished: Globals.Proxies.main.project.editData('description', text)
+                text: Globals.BackendProxy.main.project.data.description
+                onEditingFinished: Globals.BackendProxy.main.project.editData('description', text)
             }
 
             EaElements.Label {
@@ -54,7 +54,7 @@ Rectangle {
                 text: qsTr("Location:")
             }
             EaElements.Label {
-                text: Globals.Proxies.main.project.data.location
+                text: Globals.BackendProxy.main.project.data.location
             }
 
             EaElements.Label {
@@ -62,16 +62,16 @@ Rectangle {
                 text: qsTr("Created:")
             }
             EaElements.Label {
-                text: Globals.Proxies.main.project.data.creationDate
+                text: Globals.BackendProxy.main.project.data.creationDate
             }
         }
 
         // Project image
 
         Image {
-            //visible: Globals.Proxies.main.fitting.isFitFinished
+            //visible: Globals.BackendProxy.main.fitting.isFitFinished
 
-            //source: Globals.Proxies.main.project.image
+            //source: Globals.BackendProxy.main.project.image
             width: EaStyle.Sizes.fontPixelSize * 25
             fillMode: Image.PreserveAspectFit
         }
