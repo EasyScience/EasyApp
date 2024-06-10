@@ -4,4 +4,4 @@ singleton Vars Vars.qml
 singleton Refs Refs.qml
 singleton Configs Configs.qml
 singleton BackendProxy BackendProxy.qml
-singleton QmlProxy QmlProxy.qml
+singleton MockProxy MockProxy.qml
