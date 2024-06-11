@@ -42,16 +42,7 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
             'creationDate': ''
         }
 
-        readonly property var _EXAMPLES: [
-            {
-                'name': 'Horizontal line',
-                'description': 'Straight line, horizontal, PicoScope 2204A',
-                'path': '../Resources/Examples/HorizontalLine/project.json'
-            }
-        ]
-
         property var data: _DEFAULT_DATA
-        property var examples: _EXAMPLES
         property bool created: false
         property bool needSave: false
 

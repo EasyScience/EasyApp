@@ -1,6 +1,4 @@
 import QtQuick
-import QtQuick.Controls
-import QtTest
 
 import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Globals as EaGlobals

@@ -1,9 +1,7 @@
 import QtQuick
-import QtQuick.Controls
 
 import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Elements as EaElements
-import EasyApp.Gui.Components as EaComponents
 
 import Globals as Globals
 
