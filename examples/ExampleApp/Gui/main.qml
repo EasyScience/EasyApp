@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 
 import EasyApp.Gui.Globals as EaGlobals
 import EasyApp.Gui.Elements as EaElements

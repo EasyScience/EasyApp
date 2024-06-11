@@ -4,7 +4,7 @@
 
 import os
 import json
-import jsbeautifier
+#import jsbeautifier
 import copy
 from datetime import datetime
 from PySide6.QtCore import QObject 
@@ -22,12 +22,17 @@ _DEFAULT_DATA = {
     'creationDate': ''
 }
 
-_EXAMPLES = [
+_DEFAULT_EXAMPLES = [
     {
-        'name': 'Horizontal line',
-        'description': 'Straight line, horizontal, PicoScope 2204A',
-        'path': '../Resources/Examples/HorizontalLine/project.json'
-     }
+        'name': 'Back to the future',
+        'description': 'Back to the future, loaded from disk using PY proxy',
+        'path': './Gui/Resources/Examples/Project_1/project.json'
+    },
+    {
+        'name': 'Another project',
+        'description': 'Projects are located ./Gui/Resources/Examples/',
+        'path': './Gui/Resources/Examples/Project_2/project.json'
+    },
 ]
 
 class Project(QObject):
@@ -39,7 +44,7 @@ class Project(QObject):
         super().__init__(parent)
         self._proxy = parent
         self._data = copy.copy(_DEFAULT_DATA)
-        self._examples = _EXAMPLES
+        self._examples = copy.copy(_DEFAULT_EXAMPLES)
         self._created = False
         self._needSave = False
 
@@ -80,7 +85,6 @@ class Project(QObject):
 
     @Slot()
     def create(self):
-#        self._data = _DEFAULT_DATA
         self._data['creationDate'] = datetime.now().strftime("%d %b %Y %H:%M")
         self.dataChanged.emit()
         self.created = True
@@ -93,6 +97,15 @@ class Project(QObject):
         self._data[key] = value
         self.dataChanged.emit()
 
+    @Slot(str)
+    def load(self, load_path: str):
+        console.debug('Load project')
+        with open(load_path, 'r') as file:
+            data = json.load(file)
+        self._data = data['project']
+        self.created = True
+        self.dataChanged.emit()
+
     @Slot()
     def save(self):
         console.debug('Save project')
@@ -100,23 +113,13 @@ class Project(QObject):
         out = {}
         if self.created:
             out['project'] = self._data
-        # if self._proxy.experiment.defined:
-        #     out['experiment'] = self._proxy.experiment.dataBlocks
-        #     for idx, data in enumerate(out['experiment']):
-        #         data['xArray'] = self._proxy.experiment._xArrays[idx].tolist()
-        #         data['yMeasArray'] = self._proxy.experiment._yMeasArrays[idx].tolist()
-        # if self._proxy.model.defined:
-        #     out['model'] = self._proxy.model.dataBlocks
-        #     for idx, data in enumerate(out['model']):
-        #         data['yCalcArray'] = self._proxy.model._yCalcArrays[idx].tolist()
-        # Format project as json
-        options = jsbeautifier.default_options()
-        options.indent_size = 2
-        formattedProject = jsbeautifier.beautify(json.dumps(out), options)
+#        options = jsbeautifier.default_options()
+#        options.indent_size = 2
+#        formattedProject = jsbeautifier.beautify(json.dumps(out), options)
         # Save formatted project as json
         filePath = os.path.join(out['project']['location'], 'project.json')
         os.makedirs(os.path.dirname(filePath), exist_ok=True)
         with open(filePath, 'w') as file:
-            file.write(formattedProject)
+            file.write(json.dumps(out))
         # Toggle need save
         self.needSave = False

@@ -13,12 +13,6 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
     readonly property var app: {
         'appbar': {
             'resetStateButton': null,
-            // 'homeButton': null,
-            // 'projectButton': null,
-            // 'modelButton': null,
-//            'experimentButton': null
-            // 'analysisButton': null,
-            // 'summaryButton': null
         },
         'homePage': {
             'startButton': null
@@ -26,32 +20,5 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
         'projectPage': {
             'continueButton': null
         },
-//        'experimentPage': {
-//             'continueButton': null//,
-        //     'importDataFromLocalDriveButton': null,
-        //     'addDefaultExperimentDataButton': null,
-        //     'plotView': null
-//        },
-        // 'modelPage': {
-        //     'continueButton': null,
-        //     'loadNewModelFromFileButton': null,
-        //     'addNewModelManuallyButton': null,
-        //     'plotView': null,
-        //     'shiftParameter': null,
-        //     'widthParameter': null,
-        //     'scaleParameter': null
-        // },
-        // 'analysisPage': {
-        //     'continueButton': null,
-        //     'startFittingButton': null,
-        //     'plotView': null
-        // },
-        // 'summaryPage': {
-        // },
     }
-
-    // // Misc
-    // property var summaryReportWebEngine
-    // property var remoteController
-
 }

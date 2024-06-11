@@ -1,0 +1,8 @@
+{
+  "project": {
+    "name": "Back to the future",
+    "description": "Back to the future, loaded from disk using PY proxy",
+    "location": ".\\ExampleApp\\Resources\\Examples\\Project_1",
+    "creationDate": "11 Jun 2121 13:42"
+  }
+}

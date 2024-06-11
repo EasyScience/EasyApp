@@ -42,7 +42,26 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
             'creationDate': ''
         }
 
+        readonly property var _DEFAULT_EXAMPLES: [
+            {
+                'name': 'MockProxy Horizontal line',
+                'description': 'Straight line, horizontal, PicoScope 2204A',
+                'path': '../Resources/Examples/HorizontalLine/project.json'
+            },
+            {
+                'name': 'MockProxy Slanting line 1',
+                'description': 'Straight line, positive slope, Tektronix 2430A',
+                'path': '../Resources/Examples/SlantingLine1/project.json'
+            },
+            {
+                'name': 'MockProxy Slanting line 2',
+                'description': 'Straight line, negative slope, Siglent SDS1202X-E',
+                'path': '../Resources/Examples/SlantingLine2/project.json'
+            }
+        ]
+
         property var data: _DEFAULT_DATA
+        property var examples: _DEFAULT_EXAMPLES
         property bool created: false
         property bool needSave: false
 

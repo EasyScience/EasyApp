@@ -1,0 +1,8 @@
+{
+  "project": {
+    "name": "Another project",
+    "description": "Projects are located ./Gui/Resources/Examples/",
+    "location": ".\\ExampleApp\\Resources\\Examples\\Project_2",
+    "creationDate": "1 Jun 2024 12:34"
+  }
+}

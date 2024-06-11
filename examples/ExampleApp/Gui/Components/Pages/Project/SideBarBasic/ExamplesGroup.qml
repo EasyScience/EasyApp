@@ -1,4 +1,5 @@
 import QtQuick
+import QtQuick.Controls
 
 import EasyApp.Gui.Style as EaStyle
 import EasyApp.Gui.Components as EaComponents
@@ -14,12 +15,12 @@ EaComponents.TableView {
 
     // Table model
 
-    /*
-    model: EaComponents.JsonListModel {
-        json: JSON.stringify(Globals.BackendProxy.main.project.examples)
-        query: "$[*]"
-    }
-    */
+    
+//    model: EaComponents.JsonListModel {
+//        json: JSON.stringify(Globals.BackendProxy.main.project.examples)
+//        query: "$[*]"
+//    }
+    
 
     // We only use the length of the model object defined in backend logic and
     // directly access that model in every row using the TableView index property.
@@ -74,9 +75,10 @@ EaComponents.TableView {
         }
 
         EaComponents.TableViewButton {
-            enabled: false
+            enabled: true
             fontIcon: "upload"
             ToolTip.text: qsTr("Load this example")
+            onClicked: Globals.BackendProxy.main.project.load(Globals.BackendProxy.main.project.examples[index].path)
         }
 
     }
