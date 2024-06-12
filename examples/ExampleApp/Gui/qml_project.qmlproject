@@ -1,7 +1,7 @@
 import QmlProject 1.1
 
 Project {
-    mainFile: "main.qml"
+    mainFile: "Main.qml"
 
     // List of module and plugin directories passed to QML runtime
     importPaths: [
@@ -37,6 +37,4 @@ Project {
         filter: "qmldir;*.ts;*.qrc;*.html"
         recursive: true
     }
-
-//    mainUiFile: "Components/Pages/Project/Page.qml"
 }

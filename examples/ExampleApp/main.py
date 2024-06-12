@@ -20,9 +20,11 @@ if __name__ == "__main__":
     app = QGuiApplication(sys.argv)
     engine = QQmlApplicationEngine()
     engine.addImportPath(qml_dir)
-    engine.load(qml_dir / "main.qml")
 
-    # Use the PyProxy as backend to QML
+    # Load and construct the GUI from QML file
+    engine.load(qml_dir / "Main.qml")
+
+    # Use the PyProxy as backend to the GUI
     engine.rootContext().setContextProperty('proxy', PyProxy())
 
     if not engine.rootObjects():
