@@ -13,7 +13,6 @@ EaComponents.ApplicationWindow {
 
     Component.onCompleted: {
         console.debug(`Application window loaded: ${this}`)
-        Globals.Vars.applicationWindowCreated = true
     }
     Component.onDestruction: console.debug(`Application window destroyed: ${this}`)
 
@@ -91,9 +90,6 @@ EaComponents.ApplicationWindow {
             onEnabledChanged: enabled ?
                                   summaryPageLoader.source = 'Components/Pages/Summary/Page.qml' :
                                   summaryPageLoader.source = ''
-//            onCheckedChanged: checked ?
-//                                  Globals.Proxies.main.summary.isCreated = true :
-//                                  Globals.Proxies.main.summary.isCreated = false
             Component.onCompleted: Globals.Refs.app.appbar.summaryButton = this
         }
     ]

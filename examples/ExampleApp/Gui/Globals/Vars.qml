@@ -14,9 +14,4 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
     property bool projectPageEnabled: false
     property bool summaryPageEnabled: false
 
-    // Misc
-    property bool splashScreenAnimoFinished: false
-    property bool applicationWindowCreated: false
-    property bool homePageCreated: false
-
 }

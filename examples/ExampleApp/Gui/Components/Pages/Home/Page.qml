@@ -116,7 +116,6 @@ Item {
 
     Component.onCompleted: {
         console.debug(`Home page loaded: ${this}`)
-        Globals.Vars.homePageCreated = true
     }
 
     Component.onDestruction: console.debug(`Home page destroyed: ${this}`)
