@@ -11,6 +11,7 @@ from PySide6.QtCore import QObject
 from PySide6.QtCore import Signal
 from PySide6.QtCore import Slot
 from PySide6.QtCore import Property
+from PySide6.QtCore import QUrl
 
 from EasyApp.Logic.Logging import console
 
@@ -98,7 +99,8 @@ class Project(QObject):
         self.dataChanged.emit()
 
     @Slot(str)
-    def load(self, load_path: str):
+    def load(self, full_url_path: str):
+        load_path = QUrl(full_url_path).toLocalFile()
         console.debug('Load project')
         with open(load_path, 'r') as file:
             data = json.load(file)

@@ -7,14 +7,14 @@ import EasyApp.Gui.Components as EaComponents
 EaComponents.SideBarColumn {
 
     EaElements.GroupBox {
-        title: qsTr("Get started")
+        title: qsTr("Project")
         collapsible: false
 
-        Loader { source: 'GetStartedGroup.qml' }
+        Loader { source: 'ProjectGroup.qml' }
     }
 
     EaElements.GroupBox {
-        title: qsTr("Examples")
+        title: qsTr("Example Projects")
         collapsed: true
         last: true
 

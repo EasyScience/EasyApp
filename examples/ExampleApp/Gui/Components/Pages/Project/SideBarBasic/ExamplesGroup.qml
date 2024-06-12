@@ -14,14 +14,7 @@ EaComponents.TableView {
     defaultInfoText: qsTr("No Examples Available")
 
     // Table model
-
     
-//    model: EaComponents.JsonListModel {
-//        json: JSON.stringify(Globals.BackendProxy.main.project.examples)
-//        query: "$[*]"
-//    }
-    
-
     // We only use the length of the model object defined in backend logic and
     // directly access that model in every row using the TableView index property.
 
