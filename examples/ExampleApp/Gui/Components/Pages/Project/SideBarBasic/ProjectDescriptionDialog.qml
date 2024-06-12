@@ -15,6 +15,7 @@ EaComponents.ProjectDescriptionDialog {
         Globals.BackendProxy.main.project.editData('description', projectDescription)
         Globals.BackendProxy.main.project.editData('location', projectLocation)
         Globals.BackendProxy.main.project.create()
+        Globals.Vars.summaryPageEnabled = true
     }
 
     Component.onCompleted: {

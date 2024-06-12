@@ -18,14 +18,14 @@ Grid {
         fontIcon: "plus-circle"
         text: qsTr("Create a new")
 
+        Loader {
+            id: projectDescriptionDialog
+        }
+
         onClicked: {
             console.debug(`Clicking '${text}' button: ${this}`)
             projectDescriptionDialog.source = 'ProjectDescriptionDialog.qml'
             EaGlobals.Vars.showProjectDescriptionDialog = true
-        }
-
-        Loader {
-            id: projectDescriptionDialog
         }
     }
 
@@ -37,7 +37,6 @@ Grid {
             fileDialogLoadProject.open()
             console.debug(`Clicking '${text}' button: ${this}`)
         }
-//        Component.onCompleted: ExGlobals.Variables.openProjectButton = this
     }
 
     EaElements.SideBarButton {
@@ -62,11 +61,11 @@ Grid {
             // obviously, so care is needed. TODO
             console.debug(`Selected '${selectedFile}'`)
             Globals.BackendProxy.main.project.load(selectedFile)
-
-//            ExGlobals.Variables.samplePageEnabled = true
-//            ExGlobals.Variables.experimentPageEnabled = true
+            Globals.Vars.summaryPageEnabled = true
         }
     }
+
+    
 
 
 }
