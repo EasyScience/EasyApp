@@ -20,5 +20,8 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
         'projectPage': {
             'continueButton': null
         },
+        'summaryPage': {
+            'continueButton': null
+        },
     }
 }

@@ -38,8 +38,8 @@ EaComponents.ContentPage {
 
         continueButton.onClicked: {            
             console.debug(`Clicking '${continueButton.text}' button: ${this}`)
-            Globals.Vars.experimentPageEnabled = true
-            Globals.Refs.app.appbar.experimentButton.toggle()
+            Globals.Vars.summaryPageEnabled = true
+            Globals.Refs.app.appbar.summaryButton.toggle()
         }
 
         Component.onCompleted: Globals.Refs.app.projectPage.continueButton = continueButton

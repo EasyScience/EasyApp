@@ -80,6 +80,21 @@ EaComponents.ApplicationWindow {
                                   projectPageLoader.source = 'Components/Pages/Project/Page.qml' :
                                   projectPageLoader.source = ''
             Component.onCompleted: Globals.Refs.app.appbar.projectButton = this
+        },
+
+        // Summary tab
+        EaElements.AppBarTabButton {
+            enabled: Globals.Vars.summaryPageEnabled
+            fontIcon: "clipboard-list"
+            text: qsTr("Summary")
+            ToolTip.text: qsTr("Summary of the work done")
+            onEnabledChanged: enabled ?
+                                  summaryPageLoader.source = 'Components/Pages/Summary/Page.qml' :
+                                  summaryPageLoader.source = ''
+//            onCheckedChanged: checked ?
+//                                  Globals.Proxies.main.summary.isCreated = true :
+//                                  Globals.Proxies.main.summary.isCreated = false
+            Component.onCompleted: Globals.Refs.app.appbar.summaryButton = this
         }
     ]
 
@@ -90,6 +105,7 @@ EaComponents.ApplicationWindow {
     // Pages for the tab buttons described above
     contentArea: [
         Loader{ id: homePageLoader },
-        Loader{ id: projectPageLoader }
+        Loader{ id: projectPageLoader },
+        Loader{ id: summaryPageLoader }
     ]
 }
