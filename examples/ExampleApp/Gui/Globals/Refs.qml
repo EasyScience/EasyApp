@@ -1,7 +1,3 @@
-// SPDX-FileCopyrightText: 2023 EasyExample contributors
-// SPDX-License-Identifier: BSD-3-Clause
-// © 2023 Contributors to the EasyExample project <https://github.com/EasyScience/EasyExampleApp>
-
 pragma Singleton
 
 import QtQuick
@@ -11,17 +7,20 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
 
     // Main
     readonly property var app: {
+        // Main.qml populate this object
         'appbar': {
             'resetStateButton': null,
+            'homeButton': null,
+            'projectButton': null,
+            'summaryButton': null,
         },
+        // Home/Page.qml populate this object
         'homePage': {
             'startButton': null
         },
+        // Project/Page.qml populate this object
         'projectPage': {
             'continueButton': null
-        },
-        'summaryPage': {
-            'continueButton': null
-        },
+        }
     }
 }

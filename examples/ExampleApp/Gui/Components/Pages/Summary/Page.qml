@@ -23,9 +23,9 @@ EaComponents.ContentPage {
             EaElements.TabButton { text: qsTr("Report") }
         ]
 
-//        items: [
-//            Loader { source: 'MainContent/Report.qml' }
-//        ]
+       items: [
+           Loader { source: 'MainContent/Report.qml' }
+       ]
     }
 
     sideBar: EaComponents.SideBar {
