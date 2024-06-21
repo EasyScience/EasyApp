@@ -53,23 +53,23 @@ EaComponents.ApplicationWindow {
         }
     ]
 
-    // Central group of application bar tab buttons (workflow tabs)
-    // Tab buttons for the pages described below
+    // Central group of application bar page buttons (workflow tabs)
+    // Page buttons for the pages described below
     appBarCentralTabs.contentData: [
 
-        // Home tab
+        // Home page
         EaElements.AppBarTabButton {
             enabled: Globals.Vars.homePageEnabled
             fontIcon: "home"
             text: qsTr("Home")
-            ToolTip.text: qsTr("Home page")
+            ToolTip.text: qsTr("Home")
             Component.onCompleted: {
                 homePageLoader.source = 'Components/Pages/Home/Page.qml'
-                Globals.Refs.app.appbar.homeButton = this
+                Globals.Refs.app.appbar.homePageButton = this
             }
         },
 
-        // Project tab
+        // Project page
         EaElements.AppBarTabButton {
             enabled: Globals.Vars.projectPageEnabled
             fontIcon: "archive"
@@ -78,10 +78,10 @@ EaComponents.ApplicationWindow {
             onEnabledChanged: enabled ?
                                   projectPageLoader.source = 'Components/Pages/Project/Page.qml' :
                                   projectPageLoader.source = ''
-            Component.onCompleted: Globals.Refs.app.appbar.projectButton = this
+            Component.onCompleted: Globals.Refs.app.appbar.projectPageButton = this
         },
 
-        // Summary tab
+        // Summary page
         EaElements.AppBarTabButton {
             enabled: Globals.Vars.summaryPageEnabled
             fontIcon: "clipboard-list"
@@ -90,7 +90,7 @@ EaComponents.ApplicationWindow {
             onEnabledChanged: enabled ?
                                   summaryPageLoader.source = 'Components/Pages/Summary/Page.qml' :
                                   summaryPageLoader.source = ''
-            Component.onCompleted: Globals.Refs.app.appbar.summaryButton = this
+            Component.onCompleted: Globals.Refs.app.appbar.summaryPageButton = this
         }
     ]
 

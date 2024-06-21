@@ -70,7 +70,7 @@ Item {
             onClicked: {
                 console.debug(`Clicking '${text}' button: ${this}`)
                 Globals.Vars.projectPageEnabled = true
-                Globals.Refs.app.appbar.projectButton.toggle()
+                Globals.Refs.app.appbar.projectPageButton.toggle()
             }
             Component.onCompleted: Globals.Refs.app.homePage.startButton = this
         }

@@ -13,12 +13,12 @@ import Globals as Globals
 EaComponents.SideBarColumn {
 
     EaElements.GroupBox {
-        enabled: Globals.Proxies.main.project.created
+        enabled: Globals.BackendProxy.main.project.created
         title: qsTr("Export report")
         collapsible: false
         last: true
 
-        Loader { source: 'SideBarBasic/ExportReportGroup.qml' }
+        Loader { source: 'ExportReportGroup.qml' }
     }
 
 }

@@ -10,9 +10,9 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
         // Main.qml populate this object
         'appbar': {
             'resetStateButton': null,
-            'homeButton': null,
-            'projectButton': null,
-            'summaryButton': null,
+            'homePageButton': null,
+            'projectPageButton': null,
+            'summaryPageButton': null,
         },
         // Home/Page.qml populate this object
         'homePage': {

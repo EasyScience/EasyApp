@@ -96,4 +96,21 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
             needSave = false
         }
     }
+
+    //////////
+    // Summary
+    //////////
+
+    readonly property var summary: QtObject {
+        readonly property var _DEFAULT_MEASURED_X: [1, 2, 3, 4, 5]
+        readonly property var _DEFAULT_MEASURED_Y: [1.1, 1.2, 1.3, 1.4, 1.5]
+        readonly property var _DEFAULT_CALCULATED_X: [1, 2, 3, 4, 5]
+        readonly property var _DEFAULT_CALCULATED_Y: [2.1, 2.2, 2.3, 2.4, 2.5]
+
+        property bool created: true
+        property var xMeasuredData: _DEFAULT_MEASURED_X
+        property var yMeasuredData: _DEFAULT_MEASURED_Y
+        property var xCalculatedData: _DEFAULT_CALCULATED_X
+        property var yCalculatedData: _DEFAULT_CALCULATED_Y
+    }
 }

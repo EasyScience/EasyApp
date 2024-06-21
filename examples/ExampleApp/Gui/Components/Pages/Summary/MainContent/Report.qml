@@ -11,14 +11,14 @@ EaComponents.BasicReport {
     xAxisTitle: "x"
     yAxisTitle: "y"
 
-    measuredXYData: Globals.Proxies.main.summary.isCreated ?
-                        {'x': Globals.Proxies.main.experiment.xData, 'y': Globals.Proxies.main.experiment.yData} :
+    measuredXYData: Globals.BackendProxy.main.summary.created ?
+                        {'x': Globals.BackendProxy.main.summary.xMeasuredData, 'y': Globals.BackendProxy.main.summary.yMeasuredData} :
                         {}
-    calculatedXYData: Globals.Proxies.main.summary.isCreated ?
-                          {'x': Globals.Proxies.main.experiment.xData, 'y': Globals.Proxies.main.model.yData} :
+    calculatedXYData: Globals.BackendProxy.main.summary.created ?
+                          {'x': Globals.BackendProxy.main.summary.xCalculatedData, 'y': Globals.BackendProxy.main.summary.yCalculatedData} :
                           {}
 
-    Component.onCompleted: Globals.Refs.summaryReportWebEngine = this
+//    Component.onCompleted: Globals.Refs.summaryReportWebEngine = this
 
 }
 

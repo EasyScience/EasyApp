@@ -6,14 +6,20 @@ from PySide6.QtCore import QObject
 from PySide6.QtCore import Property
 
 from Logic.Project import Project
+from Logic.Summary import Summary
 
 
 class PyProxy(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
         self._project = Project(self)
+        self._summary = Summary(self)
 
 
     @Property('QVariant', constant=True)
     def project(self):
         return self._project
+
+    @Property('QVariant', constant=True)
+    def summary(self):
+        return self._summary
