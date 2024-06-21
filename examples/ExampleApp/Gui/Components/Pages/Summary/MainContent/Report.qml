@@ -8,8 +8,8 @@ import Globals as Globals
 
 EaComponents.BasicReport {
 
-    xAxisTitle: "x"
-    yAxisTitle: "y"
+    xAxisTitle: "x from BasicReport.qml"
+    yAxisTitle: "y from BasicReport.qml"
 
     measuredXYData: Globals.BackendProxy.main.summary.created ?
                         {'x': Globals.BackendProxy.main.summary.xMeasuredData, 'y': Globals.BackendProxy.main.summary.yMeasuredData} :
@@ -17,8 +17,6 @@ EaComponents.BasicReport {
     calculatedXYData: Globals.BackendProxy.main.summary.created ?
                           {'x': Globals.BackendProxy.main.summary.xCalculatedData, 'y': Globals.BackendProxy.main.summary.yCalculatedData} :
                           {}
-
-//    Component.onCompleted: Globals.Refs.summaryReportWebEngine = this
-
 }
 
+// The other elements of the report are defined in the EasyApp/Gui/Components/BasicReport.qml and EasyApp/Gui/Html/BasicReport.html 
