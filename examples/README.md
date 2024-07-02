@@ -2,11 +2,11 @@
 
 Three types of examples are provided, depending on how the backend logic is implemented and which tool is needed to view the graphical frontend. These examples can be found in the following directories:
 
-| Directory     | Frontend | Backend | Viewer   | Type |
-| ------------- | -------- | ------- | -------- | ---- |
-| `qml-qml-qml` | Qt QML   | Qt QML  | `qml`    | I    |
-| `qml-qml-py`  | Qt QML   | Qt QML  | `python` | II   |
-| `qml-py-py`   | Qt QML   | Python  | `python` | III  |
+| Directory     | Frontend | Backend  | Viewer   | Type |
+| ------------- | -------- | -------- | -------- | ---- |
+| `qml-qml-qml` | QML      | Mock QML | `qml`    | I    |
+| `qml-qml-py`  | QML      | Mock QML | `python` | II   |
+| `qml-py-py`   | QML      | Python   | `python` | III  |
 
 
 ## How to run
