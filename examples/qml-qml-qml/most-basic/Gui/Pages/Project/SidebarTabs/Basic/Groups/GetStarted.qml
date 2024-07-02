@@ -16,12 +16,13 @@ import Gui.Globals as Globals
 
 
 Grid {
+
     columns: 2
     spacing: EaStyle.Sizes.fontPixelSize
 
     EaElements.SideBarButton {
-        fontIcon: "plus-circle"
-        text: qsTr("Create a new project")
+        fontIcon: 'plus-circle'
+        text: qsTr('Create a new project')
 
         onClicked: {
             console.debug(`Clicking '${text}' button ::: ${this}`)
@@ -35,8 +36,8 @@ Grid {
     }
 
     EaElements.SideBarButton {
-        fontIcon: "upload"
-        text: qsTr("Open an existing project")
+        fontIcon: 'upload'
+        text: qsTr('Open an existing project')
 
         onClicked: {
             console.debug(`Clicking '${text}' button ::: ${this}`)
@@ -49,7 +50,7 @@ Grid {
     FileDialog{
         id: openCifFileDialog
         fileMode: FileDialog.OpenFile
-        nameFilters: [ "CIF files (*.cif)"]
+        nameFilters: [ 'CIF files (*.cif)']
         onAccepted: {
             Globals.Vars.summaryPageEnabled = true
         }

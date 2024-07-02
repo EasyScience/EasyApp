@@ -11,12 +11,14 @@ import Gui.Globals as Globals
 
 QtObject {
 
-    // Use MockProxy as backend unless pyProxy is set in main.py
+    // If the pyProxy object is created in main.py and exposed to qml, it is used as
+    // a backendProxy. Otherwise, the mock proxy defined in Globals/MockProxy.qml with
+    // hardcoded data is used.
     property var backendProxy: typeof pyProxy !== 'undefined' && pyProxy !== null ?
                            pyProxy :
                            Globals.MockProxy
 
-    // Pages accessibility
+    // Enabled/disabled state of the application pages
     property bool homePageEnabled: true
     property bool projectPageEnabled: true
     property bool summaryPageEnabled: true

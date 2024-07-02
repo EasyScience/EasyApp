@@ -15,13 +15,14 @@ import Gui.Globals as Globals
 
 
 EaComponents.TableView {
+
     id: tableView
 
     showHeader: false
     tallRows: true
     maxRowCountShow: 6
 
-    defaultInfoText: qsTr("No examples available")
+    defaultInfoText: qsTr('No examples available')
 
     model: Globals.Vars.backendProxy.project.examples
 
@@ -35,7 +36,7 @@ EaComponents.TableView {
         EaComponents.TableViewLabel {
             flexibleWidth: true
             horizontalAlignment: Text.AlignLeft
-            text: qsTr("name / description")
+            text: qsTr('name / description')
         }
     }
     // header

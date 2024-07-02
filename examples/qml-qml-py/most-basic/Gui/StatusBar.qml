@@ -13,6 +13,7 @@ import Gui.Globals as Globals
 
 
 EaElements.StatusBar {
+
     visible: EaGlobals.Vars.appBarCurrentIndex !== 0
 
     EaElements.StatusBarItem {

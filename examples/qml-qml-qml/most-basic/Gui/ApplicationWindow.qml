@@ -14,11 +14,6 @@ import Gui.Globals as Globals
 
 EaComponents.ApplicationWindow {
 
-    onClosing: Qt.quit()
-
-    Component.onCompleted: console.debug(`Application window loaded ::: ${this}`)
-    Component.onDestruction: console.debug(`Application window destroyed ::: ${this}`)
-
     ///////////////////
     // APPLICATION BAR
     ///////////////////
@@ -58,6 +53,7 @@ EaComponents.ApplicationWindow {
             ToolTip.text: qsTr('Home')
             Component.onCompleted: Globals.Refs.app.appbar.homeButton = this
         },
+        // Home page
 
         // Project page
         EaElements.AppBarTabButton {
@@ -67,6 +63,7 @@ EaComponents.ApplicationWindow {
             ToolTip.text: qsTr('Project description page')
             Component.onCompleted: Globals.Refs.app.appbar.projectButton = this
         },
+        // Project page
 
         // Summary page
         EaElements.AppBarTabButton {
@@ -76,6 +73,7 @@ EaComponents.ApplicationWindow {
             ToolTip.text: qsTr('Summary of the work done')
             Component.onCompleted: Globals.Refs.app.appbar.summaryButton = this
         }
+        // Summary page
     ]
 
     //////////////////////////////////
@@ -94,4 +92,14 @@ EaComponents.ApplicationWindow {
     /////////////
 
     statusBar: Gui.StatusBar {}
+
+    ///////
+    // MISC
+    ///////
+
+    onClosing: Qt.quit()
+
+    Component.onCompleted: console.debug(`Application window loaded ::: ${this}`)
+    Component.onDestruction: console.debug(`Application window destroyed ::: ${this}`)
+
 }

@@ -14,7 +14,7 @@ import Gui.Globals as Globals
 EaComponents.SideBarColumn {
 
     EaElements.GroupBox {
-        title: qsTr("Empty")
+        title: qsTr('Empty')
         icon: 'rocket'
     }
 

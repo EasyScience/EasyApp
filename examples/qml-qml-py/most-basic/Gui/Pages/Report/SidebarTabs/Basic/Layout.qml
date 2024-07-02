@@ -14,7 +14,7 @@ EaComponents.SideBarColumn {
 
     EaElements.GroupBox {
         enabled: false
-        title: qsTr("Export summary")
+        title: qsTr('Export summary')
         icon: 'download'
         collapsed: false
 

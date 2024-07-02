@@ -16,6 +16,7 @@ import Gui.Globals as Globals
 
 
 Column {
+
     property string projectLocation: Globals.Vars.backendProxy.project.info.location +
                                      EaLogic.Utils.osPathSep() +
                                      'summary'
@@ -33,13 +34,14 @@ Column {
             topInset: nameLabel.height
             topPadding: topInset + padding
             horizontalAlignment: TextInput.AlignLeft
-            placeholderText: qsTr("Enter summary file name here")
+            placeholderText: qsTr('Enter summary file name here')
             Component.onCompleted: text = 'summary'
             EaElements.Label {
                 id: nameLabel
-                text: qsTr("Name")
+                text: qsTr('Name')
             }
         }
+        // Name field
 
         // Format selector
         EaElements.ComboBox {
@@ -47,17 +49,19 @@ Column {
             topInset: formatLabel.height
             topPadding: topInset + padding
             width: EaStyle.Sizes.fontPixelSize * 10
-            textRole: "text"
-            valueRole: "value"
+            textRole: 'text'
+            valueRole: 'value'
             model: [
-                { value: 'html', text: qsTr("HTML") }
+                { value: 'html', text: qsTr('HTML') }
             ]
             EaElements.Label {
                 id: formatLabel
-                text: qsTr("Format")
+                text: qsTr('Format')
             }
         }
+        // Format selector
     }
+    // Name field + format selector
 
     // Location field
     EaElements.TextField {
@@ -67,22 +71,25 @@ Column {
         topPadding: topInset + padding
         rightPadding: chooseButton.width
         horizontalAlignment: TextInput.AlignLeft
-        placeholderText: qsTr("Enter report location here")
+        placeholderText: qsTr('Enter report location here')
         Component.onCompleted: text = projectLocation
+
         EaElements.Label {
             id: locationLabel
-            text: qsTr("Location")
+            text: qsTr('Location')
         }
+
         EaElements.ToolButton {
             id: chooseButton
             anchors.right: parent.right
             topPadding: parent.topPadding
             showBackground: false
-            fontIcon: "folder-open"
-            ToolTip.text: qsTr("Choose report parent directory")
+            fontIcon: 'folder-open'
+            ToolTip.text: qsTr('Choose report parent directory')
             onClicked: reportParentDirDialog.open()
         }
     }
+    // Location field
 
     // Save button
     EaElements.SideBarButton {
@@ -91,5 +98,6 @@ Column {
         fontIcon: 'download'
         text: qsTr('Save')
     }
+    // Save button
 
 }

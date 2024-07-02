@@ -12,6 +12,7 @@ import Gui.Globals as Globals
 
 
 EaComponents.ProjectDescriptionDialog {
+
     visible: EaGlobals.Vars.showProjectDescriptionDialog
     onClosed: EaGlobals.Vars.showProjectDescriptionDialog = false
 
@@ -24,4 +25,5 @@ EaComponents.ProjectDescriptionDialog {
         projectDescription = Globals.Vars.backendProxy.project.info.description
         projectLocation = Globals.Vars.backendProxy.project.info.location
     }
+
 }

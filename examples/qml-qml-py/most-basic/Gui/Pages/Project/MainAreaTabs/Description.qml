@@ -11,6 +11,7 @@ import Gui.Globals as Globals
 
 
 Rectangle {
+
     readonly property int commonSpacing: EaStyle.Sizes.fontPixelSize * 1.5
 
     color: EaStyle.Colors.mainContentBackground
@@ -26,7 +27,6 @@ Rectangle {
         spacing: commonSpacing
 
         // Project title
-
         EaElements.TextInput {
             font.family: EaStyle.Fonts.secondFontFamily
             font.pixelSize: EaStyle.Sizes.fontPixelSize * 3
@@ -34,9 +34,9 @@ Rectangle {
             text: Globals.Vars.backendProxy.project.info.name
             onEditingFinished: Globals.Vars.backendProxy.project.editData('name', text)
         }
+        // Project title
 
         // Project info
-
         Grid {
             columns: 2
             rowSpacing: 0
@@ -44,7 +44,7 @@ Rectangle {
 
             EaElements.Label {
                 font.bold: true
-                text: qsTr("Description:")
+                text: qsTr('Description:')
             }
             EaElements.TextInput {
                 text: Globals.Vars.backendProxy.project.info.description
@@ -53,7 +53,7 @@ Rectangle {
 
             EaElements.Label {
                 font.bold: true
-                text: qsTr("Location:")
+                text: qsTr('Location:')
             }
             EaElements.Label {
                 text: Globals.Vars.backendProxy.project.info.location
@@ -61,22 +61,20 @@ Rectangle {
 
             EaElements.Label {
                 font.bold: true
-                text: qsTr("Created:")
+                text: qsTr('Created:')
             }
             EaElements.Label {
                 text: Globals.Vars.backendProxy.project.info.creationDate
             }
         }
+        // Project info
 
         // Project image
-
         Image {
-            //visible: Globals.Vars.backendProxy.fitting.isFitFinished
-
-            //source: Globals.Vars.backendProxy.project.image
             width: EaStyle.Sizes.fontPixelSize * 25
             fillMode: Image.PreserveAspectFit
         }
+        // Project image
 
     }
 

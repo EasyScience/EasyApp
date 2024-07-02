@@ -14,13 +14,14 @@ import Gui.Globals as Globals
 
 
 EaComponents.ContentPage {
+
     defaultInfo: Globals.Vars.backendProxy.project.created ?
-                     "" :
-                     qsTr("No project defined")
+                     '' :
+                     qsTr('No project defined')
 
     mainView: EaComponents.MainContent {
         tabs: [
-            EaElements.TabButton { text: qsTr("Description") }
+            EaElements.TabButton { text: qsTr('Description') }
         ]
 
         items: [
@@ -30,9 +31,9 @@ EaComponents.ContentPage {
 
     sideBar: EaComponents.SideBar {
         tabs: [
-            EaElements.TabButton { text: qsTr("Basic controls") },
-            EaElements.TabButton { text: qsTr("Extra controls") },
-            EaElements.TabButton { text: qsTr("Text mode controls"); enabled: false}
+            EaElements.TabButton { text: qsTr('Basic controls') },
+            EaElements.TabButton { text: qsTr('Extra controls') },
+            EaElements.TabButton { text: qsTr('Text mode controls'); enabled: false}
         ]
 
         items: [
@@ -42,8 +43,8 @@ EaComponents.ContentPage {
         ]
 
         continueButton.text: Globals.Vars.backendProxy.project.created ?
-                                 qsTr("Continue") :
-                                 qsTr("Continue without project")
+                                 qsTr('Continue') :
+                                 qsTr('Continue without project')
 
         continueButton.onClicked: {            
             console.debug(`Clicking '${continueButton.text}' button ::: ${this}`)
@@ -56,4 +57,5 @@ EaComponents.ContentPage {
 
     Component.onCompleted: console.debug(`Project page loaded ::: ${this}`)
     Component.onDestruction: console.debug(`Project page destroyed ::: ${this}`)
+
 }

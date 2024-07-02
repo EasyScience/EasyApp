@@ -9,14 +9,15 @@ import EasyApp.Gui.Elements as EaElements
 
 
 Column {
-    property int numLabels: 50
+
+    property int labelsCount: 50
 
     spacing: EaStyle.Sizes.fontPixelSize
 
     Repeater {
-        model: numLabels
+        model: labelsCount
         EaElements.Label {
-            text: `Label ${index+1} of ${numLabels}`
+            text: `Label ${index+1} of ${labelsCount}`
         }
     }
 

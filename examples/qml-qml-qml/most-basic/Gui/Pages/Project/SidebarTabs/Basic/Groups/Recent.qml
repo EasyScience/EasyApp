@@ -16,13 +16,14 @@ import Gui.Globals as Globals
 
 
 EaComponents.TableView {
+
     id: tableView
 
     showHeader: false
     tallRows: true
     maxRowCountShow: 6
 
-    defaultInfoText: qsTr("No recent projects found")
+    defaultInfoText: qsTr('No recent projects found')
 
     // Header row
     header: EaComponents.TableViewHeader {

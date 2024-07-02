@@ -9,5 +9,7 @@ import Gui as Gui
 
 
 Gui.ApplicationWindow {
+
     id: applicationWindow  // Global access
+
 }

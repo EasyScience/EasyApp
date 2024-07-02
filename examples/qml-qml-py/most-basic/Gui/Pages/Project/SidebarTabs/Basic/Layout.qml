@@ -14,7 +14,7 @@ import Gui.Globals as Globals
 EaComponents.SideBarColumn {
 
     EaElements.GroupBox {
-        title: qsTr("Get started")
+        title: qsTr('Get started')
         icon: 'rocket'
         collapsed: false
 
@@ -22,14 +22,14 @@ EaComponents.SideBarColumn {
     }
 
     EaElements.GroupBox {
-        title: qsTr("Examples")
+        title: qsTr('Examples')
         icon: 'database'
 
         Loader { source: 'Groups/Examples.qml' }
     }
 
     EaElements.GroupBox {
-        title: qsTr("Recent projects")
+        title: qsTr('Recent projects')
         icon: 'archive'
 
         Loader { source: 'Groups/Recent.qml' }

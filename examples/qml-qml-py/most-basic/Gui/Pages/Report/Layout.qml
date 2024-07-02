@@ -14,13 +14,14 @@ import Gui.Globals as Globals
 
 
 EaComponents.ContentPage {
+
     defaultInfo: Globals.Vars.backendProxy.summary.created ?
-                     "" :
-                     qsTr("No Summary Generated")
+                     '' :
+                     qsTr('No Summary Generated')
 
     mainView: EaComponents.MainContent {
         tabs: [
-            EaElements.TabButton { text: qsTr("Summary") }
+            EaElements.TabButton { text: qsTr('Summary') }
         ]
 
         items: [
@@ -30,8 +31,8 @@ EaComponents.ContentPage {
 
     sideBar: EaComponents.SideBar {
         tabs: [
-            EaElements.TabButton { text: qsTr("Basic controls") },
-            EaElements.TabButton { text: qsTr("Extra controls") }
+            EaElements.TabButton { text: qsTr('Basic controls') },
+            EaElements.TabButton { text: qsTr('Extra controls') }
         ]
 
         items: [
@@ -44,4 +45,5 @@ EaComponents.ContentPage {
 
     Component.onCompleted: console.debug(`Summary page loaded ::: ${this}`)
     Component.onDestruction: console.debug(`Summary page destroyed ::: ${this}`)
+
 }

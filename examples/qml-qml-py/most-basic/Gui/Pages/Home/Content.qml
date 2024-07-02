@@ -71,8 +71,8 @@ Item {
 
             anchors.horizontalCenter: parent.horizontalCenter
 
-            fontIcon: "rocket"
-            text: qsTr("Start")
+            fontIcon: 'rocket'
+            text: qsTr('Start')
             onClicked: {
                 console.debug(`Clicking '${text}' button ::: ${this}`)
                 Globals.Vars.projectPageEnabled = true
@@ -96,16 +96,16 @@ Item {
                 spacing: EaStyle.Sizes.fontPixelSize
 
                 EaElements.Button {
-                    text: qsTr("About %1".arg(Globals.Vars.backendProxy.about.name))
+                    text: qsTr('About %1'.arg(Globals.Vars.backendProxy.about.name))
                     onClicked: EaGlobals.Vars.showAppAboutDialog = true
-                    Loader { source: "Popups/About.qml" }
+                    Loader { source: 'Popups/About.qml' }
                 }
                 EaElements.Button {
-                    text: qsTr("Online documentation")
-                    onClicked: Qt.openUrlExternally("https://github.com/EasyScience/EasyApp")
+                    text: qsTr('Online documentation')
+                    onClicked: Qt.openUrlExternally('https://github.com/EasyScience/EasyApp')
                 }
                 EaElements.Button {
-                    text: qsTr("Get in touch online")
+                    text: qsTr('Get in touch online')
                     onClicked: console.debug(`Button clicked: ${text}`)
                 }
             }
@@ -116,15 +116,15 @@ Item {
                 spacing: EaStyle.Sizes.fontPixelSize
 
                 EaElements.Button {
-                    text: qsTr("Tutorial") + " 1: " + qsTr("App interface")
+                    text: qsTr('Tutorial') + ' 1: ' + qsTr('App interface')
                     onClicked: console.debug(`Button clicked: ${text}`)
                 }
                 EaElements.Button {
-                    text: qsTr("Tutorial") + " 3: " + qsTr("Basic usage")
+                    text: qsTr('Tutorial') + ' 3: ' + qsTr('Basic usage')
                     onClicked: console.debug(`Button clicked: ${text}`)
                 }
                 EaElements.Button {
-                    text: qsTr("Tutorial") + " 3: " + qsTr("Advanced usage")
+                    text: qsTr('Tutorial') + ' 3: ' + qsTr('Advanced usage')
                     onClicked: console.debug(`Button clicked: ${text}`)
                 }
             }
@@ -135,4 +135,5 @@ Item {
 
     Component.onCompleted: console.debug(`Home page loaded ::: ${this}`)
     Component.onDestruction: console.debug(`Home page destroyed ::: ${this}`)
+
 }

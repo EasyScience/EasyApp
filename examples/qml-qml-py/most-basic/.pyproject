@@ -2,7 +2,7 @@
 "files": [
     "main.py",
 
-    "qmlproject.qmlproject",
+    ".qmlproject",
     "main.qml",
 
     "Gui/qmldir",
