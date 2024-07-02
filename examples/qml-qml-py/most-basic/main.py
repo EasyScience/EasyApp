@@ -11,19 +11,22 @@ from PySide6.QtQml import QQmlApplicationEngine
 if __name__ == '__main__':
 
     # Create application
+
     app = QGuiApplication(sys.argv)
 
     # Create QML application engine
+
     current_dir = Path(__file__).parent
-    path_to_easyapp = current_dir / '..' / '..' / '..'
-    path_to_qml_components = current_dir
-    path_to_root_qml_file = current_dir / "main.qml"
+
     engine = QQmlApplicationEngine()
-    engine.addImportPath(path_to_easyapp)
-    engine.addImportPath(path_to_qml_components)
-    engine.load(path_to_root_qml_file)
+
+    engine.addImportPath(current_dir / '..' / '..' / '..')  # path to qml components of the easyapp module
+    engine.addImportPath(current_dir)  # path to qml components of the current project
+
+    engine.load(current_dir / 'main.qml')  # path to the root qml file
 
     # Event loop
+
     if not engine.rootObjects():
         sys.exit(-1)
     sys.exit(app.exec())

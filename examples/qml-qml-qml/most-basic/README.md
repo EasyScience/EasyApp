@@ -1,22 +1,23 @@
 ## Structure of the _most-basic_ example
 
+* qmldir - Declares objects that can then be imported into other qml files
+
 ### Without the full structure of the application pages
 
 ```sh
 🗂️ most-basic                       # Parent directory
-├── qmlproject.qmlproject           # QML project for QtCreator
+├── qmlproject.qmlproject           # QML project for Qt Creator
 ├── main.qml                        # Root QML component        
 │
 └── 🗂️ Gui                          # Frontend GUI components
-    ├── qmldir                      # Declares objects which can be then imported in other qml files
-    ├── ApplicationWindow.qml       # Layout of the top-level application window
-    ├── StatusBar.qml               # Status bar of the application window
-    │
+    ├── qmldir                      
+    ├── ApplicationWindow.qml       # Top-level application window
+    ├── StatusBar.qml               # Status bar    │
     ├── 🗂️ Globals                  # Globally accessible objects and variables
-    │   ├── qmldir                  # Declares objects to be imported in other qml files
-    │   ├── MockProxy.qml           # Mock proxy object to be used if no other proxies is defined
-    │   ├── Refs.qml                # QML object id attributes to be exposed to the backend proxy
-    │   └── Vars.qml                # Variables (backendProxy, homePageEnabled, etc.).
+    │   ├── qmldir                  
+    │   ├── MockProxy.qml           # Mock proxy object to be used if no other proxies are defined
+    │   ├── Refs.qml                # QML object ids to globally access the desired objects
+    │   └── Vars.qml                # Variables (backendProxy, homePageEnabled, etc.)
     │
 (*) ├── 🗂️ Pages                    # Application pages
     │   ├── 🗂️ Home                 # Components of the application page 'Home'
@@ -29,7 +30,7 @@
 (*) Full structure of the 'Pages' directory is shown below   
 ```
 
-### Application pages only
+### Structure of the application pages only
 
 ```sh
 🗂️ Pages
@@ -55,7 +56,7 @@
 │       │   ├── Layout.qml          
 │       │   └── 🗂️ Groups           
 │       │       └── Scrolling.qml
-│       └── 🗂️ Text                 # Components of the sidebar tab with controls in text mode
+│       └── 🗂️ Text                 # Components of the sidebar tab with text mode controls
 │           └── Layout.qml          
 │
 └── 🗂️ Report                       # Components of the application 'Report' page

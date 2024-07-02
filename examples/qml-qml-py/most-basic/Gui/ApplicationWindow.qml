@@ -56,10 +56,7 @@ EaComponents.ApplicationWindow {
             fontIcon: 'home'
             text: qsTr('Home')
             ToolTip.text: qsTr('Home')
-            Component.onCompleted: {
-                homePageLoader.source = 'Pages/Home/Content.qml'
-                Globals.Refs.app.appbar.homeButton = this
-            }
+            Component.onCompleted: Globals.Refs.app.appbar.homeButton = this
         },
 
         // Project page
@@ -68,9 +65,6 @@ EaComponents.ApplicationWindow {
             fontIcon: 'archive'
             text: qsTr('Project')
             ToolTip.text: qsTr('Project description page')
-            onEnabledChanged: enabled ?
-                                  projectPageLoader.source = 'Pages/Project/Layout.qml' :
-                                  projectPageLoader.source = ''
             Component.onCompleted: Globals.Refs.app.appbar.projectButton = this
         },
 
@@ -80,22 +74,19 @@ EaComponents.ApplicationWindow {
             fontIcon: 'clipboard-list'
             text: qsTr('Summary')
             ToolTip.text: qsTr('Summary of the work done')
-            onEnabledChanged: enabled ?
-                                  summaryPageLoader.source = 'Pages/Report/Layout.qml' :
-                                  summaryPageLoader.source = ''
             Component.onCompleted: Globals.Refs.app.appbar.summaryButton = this
         }
     ]
 
-    //////////////////////
-    // MAIN VIEW + SIDEBAR
-    //////////////////////
+    //////////////////////////////////
+    // APP PAGES (MAIN AREA + SIDEBAR)
+    //////////////////////////////////
 
     // Pages for the tab buttons described above
     contentArea: [
-        Loader { id: homePageLoader },
-        Loader { id: projectPageLoader },
-        Loader { id: summaryPageLoader }
+        Loader { source: 'Pages/Home/Content.qml' },
+        Loader { source: 'Pages/Project/Layout.qml' },
+        Loader { source: 'Pages/Report/Layout.qml' }
     ]
 
     /////////////

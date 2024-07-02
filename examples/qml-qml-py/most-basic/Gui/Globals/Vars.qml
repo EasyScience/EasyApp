@@ -9,7 +9,7 @@ import QtQuick
 import Gui.Globals as Globals
 
 
-QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS > Reset Code Model"
+QtObject {
 
     // Use MockProxy as backend unless pyProxy is set in main.py
     property var backendProxy: typeof pyProxy !== 'undefined' && pyProxy !== null ?
@@ -18,7 +18,7 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
 
     // Pages accessibility
     property bool homePageEnabled: true
-    property bool projectPageEnabled: false
-    property bool summaryPageEnabled: false
+    property bool projectPageEnabled: true
+    property bool summaryPageEnabled: true
 
 }

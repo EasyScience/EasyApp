@@ -6,10 +6,9 @@ pragma Singleton
 
 import QtQuick
 
-import Gui.Globals as Globals
 
 // Mock for the backend functionality
-QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS > Reset Code Model"
+QtObject {
 
     ///////////////
     // About dialog
@@ -25,7 +24,7 @@ QtObject { // If "Unknown component. (M300) in QtCreator", try: "Tools > QML/JS 
         'issuesUrl': 'https://github.com/EasyScience/EasyExample/issues',
         'licenseUrl': 'https://github.com/EasyScience/EasyExample/LICENCE.md',
         'dependenciesUrl': 'https://github.com/EasyScience/EasyExample/DEPENDENCIES.md',
-        'version': '1.0.1',
+        'version': '2.0.1',
         'icon': Qt.resolvedUrl('../Resources/Logos/App.svg'),
         'date': new Date().toISOString().slice(0,10),
         'developerYearsFrom': "2019",

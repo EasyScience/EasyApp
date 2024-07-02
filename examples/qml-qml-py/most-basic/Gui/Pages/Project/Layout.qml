@@ -24,10 +24,7 @@ EaComponents.ContentPage {
         ]
 
         items: [
-            Loader {
-                source: 'MainAreaTabs/Description.qml'
-                onStatusChanged: if (status === Loader.Ready) console.debug(`${source} loaded`)
-            }
+            Loader { source: 'MainAreaTabs/Description.qml' }
         ]
     }
 
