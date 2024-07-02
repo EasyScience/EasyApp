@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 # the application itself is EasyExample.
 [project]
 name = "EasyApp"
-version = "0.3.0-beta"
+version = "0.4.0"
 description = "Graphical application skeleton in the EasyScience universe."
 authors = [
   {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}

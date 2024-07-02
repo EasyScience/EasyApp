@@ -1,0 +1,5 @@
+module Globals
+
+singleton MockProxy MockProxy.qml
+singleton Refs Refs.qml
+singleton Vars Vars.qml

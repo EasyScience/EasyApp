@@ -1,0 +1,16 @@
+{
+"files": [
+    "main.py",
+
+    "main.qml",
+
+    "Gui/ApplicationWindow.qml",
+    "Gui/StatusBar.qml",
+
+    "Gui/Globals/MockProxy.qml",
+    "Gui/Globals/Refs.qml",
+    "Gui/Globals/Vars.qml",
+
+    "Gui/Pages/Project/Layout.qml"
+    ]
+}
