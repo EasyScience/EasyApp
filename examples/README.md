@@ -25,7 +25,7 @@ A Python backend is not required here, but a graphical QML frontend is used with
 
 #### Run via terminal
 * `cd example/qml-qml-qml/most-basic`
-* `~/Qt/6.x.y/macos/bin/qml -I . -I ../../../../EasyApp main.qml`
+* `~/Qt/6.x.y/macos/bin/qml -I . -I ../../.. main.qml`
 
 ### Type II Examples: `qml-qml-py`
 
