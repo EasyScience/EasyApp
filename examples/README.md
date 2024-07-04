@@ -17,9 +17,14 @@ A Python backend is not required here, but a graphical QML frontend is used with
 
 #### Preparation
 
-* Download Qt Framework 6.x.y from [qt.io](https://www.qt.io/download-dev)
-* Install Qt Framework including the following modules:
-	* Qt 5 Compatibility Module
+* Download Qt Online Installer from [qt.io](https://www.qt.io/download-qt-installer-oss). More info at [doc.qt.io](https://doc.qt.io/qt-6/qt-online-installation.html).
+* Install Qt for desktop development using a custom installation that includes the following components:
+	* Qt 
+	   * [ ] Qt 6.7.z
+	       * [x] Desktop
+	       * [x] Qt 5 Compatibility Module
+	* Developer and Designer Tools
+	   * [x] Qt Creator x.y.z
 
 #### Run with the QtCreator IDE
 * Run Qt Creator
