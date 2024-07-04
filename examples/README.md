@@ -19,14 +19,17 @@ A Python backend is not required here, but a graphical QML frontend is used with
 
 * Download Qt Online Installer from [qt.io](https://www.qt.io/download-qt-installer-oss). More info at [doc.qt.io](https://doc.qt.io/qt-6/qt-online-installation.html).
 * Install Qt for desktop development using a custom installation that includes the following components:
-	* Qt 
+    * Qt 
 	   * [ ] Qt 6.7.z
-	       * [x] Desktop
+	       * [x] Desktop (**macOS**) or MSVC 2019 64-bit (**Windows**)
 	       * [x] Qt 5 Compatibility Module
-	* Developer and Designer Tools
-	   * [x] Qt Creator x.y.z
+	       * [x] Qt Shader Tools
+   	       * [ ] Additional Libraries
+   	           * [x] Qt Charts  
+	   * [ ] Developer and Designer Tools
+	       * [x] Qt Creator x.y.z
 
-#### Run with the QtCreator IDE
+#### Run with the Qt Creator IDE
 * Run Qt Creator
 * Open the qml project file `*.qmlproject` from the example folder, e.g., from `example/qml-qml-qml/most-basic`
 * Click Run (Green play button)
@@ -34,15 +37,23 @@ A Python backend is not required here, but a graphical QML frontend is used with
 #### Run from the terminal
 * Go to the example folder, e.g.,
 
-  ```sh 
+  ```sh
   $ cd example/qml-qml-qml/most-basic
   ```
 
 * Run `main.qml` (specifying the paths to the current directory and the EasyApp module directory) using the `qml` tool installed with the Qt Framework in the previous step, e.g., like this
 
-  ```sh 
+  ```sh
   $ ~/Qt/6.x.y/macos/bin/qml -I . -I ../../.. main.qml
   ```
+
+#### How to edit GUI elements in live mode
+
+* In Qt Creator, select the `.qml` file to be edited in live mode
+* Click the `Design` button at the top of the left sidebar of `Qt Creator`
+    * _Note: If this button is disabled, find and click `About plugins...` in the `Qt Creator` menu, scroll down to the `Qt Quick` section and enable `QmlDesigner`._
+* In the `Design` window, click the `Show Live Preview` button in the top panel of the application (small play nutton in a circle). 
+    * _Note: Showing the entire `main.qml` application window in live mode works best when the open `main.qml` is moved to another monitor and does not overlap with the `Qt Creator` window_.
 
 ### Type II Examples: `qml-qml-py`
 
@@ -55,7 +66,7 @@ Most examples can be run via Python, even if they only have a mock backend in QM
 	* Qt 5 Compatibility Module
 * Install the Qt PySide6 module in the desired python environment
 
-  ```sh 
+  ```sh
   $ python3.11 -m venv venv-name   # create new python environment 'venv-name'
   $ source venv-name/bin/activate  # activate 'venv-name'
   $ pip install PySide6            # install dependencies
@@ -70,12 +81,12 @@ Most examples can be run via Python, even if they only have a mock backend in QM
 #### Run from the terminal
 * Go to the example folder, e.g.,
 
-  ```sh 
+  ```sh
   $ cd example/qml-qml-py/most-basic
   ```
 * Run using Python (provided that the required python environment is activated)
 
-  ```sh 
+  ```sh
   $ python3 main.py
   ```
 
