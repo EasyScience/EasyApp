@@ -17,7 +17,7 @@ import Gui.Globals as Globals
 
 Column {
 
-    property string projectLocation: Globals.Vars.backendProxy.project.info.location +
+    property string projectLocation: Globals.BackendProxy.project.info.location +
                                      EaLogic.Utils.osPathSep() +
                                      'summary'
 

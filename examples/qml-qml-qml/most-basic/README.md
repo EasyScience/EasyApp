@@ -13,11 +13,18 @@
     ├── ApplicationWindow.qml       # Top-level application window
     ├── StatusBar.qml               # Status bar    
     │
-    ├── 🗂️ Globals                  # Globally accessible objects and variables
+    ├── 🗂️ Globals                  # Globally accessible objects
     │   ├── qmldir                  
-    │   ├── MockProxy.qml           # Mock proxy object to be used if no other proxies are defined
-    │   ├── Refs.qml                # QML object ids to globally access the desired objects
-    │   └── Vars.qml                # Variables (backendProxy, homePageEnabled, etc.)
+    │   ├── ApplicationInfo.qml     
+    │   ├── BackendProxy.qml        # Layer between the backend proxy and GUI objects
+    │   └── References.qml          # QML object ids to globally access the desired objects
+    │
+    ├── 🗂️ MockLogic                # Mock logic to be used if no python logic is defined
+    │   ├── qmldir                  
+    │   ├── BackendProxy.qml        # Parent object for all other objects with mock logic
+    │   ├── Status.qml              # Mock logic for the status bar
+    │   ├── Project.qml             # Mock logic for the application page 'Project'
+    │   └── Report.qml              # Mock logic for the application page 'Report'
     │
 (*) ├── 🗂️ Pages                    # Application pages
     │   ├── 🗂️ Home                 # Components of the application page 'Home'
@@ -58,6 +65,7 @@
 │       │   │   └── Recent.qml
 │       │   │
 │       │   └── 🗂️ Popups           
+│       │       ├── OpenCifFile.qml
 │       │       └── ProjectDescription.qml
 │       │
 │       ├── 🗂️ Extra                # Components of the sidebar tab with extra controls

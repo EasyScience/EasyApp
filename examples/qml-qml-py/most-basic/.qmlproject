@@ -14,7 +14,7 @@ Project {
         directory: "."
     }
     QmlFiles {
-        directory: "../../.."
+        directory: "../../../EasyApp"
     }
 
     // Include .js files from specified directory and its subdirectories
@@ -22,7 +22,7 @@ Project {
         directory: "."
     }
     JavaScriptFiles {
-        directory: "../../.."
+        directory: "../../../EasyApp"
     }
 
     // Include Module Definition Files (qmldir), as well as .ts and .qrc
@@ -33,10 +33,9 @@ Project {
         recursive: true
     }
     Files {
-        directory: "../../.."
+        directory: "../../../EasyApp"
         filter: "qmldir;*.ts;*.qrc;*.html"
         recursive: true
     }
 
-    mainUiFile: "Gui/Pages/Home/Content.qml"
 }

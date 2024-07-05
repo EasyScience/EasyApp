@@ -4,6 +4,7 @@
 
 import QtQuick
 import QtQuick.Controls
+import QtQuick.Dialogs
 
 import EasyApp.Gui.Globals as EaGlobals
 import EasyApp.Gui.Components as EaComponents
@@ -11,20 +12,19 @@ import EasyApp.Gui.Components as EaComponents
 import Gui.Globals as Globals
 
 
-EaComponents.ProjectDescriptionDialog {
+FileDialog{
 
-    visible: EaGlobals.Vars.showProjectDescriptionDialog
-    onClosed: EaGlobals.Vars.showProjectDescriptionDialog = false
+    id: openCifFileDialog
+
+    fileMode: FileDialog.OpenFile
+    nameFilters: [ 'CIF files (*.cif)']
 
     onAccepted: {
-        Globals.BackendProxy.project.create()
         Globals.References.applicationWindow.appBarCentralTabs.summaryButton.enabled = true
     }
 
     Component.onCompleted: {
-        projectName = Globals.BackendProxy.project.info.name
-        projectDescription = Globals.BackendProxy.project.info.description
-        projectLocation = Globals.BackendProxy.project.info.location
+        Globals.References.pages.project.sidebarTabs.basic.popups.openCifFile = openCifFileDialog
     }
 
 }

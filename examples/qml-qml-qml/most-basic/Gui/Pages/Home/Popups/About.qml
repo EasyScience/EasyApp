@@ -15,20 +15,20 @@ EaComponents.AboutDialog {
     visible: EaGlobals.Vars.showAppAboutDialog
     onClosed: EaGlobals.Vars.showAppAboutDialog = false
 
-    appIconPath: Globals.Vars.backendProxy.about.icon
-    appUrl: Globals.Vars.backendProxy.about.homePageUrl
+    appIconPath: Globals.ApplicationInfo.about.icon
+    appUrl: Globals.ApplicationInfo.about.homePageUrl
 
-    appPrefixName: Globals.Vars.backendProxy.about.namePrefixForLogo
-    appSuffixName: Globals.Vars.backendProxy.about.nameSuffixForLogo
-    appVersion: Globals.Vars.backendProxy.about.version
-    appDate: Globals.Vars.backendProxy.about.date
+    appPrefixName: Globals.ApplicationInfo.about.namePrefixForLogo
+    appSuffixName: Globals.ApplicationInfo.about.nameSuffixForLogo
+    appVersion: Globals.ApplicationInfo.about.version
+    appDate: Globals.ApplicationInfo.about.date
 
-    eulaUrl: Globals.Vars.backendProxy.about.licenseUrl
-    oslUrl: Globals.Vars.backendProxy.about.dependenciesUrl
+    eulaUrl: Globals.ApplicationInfo.about.licenseUrl
+    oslUrl: Globals.ApplicationInfo.about.dependenciesUrl
 
-    description: Globals.Vars.backendProxy.about.description
-    developerIcons: Globals.Vars.backendProxy.about.developerIcons
-    developerYearsFrom: Globals.Vars.backendProxy.about.developerYearsFrom
-    developerYearsTo: Globals.Vars.backendProxy.about.developerYearsTo
+    description: Globals.ApplicationInfo.about.description
+    developerIcons: Globals.ApplicationInfo.about.developerIcons
+    developerYearsFrom: Globals.ApplicationInfo.about.developerYearsFrom
+    developerYearsTo: Globals.ApplicationInfo.about.developerYearsTo
 
 }

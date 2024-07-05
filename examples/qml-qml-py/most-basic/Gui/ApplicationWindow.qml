@@ -22,11 +22,11 @@ EaComponents.ApplicationWindow {
     appBarLeftButtons: [
 
         EaElements.ToolButton {
-            enabled: Globals.Vars.backendProxy.project.created
+            enabled: Globals.BackendProxy.project.created
             highlighted: true
             fontIcon: 'save'
             ToolTip.text: qsTr('Save current state of the project')
-            onClicked: Globals.Vars.backendProxy.project.save()
+            onClicked: Globals.BackendProxy.project.save()
         }
 
     ]
@@ -39,6 +39,7 @@ EaComponents.ApplicationWindow {
             ToolTip.text: qsTr('Application preferences')
             onClicked: EaGlobals.Vars.showAppPreferencesDialog = true
         }
+
     ]
 
     // Central group of application bar page buttons (workflow tabs)
@@ -47,31 +48,39 @@ EaComponents.ApplicationWindow {
 
         // Home page
         EaElements.AppBarTabButton {
-            enabled: Globals.Vars.homePageEnabled
+            id: homeButton
             fontIcon: 'home'
             text: qsTr('Home')
             ToolTip.text: qsTr('Home')
-            Component.onCompleted: Globals.Refs.app.appbar.homeButton = this
+            Component.onCompleted: {
+                Globals.References.applicationWindow.appBarCentralTabs.homeButton = homeButton
+            }
         },
         // Home page
 
         // Project page
         EaElements.AppBarTabButton {
-            enabled: Globals.Vars.projectPageEnabled
+            id: projectButton
+            enabled: false
             fontIcon: 'archive'
             text: qsTr('Project')
             ToolTip.text: qsTr('Project description page')
-            Component.onCompleted: Globals.Refs.app.appbar.projectButton = this
+            Component.onCompleted: {
+                Globals.References.applicationWindow.appBarCentralTabs.projectButton = projectButton
+            }
         },
         // Project page
 
         // Summary page
         EaElements.AppBarTabButton {
-            enabled: Globals.Vars.summaryPageEnabled
+            id: summaryButton
+            enabled: false
             fontIcon: 'clipboard-list'
             text: qsTr('Summary')
             ToolTip.text: qsTr('Summary of the work done')
-            Component.onCompleted: Globals.Refs.app.appbar.summaryButton = this
+            Component.onCompleted: {
+                Globals.References.applicationWindow.appBarCentralTabs.summaryButton = summaryButton
+            }
         }
         // Summary page
     ]

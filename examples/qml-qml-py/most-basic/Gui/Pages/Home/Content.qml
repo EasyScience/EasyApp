@@ -20,7 +20,7 @@ Item {
         Image {
             id: appLogo
 
-            source: Globals.Vars.backendProxy.about.icon
+            source: Globals.ApplicationInfo.about.icon
             anchors.horizontalCenter: parent.horizontalCenter
             width: EaStyle.Sizes.fontPixelSize * 5
             fillMode: Image.PreserveAspectFit
@@ -41,13 +41,13 @@ Item {
                 font.family: parent.fontFamily
                 font.pixelSize: parent.fontPixelSize
                 font.weight: Font.Light
-                text: Globals.Vars.backendProxy.about.namePrefixForLogo
+                text: Globals.ApplicationInfo.about.namePrefixForLogo
             }
             EaElements.Label {
                 font.family: parent.fontFamily
                 font.pixelSize: parent.fontPixelSize
                 font.weight: Font.DemiBold
-                text: Globals.Vars.backendProxy.about.nameSuffixForLogo
+                text: Globals.ApplicationInfo.about.nameSuffixForLogo
             }
         }
         // Application name
@@ -58,7 +58,9 @@ Item {
 
             anchors.horizontalCenter: parent.horizontalCenter
 
-            text: qsTr('Version') + ` ${Globals.Vars.backendProxy.about.version} (${Globals.Vars.backendProxy.about.date})`
+            text: {
+                return qsTr('Version') + ` ${Globals.ApplicationInfo.about.version} (${Globals.ApplicationInfo.about.date})`
+            }
         }
         // Application version
 
@@ -75,10 +77,9 @@ Item {
             text: qsTr('Start')
             onClicked: {
                 console.debug(`Clicking '${text}' button ::: ${this}`)
-                Globals.Vars.projectPageEnabled = true
-                Globals.Refs.app.appbar.projectButton.toggle()
+                Globals.References.applicationWindow.appBarCentralTabs.projectButton.enabled = true
+                Globals.References.applicationWindow.appBarCentralTabs.projectButton.toggle()
             }
-            Component.onCompleted: Globals.Refs.app.homePage.startButton = this
         }
 
         // Vertical spacer
@@ -96,7 +97,7 @@ Item {
                 spacing: EaStyle.Sizes.fontPixelSize
 
                 EaElements.Button {
-                    text: qsTr('About %1'.arg(Globals.Vars.backendProxy.about.name))
+                    text: qsTr('About %1'.arg(Globals.ApplicationInfo.about.name))
                     onClicked: EaGlobals.Vars.showAppAboutDialog = true
                     Loader { source: 'Popups/About.qml' }
                 }

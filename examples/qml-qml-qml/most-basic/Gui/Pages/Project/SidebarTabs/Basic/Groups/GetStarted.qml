@@ -4,7 +4,7 @@
 
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Dialogs
+//import QtQuick.Dialogs
 
 import EasyApp.Gui.Globals as EaGlobals
 import EasyApp.Gui.Style as EaStyle
@@ -20,40 +20,36 @@ Grid {
     columns: 2
     spacing: EaStyle.Sizes.fontPixelSize
 
+    // button 1
     EaElements.SideBarButton {
         fontIcon: 'plus-circle'
         text: qsTr('Create a new project')
 
         onClicked: {
             console.debug(`Clicking '${text}' button ::: ${this}`)
-            projectDescriptionDialog.source = '../Popups/ProjectDescription.qml'
             EaGlobals.Vars.showProjectDescriptionDialog = true
         }
 
         Loader {
-            id: projectDescriptionDialog
+            source: '../Popups/ProjectDescription.qml'
         }
     }
+    // button 1
 
+    // button 2
     EaElements.SideBarButton {
         fontIcon: 'upload'
         text: qsTr('Open an existing project')
 
         onClicked: {
             console.debug(`Clicking '${text}' button ::: ${this}`)
-            openCifFileDialog.open()
+            Globals.References.pages.project.sidebarTabs.basic.popups.openCifFile.open()
+        }
+
+        Loader {
+            source: '../Popups/OpenCifFile.qml'
         }
     }
-
-    // Misc
-
-    FileDialog{
-        id: openCifFileDialog
-        fileMode: FileDialog.OpenFile
-        nameFilters: [ 'CIF files (*.cif)']
-        onAccepted: {
-            Globals.Vars.summaryPageEnabled = true
-        }
-    }
+    // button 2
 
 }

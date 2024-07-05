@@ -24,7 +24,7 @@ EaComponents.TableView {
 
     defaultInfoText: qsTr('No examples available')
 
-    model: Globals.Vars.backendProxy.project.examples
+    model: Globals.BackendProxy.project.examples
 
     // header
     header: EaComponents.TableViewHeader {
@@ -46,7 +46,6 @@ EaComponents.TableView {
         mouseArea.onPressed: {
             const filePath = tableView.model[index].path
             console.debug(`Loading example: ${filePath}`)
-            Globals.Vars.summaryPageEnabled = true
         }
 
         EaComponents.TableViewLabel {

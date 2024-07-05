@@ -15,7 +15,7 @@ import Gui.Globals as Globals
 
 EaComponents.ContentPage {
 
-    defaultInfo: Globals.Vars.backendProxy.project.created ?
+    defaultInfo: Globals.BackendProxy.project.created ?
                      '' :
                      qsTr('No project defined')
 
@@ -33,7 +33,7 @@ EaComponents.ContentPage {
         tabs: [
             EaElements.TabButton { text: qsTr('Basic controls') },
             EaElements.TabButton { text: qsTr('Extra controls') },
-            EaElements.TabButton { text: qsTr('Text mode controls'); enabled: false}
+            EaElements.TabButton { text: qsTr('Text mode controls'); enabled: false }
         ]
 
         items: [
@@ -42,17 +42,15 @@ EaComponents.ContentPage {
             Loader { source: 'SidebarTabs/Text/Layout.qml' }
         ]
 
-        continueButton.text: Globals.Vars.backendProxy.project.created ?
+        continueButton.text: Globals.BackendProxy.project.created ?
                                  qsTr('Continue') :
                                  qsTr('Continue without project')
 
         continueButton.onClicked: {            
             console.debug(`Clicking '${continueButton.text}' button ::: ${this}`)
-            Globals.Vars.summaryPageEnabled = true
-            Globals.Refs.app.appbar.summaryButton.toggle()
+            Globals.References.applicationWindow.appBarCentralTabs.summaryButton.enabled = true
+            Globals.References.applicationWindow.appBarCentralTabs.summaryButton.toggle()
         }
-
-        Component.onCompleted: Globals.Refs.app.projectPage.continueButton = continueButton
     }
 
     Component.onCompleted: console.debug(`Project page loaded ::: ${this}`)
