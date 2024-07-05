@@ -1,4 +1,0 @@
-module Gui
-
-ApplicationWindow ApplicationWindow.qml
-StatusBar StatusBar.qml

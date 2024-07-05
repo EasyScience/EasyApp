@@ -1,5 +1,0 @@
-module Animations
-
-ColorReset ColorReset.qml
-ThemeChange ThemeChange.qml
-TranslationChange TranslationChange.qml
