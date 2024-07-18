@@ -105,7 +105,7 @@ Most examples can be run via Python, even if they only have a mock backend in QM
 
 These examples can be run through Python in the same way as Type II described above. These examples have a Python-based backend and a python proxy object created in `main.py` that is exposed to QML. Communication between the Qt QML frontend and the Python backend occurs through this python proxy.
 
-### Possible Issues
+#### Possible Issues
 
 * If in Qt Creator some components are highlighted and marked as "Unknown component. (M300)", try resetting via "Tools > QML/JS > Reset Code Model".
 
