@@ -40,13 +40,13 @@ A Python backend is not required here at all. A graphical QML frontend (with a m
 * Go to the example folder, e.g.,
 
   ```sh
-  $ cd example/qml-qml-qml/most-basic
+  $ cd examples/BasicQml/src/BasicQml
   ```
 
 * Run `main.qml` (specifying the paths to the current directory and the EasyApp module directory) using the `qml` tool installed with the Qt Framework in the previous step, e.g., like this
 
   ```sh
-  $ ~/Qt/6.x.y/macos/bin/qml -I . -I ../../.. main.qml
+  $ ~/Qt/6.x.y/macos/bin/qml -I . -I ../../../.. main.qml
   ```
 
 #### How to edit GUI elements in live mode
@@ -85,7 +85,7 @@ Most examples can be run via Python, even if they only have a mock backend in QM
 * Go to the example folder, e.g.,
 
   ```sh
-  $ cd example/qml-qml-py/most-basic
+  $ cd examples/BasicMinimalPy/src/BasicMinimalPy
   ```
 * Run using Python (provided that the required python environment is activated)
 
