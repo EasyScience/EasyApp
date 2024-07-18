@@ -9,6 +9,10 @@
 *.pyproject.user
 *.pyproject.user.*
 
+# QtCreator C++
+*.pro.user
+*.pro.user.*
+
 # QtCreator CMake
 CMakeLists.txt.user*
 

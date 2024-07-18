@@ -129,7 +129,6 @@
         <file alias="EasyApp/Gui/Elements/ToolButton.qml">../../../../src/EasyApp/Gui/Elements/ToolButton.qml</file>
         <file alias="EasyApp/Gui/Elements/ToolTip.qml">../../../../src/EasyApp/Gui/Elements/ToolTip.qml</file>
         <file alias="EasyApp/Gui/Globals/qmldir">../../../../src/EasyApp/Gui/Globals/qmldir</file>
-        <file alias="EasyApp/Gui/Globals/settings.ini">../../../../src/EasyApp/Gui/Globals/settings.ini</file>
         <file alias="EasyApp/Gui/Globals/Vars.qml">../../../../src/EasyApp/Gui/Globals/Vars.qml</file>
         <file alias="EasyApp/Gui/Html/BasicReport.html">../../../../src/EasyApp/Gui/Html/BasicReport.html</file>
         <file alias="EasyApp/Gui/Html/BlankPage.html">../../../../src/EasyApp/Gui/Html/BlankPage.html</file>
