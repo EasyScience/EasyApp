@@ -38,191 +38,192 @@
         <file>Logic/Mock/qmldir</file>
         <file>Logic/Mock/Report.qml</file>
         <file>Logic/Mock/Status.qml</file>
-        <file>../../../../EasyApp/Gui/Animations/ColorReset.qml</file>
-        <file>../../../../EasyApp/Gui/Animations/qmldir</file>
-        <file>../../../../EasyApp/Gui/Animations/ThemeChange.qml</file>
-        <file>../../../../EasyApp/Gui/Animations/TranslationChange.qml</file>
-        <file>../../../../EasyApp/Gui/Charts/Plotly1dLine.qml</file>
-        <file>../../../../EasyApp/Gui/Charts/Plotly1dMeasVsCalc.qml</file>
-        <file>../../../../EasyApp/Gui/Charts/Plotly2dHeatmap.qml</file>
-        <file>../../../../EasyApp/Gui/Charts/Plotly3dScatter.qml</file>
-        <file>../../../../EasyApp/Gui/Charts/Plotly3dSurface.qml</file>
-        <file>../../../../EasyApp/Gui/Charts/qmldir</file>
-        <file>../../../../EasyApp/Gui/Charts/QtCharts1dBase 2.qml</file>
-        <file>../../../../EasyApp/Gui/Charts/QtCharts1dBase.qml</file>
-        <file>../../../../EasyApp/Gui/Charts/QtCharts1dMeasVsCalc.qml</file>
-        <file>../../../../EasyApp/Gui/Charts/QtCharts1dValueAxis.qml</file>
-        <file>../../../../EasyApp/Gui/Components/AboutDialog.qml</file>
-        <file>../../../../EasyApp/Gui/Components/AppBarCentralTabs.qml</file>
-        <file>../../../../EasyApp/Gui/Components/AppBarLeftButtons.qml</file>
-        <file>../../../../EasyApp/Gui/Components/AppBarRightButtons.qml</file>
-        <file>../../../../EasyApp/Gui/Components/ApplicationWindow.qml</file>
-        <file>../../../../EasyApp/Gui/Components/BasicReport.qml</file>
-        <file>../../../../EasyApp/Gui/Components/ContentArea.qml</file>
-        <file>../../../../EasyApp/Gui/Components/ContentPage.qml</file>
-        <file>../../../../EasyApp/Gui/Components/GuideWindow.qml</file>
-        <file>../../../../EasyApp/Gui/Components/GuideWindowContainer.qml</file>
-        <file>../../../../EasyApp/Gui/Components/JsonListModel.qml</file>
-        <file>../../../../EasyApp/Gui/Components/MainContent.qml</file>
-        <file>../../../../EasyApp/Gui/Components/PreferencesDialog.qml</file>
-        <file>../../../../EasyApp/Gui/Components/ProjectDescriptionDialog.qml</file>
-        <file>../../../../EasyApp/Gui/Components/qmldir</file>
-        <file>../../../../EasyApp/Gui/Components/SideBar.qml</file>
-        <file>../../../../EasyApp/Gui/Components/SideBarColumn.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableView.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewAdvancedLabel.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewButton.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewCheckBox.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewComboBox.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewDelegate.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewHeader.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewLabel.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewLabelControl.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewParameter.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewTextInput.qml</file>
-        <file>../../../../EasyApp/Gui/Components/TableViewTwoRowsAdvancedLabel.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/AppBarTabButton.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ApplicationWindow.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/BoxShadow.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/Button.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/CheckBox.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/CheckIndicator.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ComboBox.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/CursorDelegate.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/Dialog.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/DialogButtonBox.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ElevationEffect.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/GroupBox.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/GroupButton.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/GroupColumn.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/GroupRow.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/Label.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/LinkedImage.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/Menu.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/MenuItem.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ParamComboBox.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/Parameter.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ParamTextField.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/Popup.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/qmldir</file>
-        <file>../../../../EasyApp/Gui/Elements/RadioButton.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/RadioIndicator.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/RectangularGlow.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/RemoteController.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/RemotePointer.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/RunningLabel.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ScrollBar.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ScrollIndicator.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/SideBarButton.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/Slider.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/SliderHandle.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/SpinBox.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/SplashScreen.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/StatusBar.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/StatusBarItem.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/TabBar.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/TabButton.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/TextArea.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/TextField.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/TextInput.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ToolBar.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ToolButton.qml</file>
-        <file>../../../../EasyApp/Gui/Elements/ToolTip.qml</file>
-        <file>../../../../EasyApp/Gui/Globals/qmldir</file>
-        <file>../../../../EasyApp/Gui/Globals/settings.ini</file>
-        <file>../../../../EasyApp/Gui/Globals/Vars.qml</file>
-        <file>../../../../EasyApp/Gui/Html/BasicReport.html</file>
-        <file>../../../../EasyApp/Gui/Html/BlankPage.html</file>
-        <file>../../../../EasyApp/Gui/Html/plotly-2.18.0.min.js</file>
-        <file>../../../../EasyApp/Gui/Html/Plotly1dLine.html</file>
-        <file>../../../../EasyApp/Gui/Html/Plotly1dMeasVsCalc.html</file>
-        <file>../../../../EasyApp/Gui/Html/Plotly2dHeatmap.html</file>
-        <file>../../../../EasyApp/Gui/Html/Plotly3dMesh.html</file>
-        <file>../../../../EasyApp/Gui/Html/Plotly3dScatter.html</file>
-        <file>../../../../EasyApp/Gui/Html/Plotly3dSurface.html</file>
-        <file>../../../../EasyApp/Gui/Html/PTSans-Bold.ttf</file>
-        <file>../../../../EasyApp/Gui/Html/PTSans-Regular.ttf</file>
-        <file>../../../../EasyApp/Gui/Logic/Plotting.js</file>
-        <file>../../../../EasyApp/Gui/Logic/ProjectConfig.js</file>
-        <file>../../../../EasyApp/Gui/Logic/qmldir</file>
-        <file>../../../../EasyApp/Gui/Logic/Translate.js</file>
-        <file>../../../../EasyApp/Gui/Logic/Utils.js</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/download.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Black.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Bold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-ExtraBold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-ExtraLight.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Light.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Medium.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Regular.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-SemiBold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Thin.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans/OFL.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/download.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Black.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Bold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-ExtraBold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-ExtraLight.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Light.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Medium.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Regular.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-SemiBold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Thin.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/OFL.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/download.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Black.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Bold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-ExtraBold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-ExtraLight.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Light.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Medium.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Regular.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-SemiBold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Thin.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/OFL.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/FontAwesome/Font Awesome 5 Free-Solid-900.otf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/FontAwesome/Font Awesome 6 Free-Regular-400.otf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/FontAwesome/Font Awesome 6 Free-Solid-900.otf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/FontAwesome/LICENSE.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/download.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Black.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-BlackItalic.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Bold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-BoldItalic.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraBold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraBoldItalic.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraLight.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraLightItalic.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Italic.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Light.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-LightItalic.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Regular.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-SemiBold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/Nunito-SemiBoldItalic.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/Nunito/OFL.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/PT_Mono/download.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/PT_Mono/OFL.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/PT_Mono/PTMono-Regular.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/PT_Sans/download.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/PT_Sans/OFL.txt</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-Bold.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-BoldItalic.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-Italic.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-Regular.ttf</file>
-        <file>../../../../EasyApp/Gui/Resources/Icons/description.txt</file>
-        <file>../../../../EasyApp/Gui/Style/Colors.qml</file>
-        <file>../../../../EasyApp/Gui/Style/Fonts.qml</file>
-        <file>../../../../EasyApp/Gui/Style/qmldir</file>
-        <file>../../../../EasyApp/Gui/Style/Sizes.qml</file>
-        <file>../../../../EasyApp/Gui/Style/Times.qml</file>
-        <file>../../../../EasyApp/Logic/Maintenance/qmldir</file>
-        <file>../../../../EasyApp/Logic/Maintenance/Updater.qml</file>
-        <file>../../../../EasyApp/Logic/Utils/__init__.py</file>
-        <file>../../../../EasyApp/Logic/Utils/Utils.py</file>
-        <file>../../../../EasyApp/Logic/__init__.py</file>
-        <file>../../../../EasyApp/Logic/Logging.py</file>
-        <file>../../../../EasyApp/Logic/Maintenance.py</file>
-        <file>../../../../EasyApp/Logic/Translate.py</file>
-        <file>../../../../EasyApp/__init__.py</file>
+        <file alias="EasyApp/Gui/Animations/ColorReset.qml">../../../../src/EasyApp/Gui/Animations/ColorReset.qml</file>
+        <file alias="EasyApp/Gui/Animations/qmldir">../../../../src/EasyApp/Gui/Animations/qmldir</file>
+        <file alias="EasyApp/Gui/Animations/ThemeChange.qml">../../../../src/EasyApp/Gui/Animations/ThemeChange.qml</file>
+        <file alias="EasyApp/Gui/Animations/TranslationChange.qml">../../../../src/EasyApp/Gui/Animations/TranslationChange.qml</file>
+        <file alias="EasyApp/Gui/Charts/Plotly1dLine.qml">../../../../src/EasyApp/Gui/Charts/Plotly1dLine.qml</file>
+        <file alias="EasyApp/Gui/Charts/Plotly1dMeasVsCalc.qml">../../../../src/EasyApp/Gui/Charts/Plotly1dMeasVsCalc.qml</file>
+        <file alias="EasyApp/Gui/Charts/Plotly2dHeatmap.qml">../../../../src/EasyApp/Gui/Charts/Plotly2dHeatmap.qml</file>
+        <file alias="EasyApp/Gui/Charts/Plotly3dScatter.qml">../../../../src/EasyApp/Gui/Charts/Plotly3dScatter.qml</file>
+        <file alias="EasyApp/Gui/Charts/Plotly3dSurface.qml">../../../../src/EasyApp/Gui/Charts/Plotly3dSurface.qml</file>
+        <file alias="EasyApp/Gui/Charts/qmldir">../../../../src/EasyApp/Gui/Charts/qmldir</file>
+        <file alias="EasyApp/Gui/Charts/QtCharts1dBase 2.qml">../../../../src/EasyApp/Gui/Charts/QtCharts1dBase 2.qml</file>
+        <file alias="EasyApp/Gui/Charts/QtCharts1dBase.qml">../../../../src/EasyApp/Gui/Charts/QtCharts1dBase.qml</file>
+        <file alias="EasyApp/Gui/Charts/QtCharts1dMeasVsCalc.qml">../../../../src/EasyApp/Gui/Charts/QtCharts1dMeasVsCalc.qml</file>
+        <file alias="EasyApp/Gui/Charts/QtCharts1dValueAxis.qml">../../../../src/EasyApp/Gui/Charts/QtCharts1dValueAxis.qml</file>
+        <file alias="EasyApp/Gui/Components/AboutDialog.qml">../../../../src/EasyApp/Gui/Components/AboutDialog.qml</file>
+        <file alias="EasyApp/Gui/Components/AppBarCentralTabs.qml">../../../../src/EasyApp/Gui/Components/AppBarCentralTabs.qml</file>
+        <file alias="EasyApp/Gui/Components/AppBarLeftButtons.qml">../../../../src/EasyApp/Gui/Components/AppBarLeftButtons.qml</file>
+        <file alias="EasyApp/Gui/Components/AppBarRightButtons.qml">../../../../src/EasyApp/Gui/Components/AppBarRightButtons.qml</file>
+        <file alias="EasyApp/Gui/Components/ApplicationWindow.qml">../../../../src/EasyApp/Gui/Components/ApplicationWindow.qml</file>
+        <file alias="EasyApp/Gui/Components/BasicReport.qml">../../../../src/EasyApp/Gui/Components/BasicReport.qml</file>
+        <file alias="EasyApp/Gui/Components/ContentArea.qml">../../../../src/EasyApp/Gui/Components/ContentArea.qml</file>
+        <file alias="EasyApp/Gui/Components/ContentPage.qml">../../../../src/EasyApp/Gui/Components/ContentPage.qml</file>
+        <file alias="EasyApp/Gui/Components/GuideWindow.qml">../../../../src/EasyApp/Gui/Components/GuideWindow.qml</file>
+        <file alias="EasyApp/Gui/Components/GuideWindowContainer.qml">../../../../src/EasyApp/Gui/Components/GuideWindowContainer.qml</file>
+        <file alias="EasyApp/Gui/Components/JsonListModel.qml">../../../../src/EasyApp/Gui/Components/JsonListModel.qml</file>
+        <file alias="EasyApp/Gui/Components/MainContent.qml">../../../../src/EasyApp/Gui/Components/MainContent.qml</file>
+        <file alias="EasyApp/Gui/Components/PreferencesDialog.qml">../../../../src/EasyApp/Gui/Components/PreferencesDialog.qml</file>
+        <file alias="EasyApp/Gui/Components/ProjectDescriptionDialog.qml">../../../../src/EasyApp/Gui/Components/ProjectDescriptionDialog.qml</file>
+        <file alias="EasyApp/Gui/Components/qmldir">../../../../src/EasyApp/Gui/Components/qmldir</file>
+        <file alias="EasyApp/Gui/Components/SideBar.qml">../../../../src/EasyApp/Gui/Components/SideBar.qml</file>
+        <file alias="EasyApp/Gui/Components/SideBarColumn.qml">../../../../src/EasyApp/Gui/Components/SideBarColumn.qml</file>
+        <file alias="EasyApp/Gui/Components/TableView.qml">../../../../src/EasyApp/Gui/Components/TableView.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewAdvancedLabel.qml">../../../../src/EasyApp/Gui/Components/TableViewAdvancedLabel.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewButton.qml">../../../../src/EasyApp/Gui/Components/TableViewButton.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewCheckBox.qml">../../../../src/EasyApp/Gui/Components/TableViewCheckBox.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewComboBox.qml">../../../../src/EasyApp/Gui/Components/TableViewComboBox.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewDelegate.qml">../../../../src/EasyApp/Gui/Components/TableViewDelegate.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewHeader.qml">../../../../src/EasyApp/Gui/Components/TableViewHeader.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewLabel.qml">../../../../src/EasyApp/Gui/Components/TableViewLabel.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewLabelControl.qml">../../../../src/EasyApp/Gui/Components/TableViewLabelControl.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewParameter.qml">../../../../src/EasyApp/Gui/Components/TableViewParameter.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewTextInput.qml">../../../../src/EasyApp/Gui/Components/TableViewTextInput.qml</file>
+        <file alias="EasyApp/Gui/Components/TableViewTwoRowsAdvancedLabel.qml">../../../../src/EasyApp/Gui/Components/TableViewTwoRowsAdvancedLabel.qml</file>
+        <file alias="EasyApp/Gui/Elements/AppBarTabButton.qml">../../../../src/EasyApp/Gui/Elements/AppBarTabButton.qml</file>
+        <file alias="EasyApp/Gui/Elements/ApplicationWindow.qml">../../../../src/EasyApp/Gui/Elements/ApplicationWindow.qml</file>
+        <file alias="EasyApp/Gui/Elements/BoxShadow.qml">../../../../src/EasyApp/Gui/Elements/BoxShadow.qml</file>
+        <file alias="EasyApp/Gui/Elements/Button.qml">../../../../src/EasyApp/Gui/Elements/Button.qml</file>
+        <file alias="EasyApp/Gui/Elements/CheckBox.qml">../../../../src/EasyApp/Gui/Elements/CheckBox.qml</file>
+        <file alias="EasyApp/Gui/Elements/CheckIndicator.qml">../../../../src/EasyApp/Gui/Elements/CheckIndicator.qml</file>
+        <file alias="EasyApp/Gui/Elements/ComboBox.qml">../../../../src/EasyApp/Gui/Elements/ComboBox.qml</file>
+        <file alias="EasyApp/Gui/Elements/CursorDelegate.qml">../../../../src/EasyApp/Gui/Elements/CursorDelegate.qml</file>
+        <file alias="EasyApp/Gui/Elements/Dialog.qml">../../../../src/EasyApp/Gui/Elements/Dialog.qml</file>
+        <file alias="EasyApp/Gui/Elements/DialogButtonBox.qml">../../../../src/EasyApp/Gui/Elements/DialogButtonBox.qml</file>
+        <file alias="EasyApp/Gui/Elements/ElevationEffect.qml">../../../../src/EasyApp/Gui/Elements/ElevationEffect.qml</file>
+        <file alias="EasyApp/Gui/Elements/GroupBox.qml">../../../../src/EasyApp/Gui/Elements/GroupBox.qml</file>
+        <file alias="EasyApp/Gui/Elements/GroupButton.qml">../../../../src/EasyApp/Gui/Elements/GroupButton.qml</file>
+        <file alias="EasyApp/Gui/Elements/GroupColumn.qml">../../../../src/EasyApp/Gui/Elements/GroupColumn.qml</file>
+        <file alias="EasyApp/Gui/Elements/GroupRow.qml">../../../../src/EasyApp/Gui/Elements/GroupRow.qml</file>
+        <file alias="EasyApp/Gui/Elements/Label.qml">../../../../src/EasyApp/Gui/Elements/Label.qml</file>
+        <file alias="EasyApp/Gui/Elements/LinkedImage.qml">../../../../src/EasyApp/Gui/Elements/LinkedImage.qml</file>
+        <file alias="EasyApp/Gui/Elements/Menu.qml">../../../../src/EasyApp/Gui/Elements/Menu.qml</file>
+        <file alias="EasyApp/Gui/Elements/MenuItem.qml">../../../../src/EasyApp/Gui/Elements/MenuItem.qml</file>
+        <file alias="EasyApp/Gui/Elements/ParamComboBox.qml">../../../../src/EasyApp/Gui/Elements/ParamComboBox.qml</file>
+        <file alias="EasyApp/Gui/Elements/Parameter.qml">../../../../src/EasyApp/Gui/Elements/Parameter.qml</file>
+        <file alias="EasyApp/Gui/Elements/ParamTextField.qml">../../../../src/EasyApp/Gui/Elements/ParamTextField.qml</file>
+        <file alias="EasyApp/Gui/Elements/Popup.qml">../../../../src/EasyApp/Gui/Elements/Popup.qml</file>
+        <file alias="EasyApp/Gui/Elements/qmldir">../../../../src/EasyApp/Gui/Elements/qmldir</file>
+        <file alias="EasyApp/Gui/Elements/RadioButton.qml">../../../../src/EasyApp/Gui/Elements/RadioButton.qml</file>
+        <file alias="EasyApp/Gui/Elements/RadioIndicator.qml">../../../../src/EasyApp/Gui/Elements/RadioIndicator.qml</file>
+        <file alias="EasyApp/Gui/Elements/RectangularGlow.qml">../../../../src/EasyApp/Gui/Elements/RectangularGlow.qml</file>
+        <file alias="EasyApp/Gui/Elements/RemoteController.qml">../../../../src/EasyApp/Gui/Elements/RemoteController.qml</file>
+        <file alias="EasyApp/Gui/Elements/RemotePointer.qml">../../../../src/EasyApp/Gui/Elements/RemotePointer.qml</file>
+        <file alias="EasyApp/Gui/Elements/RunningLabel.qml">../../../../src/EasyApp/Gui/Elements/RunningLabel.qml</file>
+        <file alias="EasyApp/Gui/Elements/ScrollBar.qml">../../../../src/EasyApp/Gui/Elements/ScrollBar.qml</file>
+        <file alias="EasyApp/Gui/Elements/ScrollIndicator.qml">../../../../src/EasyApp/Gui/Elements/ScrollIndicator.qml</file>
+        <file alias="EasyApp/Gui/Elements/SideBarButton.qml">../../../../src/EasyApp/Gui/Elements/SideBarButton.qml</file>
+        <file alias="EasyApp/Gui/Elements/Slider.qml">../../../../src/EasyApp/Gui/Elements/Slider.qml</file>
+        <file alias="EasyApp/Gui/Elements/SliderHandle.qml">../../../../src/EasyApp/Gui/Elements/SliderHandle.qml</file>
+        <file alias="EasyApp/Gui/Elements/SpinBox.qml">../../../../src/EasyApp/Gui/Elements/SpinBox.qml</file>
+        <file alias="EasyApp/Gui/Elements/SplashScreen.qml">../../../../src/EasyApp/Gui/Elements/SplashScreen.qml</file>
+        <file alias="EasyApp/Gui/Elements/StatusBar.qml">../../../../src/EasyApp/Gui/Elements/StatusBar.qml</file>
+        <file alias="EasyApp/Gui/Elements/StatusBarItem.qml">../../../../src/EasyApp/Gui/Elements/StatusBarItem.qml</file>
+        <file alias="EasyApp/Gui/Elements/TabBar.qml">../../../../src/EasyApp/Gui/Elements/TabBar.qml</file>
+        <file alias="EasyApp/Gui/Elements/TabButton.qml">../../../../src/EasyApp/Gui/Elements/TabButton.qml</file>
+        <file alias="EasyApp/Gui/Elements/TextArea.qml">../../../../src/EasyApp/Gui/Elements/TextArea.qml</file>
+        <file alias="EasyApp/Gui/Elements/TextField.qml">../../../../src/EasyApp/Gui/Elements/TextField.qml</file>
+        <file alias="EasyApp/Gui/Elements/TextInput.qml">../../../../src/EasyApp/Gui/Elements/TextInput.qml</file>
+        <file alias="EasyApp/Gui/Elements/ToolBar.qml">../../../../src/EasyApp/Gui/Elements/ToolBar.qml</file>
+        <file alias="EasyApp/Gui/Elements/ToolButton.qml">../../../../src/EasyApp/Gui/Elements/ToolButton.qml</file>
+        <file alias="EasyApp/Gui/Elements/ToolTip.qml">../../../../src/EasyApp/Gui/Elements/ToolTip.qml</file>
+        <file alias="EasyApp/Gui/Globals/qmldir">../../../../src/EasyApp/Gui/Globals/qmldir</file>
+        <file alias="EasyApp/Gui/Globals/settings.ini">../../../../src/EasyApp/Gui/Globals/settings.ini</file>
+        <file alias="EasyApp/Gui/Globals/Vars.qml">../../../../src/EasyApp/Gui/Globals/Vars.qml</file>
+        <file alias="EasyApp/Gui/Html/BasicReport.html">../../../../src/EasyApp/Gui/Html/BasicReport.html</file>
+        <file alias="EasyApp/Gui/Html/BlankPage.html">../../../../src/EasyApp/Gui/Html/BlankPage.html</file>
+        <file alias="EasyApp/Gui/Html/plotly-2.18.0.min.js">../../../../src/EasyApp/Gui/Html/plotly-2.18.0.min.js</file>
+        <file alias="EasyApp/Gui/Html/Plotly1dLine.html">../../../../src/EasyApp/Gui/Html/Plotly1dLine.html</file>
+        <file alias="EasyApp/Gui/Html/Plotly1dMeasVsCalc.html">../../../../src/EasyApp/Gui/Html/Plotly1dMeasVsCalc.html</file>
+        <file alias="EasyApp/Gui/Html/Plotly2dHeatmap.html">../../../../src/EasyApp/Gui/Html/Plotly2dHeatmap.html</file>
+        <file alias="EasyApp/Gui/Html/Plotly3dMesh.html">../../../../src/EasyApp/Gui/Html/Plotly3dMesh.html</file>
+        <file alias="EasyApp/Gui/Html/Plotly3dScatter.html">../../../../src/EasyApp/Gui/Html/Plotly3dScatter.html</file>
+        <file alias="EasyApp/Gui/Html/Plotly3dSurface.html">../../../../src/EasyApp/Gui/Html/Plotly3dSurface.html</file>
+        <file alias="EasyApp/Gui/Html/PTSans-Bold.ttf">../../../../src/EasyApp/Gui/Html/PTSans-Bold.ttf</file>
+        <file alias="EasyApp/Gui/Html/PTSans-Regular.ttf">../../../../src/EasyApp/Gui/Html/PTSans-Regular.ttf</file>
+        <file alias="EasyApp/Gui/Logic/Plotting.js">../../../../src/EasyApp/Gui/Logic/Plotting.js</file>
+        <file alias="EasyApp/Gui/Logic/ProjectConfig.js">../../../../src/EasyApp/Gui/Logic/ProjectConfig.js</file>
+        <file alias="EasyApp/Gui/Logic/qmldir">../../../../src/EasyApp/Gui/Logic/qmldir</file>
+        <file alias="EasyApp/Gui/Logic/Translate.js">../../../../src/EasyApp/Gui/Logic/Translate.js</file>
+        <file alias="EasyApp/Gui/Logic/Utils.js">../../../../src/EasyApp/Gui/Logic/Utils.js</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/download.txt">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/download.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Black.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Black.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Bold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Bold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-ExtraBold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-ExtraBold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-ExtraLight.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-ExtraLight.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Light.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Light.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Medium.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Medium.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Regular.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Regular.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-SemiBold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-SemiBold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Thin.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/EncodeSans-Thin.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans/OFL.txt">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans/OFL.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/download.txt">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/download.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Black.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Black.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Bold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Bold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-ExtraBold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-ExtraBold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-ExtraLight.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-ExtraLight.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Light.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Light.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Medium.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Medium.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Regular.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Regular.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-SemiBold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-SemiBold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Thin.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/EncodeSansCondensed-Thin.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/OFL.txt">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Condensed/OFL.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/download.txt">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/download.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Black.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Black.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Bold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Bold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-ExtraBold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-ExtraBold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-ExtraLight.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-ExtraLight.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Light.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Light.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Medium.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Medium.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Regular.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Regular.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-SemiBold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-SemiBold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Thin.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/EncodeSansExpanded-Thin.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/OFL.txt">../../../../src/EasyApp/Gui/Resources/Fonts/Encode_Sans_Expanded/OFL.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/FontAwesome/Font Awesome 5 Free-Solid-900.otf">../../../../src/EasyApp/Gui/Resources/Fonts/FontAwesome/Font Awesome 5 Free-Solid-900.otf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/FontAwesome/Font Awesome 6 Free-Regular-400.otf">../../../../src/EasyApp/Gui/Resources/Fonts/FontAwesome/Font Awesome 6 Free-Regular-400.otf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/FontAwesome/Font Awesome 6 Free-Solid-900.otf">../../../../src/EasyApp/Gui/Resources/Fonts/FontAwesome/Font Awesome 6 Free-Solid-900.otf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/FontAwesome/LICENSE.txt">../../../../src/EasyApp/Gui/Resources/Fonts/FontAwesome/LICENSE.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/download.txt">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/download.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Black.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Black.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-BlackItalic.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-BlackItalic.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Bold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Bold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-BoldItalic.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-BoldItalic.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraBold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraBold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraBoldItalic.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraBoldItalic.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraLight.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraLight.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraLightItalic.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-ExtraLightItalic.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Italic.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Italic.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Light.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Light.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-LightItalic.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-LightItalic.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Regular.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-Regular.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-SemiBold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-SemiBold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/Nunito-SemiBoldItalic.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/Nunito-SemiBoldItalic.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/Nunito/OFL.txt">../../../../src/EasyApp/Gui/Resources/Fonts/Nunito/OFL.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/PT_Mono/download.txt">../../../../src/EasyApp/Gui/Resources/Fonts/PT_Mono/download.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/PT_Mono/OFL.txt">../../../../src/EasyApp/Gui/Resources/Fonts/PT_Mono/OFL.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/PT_Mono/PTMono-Regular.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/PT_Mono/PTMono-Regular.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/PT_Sans/download.txt">../../../../src/EasyApp/Gui/Resources/Fonts/PT_Sans/download.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/PT_Sans/OFL.txt">../../../../src/EasyApp/Gui/Resources/Fonts/PT_Sans/OFL.txt</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-Bold.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-Bold.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-BoldItalic.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-BoldItalic.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-Italic.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-Italic.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-Regular.ttf">../../../../src/EasyApp/Gui/Resources/Fonts/PT_Sans/PTSans-Regular.ttf</file>
+        <file alias="EasyApp/Gui/Resources/Icons/description.txt">../../../../src/EasyApp/Gui/Resources/Icons/description.txt</file>
+        <file alias="EasyApp/Gui/Style/Colors.qml">../../../../src/EasyApp/Gui/Style/Colors.qml</file>
+        <file alias="EasyApp/Gui/Style/Fonts.qml">../../../../src/EasyApp/Gui/Style/Fonts.qml</file>
+        <file alias="EasyApp/Gui/Style/qmldir">../../../../src/EasyApp/Gui/Style/qmldir</file>
+        <file alias="EasyApp/Gui/Style/Sizes.qml">../../../../src/EasyApp/Gui/Style/Sizes.qml</file>
+        <file alias="EasyApp/Gui/Style/Times.qml">../../../../src/EasyApp/Gui/Style/Times.qml</file>
+        <file alias="EasyApp/Logic/Maintenance/qmldir">../../../../src/EasyApp/Logic/Maintenance/qmldir</file>
+        <file alias="EasyApp/Logic/Maintenance/Updater.qml">../../../../src/EasyApp/Logic/Maintenance/Updater.qml</file>
+        <file alias="EasyApp/Logic/Utils/__init__.py">../../../../src/EasyApp/Logic/Utils/__init__.py</file>
+        <file alias="EasyApp/Logic/Utils/Utils.py">../../../../src/EasyApp/Logic/Utils/Utils.py</file>
+        <file alias="EasyApp/Logic/__init__.py">../../../../src/EasyApp/Logic/__init__.py</file>
+        <file alias="EasyApp/Logic/Logging.py">../../../../src/EasyApp/Logic/Logging.py</file>
+        <file alias="EasyApp/Logic/Maintenance.py">../../../../src/EasyApp/Logic/Maintenance.py</file>
+        <file alias="EasyApp/Logic/Translate.py">../../../../src/EasyApp/Logic/Translate.py</file>
+        <file alias="EasyApp/__init__.py">../../../../src/EasyApp/__init__.py</file>
+        <file alias="EasyApp/__version__.py">../../../../src/EasyApp/__version__.py</file>
     </qresource>
 </RCC>

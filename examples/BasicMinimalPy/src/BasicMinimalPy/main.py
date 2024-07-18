@@ -9,9 +9,9 @@ from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 
 
-CURRENT_DIR = Path(__file__).parent                    # path to qml components of the current project
-EASYAPP_DIR = CURRENT_DIR / '..' / '..' / '..' / '..'  # path to qml components of the easyapp module
-MAIN_QML = CURRENT_DIR / 'main.qml'                    # path to the root qml file
+CURRENT_DIR = Path(__file__).parent                            # path to qml components of the current project
+EASYAPP_DIR = CURRENT_DIR / '..' / '..' / '..' / '..' / 'src'  # path to qml components of the easyapp module
+MAIN_QML = CURRENT_DIR / 'main.qml'                            # path to the root qml file
 
 
 if __name__ == '__main__':

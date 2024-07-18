@@ -7,9 +7,9 @@
 #include <QString>
 
 
-const QString CURRENT_DIR = "qrc:/";                     // path to qml components of the easyapp module
-const QString EASYAPP_DIR = "qrc:/../../../../EasyApp";  // path to qml components of the current project
-const QString MAIN_QML = "qrc:/main.qml";                // path to the root qml file
+const QString CURRENT_DIR = "qrc:/";                         // path to qml components of the easyapp module
+const QString EASYAPP_DIR = "qrc:/../../../../src/EasyApp";  // path to qml components of the current project
+const QString MAIN_QML = "qrc:/main.qml";                    // path to the root qml file
 
 
 int main(int argc, char *argv[])
