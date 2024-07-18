@@ -1,0 +1,39 @@
+[build-system]
+requires = ['hatchling']
+build-backend = 'hatchling.build'
+
+[project]
+name = 'intermediatepy'
+dynamic = ['version']
+description = 'Example of a desktop application of intermediate complexity with a Python backend and EasyApp-based GUI'
+authors = [
+  {name = 'Andrew Sazonov', email = 'andrew.sazonov@ess.eu'}
+]
+readme = 'README.md'
+license = {file = 'LICENSE'}
+classifiers = [
+  'Development Status :: 4 - Beta',
+  'License :: OSI Approved :: BSD License',
+  'Programming Language :: Python :: 3'
+]
+requires-python = '>=3.11'
+dependencies = [
+  'numpy<2'
+]
+
+[project.optional-dependencies]
+ci = [
+  'validate-pyproject[all]',
+  'build',
+  'wheel'
+]
+
+[project.urls]
+Homepage = 'https://github.com/easyscience/EasyApp'
+
+[tool.hatch.version]
+path = "src/IntermediatePy/__version__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ['src/IntermediatePy']
+#artifacts = ['*.py', '*.qml', 'qmldir']

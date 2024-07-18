@@ -1,0 +1,41 @@
+import QmlProject 1.1
+
+Project {
+    mainFile: "BasicQml/main.qml"
+
+    // List of module and plugin directories passed to QML runtime
+    importPaths: [
+        "BasicQml",
+        "../../..",  // EasyApp
+    ]
+
+    // Include .qml files from specified directory and its subdirectories
+    QmlFiles {
+        directory: "BasicQml"
+    }
+    QmlFiles {
+        directory: "../../../EasyApp"
+    }
+
+    // Include .js files from specified directory and its subdirectories
+    JavaScriptFiles {
+        directory: "BasicQml"
+    }
+    JavaScriptFiles {
+        directory: "../../../EasyApp"
+    }
+
+    // Include Module Definition Files (qmldir), as well as .ts and .qrc
+    // from specified directory and its subdirectories
+    Files {
+        directory: "BasicQml"
+        filter: "qmldir;*.ts;*.qrc;*.html"
+        recursive: true
+    }
+    Files {
+        directory: "../../../EasyApp"
+        filter: "qmldir;*.ts;*.qrc;*.html"
+        recursive: true
+    }
+
+}

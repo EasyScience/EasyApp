@@ -1,17 +1,19 @@
 ## Types of examples
 
-Three types of examples are provided, depending on how the backend logic is implemented and which tool is needed to view the graphical frontend. These examples can be found in the following directories:
+Different types of examples are provided, depending on how the backend logic is implemented and which tool is needed to view the graphical frontend. These examples can be categorised as shown in the following table:
 
-| Directory     | Frontend | Backend  | Viewer   | Type |
-| ------------- | -------- | -------- | -------- | ---- |
-| `qml-qml-qml` | QML      | Mock QML | `qml`    | I    |
-| `qml-qml-py`  | QML      | Mock QML | `python` | II   |
-| `qml-py-py`   | QML      | Python   | `python` | III  |
+| Example        | Type | Frontend | Backend  | Viewer               |
+| -------------- | ---- | -------- | -------- | -------------------- |
+| BasicQml       | I    | QML      | Mock QML | `qml` tool           |
+| BasicMinimalPy | II   | QML      | Mock QML | `python` interpreter |
+| BasicPy        | III  | QML      | Python   | `python` interpreter |
+| IntermediatePy | III  | QML      | Python   | `python` interpreter |
+| BasicC++       | IV   | QML      | Mock QML | need to be compiled  |
 
 
 ## How to run
 
-### Type I Examples: `qml-qml-qml`
+### Type I Examples: BasicQml
 
 A Python backend is not required here at all. A graphical QML frontend (with a mock QML backend) will be displayed using Qt `qml` viewer.
 
@@ -56,7 +58,7 @@ A Python backend is not required here at all. A graphical QML frontend (with a m
     * _Note: Showing the entire `main.qml` application window in live mode works best when the open `main.qml` is moved to another monitor and does not overlap with the `Qt Creator` window_.
 * When the desired GUI component appears, you can click the `Edit` button at the top of the left sidebar of `Qt Creator` to return to the source code of that qml component and still see it live in a separate window.
 
-### Type II Examples: `qml-qml-py`
+### Type II Examples: BasicMinimalPy
 
 Most examples can be run via Python, even if they only have a mock backend in QML (the Python backend is not implemented). The minimum configuration requires a base `main.py` file and, if Qt Creator is used as the IDE, a `*.pyproject` file. If these are available, do the following:
 
@@ -91,10 +93,14 @@ Most examples can be run via Python, even if they only have a mock backend in QM
   $ python3 main.py
   ```
 
-### Type III Examples: `qml-py-py`
+### Type III Examples: BasicPy and IntermediatePy
 
 These examples can be run through Python in the same way as Type II described above. These examples have a Python-based backend and a python proxy object created in `main.py` that is exposed to QML. Communication between the Qt QML frontend and the Python backend occurs through this python proxy.
 
 ### Possible Issues
 
 * If in Qt Creator some components are highlighted and marked as "Unknown component. (M300)", try resetting via "Tools > QML/JS > Reset Code Model".
+
+### Type IV Examples: BasicC++
+
+These examples can be run after compilation into an executable program. They only have a mock backend in QML (the C++ backend is not implemented). The minimum configuration requires a base `main.cpp` file and, if Qt Creator is used as the IDE, a `*.pro` file. 
