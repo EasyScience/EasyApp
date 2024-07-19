@@ -6,12 +6,12 @@ EasyApp is an application skeleton with eye-catching and intuitive graphical int
 * Source code: https://github.com/EasyScience/EasyApp
 * Bug reports: https://github.com/EasyScience/EasyApp/issues
 
-EasyApp is currently being used in the following projects:
+EasyApp is currently being used as the basis for the graphical interface in the following projects:
 
 * [EasyDiffraction](http://github.com/EasyScience/EasyDiffraction)
 * [EasyReflectometry](http://github.com/EasyScience/EasyReflectometry)
 * [EasyTexture](http://github.com/EasyScience/EasyTextureApp)
 
-More simple examples of using EasyApp to create graphical interfaces are described in [EXAMPLES.md](EXAMPLES.md).
+More simple examples of using EasyApp are described in [EXAMPLES.md](EXAMPLES.md).
 
 If you want to see what EasyApp looks like but don't want to run one of the examples yourself or install one of the EasyApp-based desktop applications, try the web demo at https://easyscience.github.io/EasyApp/.
