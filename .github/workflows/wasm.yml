@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ubuntu-22.04]
+        os: [macos-14]
 
     runs-on: ${{ matrix.os }}
 
@@ -20,19 +20,6 @@ jobs:
     steps: # job steps
       - name: Check-out repository
         uses: actions/checkout@v4
-
-      - name: Set up screen (Linux)
-        if: runner.os == 'Linux'
-        run: |
-          sudo apt-get install libxkbcommon-x11-0
-          sudo apt-get install libxcb-icccm4
-          sudo apt-get install libxcb-image0
-          sudo apt-get install libxcb-keysyms1
-          sudo apt-get install libxcb-randr0
-          sudo apt-get install libxcb-render-util0
-          sudo apt-get install libxcb-xfixes0
-          sudo apt-get install libxcb-shape0
-          sudo apt-get install libxcb-cursor0
 
       - name: Install emsdk
         if: False
@@ -47,19 +34,14 @@ jobs:
       - name: Install Qt for WebAssembly
         shell: bash
         run: |
-          curl -L -O https://download.qt.io/official_releases/online_installers/qt-unified-linux-x64-online.run
-          ls -l
-          chmod u+x qt-unified-linux-x64-online.run
-        #  curl -L -O https://download.qt.io/official_releases/online_installers/qt-unified-linux-arm64-online.run
-        #  ./qt-unified-linux-arm64-online.run \
-        #  --root /home/runner/Qt \
-        #  --accept-licenses \
-        #  --accept-obligations \
-        #  --default-answer \
-        #  --confirm-command \
-        #  install qt.qt6.672.wasm_singlethread qt.qt6.672.qt5compat
-
-      - name: Install Qt for WebAssembly
-        shell: bash
-        run: |
-          ./qt-unified-linux-x64-online.run
+          curl -L -O https://download.qt.io/official_releases/online_installers/qt-unified-mac-x64-online.dmg
+          chmod u+x qt-unified-mac-x64-online.dmg
+          hdiutil attach qt-unified-mac-x64-online.dmg
+          /Volumes/qt-online-installer-macOS-x64-4.8.0/qt-online-installer-macOS-x64-4.8.0.app/Contents/MacOS/qt-online-installer-macOS-x64-4.8.0 \
+          --root ~/Qt \
+          --accept-licenses \
+          --accept-obligations \
+          --default-answer \
+          --confirm-command \
+          install qt.qt6.672.wasm_singlethread qt.qt6.672.qt5compat
+          hdiutil detach /Volumes/qt-online-installer-macOS-x64-4.8.0
