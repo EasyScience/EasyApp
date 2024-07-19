@@ -25,7 +25,7 @@ jobs:
         id: cache-emsdk
         uses: actions/cache@v4
         with:
-          path: ~/emsdk
+          path: ${{ github.workspace }}/emsdk
           key: ${{ runner.os }}-emsdk
 
       - name: Install emsdk
@@ -66,14 +66,16 @@ jobs:
       - name: Print some debug info
         shell: bash
         run: |
-          source ~/emsdk/emsdk_env.sh
+          source ${{ github.workspace }}/emsdk/emsdk_env.sh
           em++ --version
-          ~/Qt/6.7.2/wasm_singlethread/bin/qmake -v
+          export PATH=$PATH:~/Qt/6.7.2/wasm_singlethread/bin
+          qmake -v
 
       - name: Build WASM from BasicMinimalC++
         shell: bash
         run: |
+          source ${{ github.workspace }}/emsdk/emsdk_env.sh
+          export PATH=$PATH:~/Qt/6.7.2/wasm_singlethread/bin
           cd examples/BasicMinimalC++/src
-          source ~/emsdk/emsdk_env.sh
-          ~/Qt/6.7.2/wasm_singlethread/bin/qmake BasicMinimalC++.pro -spec wasm-emscripten
+          qmake BasicMinimalC++.pro -spec wasm-emscripten
           make -j
