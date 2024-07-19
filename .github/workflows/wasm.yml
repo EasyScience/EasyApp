@@ -62,3 +62,18 @@ jobs:
           --confirm-command \
           install qt.qt6.672.wasm_singlethread qt.qt6.672.qt5compat
           hdiutil detach /Volumes/qt-online-installer-macOS-x64-4.8.0
+
+      - name: Print some debug info
+        shell: bash
+        run: |
+          source ~/emsdk/emsdk_env.sh
+          em++ --version
+          ~/Qt/6.7.2/wasm_singlethread/bin/qmake -v
+
+      - name: Build WASM from BasicMinimalC++
+        shell: bash
+        run: |
+          cd examples/BasicMinimalC++/src
+          source ~/emsdk/emsdk_env.sh
+          ~/Qt/6.7.2/wasm_singlethread/bin/qmake BasicMinimalC++.pro -spec wasm-emscripten
+          make -j
