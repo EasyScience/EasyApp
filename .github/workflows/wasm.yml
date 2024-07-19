@@ -100,7 +100,7 @@ jobs:
       - name: Push the built wasm to the webapp branch
         uses: s0/git-publish-subdir-action@develop
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_API_PERSONAL_ACESS_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_API_PERSONAL_ACESS_TOKEN }}
           REPO: self
           BRANCH: webapp
           FOLDER: build/wasm  # directory whose content is to be pushed
