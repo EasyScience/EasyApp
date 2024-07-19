@@ -6,7 +6,7 @@ on:
   #  - cron: '*/120 8-18 * * *'  # every 2 hours from 8:00 to 18:00 every day
 
 jobs:
-  build: # the first job
+  wasm-build: # the first job
     # current job matrix. if modified, remember to UPDATE the strategy in the next job
     strategy:
       fail-fast: false
@@ -71,7 +71,7 @@ jobs:
           export PATH=$PATH:~/Qt/6.7.2/wasm_singlethread/bin
           qmake -v
 
-      - name: Build WASM from BasicMinimalC++
+      - name: Build WASM from BasicMinimalC++ example
         shell: bash
         run: |
           source ${{ github.workspace }}/emsdk/emsdk_env.sh
@@ -82,17 +82,17 @@ jobs:
 
       - name: Copy the built WASM to the build/wasm folder
         run: |
-          mkdir -p ../build/wasm
-          cp *.wasm ../build/wasm
-          cp *.html ../build/wasm
-          cp *.js ../build/wasm
-          cp *.svg ../build/wasm
+          mkdir -p build/wasm
+          cp examples/BasicMinimalC++/src/*.wasm build/wasm
+          cp examples/BasicMinimalC++/src/*.html build/wasm
+          cp examples/BasicMinimalC++/src/*.js build/wasm
+          cp examples/BasicMinimalC++/src/*.svg build/wasm
 
       - name: Upload the zipped wasm folder
         uses: actions/upload-artifact@v4
         with:
           name: wasm
-          path: examples/BasicMinimalC++/build/wasm
+          path: build/wasm
           compression-level: 0  # no compression
           if-no-files-found: error
 
@@ -102,4 +102,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
           REPO: self
           BRANCH: webapp
-          FOLDER: examples/BasicMinimalC++/build/wasm
+          FOLDER: build/wasm
