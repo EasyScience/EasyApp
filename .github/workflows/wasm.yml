@@ -21,6 +21,19 @@ jobs:
       - name: Check-out repository
         uses: actions/checkout@v4
 
+      - name: Set up screen (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get install libxkbcommon-x11-0
+          sudo apt-get install libxcb-icccm4
+          sudo apt-get install libxcb-image0
+          sudo apt-get install libxcb-keysyms1
+          sudo apt-get install libxcb-randr0
+          sudo apt-get install libxcb-render-util0
+          sudo apt-get install libxcb-xfixes0
+          sudo apt-get install libxcb-shape0
+          sudo apt-get install libxcb-cursor0
+
       - name: Install emsdk
         if: False
         shell: bash
