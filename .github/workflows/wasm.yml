@@ -79,3 +79,27 @@ jobs:
           cd examples/BasicMinimalC++/src
           qmake BasicMinimalC++.pro -spec wasm-emscripten
           make -j
+
+      - name: Copy the built WASM to the build/wasm folder
+        run: |
+          mkdir -p ../build/wasm
+          cp *.wasm ../build/wasm
+          cp *.html ../build/wasm
+          cp *.js ../build/wasm
+          cp *.svg ../build/wasm
+
+      - name: Upload the zipped wasm folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm
+          path: examples/BasicMinimalC++/build/wasm
+          compression-level: 0  # no compression
+          if-no-files-found: error
+
+      - name: Push the built wasm to the webapp branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
+          REPO: self
+          BRANCH: webapp
+          FOLDER: examples/BasicMinimalC++/build/wasm
