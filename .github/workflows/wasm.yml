@@ -42,7 +42,7 @@ jobs:
         id: cache-qt
         uses: actions/cache@v4
         with:
-          path: ~/Qt
+          path: ${{ github.workspace }}/Qt
           key: ${{ runner.os }}-qt
 
       - name: Install Qt for WebAssembly
@@ -55,7 +55,7 @@ jobs:
           /Volumes/qt-online-installer-macOS-x64-4.8.0/qt-online-installer-macOS-x64-4.8.0.app/Contents/MacOS/qt-online-installer-macOS-x64-4.8.0 \
           --email ${{ secrets.QT_ACCOUNT_EMAIL }} \
           --pw ${{ secrets.QT_ACCOUNT_PASSWORD }} \
-          --root ~/Qt \
+          --root ${{ github.workspace }}/Qt \
           --accept-licenses \
           --accept-obligations \
           --default-answer \
@@ -68,14 +68,14 @@ jobs:
         run: |
           source ${{ github.workspace }}/emsdk/emsdk_env.sh
           em++ --version
-          export PATH=$PATH:~/Qt/6.7.2/wasm_singlethread/bin
+          export PATH=$PATH:${{ github.workspace }}/Qt/6.7.2/wasm_singlethread/bin
           qmake -v
 
       - name: Build WASM from BasicMinimalC++ example
         shell: bash
         run: |
           source ${{ github.workspace }}/emsdk/emsdk_env.sh
-          export PATH=$PATH:~/Qt/6.7.2/wasm_singlethread/bin
+          export PATH=$PATH:${{ github.workspace }}/Qt/6.7.2/wasm_singlethread/bin
           cd examples/BasicMinimalC++/src
           qmake BasicMinimalC++.pro -spec wasm-emscripten
           make -j
