@@ -14,4 +14,4 @@ EasyApp is currently being used as the basis for the graphical interface in the 
 
 More simple examples of using EasyApp are described in [EXAMPLES.md](EXAMPLES.md).
 
-If you want to see what EasyApp looks like but don't want to run one of the examples yourself or install one of the EasyApp-based desktop applications, try the web demo at https://easyscience.github.io/EasyApp/BasicMinimalC++.html.
+If you want to see what EasyApp looks like, you can try the web demo at https://easyscience.github.io/EasyApp/BasicMinimalC++.html.
