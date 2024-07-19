@@ -81,6 +81,7 @@ jobs:
           make -j
 
       - name: Copy the built WASM to the build/wasm folder
+        shell: bash
         run: |
           mkdir -p build/wasm
           cp examples/BasicMinimalC++/src/*.wasm build/wasm
@@ -91,15 +92,15 @@ jobs:
       - name: Upload the zipped wasm folder
         uses: actions/upload-artifact@v4
         with:
-          name: wasm
-          path: build/wasm
+          name: wasm  # name of the zip file to be created and uploaded
+          path: build/wasm  # directory whose content is to be zipped
           compression-level: 0  # no compression
           if-no-files-found: error
 
       - name: Push the built wasm to the webapp branch
         uses: s0/git-publish-subdir-action@develop
         env:
-          GITHUB_TOKEN: ${{ secrets.API_TOKEN_GITHUB }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_API_PERSONAL_ACESS_TOKEN }}
           REPO: self
           BRANCH: webapp
-          FOLDER: build/wasm
+          FOLDER: build/wasm  # directory whose content is to be pushed
