@@ -1,4 +1,4 @@
-<img src="./resources/images/ea_logo.svg" height="65">
+<img src="https://github.com/EasyScience/EasyApp/blob/examples/resources/images/ea_logo.svg?raw=true" height="65">
 
 EasyApp is an application skeleton with eye-catching and intuitive graphical interface for the [EasyScience](http://github.com/EasyScience) framework. It allows one to quickly build cross-platform applications using the provided collection of Qt QML graphical components and by binding with the [EasyScience](http://github.com/EasyScience/EasyScience) Python backend.
 

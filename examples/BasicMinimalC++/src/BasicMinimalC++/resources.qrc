@@ -223,6 +223,5 @@
         <file alias="EasyApp/Logic/Maintenance.py">../../../../src/EasyApp/Logic/Maintenance.py</file>
         <file alias="EasyApp/Logic/Translate.py">../../../../src/EasyApp/Logic/Translate.py</file>
         <file alias="EasyApp/__init__.py">../../../../src/EasyApp/__init__.py</file>
-        <file alias="EasyApp/__version__.py">../../../../src/EasyApp/__version__.py</file>
     </qresource>
 </RCC>
