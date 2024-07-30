@@ -1,13 +1,13 @@
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ['hatchling']
+build-backend = 'hatchling.build'
 
 [project]
-name = "EasyApp"
-dynamic = ['version']
-description = "Graphical application skeleton in the EasyScience universe."
+name = 'EasyApp'
+version = '0.5.0'
+description = 'Graphical application skeleton in the EasyScience universe.'
 authors = [
-  {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
+  {name = 'Andrew Sazonov', email = 'andrew.sazonov@ess.eu'}
 ]
 license = {file = 'LICENSE'}
 classifiers = [
@@ -18,18 +18,15 @@ classifiers = [
   'Operating System :: Microsoft :: Windows',
   'Operating System :: POSIX :: Linux'
 ]
-requires-python = ">=3.11"
+requires-python = '>=3.10'
 dependencies = [
   'PySide6>=6.6,<6.8'
 ]
 
 [project.urls]
 homepage = 'https://app.easyscience.software'
-source = 'https://github.com/easyscience/EasyApp'
-tracker = 'https://github.com/easyscience/EasyApp/issues'
-
-[tool.hatch.version]
-path = "src/EasyApp/__version__.py"
+source = 'https://github.com/EasyScience/EasyApp'
+tracker = 'https://github.com/EasyScience/EasyApp/issues'
 
 [tool.hatch.build.targets.wheel]
 packages = ['src/EasyApp']
