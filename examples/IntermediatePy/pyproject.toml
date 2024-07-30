@@ -4,7 +4,7 @@ build-backend = 'hatchling.build'
 
 [project]
 name = 'intermediatepy'
-dynamic = ['version']
+version = '0.1.0'
 description = 'Example of a desktop application of intermediate complexity with a Python backend and EasyApp-based GUI'
 authors = [
   {name = 'Andrew Sazonov', email = 'andrew.sazonov@ess.eu'}
@@ -29,10 +29,7 @@ ci = [
 ]
 
 [project.urls]
-Homepage = 'https://github.com/easyscience/EasyApp'
-
-[tool.hatch.version]
-path = "src/IntermediatePy/__version__.py"
+Homepage = 'https://github.com/EasyScience/EasyApp/tree/master/examples/IntermediatePy'
 
 [tool.hatch.build.targets.wheel]
 packages = ['src/IntermediatePy']
