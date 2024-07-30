@@ -9,53 +9,26 @@ import QtQuick
 import Logic.Mock as MockLogic
 
 
-// If the backend_proxy_py object is created in main.py and exposed to qml, it is used as
-// realBackendProxyPy to access the necessary backend properties and methods. Otherwise, the mock
-// proxy defined in MockLogic/BackendProxy.qml with hardcoded data is used.
-
 QtObject {
 
     ///////////////
     // Backend proxy
     ///////////////
 
-    readonly property var mockBackendProxyQml: MockLogic.BackendProxy
-
-    readonly property var realBackendProxyPy: typeof backend_proxy_py !== 'undefined' &&
-                                              backend_proxy_py !== null ?
-                                                  backend_proxy_py :
-                                                  null
-
-    readonly property bool isRealBackendProxyPyDefined: realBackendProxyPy !== null
+    // This property is used to access the backend proxy object from GUI components.
+    readonly property var backendProxy: MockLogic.BackendProxy
 
     /////////////
     // Status bar
     /////////////
 
     readonly property var status: QtObject {
-        readonly property string project: isRealBackendProxyPyDefined ?
-                                              realBackendProxyPy.status.project :
-                                              mockBackendProxyQml.status.project
-
-        readonly property string phaseCount: isRealBackendProxyPyDefined ?
-                                                 realBackendProxyPy.status.phaseCount :
-                                                 mockBackendProxyQml.status.phaseCount
-
-        readonly property string experimentsCount: isRealBackendProxyPyDefined ?
-                                                       realBackendProxyPy.status.experimentsCount :
-                                                       mockBackendProxyQml.status.experimentsCount
-
-        readonly property string calculator: isRealBackendProxyPyDefined ?
-                                                 realBackendProxyPy.status.calculator :
-                                                 mockBackendProxyQml.status.calculator
-
-        readonly property string minimizer: isRealBackendProxyPyDefined ?
-                                                realBackendProxyPy.status.minimizer :
-                                                mockBackendProxyQml.status.minimizer
-
-        readonly property string variables: isRealBackendProxyPyDefined ?
-                                                realBackendProxyPy.status.variables :
-                                                mockBackendProxyQml.status.variables
+        readonly property string project: backendProxy.status.project
+        readonly property string phaseCount: backendProxy.status.phaseCount
+        readonly property string experimentsCount: backendProxy.status.experimentsCount
+        readonly property string calculator: backendProxy.status.calculator
+        readonly property string minimizer: backendProxy.status.minimizer
+        readonly property string variables: backendProxy.status.variables
     }
 
     ///////////////
@@ -63,32 +36,12 @@ QtObject {
     ///////////////
 
     readonly property var project: QtObject {
-        readonly property bool created: isRealBackendProxyPyDefined ?
-                                            realBackendProxyPy.project.created :
-                                            mockBackendProxyQml.project.created
+        readonly property bool created: backendProxy.project.created
+        readonly property var info: backendProxy.project.info
+        readonly property var examples: backendProxy.project.examples
 
-        readonly property var info: isRealBackendProxyPyDefined ?
-                                        realBackendProxyPy.project.info :
-                                        mockBackendProxyQml.project.info
-
-        readonly property var examples: isRealBackendProxyPyDefined ?
-                                            realBackendProxyPy.project.examples :
-                                            mockBackendProxyQml.project.examples
-
-        function create() {
-            if (isRealBackendProxyPyDefined)
-                realBackendProxyPy.project.create()
-            else
-                mockBackendProxyQml.project.create()
-        }
-
-        function save() {
-            if (isRealBackendProxyPyDefined)
-                realBackendProxyPy.project.save()
-            else
-                mockBackendProxyQml.project.save()
-
-        }
+        function create() { backendProxy.project.create() }
+        function save() { backendProxy.project.save() }
     }
 
     ///////////////
@@ -96,14 +49,8 @@ QtObject {
     ///////////////
 
     readonly property var summary: QtObject {
-        readonly property bool created: isRealBackendProxyPyDefined ?
-                                            realBackendProxyPy.report.created :
-                                            mockBackendProxyQml.report.created
-
-        readonly property string asHtml: isRealBackendProxyPyDefined ?
-                                             realBackendProxyPy.report.asHtml :
-                                             mockBackendProxyQml.report.asHtml
-
+        readonly property bool created: backendProxy.report.created
+        readonly property string asHtml: backendProxy.report.asHtml
     }
 
 }
