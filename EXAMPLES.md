@@ -33,7 +33,7 @@ A Python backend is not required here at all. A graphical QML frontend (with a m
 
 #### Run with the Qt Creator IDE
 * Run Qt Creator
-* Open the qml project file `*.qmlproject` from the example folder, e.g., from `example/qml-qml-qml/most-basic`
+* Open the qml project file `*.qmlproject` from the example folder from `examples/BasicQml/src/BasicQml.qmlproject`
 * Click Run (Green play button)
 
 #### Run from the terminal
@@ -43,7 +43,7 @@ A Python backend is not required here at all. A graphical QML frontend (with a m
   $ cd examples/BasicQml/src/BasicQml
   ```
 
-* Run `main.qml` (specifying the paths to the current directory and the EasyApp module directory) using the `qml` tool installed with the Qt Framework in the previous step, e.g., like this
+* Run `main.qml` (specifying the paths to the current directory `.` and the EasyApp module directory `../../../..`) using the `qml` tool installed with the Qt Framework in the previous step, e.g., like this
 
   ```sh
   $ ~/Qt/6.x.y/macos/bin/qml -I . -I ../../../.. main.qml
@@ -85,7 +85,7 @@ Most examples can be run via Python, even if they only have a mock backend in QM
 
 #### Run with the QtCreator IDE
 * Run Qt Creator
-* Open the python project file `*.pyproject` from the example folder, e.g., from `example/qml-qml-py/most-basic`
+* Open the python project file `*.pyproject` from the example folder from `examples/BasicMinimalPy/src/BasicMinimalPy.pyproject`
 * Select the desired python environment with the Qt PySide6 module installed
 * Click Run (Green play button)
 
