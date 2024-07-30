@@ -5,7 +5,7 @@ build-backend = 'hatchling.build'
 [project]
 name = 'EasyApp'
 version = '0.5.0'
-description = 'Graphical application skeleton in the EasyScience universe.'
+description = 'Collection of graphical components to quickly create cross-platform applications in the EasyScience universe.'
 authors = [
   {name = 'Andrew Sazonov', email = 'andrew.sazonov@ess.eu'}
 ]
