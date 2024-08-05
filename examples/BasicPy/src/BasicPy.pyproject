@@ -34,10 +34,10 @@
         "BasicPy/Logic/Mock/Project.qml",
         "BasicPy/Logic/Mock/Report.qml",
         "BasicPy/Logic/Mock/Status.qml",
-        "BasicPy/Logic/Py/BackendProxy.py",
-        "BasicPy/Logic/Py/Helpers.py",
-        "BasicPy/Logic/Py/Project.py",
-        "BasicPy/Logic/Py/Report.py",
-        "BasicPy/Logic/Py/Status.py"
+        "BasicPy/Logic/Py/backend_proxy.py",
+        "BasicPy/Logic/Py/helpers.py",
+        "BasicPy/Logic/Py/project.py",
+        "BasicPy/Logic/Py/report.py",
+        "BasicPy/Logic/Py/status.py"
     ]
 }

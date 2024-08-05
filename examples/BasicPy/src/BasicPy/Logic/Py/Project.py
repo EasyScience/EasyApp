@@ -6,17 +6,17 @@ import time
 from PySide6.QtCore import QObject, Signal, Slot, Property
 
 from EasyApp.Logic.Logging import console
-from Logic.Py.Helpers import IO
+from .helpers import IO
 
 
-_MOCK_INFO = {
+_PY_INFO = {
     'name': 'Super duper project',
-    'description': 'Default project description from Mock proxy',
+    'description': 'Default project description from Py proxy',
     'location': '/path to the project',
     'creationDate': ''
 }
 
-_MOCK_EXAMPLES = [
+_PY_EXAMPLES = [
     {
         'description': 'neutrons, powder, constant wavelength, HRPT@PSI',
         'name': 'La0.5Ba0.5CoO3 (HRPT)',
@@ -64,8 +64,8 @@ class Project(QObject):
         super().__init__(parent)
         self._proxy = parent
         self._created = False
-        self._info = _MOCK_INFO
-        self._examples = _MOCK_EXAMPLES
+        self._info = _PY_INFO
+        self._examples = _PY_EXAMPLES
 
     @Property(bool, notify=createdChanged)
     def created(self):

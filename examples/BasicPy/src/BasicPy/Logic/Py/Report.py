@@ -5,7 +5,7 @@
 from PySide6.QtCore import QObject, Signal, Property
 
 
-_MOCK_HTML = """<!DOCTYPE html>
+_PY_HTML = """<!DOCTYPE html>
 <html>
 <style>
 th, td { padding-right: 18px; }
@@ -15,7 +15,7 @@ th, td { padding-right: 18px; }
     <table>
     <tr></tr>
     <tr>
-        <td><h1>Summary</h1></td>
+        <td><h1>Py Summary</h1></td>
     </tr>
     <tr></tr>
     <tr>
@@ -83,7 +83,7 @@ class Report(QObject):
         super().__init__(parent)
         self._proxy = parent
         self._created = True
-        self._asHtml = _MOCK_HTML
+        self._asHtml = _PY_HTML
 
     @Property(bool, notify=createdChanged)
     def created(self):
