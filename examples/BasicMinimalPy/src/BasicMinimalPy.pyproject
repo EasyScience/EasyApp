@@ -33,11 +33,6 @@
         "BasicMinimalPy/Logic/Mock/BackendProxy.qml",
         "BasicMinimalPy/Logic/Mock/Project.qml",
         "BasicMinimalPy/Logic/Mock/Report.qml",
-        "BasicMinimalPy/Logic/Mock/Status.qml",
-        "BasicMinimalPy/Logic/Py/BackendProxy.py",
-        "BasicMinimalPy/Logic/Py/Helpers.py",
-        "BasicMinimalPy/Logic/Py/Project.py",
-        "BasicMinimalPy/Logic/Py/Report.py",
-        "BasicMinimalPy/Logic/Py/Status.py"
+        "BasicMinimalPy/Logic/Mock/Status.qml"
     ]
 }
