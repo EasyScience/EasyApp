@@ -62,7 +62,7 @@ This example consists of a graphical QML frontend and a "mock" QML backend. By a
 
 This example serves to demonstrate how an application with a QML frontend and a QML "mock" backend can be executed from Python.
 
-Most examples can be run via Python, even if they only have a mock backend in QML (the Python backend is not implemented). The minimum configuration requires a base `main.py` file and, if Qt Creator is used as the IDE, a `*.pyproject` file. If these are available, do the following:
+Most examples can be run via Python, even if they only have a mock backend in QML (the Python backend is not implemented). The minimum configuration requires a base `main.py` file. To execute this one needs to the following:
 
 #### Preparation
 
