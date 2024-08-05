@@ -9,11 +9,11 @@ import QtQuick
 QtObject {
 
     readonly property var about: {
-        'name': 'EasyExample',
+        'name': 'EasyIntermadiatePy',
         'namePrefix': 'Easy',
-        'nameSuffix': 'Example',
+        'nameSuffix': 'IntermadiatePy',
         'namePrefixForLogo': 'easy',
-        'nameSuffixForLogo': 'example',
+        'nameSuffixForLogo': 'intermadiatepy',
         'homePageUrl': 'https://github.com/EasyScience/EasyExample',
         'issuesUrl': 'https://github.com/EasyScience/EasyExample/issues',
         'licenseUrl': 'https://github.com/EasyScience/EasyExample/LICENCE.md',
@@ -23,7 +23,7 @@ QtObject {
         'date': new Date().toISOString().slice(0,10),
         'developerYearsFrom': '2019',
         'developerYearsTo': '2024',
-        'description': 'EasyExample is an example of how to build the basic application using EasyApp module.\n\nEasyExample is developed by the European Spallation Source ERIC, Sweden.',
+        'description': 'An example of how to build the basic application using EasyApp module.',
         'developerIcons': [
             {
                 'url': 'https://ess.eu',
@@ -34,3 +34,4 @@ QtObject {
     }
 
 }
+

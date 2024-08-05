@@ -6,9 +6,9 @@ from PySide6.QtCore import QObject, Property
 
 from EasyApp.Logic.Logging import LoggerLevelHandler
 
-from Logic.Py.Project import Project
-from Logic.Py.Status import Status
-from Logic.Py.Report import Report
+from .project import Project
+from .status import Status
+from .report import Report
 
 
 class BackendProxy(QObject):

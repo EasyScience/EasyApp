@@ -2,7 +2,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 # © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
 
-from PySide6.QtCore import QObject, Signal, Slot, Property
+from PySide6.QtCore import QObject, Signal, Property
 
 
 class Status(QObject):
@@ -16,7 +16,7 @@ class Status(QObject):
     def __init__(self, parent):
         super().__init__(parent)
         self._proxy = parent
-        self._project = 'Undefined'
+        self._project = 'Py backend'
         self._phaseCount = '1'
         self._experimentsCount = '1'
         self._calculator = 'CrysPy'

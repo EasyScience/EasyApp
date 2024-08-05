@@ -3,6 +3,12 @@
 # © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
 
 import sys
+
+# If running the example within the EasyApp repo we need to add the path to the source code for the module
+# Usually the module will be installed in the python environment
+from os.path import dirname
+sys.path.append(dirname(dirname(dirname(dirname(dirname(__file__))))) + '/src')
+
 from pathlib import Path
 
 from PySide6.QtGui import QGuiApplication
@@ -11,7 +17,7 @@ from PySide6.QtCore import qInstallMessageHandler
 
 from EasyApp.Logic.Logging import console
 
-from Logic.Py.BackendProxy import BackendProxy
+from Logic.Py.backend_proxy import BackendProxy
 
 
 CURRENT_DIR = Path(__file__).parent                            # path to qml components of the current project
