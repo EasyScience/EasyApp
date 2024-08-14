@@ -56,12 +56,14 @@ Item {
         background: Rectangle {
             radius: 2
             color: EaStyle.Colors.mainContentBackground
+            opacity: 0.5
 
             layer.enabled: true
             layer.effect: DropShadow {
                 radius: 15
                 samples: 50
                 color: EaStyle.Colors.toolTipBorder
+                opacity: 0.5
             }
         }
 

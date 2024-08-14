@@ -37,6 +37,7 @@ QtObject {
             return false
         }
     }
+    onIsDarkPaletteChanged: console.debug(`Is dark palette: ${isDarkPalette}`)
 
     property color themeAccent: isDarkPalette ? "#4ec1ef": "#00a3e3"
     property color themePrimary: isDarkPalette ? "#111" : "#bbb"

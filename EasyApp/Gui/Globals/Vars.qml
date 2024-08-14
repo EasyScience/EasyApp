@@ -47,6 +47,7 @@ QtObject {
 
     // Logging
     property string loggingLevel: "Error"
+    onLoggingLevelChanged: console.debug(`Logging level changed to ${loggingLevel}`)
 
     // Screenshots control
     property bool saveScreenshotsRunning: false

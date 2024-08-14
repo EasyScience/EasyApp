@@ -1,6 +1,6 @@
 # SPDX-FileCopyrightText: 2023 EasyDiffraction contributors
 # SPDX-License-Identifier: BSD-3-Clause
-# © © 2023 Contributors to the EasyDiffraction project <https://github.com/easyscience/EasyDiffractionApp>
+# © 2023 Contributors to the EasyDiffraction project <https://github.com/easyscience/EasyDiffraction>
 
 # https://docs.python.org/3/library/logging.html
 # https://docs.python.org/3/howto/logging-cookbook.html
@@ -26,6 +26,11 @@ LOGGER_LEVELS = {
     'debug': 10     # logging.NOTSET, logging.DEBUG, QtMsgType.QtDebugMsg
 }
 
+COUNT_WIDTH = 5
+CATEGORY_WIDTH = 4
+LEVEL_WIDTH = 7
+FUNC_NAME_WIDTH = 34
+MAIN_MSG_WIDTH = 150
 
 class Logger:
 
@@ -80,7 +85,7 @@ class Logger:
 
     def _print(self, msg, level, category, funcName, filePath, lineNo):
         msg = msg.replace('file://', '')
-        rest = Logger.rest(msg, 105)
+        rest = Logger.rest(msg, MAIN_MSG_WIDTH)
         msg = self._formattedConsoleMsg(msg, level, category, funcName, filePath, lineNo)
         self._logger.debug(msg)
         if rest:
@@ -147,7 +152,7 @@ class Logger:
             sourceUrl = f'{fileUrl}:{lineNo}'
         except:
             pass
-        txt = f'{self._count:>5d} {self._timing()} {category:>4} {level:<7} {msg:<100.100} {funcName:<34.34} {sourceUrl}'
+        txt = f'{self._count:>{COUNT_WIDTH}d} {self._timing()} {category:>{CATEGORY_WIDTH}} {level:<{LEVEL_WIDTH}} {msg:<{MAIN_MSG_WIDTH}.{MAIN_MSG_WIDTH}} {funcName:<{FUNC_NAME_WIDTH}.{FUNC_NAME_WIDTH}} {sourceUrl}'
         txt = self._colorize(txt, level, category)
         return txt
 

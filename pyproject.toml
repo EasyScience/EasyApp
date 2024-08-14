@@ -8,7 +8,7 @@ build-backend = "hatchling.build"
 # the application itself is EasyExample.
 [project]
 name = "EasyApp"
-version = "0.2.4-beta"
+version = "0.3.0-beta"
 description = "Graphical application skeleton in the EasyScience universe."
 authors = [
   {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
@@ -24,7 +24,7 @@ classifiers = [
     "Topic :: Scientific/Engineering",
     "Development Status :: 4 - Beta"
 ]
-requires-python = ">=3.8,<3.12"
+requires-python = ">=3.8,<3.13"
 dependencies = [
-    'PySide6>=6.4.2'
+    'PySide6>=6.6,<6.7'
 ]

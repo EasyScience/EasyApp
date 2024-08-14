@@ -18,7 +18,7 @@ T.ApplicationWindow {
     property string appDate: ''
 
     property string webVersion: updater.webVersion
-    property string webDate: 'updater.webDate'
+    property string webDate: updater.webDate
 
     visible: true
     flags: EaGlobals.Vars.appWindowFlags
