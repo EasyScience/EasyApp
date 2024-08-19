@@ -11,27 +11,42 @@ Different types of examples are provided. All examples have a frontend implement
 | BasicC++       | IV   | QML      | Mock QML | need to be compiled  |
 
 
-## Python environment and IDE 
+## Setting up Python and IDE 
 
 ### Python environment
-* Install the Qt `PySide6` module in the desired python environment
-***macOS and Linux***
 
-  ```sh
-  $ python3.11 -m venv .venv    # create new python environment '.venv'
-  $ source .venv/bin/activate   # activate '.venv'
-  $ pip install PySide6         # install Qt for Python
+* Create and activate a python environment (_optional_)
+
+  ***macOS and Linux***
+
+  ```
+  python3.11 -m venv .venv
+  source .venv/bin/activate
   ```
 
-***Windows***
+  ***Windows***
 
-  ```sh
-  $ python3.11 -m venv .venv    # create new python environment '.venv'
-  $ .venv\Scripts\activate      # activate '.venv'
-  $ pip install PySide6         # install Qt for Python
+  ```
+  python3.11 -m venv .venv
+  .venv\Scripts\activate
   ```
 
-### QT Creator
+* Upgrade the PIP - package installer for Python (_optional_)
+
+  ```
+  pip install --upgrade pip
+  ```
+  
+* Install the Qt for Python `PySide6` package via PIP
+
+  ```
+  pip install PySide6 
+  ```
+
+### Integrated development environment (IDE)
+
+#### Qt Creator
+
 * Download Qt Online Installer from [qt.io](https://www.qt.io/download-qt-installer-oss). More info at [doc.qt.io](https://doc.qt.io/qt-6/qt-online-installation.html).
 * Install Qt for desktop development using a custom installation that includes the following components:
     * Qt
@@ -44,10 +59,11 @@ Different types of examples are provided. All examples have a frontend implement
 	   * [ ] Developer and Designer Tools
 	       * [x] Qt Creator x.y.z
 
-### VSCode
-* Download an install VSCode
+#### VS Code (_alternative to Qt Creator_)
+
+* Download an install VS Code
 * Add the python extension
-* Rename the folder `vscode` to `.vscode`. The `launch.json` file will then be read by VSCode
+* Rename the folder `vscode` to `.vscode`. The `launch.json` file will then be read by VS Code
 * Select any python file in the repo and choose the desired python environment
 
 
@@ -55,28 +71,33 @@ Different types of examples are provided. All examples have a frontend implement
 
 ### Type I Examples: BasicQml (QML runtime with QML backend)
 
-This example is located in `examples/BasicQml` and the source code is in the subfolder `src/BasicQml`. The example consists of a graphical QML frontend (`Gui/Application.qml`) and a QML backend (`Logic/Mock/BackendProxy.qml`). It is considered a mock backend as it only returns hardcoded values rather than providing the required functionality. The entry point for Qt is `main.qml`, whcih can be displayed using Qt `qml` viewer.
+This example is located in `examples/BasicQml` and the source code is in the subfolder `src/BasicQml`. The example consists of a graphical QML frontend (`Gui/Application.qml`) and a QML backend (`Logic/Mock/BackendProxy.qml`). It is considered a mock backend as it only returns hardcoded values rather than providing the required functionality. The entry point for Qt is `main.qml`, which can be displayed using Qt `qml` viewer.
 
-#### Qt Creator IDE (QML Runtime)
-* Run Qt Creator
-* Open the qml project file `*.qmlproject` from the example folder from `src/BasicQml.qmlproject`
-* Click Run (Green play button)
+#### Run using the QML Runtime
 
-#### Run from the terminal (QML Runtime)
+##### Run from the terminal
+
 * Go to the example folder, e.g.,
 
   ```sh
-  $ cd examples/BasicQml/src/BasicQml
+  cd examples/BasicQml/src/BasicQml
   ```
 
 * Run `main.qml` (specifying the paths to the current directory `.` and the EasyApp module directory `../../../..`) using the `qml` tool installed with the Qt Framework in the previous step, e.g., like this
 
   ```sh
-  $ ~/Qt/6.x.y/macos/bin/qml -I . -I ../../../.. main.qml
+  ~/Qt/6.x.y/macos/bin/qml -I . -I ../../../.. main.qml
   ```
 
+##### Run via the Qt Creator IDE (_alternative to run from the terminal_)
+
+* Run Qt Creator
+* Open the qml project file from the example folder `examples/BasicQml/src/BasicQml.qmlproject`
+* Click Run (Green play button)
+
 #### How to edit GUI elements in live mode
-* In Qt Creator, select the `.qml` file to be edited in live mode
+
+* In Qt Creator, select the `*.qml` file to be edited in live mode
 * Click the `Design` button at the top of the left sidebar of `Qt Creator`
     * _Note: If this button is disabled, find and click `About plugins...` in the `Qt Creator` menu, scroll down to the `Qt Quick` section and enable `QmlDesigner`._
 * In the `Design` window, click the `Show Live Preview` button in the top panel of the application (small play button in a circle).
@@ -87,30 +108,35 @@ This example is located in `examples/BasicQml` and the source code is in the sub
 
 This example is located in `examples/BasicMinimalPy` with the source code in `src/BasicMinimalPy`. This example serves to demonstrate how an application with a QML frontend and a QML backend (similar to the Type I example) can be executed from Python. The entry point for the Python program is `main.py` file. To execute this do the following:
 
-#### QtCreator IDE (Python Runtime)
-* Run Qt Creator
-* Open the python project file `*.pyproject` from the example folder from `examples/BasicMinimalPy/src/BasicMinimalPy.pyproject`
-* Select the desired python environment with the Qt `PySide6` module installed
-* Click Run (Green play button)
+#### Run using the Python interpreter
 
-#### VSCode IDE (Python Runtime)
-* Open the repo in VSCode
-* Click on the debug extension and select which example to execute
-![Debug dropdown window](.\resources\images\vscode_debug.jpg)
+##### Run from the terminal
 
-#### Run from the terminal (Python Runtime)
 * Go to the example folder, e.g.,
 
   ```sh
   $ cd examples/BasicMinimalPy/src/BasicMinimalPy
   ```
-* Run using Python (provided that the required python environment is activated)
+* Run using Python (provided that the required python environment is activated as explained above)
 
   ```sh
-  $ python3 main.py
+  $ python main.py
   ```
 
-### Type III Examples: BasicPy and IntermediatePy (Python runtime with Py backend)
+#### Run via the Qt Creator IDE (_alternative to run from the terminal_)
+
+* Run Qt Creator
+* Open the python project file from the example folder `examples/BasicMinimalPy/src/BasicMinimalPy.pyproject`
+* Select the desired python environment with the Qt `PySide6` module installed
+* Click Run (Green play button)
+
+#### Run via the VS Code IDE (_alternative to run from the terminal or via the Qt Creator IDE_)
+
+* Open the repo in VS Code
+* Click on the debug extension and select which example to execute
+![Debug dropdown window](resources/images/vscode_debug.jpg)
+
+### Type III Examples: BasicPy and IntermediatePy (Python runtime with Python backend)
 
 These examples demonstrate how to use a Python runtime to execute the QML frontend and the Python backend located in `Logic/Py/backend_proxy.py`. These examples can be run through Python in the same way as Type II described above. These examples have a Python-based backend (proxy object), which gets created in `main.py` and then exposed to QML. The Qt QML frontend then acceses the backend by calling methods exposed by the proxy object in the `Py` folder.
 
@@ -120,4 +146,6 @@ These examples demonstrate how to use a Python runtime to execute the QML fronte
 
 ### Type IV Examples: BasicC++
 
-These examples can be run after compilation into an executable program. They only have a mock backend in QML (the C++ backend is not implemented). The minimum configuration requires a base `main.cpp` file and, if Qt Creator is used as the IDE, a `*.pro` file.
+This example can be run after compilation into an executable program. It only has a mock backend in QML (the C++ backend is not implemented). The minimum configuration requires a base `main.cpp` file and, if Qt Creator is used as the IDE, a `*.pro` file.
+
+This example is currently used to create a WebAssembly application that can be run inside a web browser.
