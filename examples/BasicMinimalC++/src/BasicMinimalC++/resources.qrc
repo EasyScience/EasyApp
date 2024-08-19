@@ -32,7 +32,6 @@
         <file>Gui/ApplicationWindow.qml</file>
         <file>Gui/qmldir</file>
         <file>Gui/StatusBar.qml</file>
-        <file>Logic/Mock/Application.qml</file>
         <file>Logic/Mock/BackendProxy.qml</file>
         <file>Logic/Mock/Project.qml</file>
         <file>Logic/Mock/qmldir</file>
