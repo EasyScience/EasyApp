@@ -18,7 +18,7 @@ QtObject {
         'issuesUrl': 'https://github.com/EasyScience/EasyExample/issues',
         'licenseUrl': 'https://github.com/EasyScience/EasyExample/LICENCE.md',
         'dependenciesUrl': 'https://github.com/EasyScience/EasyExample/DEPENDENCIES.md',
-        'version': '2.0.1',
+        'version': '1.0.0',
         'icon': Qt.resolvedUrl('../Resources/Logos/App.svg'),
         'date': new Date().toISOString().slice(0,10),
         'developerYearsFrom': '2019',

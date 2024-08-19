@@ -4,7 +4,7 @@ build-backend = 'hatchling.build'
 
 [project]
 name = 'intermediatepy'
-version = '0.1.0'
+version = '1.0.0'
 description = 'Example of a desktop application of intermediate complexity with a Python backend and EasyApp-based GUI'
 authors = [
   {name = 'Andrew Sazonov', email = 'andrew.sazonov@ess.eu'}
