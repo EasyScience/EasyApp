@@ -20,11 +20,11 @@
     │   │   │   └── Report.qml              # Mock logic for the application page 'Report'
     │   │   │
     │   │   └── 🗂️ Py                       # Backend Python logic
-    │   │       ├── BackendProxy.py         # Parent object for all other objects with logic
-    │   │       ├── Helpers.py              # Some helper functions
-    │   │       ├── Status.py               # Logic for the status bar
-    │   │       ├── Project.py              # Logic for the application page 'Project'
-    │   │       └── Report.py               # Logic for the application page 'Report'
+    │   │       ├── backend_proxy.py        # Parent object for all other objects with logic
+    │   │       ├── helpers.py              # Some helper functions
+    │   │       ├── status.py               # Logic for the status bar
+    │   │       ├── project.py              # Logic for the application page 'Project'
+    │   │       └── report.py               # Logic for the application page 'Report'
     │   │
     │   └── 🗂️ Gui                          # Frontend GUI components
     │       ├── qmldir                      
