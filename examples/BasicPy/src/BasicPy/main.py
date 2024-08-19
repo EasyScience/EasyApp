@@ -2,28 +2,23 @@
 # SPDX-License-Identifier: BSD-3-Clause
 # © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
 
-import sys
-
-# If running the example within the EasyApp repo we need to add the path to the source code for the module
-# Usually the module will be installed in the python environment
-from os.path import dirname
-sys.path.append(dirname(dirname(dirname(dirname(dirname(__file__))))) + '/src')
-
 from pathlib import Path
+import sys
 
 from PySide6.QtGui import QGuiApplication
 from PySide6.QtQml import QQmlApplicationEngine
 from PySide6.QtCore import qInstallMessageHandler
 
+# It is usually assumed that the EasyApp package is already installed in the desired python environment.
+# If this is not the case, and if the example is run from the EasyApp repository, one need to add the path to the
+# EasyApp source code.
+CURRENT_DIR = Path(__file__).parent  # path to qml components of the current project
+EASYAPP_DIR = CURRENT_DIR / '..' / '..' / '..' / '..' / 'src'  # path to qml components of the easyapp module
+sys.path.append(str(EASYAPP_DIR))
+
 from EasyApp.Logic.Logging import console
 
 from Logic.Py.backend_proxy import BackendProxy
-
-
-CURRENT_DIR = Path(__file__).parent                            # path to qml components of the current project
-EASYAPP_DIR = CURRENT_DIR / '..' / '..' / '..' / '..' / 'src'  # path to qml components of the easyapp module
-MAIN_QML = CURRENT_DIR / 'main.qml'                            # path to the root qml file
-
 
 if __name__ == '__main__':
     qInstallMessageHandler(console.qmlMessageHandler)
@@ -43,7 +38,7 @@ if __name__ == '__main__':
     engine.addImportPath(CURRENT_DIR)
     console.debug('Paths added where QML searches for components')
 
-    engine.load(MAIN_QML)
+    engine.load(CURRENT_DIR / 'main.qml')
     console.debug('Main QML component loaded')
 
     console.debug('Application event loop is about to start')
