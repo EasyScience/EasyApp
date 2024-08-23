@@ -10,7 +10,6 @@ import Logic.Mock as MockLogic
 
 QtObject {
 
-    property var application: MockLogic.Application
     property var project: MockLogic.Project
     property var status: MockLogic.Status
     property var report: MockLogic.Report

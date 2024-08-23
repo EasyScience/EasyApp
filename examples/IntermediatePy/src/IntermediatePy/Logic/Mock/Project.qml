@@ -10,10 +10,11 @@ QtObject {
 
     property bool created: false
 
+    property string name: ''
+
     readonly property var info: {
-        'name': 'Super duper project',
-        'description': 'Default project description from Mock proxy',
-        'location': '/path to the project',
+        'description': '',
+        'location': '',
         'creationDate': ''
     }
 
@@ -56,14 +57,18 @@ QtObject {
     ]
 
     function create() {
-        console.debug(`Creating project ${info.name}`)
+        console.debug(`Creating project '${name}'`)
         info.creationDate = `${new Date().toLocaleDateString()} ${new Date().toLocaleTimeString()}`
         infoChanged()  // this signal is not emitted automatically when only part of the object is changed
         created = true
     }
 
     function save() {
-        console.debug(`Saving project ${info.name}`)
+        console.debug(`NOT IMPLEMENTED: Saving project '${name}'`)
+    }
+
+    function edit_info(path, new_value) {
+        console.debug(`NOT IMPLEMENTED: Changing project info.${path} from '${info.path}' to '${new_value}'`)
     }
 
 }

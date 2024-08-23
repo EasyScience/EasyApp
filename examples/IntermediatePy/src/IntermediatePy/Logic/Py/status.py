@@ -6,85 +6,85 @@ from PySide6.QtCore import QObject, Signal, Property
 
 
 class Status(QObject):
-    projectChanged = Signal()
-    phaseCountChanged = Signal()
-    experimentsCountChanged = Signal()
-    calculatorChanged = Signal()
-    minimizerChanged = Signal()
-    variablesChanged = Signal()
+    project_changed = Signal()
+    phases_count_changed = Signal()
+    experiments_count_changed = Signal()
+    calculator_changed = Signal()
+    minimizer_changed = Signal()
+    variables_changed = Signal()
 
     def __init__(self, parent):
         super().__init__(parent)
         self._proxy = parent
-        self._project = 'Py backend'
-        self._phaseCount = '1'
-        self._experimentsCount = '1'
+        self._project = 'Undefined'
+        self._phases_count = '1'
+        self._experiments_count = '1'
         self._calculator = 'CrysPy'
         self._minimizer = 'Lmfit (leastsq)'
         self._variables = '31 (3 free, 28 fixed)'
 
-    @Property(str, notify=projectChanged)
+    @Property(str, notify=project_changed)
     def project(self):
         return self._project
 
     @project.setter
-    def project(self, newValue):
-        if self._project == newValue:
+    def project(self, new_value):
+        if self._project == new_value:
             return
-        self._project = newValue
-        self.projectChanged.emit()
+        self._project = new_value
+        self.project_changed.emit()
 
-    @Property(str, notify=phaseCountChanged)
-    def phaseCount(self):
-        return self._phaseCount
+    @Property(str, notify=phases_count_changed)
+    def phases_count(self):
+        return self._phases_count
 
-    @phaseCount.setter
-    def phaseCount(self, newValue):
-        if self._phaseCount == newValue:
+    @phases_count.setter
+    def phases_count(self, new_value):
+        if self._phases_count == new_value:
             return
-        self._phaseCount = newValue
-        self.phaseCountChanged.emit()
+        self._phases_count = new_value
+        self.phases_count_changed.emit()
 
-    @Property(str, notify=experimentsCountChanged)
-    def experimentsCount(self):
-        return self._experimentsCount
+    @Property(str, notify=experiments_count_changed)
+    def experiments_count(self):
+        return self._experiments_count
 
-    @experimentsCount.setter
-    def experimentsCount(self, newValue):
-        if self._experimentsCount == newValue:
+    @experiments_count.setter
+    def experiments_count(self, new_value):
+        if self._experiments_count == new_value:
             return
-        self._experimentsCount = newValue
-        self.experimentsCountChanged.emit()
+        self._experiments_count = new_value
+        self.experiments_count_changed.emit()
 
-    @Property(str, notify=calculatorChanged)
+    @Property(str, notify=calculator_changed)
     def calculator(self):
         return self._calculator
 
     @calculator.setter
-    def calculator(self, newValue):
-        if self._calculator == newValue:
+    def calculator(self, new_value):
+        if self._calculator == new_value:
             return
-        self._calculator = newValue
-        self.calculatorChanged.emit()
+        self._calculator = new_value
+        self.calculator_changed.emit()
 
-    @Property(str, notify=minimizerChanged)
+    @Property(str, notify=minimizer_changed)
     def minimizer(self):
         return self._minimizer
 
     @minimizer.setter
-    def minimizer(self, newValue):
-        if self._minimizer == newValue:
+    def minimizer(self, new_value):
+        if self._minimizer == new_value:
             return
-        self._minimizer = newValue
-        self.minimizerChanged.emit()
+        self._minimizer = new_value
+        self.minimizer_changed.emit()
 
-    @Property(str, notify=variablesChanged)
+    @Property(str, notify=variables_changed)
     def variables(self):
         return self._variables
 
     @variables.setter
-    def variables(self, newValue):
-        if self._variables == newValue:
+    def variables(self, new_value):
+        if self._variables == new_value:
             return
-        self._variables = newValue
-        self.variablesChanged.emit()
+        self._variables = new_value
+        self.variables_changed.emit()

@@ -22,11 +22,11 @@ EaComponents.ApplicationWindow {
     appBarLeftButtons: [
 
         EaElements.ToolButton {
-            enabled: Globals.BackendProxy.project.created
+            enabled: Globals.Backend.proxy.project.created
             highlighted: true
             fontIcon: 'save'
             ToolTip.text: qsTr('Save current state of the project')
-            onClicked: Globals.BackendProxy.project.save()
+            onClicked: Globals.Backend.proxy.project.save()
         }
 
     ]
@@ -49,13 +49,12 @@ EaComponents.ApplicationWindow {
         // Home page
         EaElements.AppBarTabButton {
             id: homeButton
-            objectName: 'applicationWindow.appBarCentralTabs.homeButton'
             fontIcon: 'home'
             text: qsTr('Home')
             ToolTip.text: qsTr('Home')
-            //Component.onCompleted: {
-            //    Globals.References.applicationWindow.appBarCentralTabs.homeButton = homeButton
-            //}
+            Component.onCompleted: {
+                Globals.References.applicationWindow.appBarCentralTabs.homeButton = homeButton
+            }
         },
         // Home page
 

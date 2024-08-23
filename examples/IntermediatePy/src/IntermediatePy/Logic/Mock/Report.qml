@@ -7,13 +7,13 @@ pragma Singleton
 import QtQuick
 
 QtObject {
-    property bool created: true
+    property bool created: false
 
-    readonly property string asHtml: '
+    readonly property string as_html: '
 <!DOCTYPE html>
 <html>
 <style>
-th, td { padding-right: 18px; }
+    th, td { padding-right: 18px; }
     th { text-align: left; }
 </style>
 <body>
@@ -28,7 +28,7 @@ th, td { padding-right: 18px; }
     </tr>
     <tr></tr>
     <tr>
-        <th>Title</th>
+        <th>Name</th>
         <th>La0.5Ba0.5CoO3</th>
     </tr>
     <tr>

@@ -9,11 +9,11 @@ import QtQuick
 QtObject {
 
     readonly property var about: {
-        'name': 'EasyBasicMinimalPy',
-        'namePrefix': 'Easy',
-        'nameSuffix': 'BasicMinimalPy',
-        'namePrefixForLogo': 'easy',
-        'nameSuffixForLogo': 'basicminimalpy',
+        'name': 'BasicMinimalPy',
+        'namePrefix': 'Basic',
+        'nameSuffix': 'MinimalPy',
+        'namePrefixForLogo': 'basic',
+        'nameSuffixForLogo': 'minimalpy',
         'homePageUrl': 'https://github.com/EasyScience/EasyExample',
         'issuesUrl': 'https://github.com/EasyScience/EasyExample/issues',
         'licenseUrl': 'https://github.com/EasyScience/EasyExample/LICENCE.md',

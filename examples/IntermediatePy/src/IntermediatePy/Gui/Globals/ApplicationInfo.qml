@@ -9,11 +9,11 @@ import QtQuick
 QtObject {
 
     readonly property var about: {
-        'name': 'EasyIntermediatePy',
-        'namePrefix': 'Easy',
-        'nameSuffix': 'IntermediatePy',
-        'namePrefixForLogo': 'easy',
-        'nameSuffixForLogo': 'intermediatepy',
+        'name': 'IntermediatePy',
+        'namePrefix': 'Intermediate',
+        'nameSuffix': 'Py',
+        'namePrefixForLogo': 'intermediate',
+        'nameSuffixForLogo': 'py',
         'homePageUrl': 'https://github.com/EasyScience/EasyExample',
         'issuesUrl': 'https://github.com/EasyScience/EasyExample/issues',
         'licenseUrl': 'https://github.com/EasyScience/EasyExample/LICENCE.md',

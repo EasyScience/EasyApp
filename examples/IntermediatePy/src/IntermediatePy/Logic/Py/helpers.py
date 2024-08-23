@@ -5,7 +5,7 @@
 class IO:
 
     @staticmethod
-    def formatMsg(type, *args):
+    def format_msg(type, *args):
         types = {'main': '*', 'sub': '  -'}
         mark = types[type]
         widths = [22,21,20,10]
@@ -16,3 +16,20 @@ class IO:
         msg = ' ▌ '.join(msgs)
         msg = f'{mark} {msg}'
         return msg
+
+
+class DottyDict:
+
+    @staticmethod
+    def get(obj, path):
+        *path, last = path.split(".")
+        for bit in path:
+            obj = obj.setdefault(bit, {})
+        return obj[last]
+
+    @staticmethod
+    def set(obj, path, value):
+        *path, last = path.split(".")
+        for bit in path:
+            obj = obj.setdefault(bit, {})
+        obj[last] = value

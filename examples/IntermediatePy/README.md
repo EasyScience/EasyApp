@@ -11,7 +11,6 @@
 └── 🗂️ src                                  # Source code
     ├── 🗂️ IntermediatePy                   # Directory with the name of the current Python package
     │   ├── __init__.py                     # Executed when the current Python package is imported       
-    │   ├── __version__.py                  # Python package version (used in pyproject.toml)        
     │   ├── main.qml                        # Root QML component        
     │   ├── main.py                         # Root Python file      
     │   │
@@ -26,6 +25,7 @@
     │   │   └── 🗂️ Py                       # Backend Python logic
     │   │       ├── backend_proxy.py        # Parent object for all other objects with logic
     │   │       ├── helpers.py              # Some helper functions
+    │   │       ├── connections.py          # Connections handling
     │   │       ├── status.py               # Logic for the status bar
     │   │       ├── project.py              # Logic for the application page 'Project'
     │   │       └── report.py               # Logic for the application page 'Report'

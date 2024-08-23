@@ -3,20 +3,21 @@
 # © 2024 Contributors to the EasyApp project <https://github.com/easyscience/EasyApp>
 
 import time
+from pathlib import Path
 from PySide6.QtCore import QObject, Signal, Slot, Property
 
 from EasyApp.Logic.Logging import console
 from .helpers import IO
+from .helpers import DottyDict
 
 
-_PY_INFO = {
-    'name': 'Super duper project',
-    'description': 'Default project description from Py proxy',
-    'location': '/path to the project',
+_INFO = {
+    'description': '',
+    'location': str(Path.home()),
     'creationDate': ''
 }
 
-_PY_EXAMPLES = [
+_EXAMPLES = [
     {
         'description': 'neutrons, powder, constant wavelength, HRPT@PSI',
         'name': 'La0.5Ba0.5CoO3 (HRPT)',
@@ -56,50 +57,69 @@ _PY_EXAMPLES = [
 
 
 class Project(QObject):
-    createdChanged = Signal()
-    infoChanged = Signal()
-    examplesChanged = Signal()
+    created_changed = Signal()
+    name_changed = Signal()
+    info_changed = Signal()
+    examples_changed = Signal()
 
     def __init__(self, parent=None):
         super().__init__(parent)
         self._proxy = parent
         self._created = False
-        self._info = _PY_INFO
-        self._examples = _PY_EXAMPLES
+        self._name = ''
+        self._info = _INFO
+        self._examples = _EXAMPLES
 
-    @Property(bool, notify=createdChanged)
+    # Properties
+
+    @Property(bool, notify=created_changed)
     def created(self):
         return self._created
 
     @created.setter
-    def created(self, newValue):
-        if self._created == newValue:
+    def created(self, new_value):
+        if self._created == new_value:
             return
-        self._created = newValue
-        self.createdChanged.emit()
+        self._created = new_value
+        self.created_changed.emit()
 
-    @Property('QVariant', notify=infoChanged)
+    @Property(str, notify=info_changed)
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, new_value):
+        if self._name == new_value:
+            return
+        console.debug(IO.format_msg('main', f"Changing project name from '{self.name}' to '{new_value}'"))
+        self._name = new_value
+        self.name_changed.emit()
+
+    @Property('QVariant', notify=info_changed)
     def info(self):
         return self._info
-
-    @info.setter
-    def info(self, newValue):
-        if self._info == newValue:
-            return
-        self._info = newValue
-        self.infoChanged.emit()
 
     @Property('QVariant', constant=True)
     def examples(self):
         return self._examples
 
+    # Methods
+
     @Slot()
     def create(self):
-        console.debug(IO.formatMsg('main', f'Creating project {self.info["name"]}'))
+        console.debug(IO.format_msg('main', f"Creating project '{self.name}'"))
         self.info['creationDate'] = time.strftime("%d %b %Y %H:%M", time.localtime())
-        self.infoChanged.emit()
+        self.info_changed.emit()
         self.created = True
 
     @Slot()
     def save(self):
-        console.debug(IO.formatMsg('main', f'Saving project {self.info["name"]}'))
+        console.debug(IO.format_msg('main', f"Saving project '{self.name}'"))
+
+    @Slot(str, str)
+    def edit_info(self, path, new_value):
+        if DottyDict.get(self._info, path) == new_value:
+            return
+        console.debug(IO.format_msg('main', f"Changing project info.{path} from '{DottyDict.get(self._info, path)}' to '{new_value}'"))
+        DottyDict.set(self._info, path, new_value)
+        self.info_changed.emit()

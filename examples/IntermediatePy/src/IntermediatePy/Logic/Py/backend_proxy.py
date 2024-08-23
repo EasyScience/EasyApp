@@ -6,6 +6,7 @@ from PySide6.QtCore import QObject, Property
 
 from EasyApp.Logic.Logging import LoggerLevelHandler
 
+from .connections import ConnectionsHandler
 from .project import Project
 from .status import Status
 from .report import Report
@@ -14,10 +15,14 @@ from .report import Report
 class BackendProxy(QObject):
     def __init__(self, parent=None):
         super().__init__(parent)
+
         self._logger = LoggerLevelHandler(self)
+
         self._project = Project(self)
         self._status = Status(self)
         self._report = Report(self)
+
+        self._connections = ConnectionsHandler(self)
 
     @Property('QVariant', constant=True)
     def logger(self):

@@ -5,17 +5,17 @@
 from PySide6.QtCore import QObject, Signal, Property
 
 
-_PY_HTML = """<!DOCTYPE html>
+_HTML = """<!DOCTYPE html>
 <html>
 <style>
-th, td { padding-right: 18px; }
+    th, td { padding-right: 18px; }
     th { text-align: left; }
 </style>
 <body>
     <table>
     <tr></tr>
     <tr>
-        <td><h1>Py Summary</h1></td>
+        <td><h1>Summary</h1></td>
     </tr>
     <tr></tr>
     <tr>
@@ -23,7 +23,7 @@ th, td { padding-right: 18px; }
     </tr>
     <tr></tr>
     <tr>
-        <th>Title</th>
+        <th>Name</th>
         <th>La0.5Ba0.5CoO3</th>
     </tr>
     <tr>
@@ -76,33 +76,33 @@ th, td { padding-right: 18px; }
 
 
 class Report(QObject):
-    createdChanged = Signal()
-    asHtmlChanged = Signal()
+    created_changed = Signal()
+    as_html_changed = Signal()
 
     def __init__(self, parent):
         super().__init__(parent)
         self._proxy = parent
-        self._created = True
-        self._asHtml = _PY_HTML
+        self._created = False
+        self._as_html = _HTML
 
-    @Property(bool, notify=createdChanged)
+    @Property(bool, notify=created_changed)
     def created(self):
         return self._created
 
     @created.setter
-    def created(self, newValue):
-        if self._created == newValue:
+    def created(self, new_value):
+        if self._created == new_value:
             return
-        self._created = newValue
-        self.createdChanged.emit()
+        self._created = new_value
+        self.created_changed.emit()
 
-    @Property(str, notify=asHtmlChanged)
-    def asHtml(self):
-        return self._asHtml
+    @Property(str, notify=as_html_changed)
+    def as_html(self):
+        return self._as_html
 
-    @asHtml.setter
-    def asHtml(self, newValue):
-        if self._asHtml == newValue:
+    @as_html.setter
+    def as_html(self, new_value):
+        if self._as_html == new_value:
             return
-        self._asHtml = newValue
-        self.asHtmlChanged.emit()
+        self._as_html = new_value
+        self.as_html_changed.emit()
