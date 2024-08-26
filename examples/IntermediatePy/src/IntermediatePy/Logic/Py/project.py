@@ -83,7 +83,7 @@ class Project(QObject):
         self._created = new_value
         self.created_changed.emit()
 
-    @Property(str, notify=info_changed)
+    @Property(str, notify=name_changed)
     def name(self):
         return self._name
 
