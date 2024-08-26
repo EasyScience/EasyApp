@@ -6,6 +6,9 @@ from PySide6.QtCore import QObject
 
 
 class ConnectionsHandler(QObject):
+    """Connects the signals of various BackendProxy objects to the methods of this class.
+    This allows, through the methods of this class, to update dependent objects, but keep them
+    unaware of each other."""
 
     def __init__(self, parent):
         super().__init__(parent)
