@@ -79,9 +79,8 @@ class Report(QObject):
     created_changed = Signal()
     as_html_changed = Signal()
 
-    def __init__(self, parent):
-        super().__init__(parent)
-        self._proxy = parent
+    def __init__(self):
+        super().__init__()
         self._created = False
         self._as_html = _HTML
 

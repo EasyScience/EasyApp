@@ -13,14 +13,14 @@ from .report import Report
 
 
 class BackendProxy(QObject):
-    def __init__(self, parent=None):
-        super().__init__(parent)
+    def __init__(self):
+        super().__init__()
 
         self._logger = LoggerLevelHandler(self)
 
-        self._project = Project(self)
-        self._status = Status(self)
-        self._report = Report(self)
+        self._project = Project()
+        self._status = Status()
+        self._report = Report()
 
         self._connections = ConnectionsHandler(self)
 

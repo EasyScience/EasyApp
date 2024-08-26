@@ -62,9 +62,8 @@ class Project(QObject):
     info_changed = Signal()
     examples_changed = Signal()
 
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self._proxy = parent
+    def __init__(self):
+        super().__init__()
         self._created = False
         self._name = ''
         self._info = _INFO

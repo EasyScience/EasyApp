@@ -10,9 +10,9 @@ class ConnectionsHandler(QObject):
     This allows, through the methods of this class, to update dependent objects, but keep them
     unaware of each other."""
 
-    def __init__(self, parent):
-        super().__init__(parent)
-        self._proxy = parent
+    def __init__(self, proxy):
+        super().__init__(proxy)
+        self._proxy = proxy
 
         # Project
         self._proxy.project.name_changed.connect(self.on_project_name_changed)
