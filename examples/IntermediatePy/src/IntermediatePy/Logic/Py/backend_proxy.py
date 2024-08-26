@@ -16,17 +16,12 @@ class BackendProxy(QObject):
     def __init__(self):
         super().__init__()
 
-        self._logger = LoggerLevelHandler(self)
-
         self._project = Project()
         self._status = Status()
         self._report = Report()
 
         self._connections = ConnectionsHandler(self)
-
-    @Property('QVariant', constant=True)
-    def logger(self):
-        return self._logger
+        self._logger = LoggerLevelHandler(self)
 
     @Property('QVariant', constant=True)
     def project(self):
