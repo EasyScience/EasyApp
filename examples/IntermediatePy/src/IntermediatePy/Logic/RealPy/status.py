@@ -7,8 +7,8 @@ from PySide6.QtCore import QObject, Signal, Property
 
 class Status(QObject):
     project_changed = Signal()
-    phases_count_changed = Signal()
-    experiments_count_changed = Signal()
+    phasesCount_changed = Signal()
+    experimentsCount_changed = Signal()
     calculator_changed = Signal()
     minimizer_changed = Signal()
     variables_changed = Signal()
@@ -16,8 +16,8 @@ class Status(QObject):
     def __init__(self):
         super().__init__()
         self._project = 'Undefined'
-        self._phases_count = '1'
-        self._experiments_count = '1'
+        self._phasesCount = '1'
+        self._experimentsCount = '1'
         self._calculator = 'CrysPy'
         self._minimizer = 'Lmfit (leastsq)'
         self._variables = '31 (3 free, 28 fixed)'
@@ -33,27 +33,27 @@ class Status(QObject):
         self._project = new_value
         self.project_changed.emit()
 
-    @Property(str, notify=phases_count_changed)
-    def phases_count(self):
-        return self._phases_count
+    @Property(str, notify=phasesCount_changed)
+    def phasesCount(self):
+        return self._phasesCount
 
-    @phases_count.setter
-    def phases_count(self, new_value):
-        if self._phases_count == new_value:
+    @phasesCount.setter
+    def phasesCount(self, new_value):
+        if self._phasesCount == new_value:
             return
-        self._phases_count = new_value
-        self.phases_count_changed.emit()
+        self._phasesCount = new_value
+        self.phasesCount_changed.emit()
 
-    @Property(str, notify=experiments_count_changed)
-    def experiments_count(self):
-        return self._experiments_count
+    @Property(str, notify=experimentsCount_changed)
+    def experimentsCount(self):
+        return self._experimentsCount
 
-    @experiments_count.setter
-    def experiments_count(self, new_value):
-        if self._experiments_count == new_value:
+    @experimentsCount.setter
+    def experimentsCount(self, new_value):
+        if self._experimentsCount == new_value:
             return
-        self._experiments_count = new_value
-        self.experiments_count_changed.emit()
+        self._experimentsCount = new_value
+        self.experimentsCount_changed.emit()
 
     @Property(str, notify=calculator_changed)
     def calculator(self):

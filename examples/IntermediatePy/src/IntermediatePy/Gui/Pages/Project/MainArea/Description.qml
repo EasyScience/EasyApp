@@ -35,8 +35,8 @@ Rectangle {
             font.weight: Font.ExtraLight
             validator: RegularExpressionValidator { regularExpression: /^[a-zA-Z][a-zA-Z0-9_\-\.]{1,30}$/ }
             placeholderText: qsTr("Enter project name here")
-            text: Globals.Backend.proxy.project.name
-            onEditingFinished: Globals.Backend.proxy.project.name = text
+            text: Globals.Backend.project.name
+            onEditingFinished: Globals.Backend.project.name = text
         }
         // Project title
 
@@ -53,8 +53,8 @@ Rectangle {
             EaElements.TextInput {
                 width: Math.max(implicitWidth, 1)
                 placeholderText: qsTr("Enter project description here")
-                text: Globals.Backend.proxy.project.info.description
-                onEditingFinished: Globals.Backend.proxy.project.edit_info('description', text)
+                text: Globals.Backend.project.info.description
+                onEditingFinished: Globals.Backend.project.editInfo('description', text)
             }
 
             EaElements.Label {
@@ -63,7 +63,7 @@ Rectangle {
             }
             EaElements.Label {
                 width: Math.max(implicitWidth, 1)
-                text: Globals.Backend.proxy.project.info.location
+                text: Globals.Backend.project.info.location
             }
 
             EaElements.Label {
@@ -72,7 +72,7 @@ Rectangle {
             }
             EaElements.Label {
                 width: Math.max(implicitWidth, 1)
-                text: Globals.Backend.proxy.project.info.creationDate
+                text: Globals.Backend.project.info.creationDate
             }
         }
         // Project info

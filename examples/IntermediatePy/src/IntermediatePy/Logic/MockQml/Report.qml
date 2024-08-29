@@ -9,7 +9,7 @@ import QtQuick
 QtObject {
     property bool created: false
 
-    readonly property string as_html: '
+    readonly property string asHtml: '
 <!DOCTYPE html>
 <html>
 <style>

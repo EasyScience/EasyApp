@@ -24,7 +24,7 @@ class ConnectionsHandler(QObject):
 
     def on_project_name_changed(self):
         self._proxy.status.project = self._proxy.project.name
-        self._proxy.report._as_html = self._proxy.project.name
+        self._proxy.report._asHtml = self._proxy.project.name
 
     def on_project_created_changed(self):
         self._proxy.report.created = self._proxy.project.created

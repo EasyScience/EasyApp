@@ -67,7 +67,7 @@ QtObject {
         console.debug(`NOT IMPLEMENTED: Saving project '${name}'`)
     }
 
-    function edit_info(path, new_value) {
+    function editInfo(path, new_value) {
         console.debug(`NOT IMPLEMENTED: Changing project info.${path} from '${info.path}' to '${new_value}'`)
     }
 

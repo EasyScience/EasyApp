@@ -116,7 +116,7 @@ class Project(QObject):
         console.debug(IO.format_msg('main', f"Saving project '{self.name}'"))
 
     @Slot(str, str)
-    def edit_info(self, path, new_value):
+    def editInfo(self, path, new_value):
         if DottyDict.get(self._info, path) == new_value:
             return
         console.debug(IO.format_msg('main', f"Changing project info.{path} from '{DottyDict.get(self._info, path)}' to '{new_value}'"))

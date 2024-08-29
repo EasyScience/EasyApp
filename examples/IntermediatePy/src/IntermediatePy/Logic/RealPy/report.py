@@ -77,12 +77,12 @@ _HTML = """<!DOCTYPE html>
 
 class Report(QObject):
     created_changed = Signal()
-    as_html_changed = Signal()
+    asHtml_changed = Signal()
 
     def __init__(self):
         super().__init__()
         self._created = False
-        self._as_html = _HTML
+        self._asHtml = _HTML
 
     @Property(bool, notify=created_changed)
     def created(self):
@@ -95,13 +95,13 @@ class Report(QObject):
         self._created = new_value
         self.created_changed.emit()
 
-    @Property(str, notify=as_html_changed)
-    def as_html(self):
-        return self._as_html
+    @Property(str, notify=asHtml_changed)
+    def asHtml(self):
+        return self._asHtml
 
-    @as_html.setter
-    def as_html(self, new_value):
-        if self._as_html == new_value:
+    @asHtml.setter
+    def asHtml(self, new_value):
+        if self._asHtml == new_value:
             return
-        self._as_html = new_value
-        self.as_html_changed.emit()
+        self._asHtml = new_value
+        self.asHtml_changed.emit()
