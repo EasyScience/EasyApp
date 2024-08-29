@@ -6,7 +6,7 @@ from pathlib import Path
 import sys
 
 from PySide6.QtGui import QGuiApplication
-from PySide6.QtQml import QQmlApplicationEngine
+from PySide6.QtQml import QQmlApplicationEngine, qmlRegisterSingletonType
 from PySide6.QtCore import qInstallMessageHandler
 
 # It is usually assumed that the EasyApp package is already installed in the desired python environment.
@@ -18,7 +18,7 @@ sys.path.append(str(EASYAPP_DIR))
 
 from EasyApp.Logic.Logging import console
 
-from Logic.Py.backend_proxy import BackendProxy
+from Logic.real_backend_proxy import BackendProxy
 
 if __name__ == '__main__':
     qInstallMessageHandler(console.qmlMessageHandler)
@@ -30,9 +30,8 @@ if __name__ == '__main__':
     engine = QQmlApplicationEngine()
     console.debug(f'QML application engine created {engine}')
 
-    backend_proxy = BackendProxy()
-    engine.rootContext().setContextProperty('backend_proxy_py', backend_proxy)
-    console.debug('backend_proxy object exposed to QML as backend_proxy_py')
+    qmlRegisterSingletonType(BackendProxy, 'Logic', 1, 0, 'PyBackendProxy')
+    console.debug('BackendProxy class is registered to be accessible from QML via the name PyBackendProxy')
 
     engine.addImportPath(EASYAPP_DIR)
     engine.addImportPath(CURRENT_DIR)

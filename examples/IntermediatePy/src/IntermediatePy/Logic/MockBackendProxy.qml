@@ -6,7 +6,8 @@ pragma Singleton
 
 import QtQuick
 
-import Logic.Mock as MockLogic
+import Logic.MockQml as MockLogic
+
 
 QtObject {
 

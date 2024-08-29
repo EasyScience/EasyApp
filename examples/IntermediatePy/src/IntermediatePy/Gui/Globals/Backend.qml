@@ -6,24 +6,62 @@ pragma Singleton
 
 import QtQuick
 
-import Logic.Mock as MockLogic
-
-
-// If the backend_proxy_py object is created in main.py and exposed to qml, it is used as to access
-// the necessary backend properties and methods. Otherwise, the mock proxy defined in
-// MockLogic/BackendProxy.qml with hardcoded data is used.
-// The assumption here is that the real backend proxy and the mock proxy have the same API.
+// This module is registered in the main.py file and allows access to the properties
+// and backend  methods of the singleton object of the ‘PyBackendProxy’ class.
+// If ‘PyBackendProxy’ is not defined, then MockBackendProxy from org/easyscience/easydiffraction is used.
+// It is required to be able to run the GUI frontend via the qml runtime tool without a Python backend.
+import Logic
 
 QtObject {
 
+    ////////////////
+    // Backend proxy
+    ////////////////
+
     readonly property var proxy: {
-        if (typeof backend_proxy_py !== 'undefined' && backend_proxy_py !== null) {
-            console.debug('Currently, the real python backend proxy is in use')
-            return backend_proxy_py
+        if (typeof PyBackendProxy !== 'undefined' && PyBackendProxy !== null) {
+            console.debug('Currently, the REAL python backend proxy is in use')
+            return PyBackendProxy
         } else {
-            console.debug('Currently, the mock backend proxy is in use')
-            return MockLogic.BackendProxy
+            console.debug('Currently, the MOCK backend proxy is in use')
+            return MockBackendProxy
         }
+    }
+
+    /////////////
+    // Status bar
+    /////////////
+
+    readonly property var status: QtObject {
+        readonly property string project: proxy.status.project
+        readonly property string phases_count: proxy.status.phases_count
+        readonly property string experiments_count: proxy.status.experiments_count
+        readonly property string calculator: proxy.status.calculator
+        readonly property string minimizer: proxy.status.minimizer
+        readonly property string variables: proxy.status.variables
+    }
+
+    ///////////////
+    // Project page
+    ///////////////
+
+    readonly property var project: QtObject {
+        readonly property bool created: proxy.project.created
+        readonly property string name: proxy.project.name
+        readonly property var info: proxy.project.info
+        readonly property var examples: proxy.project.examples
+
+        function create() { proxy.project.create() }
+        function save() { proxy.project.save() }
+    }
+
+    ///////////////
+    // Summary page
+    ///////////////
+
+    readonly property var summary: QtObject {
+        readonly property bool created: proxy.report.created
+        readonly property string as_html: proxy.report.as_html
     }
 
 }
