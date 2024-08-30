@@ -36,9 +36,9 @@
         "IntermediatePy/Backends/MockQml/Status.qml",
         "IntermediatePy/Backends/MockQml/qmldir",
         "IntermediatePy/Backends/real_backend.py",
-        "IntermediatePy/Backends/RealPy/helpers.py",
-        "IntermediatePy/Backends/RealPy/project.py",
-        "IntermediatePy/Backends/RealPy/report.py",
-        "IntermediatePy/Backends/RealPy/status.py"
+        "IntermediatePy/Backends/real_py/helpers.py",
+        "IntermediatePy/Backends/real_py/project.py",
+        "IntermediatePy/Backends/real_py/report.py",
+        "IntermediatePy/Backends/real_py/status.py"
     ]
 }
