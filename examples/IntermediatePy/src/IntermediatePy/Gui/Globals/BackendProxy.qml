@@ -12,6 +12,7 @@ import QtQuick
 // It is needed to run the GUI frontend via the qml runtime tool without any Python backend.
 import Logic
 
+
 QtObject {
 
     ////////////////
@@ -69,8 +70,7 @@ QtObject {
         property bool created: activeProxy.report.created
         onCreatedChanged: activeProxy.project.created = created
 
-        property string asHtml: activeProxy.report.asHtml
-        onAsHtmlChanged: activeProxy.report.asHtml = asHtml
+        readonly property string asHtml: activeProxy.report.asHtml
     }
 
 }

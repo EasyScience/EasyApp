@@ -19,42 +19,42 @@ EaElements.StatusBar {
     EaElements.StatusBarItem {
         keyIcon: 'archive'
         keyText: qsTr('Project')
-        valueText: Globals.Backend.status.project
+        valueText: Globals.BackendProxy.status.project
         ToolTip.text: qsTr('Current project')
     }
 
     EaElements.StatusBarItem {
         keyIcon: 'layer-group'
         keyText: qsTr('Models')
-        valueText: Globals.Backend.status.phasesCount
+        valueText: Globals.BackendProxy.status.phasesCount
         ToolTip.text: qsTr('Number of models added')
     }
 
     EaElements.StatusBarItem {
         keyIcon: 'microscope'
         keyText: qsTr('Experiments')
-        valueText: Globals.Backend.status.experimentsCount
+        valueText: Globals.BackendProxy.status.experimentsCount
         ToolTip.text: qsTr('Number of experiments added')
     }
 
     EaElements.StatusBarItem {
         keyIcon: 'calculator'
         keyText: qsTr('Calculator')
-        valueText: Globals.Backend.status.calculator
+        valueText: Globals.BackendProxy.status.calculator
         ToolTip.text: qsTr('Current calculation engine')
     }
 
     EaElements.StatusBarItem {
         keyIcon: 'level-down-alt'
         keyText: qsTr('Minimizer')
-        valueText: Globals.Backend.status.minimizer
+        valueText: Globals.BackendProxy.status.minimizer
         ToolTip.text: qsTr('Current minimization engine and method')
     }
 
     EaElements.StatusBarItem {
         keyIcon: 'th-list'
         keyText: qsTr('Parameters')
-        valueText: Globals.Backend.status.variables
+        valueText: Globals.BackendProxy.status.variables
         ToolTip.text: qsTr('Number of parameters: total, free and fixed')
     }
 
