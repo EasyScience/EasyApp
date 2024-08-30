@@ -10,7 +10,7 @@ import QtQuick
 // and backend  methods of the singleton object of the ‘PyBackendProxy’ class.
 // If ‘PyBackendProxy’ is not defined, then 'MockBackendProxy' from directory 'Logic' is used.
 // It is needed to run the GUI frontend via the qml runtime tool without any Python backend.
-import Logic
+import Backends as Backends
 
 
 QtObject {
@@ -20,12 +20,12 @@ QtObject {
     ////////////////
 
     readonly property var activeProxy: {
-        if (typeof PyBackendProxy !== 'undefined' && PyBackendProxy !== null) {
+        if (typeof Backends.PyBackendProxy !== 'undefined' && Backends.PyBackendProxy !== null) {
             console.debug('Currently, the REAL python backend proxy is in use')
-            return PyBackendProxy
+            return Backends.PyBackendProxy
         } else {
             console.debug('Currently, the MOCK backend proxy is in use')
-            return MockBackendProxy
+            return Backends.MockBackendProxy
         }
     }
 

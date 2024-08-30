@@ -18,7 +18,7 @@ sys.path.append(str(EASYAPP_DIR))
 
 from EasyApp.Logic.Logging import console
 
-from Logic.RealPy.real_backend_proxy import BackendProxy
+from Backends.RealPy.real_backend_proxy import BackendProxy
 
 if __name__ == '__main__':
     qInstallMessageHandler(console.qmlMessageHandler)
@@ -30,7 +30,7 @@ if __name__ == '__main__':
     engine = QQmlApplicationEngine()
     console.debug(f'QML application engine created {engine}')
 
-    qmlRegisterSingletonType(BackendProxy, 'Logic', 1, 0, 'PyBackendProxy')
+    qmlRegisterSingletonType(BackendProxy, 'Backends', 1, 0, 'PyBackendProxy')
     console.debug('BackendProxy class is registered to be accessible from QML via the name PyBackendProxy')
 
     engine.addImportPath(EASYAPP_DIR)
