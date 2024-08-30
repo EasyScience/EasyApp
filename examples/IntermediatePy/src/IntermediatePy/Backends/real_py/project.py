@@ -94,7 +94,7 @@ class Project(QObject):
     def name(self, new_value):
         if self._name == new_value:
             return
-        console.debug(IO.format_msg('main', f"Changing project name from '{self.name}' to '{new_value}'"))
+        print(f" py: Changing project name from '{self.name}' to '{new_value}'")
         self._name = new_value
         self.nameChanged.emit()
 
@@ -113,19 +113,19 @@ class Project(QObject):
 
     @Slot()
     def create(self):
-        console.debug(IO.format_msg('main', f"Creating project '{self.name}'"))
+        print(f" py: Creating project '{self.name}'")
         self.info['creationDate'] = time.strftime("%d %b %Y %H:%M", time.localtime())
         self.infoChanged.emit()
         self.created = True
 
     @Slot()
     def save(self):
-        console.debug(IO.format_msg('main', f"Saving project '{self.name}'"))
+        print(f" py: Saving project '{self.name}'")
 
     @Slot(str, str)
     def editInfo(self, path, new_value):
         if DottyDict.get(self._info, path) == new_value:
             return
-        console.debug(IO.format_msg('main', f"Changing project info.{path} from '{DottyDict.get(self._info, path)}' to '{new_value}'"))
+        print(f" py: Changing project info.{path} from '{DottyDict.get(self._info, path)}' to '{new_value}'")
         DottyDict.set(self._info, path, new_value)
         self.infoChanged.emit()

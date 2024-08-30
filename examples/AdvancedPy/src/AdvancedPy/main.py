@@ -25,17 +25,20 @@ if __name__ == '__main__':
     qInstallMessageHandler(console.qmlMessageHandler)
     console.debug('Custom Qt message handler defined')
 
+    # This singleton object will be accessible in QML as follows:
+    # import Backends 1.0 as Backends OR import Backends as Backends
+    # property var activeBackend: Backends.PyBackend
+    qmlRegisterSingletonType(Backend, 'Backends', 1, 0, 'PyBackend')
+    console.debug('Backend class is registered as a singleton type for QML')
+
     app = QGuiApplication(sys.argv)
     console.debug(f'Qt Application created {app}')
 
     engine = QQmlApplicationEngine()
     console.debug(f'QML application engine created {engine}')
 
-    qmlRegisterSingletonType(Backend, 'Backends', 1, 0, 'PyBackend')
-    console.debug('Backend class is registered to be accessible from QML via the name PyBackend')
-
-    engine.addImportPath(EASYAPP_DIR)
     engine.addImportPath(CURRENT_DIR)
+    engine.addImportPath(EASYAPP_DIR)
     console.debug('Paths added where QML searches for components')
 
     engine.load(CURRENT_DIR / 'main.qml')

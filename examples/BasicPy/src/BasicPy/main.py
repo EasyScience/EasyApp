@@ -17,16 +17,20 @@ sys.path.append(str(EASYAPP_DIR))
 
 
 if __name__ == '__main__':
-    # Create application
+    # Create Qt application
     app = QGuiApplication(sys.argv)
 
-    # Create QML application engine
+    # Create the QML application engine
     engine = QQmlApplicationEngine()
-    engine.addImportPath(EASYAPP_DIR)
+
+    # Add the paths where QML searches for components
     engine.addImportPath(CURRENT_DIR)
+    engine.addImportPath(EASYAPP_DIR)
+
+    # Load the main QML component
     engine.load(CURRENT_DIR / 'main.qml')
 
-    # Event loop
+    # Start the application event loop
     if not engine.rootObjects():
         sys.exit(-1)
     sys.exit(app.exec())

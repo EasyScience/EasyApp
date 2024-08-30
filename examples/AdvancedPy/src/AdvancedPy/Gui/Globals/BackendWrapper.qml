@@ -21,10 +21,10 @@ QtObject {
 
     readonly property var activeBackend: {
         if (typeof Backends.PyBackend !== 'undefined') {
-            console.debug('Currently, the REAL python backend is in use')
+            console.debug('REAL python backend is in use')
             return Backends.PyBackend
         } else {
-            console.debug('Currently, the MOCK backend is in use')
+            console.debug('MOCK QML backend is in use')
             return Backends.MockBackend
         }
     }
