@@ -7,8 +7,8 @@ from pathlib import Path
 from PySide6.QtCore import QObject, Signal, Slot, Property
 
 from EasyApp.Logic.Logging import console
-from .helpers import IO
-from .helpers import DottyDict
+from .logic.helpers import IO
+from .logic.helpers import DottyDict
 
 
 _INFO = {
