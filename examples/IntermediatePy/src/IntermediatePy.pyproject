@@ -29,17 +29,16 @@
         "IntermediatePy/Gui/Pages/Report/Sidebar/Basic/Groups/Export.qml",
         "IntermediatePy/Gui/Pages/Report/Sidebar/Extra/Layout.qml",
         "IntermediatePy/Gui/Pages/Report/Sidebar/Extra/Groups/Empty.qml",
-        "IntermediatePy/Logic/qmldir",
-        "IntermediatePy/Logic/MockBackendProxy.qml",
-        "IntermediatePy/Logic/MockQml/Project.qml",
-        "IntermediatePy/Logic/MockQml/Report.qml",
-        "IntermediatePy/Logic/MockQml/Status.qml",
-        "IntermediatePy/Logic/MockQml/qmldir",
-        "IntermediatePy/Logic/real_backend_proxy.py",
-        "IntermediatePy/Logic/RealPy/connections.py",
-        "IntermediatePy/Logic/RealPy/helpers.py",
-        "IntermediatePy/Logic/RealPy/project.py",
-        "IntermediatePy/Logic/RealPy/report.py",
-        "IntermediatePy/Logic/RealPy/status.py"
+        "IntermediatePy/Backends/qmldir",
+        "IntermediatePy/Backends/MockBackend.qml",
+        "IntermediatePy/Backends/MockQml/Project.qml",
+        "IntermediatePy/Backends/MockQml/Report.qml",
+        "IntermediatePy/Backends/MockQml/Status.qml",
+        "IntermediatePy/Backends/MockQml/qmldir",
+        "IntermediatePy/Backends/real_backend.py",
+        "IntermediatePy/Backends/RealPy/helpers.py",
+        "IntermediatePy/Backends/RealPy/project.py",
+        "IntermediatePy/Backends/RealPy/report.py",
+        "IntermediatePy/Backends/RealPy/status.py"
     ]
 }
