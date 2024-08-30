@@ -6,7 +6,6 @@ from PySide6.QtCore import QObject, Property
 
 from EasyApp.Logic.Logging import LoggerLevelHandler
 
-from .connections import ConnectionsHandler
 from .project import Project
 from .status import Status
 from .report import Report
@@ -16,12 +15,33 @@ class Backend(QObject):
     def __init__(self):
         super().__init__()
 
+        ####################
+        # Private attributes
+        ####################
+
+        # Individual Backend objects
         self._project = Project()
         self._status = Status()
         self._report = Report()
 
-        self._connections = ConnectionsHandler(self)
+        # Logger
         self._logger = LoggerLevelHandler(self)
+
+        #############
+        # Connections
+        #############
+
+        # Connect the signals of various Backend objects to the methods of this class defined below.
+        # This allows, through the methods of this class, to update dependent objects, but keep them
+        # unaware of each other.
+
+        # Project
+        self._project.nameChanged.connect(self.onProjectNameChanged)
+        self._project.createdChanged.connect(self.onProjectCreatedChanged)
+
+    ##########################
+    # GUI accessible variables
+    ##########################
 
     @Property('QVariant', constant=True)
     def project(self):
@@ -34,3 +54,16 @@ class Backend(QObject):
     @Property('QVariant', constant=True)
     def report(self):
         return self._report
+
+    ##################################
+    # Functions related to connections
+    ##################################
+
+    # Project
+
+    def onProjectNameChanged(self):
+        self._status.project = self._project.name
+        self._report._asHtml = self._project.name
+
+    def onProjectCreatedChanged(self):
+        self._report.created = self._project.created
