@@ -24,7 +24,7 @@ EaComponents.TableView {
 
     defaultInfoText: qsTr('No examples available')
 
-    model: Globals.BackendProxy.projectExamples
+    model: Globals.BackendWrapper.projectExamples
 
     // header
     header: EaComponents.TableViewHeader {

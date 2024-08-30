@@ -8,7 +8,7 @@
         "IntermediatePy/Gui/StatusBar.qml",
         "IntermediatePy/Gui/Globals/qmldir",
         "IntermediatePy/Gui/Globals/ApplicationInfo.qml",
-        "IntermediatePy/Gui/Globals/BackendProxy.qml",
+        "IntermediatePy/Gui/Globals/BackendWrapper.qml",
         "IntermediatePy/Gui/Globals/References.qml",
         "IntermediatePy/Gui/Pages/Home/Content.qml",
         "IntermediatePy/Gui/Pages/Home/Popups/About.qml",

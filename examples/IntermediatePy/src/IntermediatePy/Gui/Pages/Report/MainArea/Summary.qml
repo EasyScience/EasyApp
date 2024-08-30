@@ -46,7 +46,7 @@ Rectangle {
             padding: 2.5 * EaStyle.Sizes.fontPixelSize
 
             textFormat: TextEdit.RichText
-            text: Globals.BackendProxy.reportAsHtml
+            text: Globals.BackendWrapper.reportAsHtml
         }
         // Main text area
 

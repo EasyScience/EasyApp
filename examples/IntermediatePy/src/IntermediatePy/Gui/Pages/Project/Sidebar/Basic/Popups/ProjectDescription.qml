@@ -16,18 +16,18 @@ EaComponents.ProjectDescriptionDialog {
     visible: EaGlobals.Vars.showProjectDescriptionDialog
     onClosed: EaGlobals.Vars.showProjectDescriptionDialog = false
 
-    projectName: Globals.BackendProxy.projectName
-    projectDescription: Globals.BackendProxy.projectInfo.description
+    projectName: Globals.BackendWrapper.projectName
+    projectDescription: Globals.BackendWrapper.projectInfo.description
 
     onAccepted: {
-        Globals.BackendProxy.projectName = projectName
-        Globals.BackendProxy.projectEditInfo('description', projectDescription)
-        Globals.BackendProxy.projectCreate()
+        Globals.BackendWrapper.projectName = projectName
+        Globals.BackendWrapper.projectEditInfo('description', projectDescription)
+        Globals.BackendWrapper.projectCreate()
         Globals.References.applicationWindow.appBarCentralTabs.summaryButton.enabled = true
     }
 
     Component.onCompleted: {
-        projectLocation = Globals.BackendProxy.projectInfo.location
+        projectLocation = Globals.BackendWrapper.projectInfo.location
     }
 
 }

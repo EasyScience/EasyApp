@@ -17,7 +17,7 @@
     │   ├── 🗂️ Logic                        # Backend logic
     │   │   ├── 🗂️ Mock                     # Mock logic to be used if no python logic is defined
     │   │   │   ├── qmldir                  
-    │   │   │   ├── BackendProxy.qml        # Parent object for all other objects with mock logic
+    │   │   │   ├── BackendWrapper.qml        # Parent object for all other objects with mock logic
     │   │   │   ├── Status.qml              # Mock logic for the status bar
     │   │   │   ├── Project.qml             # Mock logic for the application page 'Project'
     │   │   │   └── Report.qml              # Mock logic for the application page 'Report'
@@ -38,7 +38,7 @@
     │       ├── 🗂️ Globals                  # Globally accessible objects
     │       │   ├── qmldir                  
     │       │   ├── ApplicationInfo.qml     
-    │       │   ├── BackendProxy.qml        # Layer between the backend proxy and GUI objects
+    │       │   ├── BackendWrapper.qml        # Layer between the backend proxy and GUI objects
     │       │   └── References.qml          # QML object ids to globally access the desired objects
     │       │
     │   (*) ├── 🗂️ Pages                    # Application pages
