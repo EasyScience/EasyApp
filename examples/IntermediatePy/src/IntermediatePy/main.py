@@ -18,7 +18,7 @@ sys.path.append(str(EASYAPP_DIR))
 
 from EasyApp.Logic.Logging import console
 
-from Logic.real_backend_proxy import BackendProxy
+from Logic.RealPy.real_backend_proxy import BackendProxy
 
 if __name__ == '__main__':
     qInstallMessageHandler(console.qmlMessageHandler)

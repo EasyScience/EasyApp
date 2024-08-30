@@ -6,10 +6,10 @@ from PySide6.QtCore import QObject, Property
 
 from EasyApp.Logic.Logging import LoggerLevelHandler
 
-from .RealPy.connections import ConnectionsHandler
-from .RealPy.project import Project
-from .RealPy.status import Status
-from .RealPy.report import Report
+from .connections import ConnectionsHandler
+from .project import Project
+from .status import Status
+from .report import Report
 
 
 class BackendProxy(QObject):
