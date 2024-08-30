@@ -33,44 +33,38 @@ QtObject {
     // Status bar
     /////////////
 
-    readonly property var status: QtObject {
-        readonly property string project: activeProxy.status.project
-        readonly property string phasesCount: activeProxy.status.phasesCount
-        readonly property string experimentsCount: activeProxy.status.experimentsCount
-        readonly property string calculator: activeProxy.status.calculator
-        readonly property string minimizer: activeProxy.status.minimizer
-        readonly property string variables: activeProxy.status.variables
-    }
+    readonly property string statusProject: activeProxy.status.project
+    readonly property string statusPhasesCount: activeProxy.status.phasesCount
+    readonly property string statusExperimentsCount: activeProxy.status.experimentsCount
+    readonly property string statusCalculator: activeProxy.status.calculator
+    readonly property string statusMinimizer: activeProxy.status.minimizer
+    readonly property string statusVariables: activeProxy.status.variables
 
     ///////////////
     // Project page
     ///////////////
 
-    readonly property var project: QtObject {
-        property bool created: activeProxy.project.created
-        onCreatedChanged: activeProxy.project.created = created
+    property bool projectCreated: activeProxy.project.created
+    onProjectCreatedChanged: activeProxy.project.created = projectCreated
 
-        property string name: activeProxy.project.name
-        onNameChanged: activeProxy.project.name = name
+    property string projectName: activeProxy.project.name
+    onProjectNameChanged: activeProxy.project.name = projectName
 
-        readonly property var info: activeProxy.project.info
+    readonly property var projectInfo: activeProxy.project.info
 
-        readonly property var examples: activeProxy.project.examples
+    readonly property var projectExamples: activeProxy.project.examples
 
-        function create() { activeProxy.project.create() }
-        function save() { activeProxy.project.save() }
-        function editInfo(path, new_value) { activeProxy.project.editInfo(path, new_value) }
-    }
+    function projectCreate() { activeProxy.project.create() }
+    function projectSave() { activeProxy.project.save() }
+    function projectEditInfo(path, new_value) { activeProxy.project.editInfo(path, new_value) }
 
     ///////////////
     // Summary page
     ///////////////
 
-    readonly property var report: QtObject {
-        property bool created: activeProxy.report.created
-        onCreatedChanged: activeProxy.project.created = created
+    property bool reportCreated: activeProxy.report.created
+    onReportCreatedChanged: activeProxy.report.created = reportCreated
 
-        readonly property string asHtml: activeProxy.report.asHtml
-    }
+    readonly property string reportAsHtml: activeProxy.report.asHtml
 
 }
