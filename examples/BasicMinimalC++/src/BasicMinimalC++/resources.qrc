@@ -2,7 +2,7 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>Gui/Globals/ApplicationInfo.qml</file>
-        <file>Gui/Globals/BackendProxy.qml</file>
+        <file>Gui/Globals/BackendWrapper.qml</file>
         <file>Gui/Globals/qmldir</file>
         <file>Gui/Globals/References.qml</file>
         <file>Gui/Pages/Home/Popups/About.qml</file>
@@ -32,11 +32,12 @@
         <file>Gui/ApplicationWindow.qml</file>
         <file>Gui/qmldir</file>
         <file>Gui/StatusBar.qml</file>
-        <file>Logic/Mock/BackendProxy.qml</file>
-        <file>Logic/Mock/Project.qml</file>
-        <file>Logic/Mock/qmldir</file>
-        <file>Logic/Mock/Report.qml</file>
-        <file>Logic/Mock/Status.qml</file>
+        <file>Backends/MockBackend.qml</file>
+        <file>Backends/MockQml/Project.qml</file>
+        <file>Backends/MockQml/qmldir</file>
+        <file>Backends/MockQml/Report.qml</file>
+        <file>Backends/MockQml/Status.qml</file>
+        <file>Backends/qmldir</file>
         <file alias="EasyApp/Gui/Animations/ColorReset.qml">../../../../src/EasyApp/Gui/Animations/ColorReset.qml</file>
         <file alias="EasyApp/Gui/Animations/qmldir">../../../../src/EasyApp/Gui/Animations/qmldir</file>
         <file alias="EasyApp/Gui/Animations/ThemeChange.qml">../../../../src/EasyApp/Gui/Animations/ThemeChange.qml</file>

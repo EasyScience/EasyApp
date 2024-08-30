@@ -9,11 +9,11 @@ import QtQuick
 QtObject {
 
     readonly property var about: {
-        'name': 'EasyBasicMinimalC++',
-        'namePrefix': 'Easy',
-        'nameSuffix': 'BasicMinimalC++',
-        'namePrefixForLogo': 'easy',
-        'nameSuffixForLogo': 'basicminimalc++',
+        'name': 'BasicMinimalC++',
+        'namePrefix': 'BasicMinimal',
+        'nameSuffix': 'C++',
+        'namePrefixForLogo': 'basicminimal',
+        'nameSuffixForLogo': 'c++',
         'homePageUrl': 'https://github.com/EasyScience/EasyExample',
         'issuesUrl': 'https://github.com/EasyScience/EasyExample/issues',
         'licenseUrl': 'https://github.com/EasyScience/EasyExample/LICENCE.md',
@@ -34,3 +34,4 @@ QtObject {
     }
 
 }
+

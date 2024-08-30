@@ -17,6 +17,7 @@ Rectangle {
     color: EaStyle.Colors.mainContentBackground
 
     Column {
+        id: container
 
         anchors.top: parent.top
         anchors.left: parent.left
@@ -28,11 +29,14 @@ Rectangle {
 
         // Project title
         EaElements.TextInput {
+            width: Math.max(implicitWidth, 1)
             font.family: EaStyle.Fonts.secondFontFamily
             font.pixelSize: EaStyle.Sizes.fontPixelSize * 3
             font.weight: Font.ExtraLight
-            text: Globals.BackendProxy.project.info.name
-            onEditingFinished: Globals.BackendProxy.project.editData('name', text)
+            validator: RegularExpressionValidator { regularExpression: /^[a-zA-Z][a-zA-Z0-9_\-\.]{1,30}$/ }
+            placeholderText: qsTr("Enter project name here")
+            text: Globals.BackendWrapper.projectName
+            onEditingFinished: Globals.BackendWrapper.projectName = text
         }
         // Project title
 
@@ -47,8 +51,10 @@ Rectangle {
                 text: qsTr('Description:')
             }
             EaElements.TextInput {
-                text: Globals.BackendProxy.project.info.description
-                onEditingFinished: Globals.BackendProxy.project.editData('description', text)
+                width: Math.max(implicitWidth, 1)
+                placeholderText: qsTr("Enter project description here")
+                text: Globals.BackendWrapper.projectInfo.description
+                onEditingFinished: Globals.BackendWrapper.projectEditInfo('description', text)
             }
 
             EaElements.Label {
@@ -56,7 +62,8 @@ Rectangle {
                 text: qsTr('Location:')
             }
             EaElements.Label {
-                text: Globals.BackendProxy.project.info.location
+                width: Math.max(implicitWidth, 1)
+                text: Globals.BackendWrapper.projectInfo.location
             }
 
             EaElements.Label {
@@ -64,7 +71,8 @@ Rectangle {
                 text: qsTr('Created:')
             }
             EaElements.Label {
-                text: Globals.BackendProxy.project.info.creationDate
+                width: Math.max(implicitWidth, 1)
+                text: Globals.BackendWrapper.projectInfo.creationDate
             }
         }
         // Project info

@@ -121,7 +121,7 @@ Item {
                     onClicked: console.debug(`Button clicked: ${text}`)
                 }
                 EaElements.Button {
-                    text: qsTr('Tutorial') + ' 3: ' + qsTr('Basic usage')
+                    text: qsTr('Tutorial') + ' 2: ' + qsTr('Basic usage')
                     onClicked: console.debug(`Button clicked: ${text}`)
                 }
                 EaElements.Button {

@@ -10,10 +10,10 @@ QtObject {
 
     readonly property var about: {
         'name': 'BasicMinimalPy',
-        'namePrefix': 'Basic',
-        'nameSuffix': 'MinimalPy',
-        'namePrefixForLogo': 'basic',
-        'nameSuffixForLogo': 'minimalpy',
+        'namePrefix': 'BasicMinimal',
+        'nameSuffix': 'Py',
+        'namePrefixForLogo': 'basicminimal',
+        'nameSuffixForLogo': 'py',
         'homePageUrl': 'https://github.com/EasyScience/EasyExample',
         'issuesUrl': 'https://github.com/EasyScience/EasyExample/issues',
         'licenseUrl': 'https://github.com/EasyScience/EasyExample/LICENCE.md',
@@ -34,3 +34,4 @@ QtObject {
     }
 
 }
+

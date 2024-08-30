@@ -9,11 +9,11 @@ import QtQuick
 QtObject {
 
     readonly property var about: {
-        'name': 'EasyBasicQml',
-        'namePrefix': 'Easy',
-        'nameSuffix': 'BasicQml',
-        'namePrefixForLogo': 'easy',
-        'nameSuffixForLogo': 'basicqml',
+        'name': 'BasicQml',
+        'namePrefix': 'Basic',
+        'nameSuffix': 'Qml',
+        'namePrefixForLogo': 'basic',
+        'nameSuffixForLogo': 'qml',
         'homePageUrl': 'https://github.com/EasyScience/EasyExample',
         'issuesUrl': 'https://github.com/EasyScience/EasyExample/issues',
         'licenseUrl': 'https://github.com/EasyScience/EasyExample/LICENCE.md',
@@ -34,3 +34,4 @@ QtObject {
     }
 
 }
+
