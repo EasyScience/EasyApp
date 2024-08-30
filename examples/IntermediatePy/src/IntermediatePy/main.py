@@ -32,7 +32,7 @@ if __name__ == '__main__':
     console.debug(f'QML application engine created {engine}')
 
     qmlRegisterSingletonType(Backend, 'Backends', 1, 0, 'PyBackend')
-    console.debug('BackendProxy class is registered to be accessible from QML via the name PyBackendProxy')
+    console.debug('Backend class is registered to be accessible from QML via the name PyBackend')
 
     engine.addImportPath(EASYAPP_DIR)
     engine.addImportPath(CURRENT_DIR)
