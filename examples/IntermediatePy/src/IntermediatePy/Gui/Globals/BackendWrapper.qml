@@ -7,8 +7,8 @@ pragma Singleton
 import QtQuick
 
 // This module is registered in the main.py file and allows access to the properties
-// and backend  methods of the singleton object of the ‘PyBackendProxy’ class.
-// If ‘PyBackendProxy’ is not defined, then 'MockBackendProxy' from directory 'Logic' is used.
+// and backend  methods of the singleton object of the ‘PyBackend’ class.
+// If ‘PyBackend’ is not defined, then 'MockBackend' from directory 'Backends' is used.
 // It is needed to run the GUI frontend via the qml runtime tool without any Python backend.
 import Backends as Backends
 
@@ -19,7 +19,7 @@ QtObject {
     // Backend proxy
     ////////////////
 
-    readonly property var activeProxy: {
+    readonly property var activeBackend: {
         if (typeof Backends.PyBackend !== 'undefined') {
             console.debug('Currently, the REAL python backend is in use')
             return Backends.PyBackend
@@ -33,38 +33,35 @@ QtObject {
     // Status bar
     /////////////
 
-    readonly property string statusProject: activeProxy.status.project
-    readonly property string statusPhasesCount: activeProxy.status.phasesCount
-    readonly property string statusExperimentsCount: activeProxy.status.experimentsCount
-    readonly property string statusCalculator: activeProxy.status.calculator
-    readonly property string statusMinimizer: activeProxy.status.minimizer
-    readonly property string statusVariables: activeProxy.status.variables
+    readonly property string statusProject: activeBackend.status.project
+    readonly property string statusPhasesCount: activeBackend.status.phasesCount
+    readonly property string statusExperimentsCount: activeBackend.status.experimentsCount
+    readonly property string statusCalculator: activeBackend.status.calculator
+    readonly property string statusMinimizer: activeBackend.status.minimizer
+    readonly property string statusVariables: activeBackend.status.variables
 
     ///////////////
     // Project page
     ///////////////
 
-    property bool projectCreated: activeProxy.project.created
-    onProjectCreatedChanged: activeProxy.project.created = projectCreated
+    readonly property var projectInfo: activeBackend.project.info
+    readonly property var projectExamples: activeBackend.project.examples
 
-    property string projectName: activeProxy.project.name
-    onProjectNameChanged: activeProxy.project.name = projectName
+    property bool projectCreated: activeBackend.project.created
+    onProjectCreatedChanged: activeBackend.project.created = projectCreated
+    property string projectName: activeBackend.project.name
+    onProjectNameChanged: activeBackend.project.name = projectName
 
-    readonly property var projectInfo: activeProxy.project.info
-
-    readonly property var projectExamples: activeProxy.project.examples
-
-    function projectCreate() { activeProxy.project.create() }
-    function projectSave() { activeProxy.project.save() }
-    function projectEditInfo(path, new_value) { activeProxy.project.editInfo(path, new_value) }
+    function projectCreate() { activeBackend.project.create() }
+    function projectSave() { activeBackend.project.save() }
+    function projectEditInfo(path, new_value) { activeBackend.project.editInfo(path, new_value) }
 
     ///////////////
     // Summary page
     ///////////////
 
-    property bool reportCreated: activeProxy.report.created
-    onReportCreatedChanged: activeProxy.report.created = reportCreated
+    readonly property string reportAsHtml: activeBackend.report.asHtml
 
-    readonly property string reportAsHtml: activeProxy.report.asHtml
-
+    property bool reportCreated: activeBackend.report.created
+    onReportCreatedChanged: activeBackend.report.created = reportCreated
 }
