@@ -57,10 +57,10 @@ _EXAMPLES = [
 
 
 class Project(QObject):
-    created_changed = Signal()
-    name_changed = Signal()
-    info_changed = Signal()
-    examples_changed = Signal()
+    createdChanged = Signal()
+    nameChanged = Signal()
+    infoChanged = Signal()
+    examplesChanged = Signal()
 
     def __init__(self):
         super().__init__()
@@ -69,9 +69,13 @@ class Project(QObject):
         self._info = _INFO
         self._examples = _EXAMPLES
 
+    ##########################
+    # GUI accessible variables
+    ##########################
+
     # Properties
 
-    @Property(bool, notify=created_changed)
+    @Property(bool, notify=createdChanged)
     def created(self):
         return self._created
 
@@ -80,9 +84,9 @@ class Project(QObject):
         if self._created == new_value:
             return
         self._created = new_value
-        self.created_changed.emit()
+        self.createdChanged.emit()
 
-    @Property(str, notify=name_changed)
+    @Property(str, notify=nameChanged)
     def name(self):
         return self._name
 
@@ -92,9 +96,9 @@ class Project(QObject):
             return
         console.debug(IO.format_msg('main', f"Changing project name from '{self.name}' to '{new_value}'"))
         self._name = new_value
-        self.name_changed.emit()
+        self.nameChanged.emit()
 
-    @Property('QVariant', notify=info_changed)
+    @Property('QVariant', notify=infoChanged)
     def info(self):
         return self._info
 
@@ -102,13 +106,16 @@ class Project(QObject):
     def examples(self):
         return self._examples
 
-    # Methods
+
+    ##########################
+    # GUI accessible functions
+    ##########################
 
     @Slot()
     def create(self):
         console.debug(IO.format_msg('main', f"Creating project '{self.name}'"))
         self.info['creationDate'] = time.strftime("%d %b %Y %H:%M", time.localtime())
-        self.info_changed.emit()
+        self.infoChanged.emit()
         self.created = True
 
     @Slot()
@@ -121,4 +128,4 @@ class Project(QObject):
             return
         console.debug(IO.format_msg('main', f"Changing project info.{path} from '{DottyDict.get(self._info, path)}' to '{new_value}'"))
         DottyDict.set(self._info, path, new_value)
-        self.info_changed.emit()
+        self.infoChanged.emit()

@@ -6,12 +6,12 @@ from PySide6.QtCore import QObject, Signal, Property
 
 
 class Status(QObject):
-    project_changed = Signal()
-    phasesCount_changed = Signal()
-    experimentsCount_changed = Signal()
-    calculator_changed = Signal()
-    minimizer_changed = Signal()
-    variables_changed = Signal()
+    projectChanged = Signal()
+    phasesCountChanged = Signal()
+    experimentsCountChanged = Signal()
+    calculatorChanged = Signal()
+    minimizerChanged = Signal()
+    variablesChanged = Signal()
 
     def __init__(self):
         super().__init__()
@@ -22,7 +22,11 @@ class Status(QObject):
         self._minimizer = 'Lmfit (leastsq)'
         self._variables = '31 (3 free, 28 fixed)'
 
-    @Property(str, notify=project_changed)
+    ##########################
+    # GUI accessible variables
+    ##########################
+
+    @Property(str, notify=projectChanged)
     def project(self):
         return self._project
 
@@ -31,9 +35,9 @@ class Status(QObject):
         if self._project == new_value:
             return
         self._project = new_value
-        self.project_changed.emit()
+        self.projectChanged.emit()
 
-    @Property(str, notify=phasesCount_changed)
+    @Property(str, notify=phasesCountChanged)
     def phasesCount(self):
         return self._phasesCount
 
@@ -42,9 +46,9 @@ class Status(QObject):
         if self._phasesCount == new_value:
             return
         self._phasesCount = new_value
-        self.phasesCount_changed.emit()
+        self.phasesCountChanged.emit()
 
-    @Property(str, notify=experimentsCount_changed)
+    @Property(str, notify=experimentsCountChanged)
     def experimentsCount(self):
         return self._experimentsCount
 
@@ -53,9 +57,9 @@ class Status(QObject):
         if self._experimentsCount == new_value:
             return
         self._experimentsCount = new_value
-        self.experimentsCount_changed.emit()
+        self.experimentsCountChanged.emit()
 
-    @Property(str, notify=calculator_changed)
+    @Property(str, notify=calculatorChanged)
     def calculator(self):
         return self._calculator
 
@@ -64,9 +68,9 @@ class Status(QObject):
         if self._calculator == new_value:
             return
         self._calculator = new_value
-        self.calculator_changed.emit()
+        self.calculatorChanged.emit()
 
-    @Property(str, notify=minimizer_changed)
+    @Property(str, notify=minimizerChanged)
     def minimizer(self):
         return self._minimizer
 
@@ -75,9 +79,9 @@ class Status(QObject):
         if self._minimizer == new_value:
             return
         self._minimizer = new_value
-        self.minimizer_changed.emit()
+        self.minimizerChanged.emit()
 
-    @Property(str, notify=variables_changed)
+    @Property(str, notify=variablesChanged)
     def variables(self):
         return self._variables
 
@@ -86,4 +90,4 @@ class Status(QObject):
         if self._variables == new_value:
             return
         self._variables = new_value
-        self.variables_changed.emit()
+        self.variablesChanged.emit()

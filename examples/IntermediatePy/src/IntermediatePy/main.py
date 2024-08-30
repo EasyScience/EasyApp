@@ -20,6 +20,7 @@ from EasyApp.Logic.Logging import console
 
 from Backends.RealPy.real_backend import Backend
 
+
 if __name__ == '__main__':
     qInstallMessageHandler(console.qmlMessageHandler)
     console.debug('Custom Qt message handler defined')
