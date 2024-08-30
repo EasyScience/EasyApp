@@ -18,7 +18,7 @@ sys.path.append(str(EASYAPP_DIR))
 
 from EasyApp.Logic.Logging import console
 
-from Backends.RealPy.real_backend import Backend
+from Backends.real_backend import Backend
 
 
 if __name__ == '__main__':
