@@ -1,14 +1,14 @@
 ## Types of examples
 
-Different types of examples are provided. All examples have a frontend implemented in QML but differ in how the backend logic is implemented and the applied runtime. These examples can be categorised as shown in the following table:
+Different types of examples are provided. All examples have a graphical frontend implemented in QML, but differ in the way the backend logic is implemented and the runtime used to run them. These examples can be categorised as shown in the following table:
 
-| Example        | Type | Frontend | Backend  | Runtime               |
+| Example        | Type | Frontend | Backend  | Runtime              |
 | -------------- | ---- | -------- | -------- | -------------------- |
 | BasicQml       | I    | QML      | Mock QML | `qml` tool           |
 | BasicPy        | II   | QML      | Mock QML | `python` interpreter |
+| BasicC++       | IV   | QML      | Mock QML | need to be compiled  |
 | IntermediatePy | III  | QML      | Python   | `python` interpreter |
 | AdvancedPy     | III  | QML      | Python   | `python` interpreter |
-| BasicC++       | IV   | QML      | Mock QML | need to be compiled  |
 
 
 ## Setting up Python and IDE 

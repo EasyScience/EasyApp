@@ -12,6 +12,12 @@ EasyApp is currently being used as the basis for the graphical interface in the 
 * [EasyReflectometry](http://github.com/EasyScience/EasyReflectometry)
 * [EasyTexture](http://github.com/EasyScience/EasyTextureApp)
 
-More simple examples of using EasyApp are described in [EXAMPLES.md](EXAMPLES.md).
+More simple examples of how to use EasyApp are described in [EXAMPLES.md](EXAMPLES.md) and presented in the [examples](examples) directory:
 
-If you want to see what EasyApp looks like, you can try the web demo at https://easyscience.github.io/EasyApp/BasicC++.html.
+* [BasicQml](examples/BasicQml)
+* [BasicPy](examples/BasicPy)
+* [BasicC++](examples/BasicC++)
+* [IntermediatePy](examples/IntermediatePy)
+* [AdvancedPy](examples/AdvancedPy)
+
+If you want to see what EasyApp looks like, you can try the web demo based on the [BasicC++](examples/BasicC++) example at https://easyscience.github.io/EasyApp/BasicC++.html.
