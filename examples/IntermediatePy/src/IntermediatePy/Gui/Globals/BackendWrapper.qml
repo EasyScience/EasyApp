@@ -20,12 +20,12 @@ QtObject {
     ////////////////
 
     readonly property var activeProxy: {
-        if (typeof Backends.PyBackendProxy !== 'undefined' && Backends.PyBackendProxy !== null) {
-            console.debug('Currently, the REAL python backend proxy is in use')
-            return Backends.PyBackendProxy
+        if (typeof Backends.PyBackend !== 'undefined') {
+            console.debug('Currently, the REAL python backend is in use')
+            return Backends.PyBackend
         } else {
-            console.debug('Currently, the MOCK backend proxy is in use')
-            return Backends.MockBackendProxy
+            console.debug('Currently, the MOCK backend is in use')
+            return Backends.MockBackend
         }
     }
 
