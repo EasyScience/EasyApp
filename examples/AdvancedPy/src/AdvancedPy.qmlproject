@@ -1,17 +1,17 @@
 import QmlProject 1.1
 
 Project {
-    mainFile: "BasicMinimalPy/main.qml"
+    mainFile: "AdvancedPy/main.qml"
 
     // List of module and plugin directories passed to QML runtime
     importPaths: [
-        "BasicMinimalPy",
+        "AdvancedPy",
         "../../../src",  // EasyApp
     ]
 
     // Include .qml files from specified directory and its subdirectories
     QmlFiles {
-        directory: "BasicMinimalPy"
+        directory: "AdvancedPy"
     }
     QmlFiles {
         directory: "../../../src/EasyApp"
@@ -19,7 +19,7 @@ Project {
 
     // Include .js files from specified directory and its subdirectories
     JavaScriptFiles {
-        directory: "BasicMinimalPy"
+        directory: "AdvancedPy"
     }
     JavaScriptFiles {
         directory: "../../../src/EasyApp"
@@ -28,7 +28,7 @@ Project {
     // Include Module Definition Files (qmldir), as well as .ts and .qrc
     // from specified directory and its subdirectories
     Files {
-        directory: "BasicMinimalPy"
+        directory: "AdvancedPy"
         filter: "qmldir;*.ts;*.qrc;*.html"
         recursive: true
     }

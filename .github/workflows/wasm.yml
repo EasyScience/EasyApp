@@ -71,23 +71,23 @@ jobs:
           export PATH=$PATH:${{ github.workspace }}/Qt/6.7.2/wasm_singlethread/bin
           qmake -v
 
-      - name: Build WASM from BasicMinimalC++ example
+      - name: Build WASM from BasicC++ example
         shell: bash
         run: |
           source ${{ github.workspace }}/emsdk/emsdk_env.sh
           export PATH=$PATH:${{ github.workspace }}/Qt/6.7.2/wasm_singlethread/bin
-          cd examples/BasicMinimalC++/src
-          qmake BasicMinimalC++.pro -spec wasm-emscripten
+          cd examples/BasicC++/src
+          qmake BasicC++.pro -spec wasm-emscripten
           make -j
 
       - name: Copy the built WASM to the build/wasm folder
         shell: bash
         run: |
           mkdir -p build/wasm
-          cp examples/BasicMinimalC++/src/*.wasm build/wasm
-          cp examples/BasicMinimalC++/src/*.html build/wasm
-          cp examples/BasicMinimalC++/src/*.js build/wasm
-          cp examples/BasicMinimalC++/src/*.svg build/wasm
+          cp examples/BasicC++/src/*.wasm build/wasm
+          cp examples/BasicC++/src/*.html build/wasm
+          cp examples/BasicC++/src/*.js build/wasm
+          cp examples/BasicC++/src/*.svg build/wasm
 
       - name: Upload the zipped wasm folder
         uses: actions/upload-artifact@v4

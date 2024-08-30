@@ -34,11 +34,6 @@
         "BasicPy/Backends/MockQml/Project.qml",
         "BasicPy/Backends/MockQml/Report.qml",
         "BasicPy/Backends/MockQml/Status.qml",
-        "BasicPy/Backends/MockQml/qmldir",
-        "BasicPy/Backends/real_backend.py",
-        "BasicPy/Backends/real_py/helpers.py",
-        "BasicPy/Backends/real_py/project.py",
-        "BasicPy/Backends/real_py/report.py",
-        "BasicPy/Backends/real_py/status.py"
+        "BasicPy/Backends/MockQml/qmldir"
     ]
 }

@@ -3,9 +3,9 @@ requires = ['hatchling']
 build-backend = 'hatchling.build'
 
 [project]
-name = 'intermediatepy'
+name = 'advancedpy'
 version = '1.0.0'
-description = 'Example of a desktop application of intermediate complexity with a Python backend and EasyApp-based GUI'
+description = 'Example of a desktop application of advanced complexity with Python backend and EasyApp-based GUI'
 authors = [
   {name = 'Andrew Sazonov', email = 'andrew.sazonov@ess.eu'}
 ]
@@ -29,8 +29,8 @@ ci = [
 ]
 
 [project.urls]
-homepage = 'https://github.com/EasyScience/EasyApp/tree/master/examples/IntermediatePy'
+homepage = 'https://github.com/EasyScience/EasyApp/tree/master/examples/AdvancedPy'
 
 [tool.hatch.build.targets.wheel]
-packages = ['src/IntermediatePy']
+packages = ['src/AdvancedPy']
 #artifacts = ['*.py', '*.qml', 'qmldir']

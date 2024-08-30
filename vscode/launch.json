@@ -13,27 +13,27 @@
             "env": {
                 "PYTHONPATH": "${cwd}/src"
                 }
-        },        
-        {
-            "name": "Python Debugger: BasicMinimalPy",
-            "type": "debugpy",
-            "request": "launch",
-            "program": "${cwd}/examples/BasicMinimalPy/src/BasicMinimalPy/main.py",
-            "console": "integratedTerminal",              
-        },        
+        },
         {
             "name": "Python Debugger: BasicPy",
             "type": "debugpy",
             "request": "launch",
             "program": "${cwd}/examples/BasicPy/src/BasicPy/main.py",
-            "console": "integratedTerminal",   
-        },        
+            "console": "integratedTerminal",
+        },
         {
             "name": "Python Debugger: IntermediatePy",
             "type": "debugpy",
             "request": "launch",
             "program": "${cwd}/examples/IntermediatePy/src/IntermediatePy/main.py",
-            "console": "integratedTerminal",   
+            "console": "integratedTerminal",
+        },
+        {
+            "name": "Python Debugger: AdvancedPy",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${cwd}/examples/AdvancedPy/src/AdvancedPy/main.py",
+            "console": "integratedTerminal",
         }
     ]
 }

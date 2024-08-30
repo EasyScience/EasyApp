@@ -23,7 +23,7 @@ QtObject {
         'date': new Date().toISOString().slice(0,10),
         'developerYearsFrom': '2019',
         'developerYearsTo': '2024',
-        'description': 'An example of how to build the basic application using EasyApp module.',
+        'description': 'Example of a desktop application of basic complexity with Python backend and EasyApp-based GUI',
         'developerIcons': [
             {
                 'url': 'https://ess.eu',

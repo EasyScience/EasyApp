@@ -9,10 +9,10 @@ import QtQuick
 QtObject {
 
     readonly property var about: {
-        'name': 'BasicMinimalC++',
-        'namePrefix': 'BasicMinimal',
+        'name': 'BasicC++',
+        'namePrefix': 'Basic',
         'nameSuffix': 'C++',
-        'namePrefixForLogo': 'basicminimal',
+        'namePrefixForLogo': 'basic',
         'nameSuffixForLogo': 'c++',
         'homePageUrl': 'https://github.com/EasyScience/EasyExample',
         'issuesUrl': 'https://github.com/EasyScience/EasyExample/issues',
@@ -23,7 +23,7 @@ QtObject {
         'date': new Date().toISOString().slice(0,10),
         'developerYearsFrom': '2019',
         'developerYearsTo': '2024',
-        'description': 'An example of how to build the basic application using EasyApp module.',
+        'description': 'Example of a desktop application of basic complexity with Python backend and EasyApp-based GUI',
         'developerIcons': [
             {
                 'url': 'https://ess.eu',

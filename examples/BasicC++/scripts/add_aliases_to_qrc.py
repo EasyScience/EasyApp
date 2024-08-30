@@ -1,6 +1,6 @@
 import re
 
-filename = 'src/BasicMinimalC++/resources.qrc'
+filename = 'src/BasicC++/resources.qrc'
 with open(filename, 'r') as f:
     content = f.read()
 

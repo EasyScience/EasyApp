@@ -1,7 +1,7 @@
 TEMPLATE = app
 
 # Application name
-TARGET = BasicMinimalC++
+TARGET = BasicC++
 
 CONFIG += c++17
 
@@ -11,16 +11,16 @@ DEFINES += QT_DEPRECATED_WARNINGS
 QT += core quick qml
 
 SOURCES += \
-    BasicMinimalC++/main.cpp
+    BasicC++/main.cpp
 
-RESOURCES += BasicMinimalC++/resources.qrc
+RESOURCES += BasicC++/resources.qrc
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH += \
-    BasicMinimalC++ \
+    BasicC++ \
     ../../../src/EasyApp
 
 # Additional import path used to resolve QML modules just for Qt Quick Designer
 QML_DESIGNER_IMPORT_PATH += \
-    BasicMinimalC++ \
+    BasicC++ \
     ../../../src/EasyApp

@@ -5,9 +5,9 @@ Different types of examples are provided. All examples have a frontend implement
 | Example        | Type | Frontend | Backend  | Runtime               |
 | -------------- | ---- | -------- | -------- | -------------------- |
 | BasicQml       | I    | QML      | Mock QML | `qml` tool           |
-| BasicMinimalPy | II   | QML      | Mock QML | `python` interpreter |
-| BasicPy        | III  | QML      | Python   | `python` interpreter |
+| BasicPy        | II   | QML      | Mock QML | `python` interpreter |
 | IntermediatePy | III  | QML      | Python   | `python` interpreter |
+| AdvancedPy     | III  | QML      | Python   | `python` interpreter |
 | BasicC++       | IV   | QML      | Mock QML | need to be compiled  |
 
 
@@ -40,7 +40,7 @@ Different types of examples are provided. All examples have a frontend implement
 * Install the Qt for Python `PySide6` package via PIP
 
   ```
-  pip install PySide6 
+  pip install --force-reinstall "PySide6>=6.6,<6.7" 
   ```
 
 ### Integrated development environment (IDE)
@@ -104,9 +104,9 @@ This example is located in `examples/BasicQml` and the source code is in the sub
     * _Note: Showing the entire `main.qml` application window in live mode works best when the open `main.qml` is moved to another monitor and does not overlap with the `Qt Creator` window_.
 * When the desired GUI component appears, you can click the `Edit` button at the top of the left sidebar of `Qt Creator` to return to the source code of that qml component and still see it live in a separate window.
 
-### Type II Examples: BasicMinimalPy (Python runtime with QML backend)
+### Type II Examples: BasicPy (Python runtime with QML backend)
 
-This example is located in `examples/BasicMinimalPy` with the source code in `src/BasicMinimalPy`. This example serves to demonstrate how an application with a QML frontend and a QML backend (similar to the Type I example) can be executed from Python. The entry point for the Python program is `main.py` file. To execute this do the following:
+This example is located in `examples/BasicPy` with the source code in `src/BasicPy`. This example serves to demonstrate how an application with a QML frontend and a QML backend (similar to the Type I example) can be executed from Python. The entry point for the Python program is `main.py` file. To execute this do the following:
 
 #### Run using the Python interpreter
 
@@ -115,7 +115,7 @@ This example is located in `examples/BasicMinimalPy` with the source code in `sr
 * Go to the example folder, e.g.,
 
   ```sh
-  $ cd examples/BasicMinimalPy/src/BasicMinimalPy
+  $ cd examples/BasicPy/src/BasicPy
   ```
 * Run using Python (provided that the required python environment is activated as explained above)
 
@@ -126,7 +126,7 @@ This example is located in `examples/BasicMinimalPy` with the source code in `sr
 #### Run via the Qt Creator IDE (_alternative to run from the terminal_)
 
 * Run Qt Creator
-* Open the python project file from the example folder `examples/BasicMinimalPy/src/BasicMinimalPy.pyproject`
+* Open the python project file from the example folder `examples/BasicPy/src/BasicPy.pyproject`
 * Select the desired python environment with the Qt `PySide6` module installed
 * Click Run (Green play button)
 
@@ -136,9 +136,9 @@ This example is located in `examples/BasicMinimalPy` with the source code in `sr
 * Click on the debug extension and select which example to execute
 ![Debug dropdown window](resources/images/vscode_debug.jpg)
 
-### Type III Examples: BasicPy and IntermediatePy (Python runtime with Python backend)
+### Type III Examples: IntermediatePy and AdvancedPy (Python runtime with Python backend)
 
-These examples demonstrate how to use a Python runtime to execute the QML frontend and the Python backend located in `Logic/Py/backend_proxy.py`. These examples can be run through Python in the same way as Type II described above. These examples have a Python-based backend (proxy object), which gets created in `main.py` and then exposed to QML. The Qt QML frontend then acceses the backend by calling methods exposed by the proxy object in the `Py` folder.
+These examples demonstrate how to use a Python runtime to execute the QML frontend and the Python backend located in `Backends/real_backend.py`. These examples can be run through Python in the same way as Type II described above. These examples have a Python-based backend (proxy object), which gets created in `main.py` and then exposed to QML. The Qt QML GUI then acceses the backend by calling methods exposed by the proxy object in the `Backends/real_py` folder.
 
 #### Possible Issues
 

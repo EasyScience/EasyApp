@@ -1,18 +1,18 @@
-## Structure of the _IntermediatePy_ example
+## Structure of the _AdvancedPy_ example
 
 ### Without the full structure of the application pages
 
 ```sh
-🗂️ IntermediatePy                           # Current example
+🗂️ AdvancedPy                               # Current example
 ├── LICENSE
 ├── pyproject.toml                          # Configuration file used to build the Python package
 ├── README.md                               # Current file that introduces and explains a project
 │
 └── 🗂️ src                                  # Source code
-    ├── IntermediatePy.qmlproject           # QML project for the Qt Creator IDE
-    ├── IntermediatePy.pyproject            # Python project for the Qt Creator IDE
+    ├── AdvancedPy.qmlproject               # QML project for the Qt Creator IDE
+    ├── AdvancedPy.pyproject                # Python project for the Qt Creator IDE
     │
-    └── 🗂️ IntermediatePy                   # Directory with the name of the current Python package
+    └── 🗂️ AdvancedPy                        # Directory with the name of the current Python package
         ├── __init__.py                     # Executed when the current Python package is imported       
         ├── main.qml                        # Root QML component        
         ├── main.py                         # Root Python file      
@@ -50,7 +50,7 @@
             │   └── 🗂️ Report               # Components of the application page 'Report'
             │    
             └── 🗂️ Resources
-                └── 🗂️ Logos                # Logos of the application and contributors 
+                └── 🗂️ Logos                # Logos of the application and contributors
 
 (*) Full structure of the 'Pages' directory is shown below   
 ```

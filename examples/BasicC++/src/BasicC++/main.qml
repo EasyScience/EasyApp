@@ -10,6 +10,6 @@ import Gui as Gui
 
 Gui.ApplicationWindow {
 
-    id: applicationWindow  // Global access
+    id: applicationWindow  // applicationWindow is globally accessible
 
 }
