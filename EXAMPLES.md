@@ -1,15 +1,14 @@
 ## Types of examples
 
-Different types of examples are provided. All examples have a graphical frontend implemented in QML, but differ in the way the backend logic is implemented and the runtime used to run them. These examples can be categorised as shown in the following table:
+Different types of examples are given here. All examples have a graphical frontend implemented in QML, but differ in the way the backend logic is implemented and the runtime used to run them. These examples can be categorised as shown in the following table:
 
 | Example        | Type | Frontend | Backend  | Runtime              |
 | -------------- | ---- | -------- | -------- | -------------------- |
 | BasicQml       | I    | QML      | Mock QML | `qml` tool           |
 | BasicPy        | II   | QML      | Mock QML | `python` interpreter |
-| BasicC++       | IV   | QML      | Mock QML | need to be compiled  |
 | IntermediatePy | III  | QML      | Python   | `python` interpreter |
 | AdvancedPy     | III  | QML      | Python   | `python` interpreter |
-
+| BasicC++       | IV   | QML      | Mock QML | need to be compiled  |
 
 ## Setting up Python and IDE 
 
@@ -31,13 +30,13 @@ Different types of examples are provided. All examples have a graphical frontend
   .venv\Scripts\activate
   ```
 
-* Upgrade the PIP - package installer for Python (_optional_)
+* Upgrade PIP, the package installer for Python (_optional_)
 
   ```
   pip install --upgrade pip
   ```
   
-* Install the Qt for Python `PySide6` package via PIP
+* Install the Qt for Python `PySide6` package using PIP
 
   ```
   pip install --force-reinstall "PySide6>=6.6,<6.7" 
@@ -46,6 +45,8 @@ Different types of examples are provided. All examples have a graphical frontend
 ### Integrated development environment (IDE)
 
 #### Qt Creator
+
+Qt Creator is a prefered IDE for developing the GUI in QML. It allows to run QML code in debug mode with breakpoints, preview changes to QML code in live mode, has build in documentation for QML modules, has QML code auto-completion, and more unique feature related to the QML code.
 
 * Download Qt Online Installer from [qt.io](https://www.qt.io/download-qt-installer-oss). More info at [doc.qt.io](https://doc.qt.io/qt-6/qt-online-installation.html).
 * Install Qt for desktop development using a custom installation that includes the following components:
@@ -61,11 +62,12 @@ Different types of examples are provided. All examples have a graphical frontend
 
 #### VS Code (_alternative to Qt Creator_)
 
+VS Code is an alternative IDE to Qt Creator. It has a syntax highlighting plugin for QML code, but lacks some of the unique features of Qt Creator mentioned above to make QML development easier.
+
 * Download an install VS Code
 * Add the python extension
 * Rename the folder `vscode` to `.vscode`. The `launch.json` file will then be read by VS Code
 * Select any python file in the repo and choose the desired python environment
-
 
 ## How to run
 
@@ -75,21 +77,7 @@ This example is located in `examples/BasicQml` and the source code is in the sub
 
 #### Run using the QML Runtime
 
-##### Run from the terminal
-
-* Go to the example folder, e.g.,
-
-  ```sh
-  cd examples/BasicQml/src/BasicQml
-  ```
-
-* Run `main.qml` (specifying the paths to the current directory `.` and the EasyApp module directory `../../../..`) using the `qml` tool installed with the Qt Framework in the previous step, e.g., like this
-
-  ```sh
-  ~/Qt/6.x.y/macos/bin/qml -I . -I ../../../.. main.qml
-  ```
-
-##### Run via the Qt Creator IDE (_alternative to run from the terminal_)
+##### Run via the Qt Creator IDE
 
 * Run Qt Creator
 * Open the qml project file from the example folder `examples/BasicQml/src/BasicQml.qmlproject`
@@ -106,7 +94,7 @@ This example is located in `examples/BasicQml` and the source code is in the sub
 
 ### Type II Examples: BasicPy (Python runtime with QML backend)
 
-This example is located in `examples/BasicPy` with the source code in `src/BasicPy`. This example serves to demonstrate how an application with a QML frontend and a QML backend (similar to the Type I example) can be executed from Python. The entry point for the Python program is `main.py` file. To execute this do the following:
+This example is in the `examples/BasicPy` folder, and the source code is in the `examples/BasicPy/src/BasicPy` folder. This example serves to demonstrate how an application with a QML frontend and QML backend (similar to the Type I example) can be run from Python. The entry point for the Python application is the `main.py` file. To run it, follow the steps below:
 
 #### Run using the Python interpreter
 
@@ -123,14 +111,14 @@ This example is located in `examples/BasicPy` with the source code in `src/Basic
   $ python main.py
   ```
 
-#### Run via the Qt Creator IDE (_alternative to run from the terminal_)
+##### Run via the Qt Creator IDE (_alternative to run from the terminal_)
 
 * Run Qt Creator
 * Open the python project file from the example folder `examples/BasicPy/src/BasicPy.pyproject`
 * Select the desired python environment with the Qt `PySide6` module installed
 * Click Run (Green play button)
 
-#### Run via the VS Code IDE (_alternative to run from the terminal or via the Qt Creator IDE_)
+##### Run via the VS Code IDE (_alternative to run from the terminal or via the Qt Creator IDE_)
 
 * Open the repo in VS Code
 * Click on the debug extension and select which example to execute
@@ -138,13 +126,13 @@ This example is located in `examples/BasicPy` with the source code in `src/Basic
 
 ### Type III Examples: IntermediatePy and AdvancedPy (Python runtime with Python backend)
 
-These examples demonstrate how to use a Python runtime to execute the QML frontend and the Python backend located in `Backends/real_backend.py`. These examples can be run through Python in the same way as Type II described above. These examples have a Python-based backend (proxy object), which gets created in `main.py` and then exposed to QML. The Qt QML GUI then acceses the backend by calling methods exposed by the proxy object in the `Backends/real_py` folder.
+These examples demonstrate how to use the Python runtime to run the QML GUI binded with the Python backend located in `Backends/real_backend.py`. These examples can be run through Python in the same way as Type II described above. In these examples, the Python-based backend is registered in `main.py` and then imported into QML. The Qt QML GUI then accesses the backend by calling the properties and methods of the classes defined in the `Backends/real_py` folder.
 
 #### Possible Issues
 
 * If in Qt Creator some components are highlighted and marked as "Unknown component. (M300)", try resetting via "Tools > QML/JS > Reset Code Model".
 
-### Type IV Examples: BasicC++
+### Type IV Examples: BasicC++ (QML backend)
 
 This example can be run after compilation into an executable program. It only has a mock backend in QML (the C++ backend is not implemented). The minimum configuration requires a base `main.cpp` file and, if Qt Creator is used as the IDE, a `*.pro` file.
 

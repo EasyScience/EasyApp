@@ -4,7 +4,7 @@
 
 ```sh
 🗂️ AdvancedPy                               # Current example
-├── LICENSE
+├── LICENSE                                 # Project license file
 ├── pyproject.toml                          # Configuration file used to build the Python package
 ├── README.md                               # Current file that introduces and explains a project
 │
@@ -12,26 +12,27 @@
     ├── AdvancedPy.qmlproject               # QML project for the Qt Creator IDE
     ├── AdvancedPy.pyproject                # Python project for the Qt Creator IDE
     │
-    └── 🗂️ AdvancedPy                        # Directory with the name of the current Python package
+    └── 🗂️ AdvancedPy                       # Directory with the name of the current Python package
         ├── __init__.py                     # Executed when the current Python package is imported       
         ├── main.qml                        # Root QML component        
         ├── main.py                         # Root Python file      
         │
         ├── 🗂️ Backends                     # Backend logic
         │   ├── MockBackend.qml             # Parent object for all other objects with mock QML logic
-        │   ├── real_backend.py             # Parent object for all other objects with real python logic
-        │   │
         │   ├── 🗂️ MockQml                  # Mock QML backend to be used if no python backend is defined
         │   │   ├── qmldir                  
         │   │   ├── Status.qml              # Mock logic for the status bar
         │   │   ├── Project.qml             # Mock logic for the application page 'Project'
         │   │   └── Report.qml              # Mock logic for the application page 'Report'
         │   │
+        │   ├── real_backend.py             # Parent object for all other objects with real python logic
         │   └── 🗂️ real_py                  # Real Python backend
-        │       ├── helpers.py              # Some helper functions
         │       ├── status.py               # Logic for the status bar
         │       ├── project.py              # Logic for the application page 'Project'
-        │       └── report.py               # Logic for the application page 'Report'
+        │       ├── report.py               # Logic for the application page 'Report'
+        │       │
+        │       └── 🗂️ logic                # Pure Python logic (not QObject-based)
+        │           └── helpers.py          # Some helper functions
         │
         └── 🗂️ Gui                          # Frontend GUI components
             ├── qmldir                      
@@ -60,21 +61,21 @@
 ```sh
 🗂️ Pages
 │
-├── 🗂️ Home                         # Components of the application 'Home' page
+├── 🗂️ Home                                 # Components of the application 'Home' page
 │   ├── Content.qml
 │   │
 │   └── 🗂️ Popups                   
 │       └── About.qml
 │
-├── 🗂️ Project                      # Components of the application 'Project' page
-│   ├── Layout.qml                  # Layout of the whole page
+├── 🗂️ Project                              # Components of the application 'Project' page
+│   ├── Layout.qml                          # Layout of the whole page
 │   │
-│   ├── 🗂️ MainArea                 # Tabs of the main area
+│   ├── 🗂️ MainArea                         # Tabs of the main area
 │   │   └── Description.qml
 │   │
-│   └── 🗂️ Sidebar                  # Tabs of the sidebar
+│   └── 🗂️ Sidebar                          # Tabs of the sidebar
 │       │
-│       ├── 🗂️ Basic                # Components of the sidebar tab with basic controls
+│       ├── 🗂️ Basic                        # Components of the sidebar tab with basic controls
 │       │   ├── Layout.qml        
 │       │   │
 │       │   ├── 🗂️ Groups           
@@ -86,30 +87,30 @@
 │       │       ├── OpenCifFile.qml
 │       │       └── ProjectDescription.qml
 │       │
-│       ├── 🗂️ Extra                # Components of the sidebar tab with extra controls
+│       ├── 🗂️ Extra                         # Components of the sidebar tab with extra controls
 │       │   ├── Layout.qml        
 │       │   │
 │       │   └── 🗂️ Groups           
 │       │       └── Scrolling.qml
 │       │
-│       └── 🗂️ Text                 # Components of the sidebar tab with text mode controls
+│       └── 🗂️ Text                          # Components of the sidebar tab with text mode controls
 │           └── Layout.qml          
 │
-└── 🗂️ Report                       # Components of the application 'Report' page
-    ├── Layout.qml                  # Layout of the whole page
+└── 🗂️ Report                                # Components of the application 'Report' page
+    ├── Layout.qml                           # Layout of the whole page
     │
-    ├── 🗂️ MainArea                 # Tabs of the main area
+    ├── 🗂️ MainArea                          # Tabs of the main area
     │   └── Summary.qml
     │
-    └── 🗂️ Sidebar                  # Tabs of the sidebar
+    └── 🗂️ Sidebar                           # Tabs of the sidebar
         │
-        ├── 🗂️ Basic                # Components of the sidebar tab with basic controls
+        ├── 🗂️ Basic                         # Components of the sidebar tab with basic controls
         │   ├── Layout.qml   
         │   │       
         │   └── 🗂️ Groups           
         │       └── Export.qml
         │
-        └── 🗂️ Extra                # Components of the sidebar tab with extra controls
+        └── 🗂️ Extra                         # Components of the sidebar tab with extra controls
             ├── Layout.qml          
             │
             └── 🗂️ Groups           
