@@ -7,7 +7,6 @@ from PySide6.QtCore import QObject, QTranslator, QLocale, Property, Slot
 #from PySide6.QtWidgets import QApplication
 #from PySide6.QtQml import QQmlApplicationEngine
 
-
 class Translator(QObject):
     def __init__(self, app, engine, translations_path, languages):
         QObject.__init__(self)
