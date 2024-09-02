@@ -1,20 +1,26 @@
-# QtCreator
+# Qt Creator
 *.autosave
 
-# QtCreator Qml
+# Qt Creator Qml
 *.qmlproject.user
 *.qmlproject.user.*
 
-# QtCreator Python
+# Qt Creator Python
 *.pyproject.user
 *.pyproject.user.*
 
-# QtCreator C++
+# Qt Creator C++
 *.pro.user
 *.pro.user.*
 
-# QtCreator CMake
+# Qt Creator CMake
 CMakeLists.txt.user*
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
 
 # Fortran
 fort.1
@@ -48,5 +54,3 @@ build
 settings.ini*
 temp.cif
 .ci/
-.idea/
-.vscode/
