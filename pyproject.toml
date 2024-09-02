@@ -1,30 +1,32 @@
-# Use hatch to build the application.
 [build-system]
-requires = ["hatchling"]
-build-backend = "hatchling.build"
+requires = ['hatchling']
+build-backend = 'hatchling.build'
 
-# Information about the EasyExampleApp project.
-# Note that while the project is called EasyExampleApp
-# the application itself is EasyExample.
 [project]
-name = "EasyApp"
-version = "0.3.0-beta"
-description = "Graphical application skeleton in the EasyScience universe."
+name = 'EasyApp'
+version = '0.5.0'
+description = 'Collection of graphical components to quickly create cross-platform applications in the EasyScience universe.'
 authors = [
-  {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
+  {name = 'Andrew Sazonov', email = 'andrew.sazonov@ess.eu'}
 ]
-maintainers = [
-  {name = "Andrew Sazonov", email = "andrew.sazonov@ess.eu"}
-]
-license = "BSD-3-Clause"
+license = {file = 'LICENSE'}
 classifiers = [
-    "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: BSD License",
-    "Operating System :: OS Independent",
-    "Topic :: Scientific/Engineering",
-    "Development Status :: 4 - Beta"
+  'Development Status :: 4 - Beta',
+  'License :: OSI Approved :: BSD License',
+  'Programming Language :: Python :: 3',
+  'Operating System :: MacOS',
+  'Operating System :: Microsoft :: Windows',
+  'Operating System :: POSIX :: Linux'
 ]
-requires-python = ">=3.8,<3.13"
+requires-python = '>=3.10'
 dependencies = [
-    'PySide6>=6.6,<6.7'
+  'PySide6>=6.6,<6.7'
 ]
+
+[project.urls]
+homepage = 'https://app.easyscience.software'
+source = 'https://github.com/EasyScience/EasyApp'
+tracker = 'https://github.com/EasyScience/EasyApp/issues'
+
+[tool.hatch.build.targets.wheel]
+packages = ['src/EasyApp']

@@ -1,0 +1,106 @@
+name: wasm
+
+on:
+  push:
+  #schedule:
+  #  - cron: '*/120 8-18 * * *'  # every 2 hours from 8:00 to 18:00 every day
+
+jobs:
+  wasm-build: # the first job
+    # current job matrix. if modified, remember to UPDATE the strategy in the next job
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [macos-14]
+
+    runs-on: ${{ matrix.os }}
+
+    timeout-minutes: 30
+
+    steps: # job steps
+      - name: Check-out repository
+        uses: actions/checkout@v4
+
+      - name: Cache emsdk
+        id: cache-emsdk
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/emsdk
+          key: ${{ runner.os }}-emsdk
+
+      - name: Install emsdk
+        if: steps.cache-emsdk.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          git clone https://github.com/emscripten-core/emsdk.git
+          cd emsdk
+          git pull
+          ./emsdk install 3.1.50		# this version is needed for Qt 6.7
+          ./emsdk activate 3.1.50
+
+      - name: Cache Qt
+        id: cache-qt
+        uses: actions/cache@v4
+        with:
+          path: ${{ github.workspace }}/Qt
+          key: ${{ runner.os }}-qt
+
+      - name: Install Qt for WebAssembly
+        if: steps.cache-qt.outputs.cache-hit != 'true'
+        shell: bash
+        run: |
+          curl -L -O https://download.qt.io/official_releases/online_installers/qt-unified-mac-x64-online.dmg
+          chmod u+x qt-unified-mac-x64-online.dmg
+          hdiutil attach qt-unified-mac-x64-online.dmg
+          /Volumes/qt-online-installer-macOS-x64-4.8.0/qt-online-installer-macOS-x64-4.8.0.app/Contents/MacOS/qt-online-installer-macOS-x64-4.8.0 \
+          --email ${{ secrets.QT_ACCOUNT_EMAIL }} \
+          --pw ${{ secrets.QT_ACCOUNT_PASSWORD }} \
+          --root ${{ github.workspace }}/Qt \
+          --accept-licenses \
+          --accept-obligations \
+          --default-answer \
+          --confirm-command \
+          install qt.qt6.672.wasm_singlethread qt.qt6.672.qt5compat
+          hdiutil detach /Volumes/qt-online-installer-macOS-x64-4.8.0
+
+      - name: Print some debug info
+        shell: bash
+        run: |
+          source ${{ github.workspace }}/emsdk/emsdk_env.sh
+          em++ --version
+          export PATH=$PATH:${{ github.workspace }}/Qt/6.7.2/wasm_singlethread/bin
+          qmake -v
+
+      - name: Build WASM from BasicC++ example
+        shell: bash
+        run: |
+          source ${{ github.workspace }}/emsdk/emsdk_env.sh
+          export PATH=$PATH:${{ github.workspace }}/Qt/6.7.2/wasm_singlethread/bin
+          cd examples/BasicC++/src
+          qmake BasicC++.pro -spec wasm-emscripten
+          make -j
+
+      - name: Copy the built WASM to the build/wasm folder
+        shell: bash
+        run: |
+          mkdir -p build/wasm
+          cp examples/BasicC++/src/*.wasm build/wasm
+          cp examples/BasicC++/src/*.html build/wasm
+          cp examples/BasicC++/src/*.js build/wasm
+          cp examples/BasicC++/src/*.svg build/wasm
+
+      - name: Upload the zipped wasm folder
+        uses: actions/upload-artifact@v4
+        with:
+          name: wasm  # name of the zip file to be created and uploaded
+          path: build/wasm  # directory whose content is to be zipped
+          compression-level: 0  # no compression
+          if-no-files-found: error
+
+      - name: Push the built wasm to the webapp branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_API_PERSONAL_ACESS_TOKEN }}
+          REPO: self
+          BRANCH: webapp
+          FOLDER: build/wasm  # directory whose content is to be pushed
