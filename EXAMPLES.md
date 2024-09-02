@@ -66,7 +66,7 @@ VS Code is an alternative IDE to Qt Creator. It has a syntax highlighting plugin
 
 * Download an install VS Code
 * Add the python extension
-* Rename the folder `vscode` to `.vscode`. The `launch.json` file will then be read by VS Code
+* The initial launch configuration is in the `.vscode/launch.json` file, which should be automatically read by VS Code
 * Select any python file in the repo and choose the desired python environment
 
 ## How to run

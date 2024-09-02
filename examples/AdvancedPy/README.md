@@ -27,9 +27,9 @@
         │   │
         │   ├── real_backend.py             # Parent object for all other objects with real python logic
         │   └── 🗂️ real_py                  # Real Python backend
-        │       ├── status.py               # Logic for the status bar
-        │       ├── project.py              # Logic for the application page 'Project'
-        │       ├── report.py               # Logic for the application page 'Report'
+        │       ├── status.py               # Logic for the status bar (QObject-based)
+        │       ├── project.py              # Logic for the application page 'Project' (QObject-based)
+        │       ├── report.py               # Logic for the application page 'Report' (QObject-based)
         │       │
         │       └── 🗂️ logic                # Pure Python logic (not QObject-based)
         │           └── helpers.py          # Some helper functions
