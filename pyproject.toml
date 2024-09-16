@@ -17,7 +17,7 @@ include = ["CHANGELOG.md"]
 packages = [ { include = "easyApp" } ]
 
 [tool.poetry.dependencies]
-python = '^3.7.0, <3.10'
+python = '^3.7.0, <3.11'
 dicttoxml = "^1.7.4"
 requests = "^2.25.1"
 PySide2 = '^5.15.2'
