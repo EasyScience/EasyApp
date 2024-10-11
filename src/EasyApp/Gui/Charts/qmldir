@@ -1,9 +1,12 @@
 module Charts
 
 QtCharts1dValueAxis QtCharts1dValueAxis.qml
-
 QtCharts1dBase QtCharts1dBase.qml
 QtCharts1dMeasVsCalc QtCharts1dMeasVsCalc.qml
+
+QtCharts1dLogValueAxis QtChart1dLogValueAxis.qml
+QtCharts1dLogBase QtCharts1dLogBase.qml
+QtCharts1dLogMeasVsCalc QtCharts1dLogMeasVsCalc.qml
 
 Plotly1dLine Plotly1dLine.qml
 Plotly1dMeasVsCalc Plotly1dMeasVsCalc.qml
