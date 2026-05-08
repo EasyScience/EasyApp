@@ -34,4 +34,6 @@ EaElements.TextInput {
         focus = false
         event.accepted = true
     }
+
+    onActiveFocusChanged: if (!activeFocus) cursorPosition = 0
 }
