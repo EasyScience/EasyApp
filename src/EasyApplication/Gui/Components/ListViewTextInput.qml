@@ -1,5 +1,6 @@
 import QtQuick
 
+import EasyApplication.Gui.Globals as EaGlobals
 import EasyApplication.Gui.Style as EaStyle
 import EasyApplication.Gui.Animations as EaAnimations
 import EasyApplication.Gui.Elements as EaElements
@@ -37,4 +38,16 @@ EaElements.TextInput {
 
     onActiveFocusChanged: if (!activeFocus) cursorPosition = 0
     onTextChanged: if (!activeFocus) cursorPosition = 0
+
+    // Tooltip with full text when content overflows the cell. Suppressed
+    // while editing — the live text is what the user is interacting with.
+    readonly property bool overflows: contentWidth > width
+    EaElements.ToolTip {
+        text: control.text
+        visible: text !== ""
+              && control.overflows
+              && control.hovered
+              && !control.activeFocus
+              && EaGlobals.Vars.showToolTips
+    }
 }
