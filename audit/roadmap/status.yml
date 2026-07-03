@@ -1,0 +1,334 @@
+# Single source of truth for the gui-components hardening roadmap.
+# Mirrors the crysta roadmap format. Edit THIS file; the index tables are meant to be
+# regenerated from it (a generator hook can be added later, cf. crysta tools/docs/roadmap_hook.py).
+#
+# milestone.status: done | active | planned      task.status: done | active | ready | blocked | draft
+# milestone.priority: 1..5 (5 = highest)         task.class: design | standard | mechanical
+
+phases:
+  - id: I
+    title:
+      'Phase I — Unbreak & stabilise (web build works, renders everywhere, decoupled)'
+  - id: II
+    title:
+      'Phase II — Sustainable engineering (build, tooling, tests, modern Qt, packaging)'
+  - id: III
+    title: 'Phase III — Solid base for edi (i18n/a11y, docs & gallery, handoff)'
+
+milestones:
+  - id: M01
+    phase: I
+    title: Web/WASM revival + CMake module build
+    status: planned
+    priority: 5
+    depends: []
+    goal: >-
+      Make the web target build again and put it on a foundation that cannot silently
+      drift: migrate the library to CMake `qt_add_qml_module` (URI == import path,
+      generated qmldir+resources, compiled QML) —
+      [I-0004](../issues/open/I-0004-no-cmake-qt-add-qml-module.md),
+      [I-0009](../issues/open/I-0009-qmldir-module-uri-mismatch.md); retire the stale
+      hand `.qrc`/`.pro`
+      ([I-0001](../issues/open/I-0001-wasm-qrc-stale-easyapp-paths.md),
+      [I-0020](../issues/open/I-0020-examples-reference-deleted-components.md),
+      [I-0013](../issues/open/I-0013-duplicate-qtcharts-base-file.md),
+      [I-0033](../issues/open/I-0033-qmldir-registration-gaps.md)); gate WASM in CI
+      ([I-0005](../issues/open/I-0005-wasm-ci-dispatch-only.md)).
+  - id: M02
+    phase: I
+    title: Render everywhere (charts & settings that work on WASM)
+    status: planned
+    priority: 5
+    depends: [M01]
+    goal: >-
+      Replace the QtWebEngine/Plotly charts + report with a native, WASM-capable
+      charting façade (QtGraphs/QtCharts) —
+      [I-0002](../issues/open/I-0002-charts-reports-require-qtwebengine.md),
+      [I-0016](../issues/open/I-0016-charts-reload-on-resize.md); add a target-aware
+      settings façade so persistence works in the browser
+      ([I-0003](../issues/open/I-0003-settings-location-breaks-wasm.md)).
+  - id: M03
+    phase: I
+    title: Decouple the library from EasyDiffraction
+    status: planned
+    priority: 5
+    depends: []
+    goal: >-
+      Turn the "generic" library into an actually-generic base: data-driven app bar /
+      page model (drop Vars page enums) and injected `ApplicationInfo`
+      ([I-0006](../issues/open/I-0006-app-specifics-baked-into-library.md),
+      [I-0022](../issues/open/I-0022-logging-import-side-effects.md)); lift the
+      auto-updater ([I-0007](../issues/open/I-0007-updater-embedded-in-base-window.md),
+      [I-0008](../issues/open/I-0008-maintenance-indexerror-double-fetch.md)) and the
+      QtTest/tutorial harness
+      ([I-0012](../issues/open/I-0012-qttest-qtmultimedia-in-shipped-lib.md)) out of
+      core.
+  - id: M04
+    phase: II
+    title: QML tooling & test pyramid
+    status: planned
+    priority: 4
+    depends: [M01]
+    goal: >-
+      Gate the actual product: `qmllint` + `qmlformat`, pre-commit un-manualised
+      ([I-0026](../issues/open/I-0026-precommit-manual-no-qml-gate.md),
+      [I-0021](../issues/open/I-0021-console-debug-and-dead-code.md)); Qt Quick Test
+      smoke-load + unit tests, delete dummy tests
+      ([I-0010](../issues/open/I-0010-zero-real-tests.md)); resolve the template/tooling
+      framing ([I-0018](../issues/open/I-0018-scaffolded-from-python-lib-template.md)).
+  - id: M05
+    phase: II
+    title: Modern-Qt migration
+    status: planned
+    priority: 3
+    depends: [M04]
+    goal: >-
+      Remove private-API reliance (wrap/replace `QtQuick.Controls.impl`) —
+      [I-0011](../issues/open/I-0011-private-controls-impl-imports.md); unversioned
+      imports, rename the base window, smell batch
+      ([I-0023](../issues/open/I-0023-minor-qml-code-smells.md),
+      [I-0028](../issues/open/I-0028-two-applicationwindow-types.md)); JsonListModel
+      de-eval ([I-0031](../issues/open/I-0031-jsonlistmodel-vendored-eval-jsonpath.md));
+      HiDPI/sizing cleanup ([I-0024](../issues/open/I-0024-manual-scaling-vs-hidpi.md)).
+  - id: M06
+    phase: II
+    title: Packaging & distribution
+    status: planned
+    priority: 3
+    depends: [M01]
+    goal: >-
+      Define and implement the dual distribution model (PySide wheel + CMake/Qt install
+      for C++/WASM); self-demo `__main__`
+      ([I-0014](../issues/open/I-0014-broken-python-m-entrypoint.md)); prune fonts and
+      drop numpy ([I-0015](../issues/open/I-0015-font-bloat-and-spaces.md),
+      [I-0027](../issues/open/I-0027-numpy-runtime-dependency.md)).
+  - id: M07
+    phase: III
+    title: i18n & accessibility
+    status: planned
+    priority: 2
+    depends: [M03]
+    goal: >-
+      qsTr sweep + `lupdate` ([I-0017](../issues/open/I-0017-i18n-coverage-tiny.md));
+      one canonical translator wired + tested
+      ([I-0029](../issues/open/I-0029-translator-wiring-inconsistent.md)); accessibility
+      roles on interactive elements.
+  - id: M08
+    phase: III
+    title: Docs, component gallery & style guide
+    status: planned
+    priority: 3
+    depends: [M04]
+    goal: >-
+      Gallery example (doubles as visual smoke) + component catalog docs, knowledge base
+      wired into the site
+      ([I-0025](../issues/open/I-0025-no-component-docs-gallery.md)); published &
+      enforced QML style guide ([I-0030](../issues/open/I-0030-no-qml-style-guide.md));
+      branding & docs-drift cleanup
+      ([I-0019](../issues/open/I-0019-stale-easyapp-branding.md),
+      [I-0032](../issues/open/I-0032-examples-md-missing-assets.md)).
+  - id: M09
+    phase: III
+    title: edi handoff readiness
+    status: planned
+    priority: 3
+    depends: [M02, M03, M05, M08]
+    goal: >-
+      Semver policy + a documented "shared session layer" seam
+      (theme/settings/undo/model injection) so `enhantica/edi` can build desktop + WASM
+      front-ends on a stable, versioned base; a migration guide from
+      `easydiffractionbeta` to the hardened components.
+
+tasks:
+  # ---- M01: Web/WASM revival + CMake ----
+  - {
+      id: M01-T1,
+      title: 'CMake qt_add_qml_module for core modules (Style/Globals/Elements)',
+      class: design,
+      status: ready,
+      file: M01-T1-cmake-core-modules.md,
+    }
+  - {
+      id: M01-T2,
+      title: 'Migrate Components/Charts/Logic to CMake; retire .qrc/.pro',
+      class: standard,
+      status: blocked,
+      file: M01-T2-cmake-remaining-modules.md,
+    }
+  - {
+      id: M01-T3,
+      title: 'WASM build in CI (enable triggers, aqtinstall, ubuntu)',
+      class: standard,
+      status: ready,
+      file: M01-T3-wasm-ci.md,
+    }
+  - {
+      id: M01-T4,
+      title: 'Remove duplicate file + sync example manifests (I-0013/I-0020)',
+      class: mechanical,
+      status: ready,
+      file: M01-T4-manifest-cleanup.md,
+    }
+  # ---- M02: Render everywhere ----
+  - {
+      id: M02-T1,
+      title: 'Charting façade + native 1D backend (replace WebEngine)',
+      class: design,
+      status: blocked,
+      file: M02-T1-charting-facade.md,
+    }
+  - {
+      id: M02-T2,
+      title: '2D/3D charts + report without WebEngine',
+      class: standard,
+      status: blocked,
+      file: M02-T2-charts-2d-3d-report.md,
+    }
+  - {
+      id: M02-T3,
+      title: 'Settings façade, WASM-safe persistence (I-0003)',
+      class: standard,
+      status: ready,
+      file: M02-T3-settings-facade.md,
+    }
+  # ---- M03: Decouple ----
+  - {
+      id: M03-T1,
+      title: 'Data-driven app bar / page model; drop Vars page enums',
+      class: design,
+      status: ready,
+      file: M03-T1-page-model.md,
+    }
+  - {
+      id: M03-T2,
+      title: 'Inject ApplicationInfo; de-hardcode logging/settings',
+      class: standard,
+      status: ready,
+      file: M03-T2-application-info.md,
+    }
+  - {
+      id: M03-T3,
+      title: 'Lift auto-updater to the app; clean base window (I-0007/I-0008)',
+      class: standard,
+      status: ready,
+      file: M03-T3-extract-updater.md,
+    }
+  - {
+      id: M03-T4,
+      title: 'Lift tutorial/QtTest harness out of core (I-0012)',
+      class: standard,
+      status: ready,
+      file: M03-T4-extract-tutorial-harness.md,
+    }
+  # ---- M04: Tooling & tests ----
+  - {
+      id: M04-T1,
+      title: 'qmllint + qmlformat gates; un-manual pre-commit; strip console/dead code',
+      class: standard,
+      status: blocked,
+      file: M04-T1-qml-gates.md,
+    }
+  - {
+      id: M04-T2,
+      title: 'Qt Quick Test smoke-load + unit tests; delete dummy tests',
+      class: standard,
+      status: ready,
+      file: M04-T2-qml-test-pyramid.md,
+    }
+  - {
+      id: M04-T3,
+      title: 'Template/tooling framing decision (I-0018)',
+      class: design,
+      status: draft,
+      file: M04-T3-template-framing.md,
+    }
+  # ---- M05: Modern Qt ----
+  - {
+      id: M05-T1,
+      title: 'Replace/wrap private QtQuick.Controls.impl usages (I-0011)',
+      class: standard,
+      status: blocked,
+      file: M05-T1-retire-private-impl.md,
+    }
+  - {
+      id: M05-T2,
+      title:
+        'Unversioned imports; rename base window; smell batch; JsonListModel de-eval',
+      class: standard,
+      status: blocked,
+      file: M05-T2-modernisation-batch.md,
+    }
+  - {
+      id: M05-T3,
+      title: 'HiDPI/sizing cleanup; FontMetrics; named tokens (I-0024)',
+      class: standard,
+      status: draft,
+      file: M05-T3-hidpi-sizing.md,
+    }
+  # ---- M06: Packaging ----
+  - {
+      id: M06-T1,
+      title: 'Dual distribution model + __main__ demo (I-0014)',
+      class: design,
+      status: draft,
+      file: M06-T1-distribution-and-demo.md,
+    }
+  - {
+      id: M06-T2,
+      title: 'Prune fonts; drop numpy (I-0015/I-0027)',
+      class: mechanical,
+      status: ready,
+      file: M06-T2-prune-fonts-deps.md,
+    }
+  # ---- M07: i18n / a11y ----
+  - {
+      id: M07-T1,
+      title: 'qsTr sweep + lupdate (I-0017)',
+      class: standard,
+      status: blocked,
+      file: M07-T1-qstr-sweep.md,
+    }
+  - {
+      id: M07-T2,
+      title: 'One canonical translator wired + tested (I-0029)',
+      class: standard,
+      status: blocked,
+      file: M07-T2-canonical-translator.md,
+    }
+  # ---- M08: Docs / gallery / style guide ----
+  - {
+      id: M08-T1,
+      title: 'Gallery example (visual smoke) (I-0025)',
+      class: standard,
+      status: blocked,
+      file: M08-T1-gallery.md,
+    }
+  - {
+      id: M08-T2,
+      title: 'Component catalog docs; wire knowledge into site (I-0025)',
+      class: standard,
+      status: draft,
+      file: M08-T2-catalog-docs.md,
+    }
+  - {
+      id: M08-T3,
+      title: 'Publish & enforce QML style guide (I-0030)',
+      class: standard,
+      status: ready,
+      file: M08-T3-style-guide.md,
+    }
+  - {
+      id: M08-T4,
+      title: 'Branding & docs-drift cleanup (I-0019/I-0032)',
+      class: mechanical,
+      status: ready,
+      file: M08-T4-branding-docs-cleanup.md,
+    }
+  # ---- M09: handoff ----
+  - {
+      id: M09-T1,
+      title: 'Semver + shared-session-layer seam; beta→components migration guide',
+      class: design,
+      status: draft,
+      file: M09-T1-edi-handoff.md,
+    }
