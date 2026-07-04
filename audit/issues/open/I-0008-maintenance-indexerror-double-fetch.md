@@ -5,7 +5,7 @@
 - **Area:** python
 - **Targets:** desktop
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0007 (this code should move to the app); milestone M03
+- **Related:** I-0007 (this code should move to the app); milestone G03
 
 ## Problem
 

@@ -29,7 +29,7 @@ task.
   goes red when broken, a grep that returns nothing, a specific file
   that exists. "Looks better" is not a criterion.
 
-## How to write a task packet (`M##-T##`)
+## How to write a task packet (`G##-T##`)
 
 Use [`roadmap/tasks/template.md`](../roadmap/tasks/template.md). The
 load-bearing sections:

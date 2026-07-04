@@ -1,8 +1,8 @@
-# M02-T3: Settings façade with WASM-safe persistence
+# G02-T3: Settings façade with WASM-safe persistence
 
 - **Class:** standard
 - **Status:** ready
-- **Depends:** — (independent; pairs naturally with M03-T2
+- **Depends:** — (independent; pairs naturally with G03-T2
   `ApplicationInfo`)
 - **Issues:**
   [I-0003](../../issues/open/I-0003-settings-location-breaks-wasm.md)
@@ -24,7 +24,7 @@ throws.
   `loggingLevel`, `paramNameFormat`, window `x/y/width/height`, and the
   other persisted values); target-aware backend; migrate all 11 sites to
   bind to it; delete the WASM-error comments.
-- **Out:** the `ApplicationInfo`/namespace injection (M03-T2 —
+- **Out:** the `ApplicationInfo`/namespace injection (G03-T2 —
   coordinate on the settings key namespace); the actual value semantics
   (keep current defaults).
 
@@ -43,7 +43,7 @@ throws.
      async-readiness caveat) on the pinned Qt as part of this task and
      note it in the PR. The key rule: never pass a file `location` on
      WASM.
-   - Keep the settings _category/namespace_ consistent with M03-T2's
+   - Keep the settings _category/namespace_ consistent with G03-T2's
      injected app name.
 3. Migrate every site (`ApplicationWindow.qml:116`, `Colors.qml:142`,
    `Vars.qml:95/101`, `PreferencesDialog.qml:361/368/374/380/386`,
@@ -75,8 +75,8 @@ retained. Assert no runtime error on WASM startup.
 ## Review focus
 
 No file `location` on the WASM path; single source of the settings
-namespace (coordinate with M03-T2); geometry aliases still bind two-way.
+namespace (coordinate with G03-T2); geometry aliases still bind two-way.
 
 ## Definition of done
 
-I-0003 acceptance met; `status.yml` M02-T3 → done.
+I-0003 acceptance met; `status.yml` G02-T3 → done.

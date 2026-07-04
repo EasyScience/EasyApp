@@ -6,7 +6,7 @@
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit (characterised in round 2: it is a
   _diverged_ variant, not a copy)
-- **Related:** I-0001, I-0020; milestone M01
+- **Related:** I-0001, I-0020; milestone G01
 
 ## Problem
 
@@ -34,7 +34,7 @@ extends.
 
 1. Review the diff against `QtCharts1dBase.qml`. If the
    Rectangle-wrapped/extended API was a _wanted_ direction, capture that
-   intent as a note in the M02 chart-façade task — do **not** keep the
+   intent as a note in the G02 chart-façade task — do **not** keep the
    file as the record. Either way:
 2. `git rm "src/EasyApplication/Gui/Charts/QtCharts1dBase 2.qml"`.
 3. Remove its line from any `.qrc` (folds into I-0001/I-0020).

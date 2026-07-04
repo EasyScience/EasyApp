@@ -5,7 +5,7 @@
 - **Area:** python
 - **Targets:** desktop
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0025; milestone M06
+- **Related:** I-0025; milestone G06
 
 ## Problem
 

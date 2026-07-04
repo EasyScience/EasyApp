@@ -6,7 +6,7 @@
 - **Targets:** desktop
 - **Found:** 2026-07 GUI base audit
 - **Related:** I-0006 (the hard-coded `EasyDiffraction` app name lives
-  here); milestone M03
+  here); milestone G03
 
 ## Problem
 

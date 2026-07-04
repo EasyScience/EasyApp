@@ -1,9 +1,9 @@
-# M08-T1: Gallery example — every component rendered, doubling as a visual smoke test
+# G08-T1: Gallery example — every component rendered, doubling as a visual smoke test
 
 - **Class:** standard
-- **Status:** blocked (wants the M04-T2 smoke enumerator to share its
-  component list; runs best on the post-M03 decoupled base)
-- **Depends:** M04-T2, M03
+- **Status:** blocked (wants the G04-T2 smoke enumerator to share its
+  component list; runs best on the post-G03 decoupled base)
+- **Depends:** G04-T2, G03
 - **Issues:**
   [I-0025](../../issues/open/I-0025-no-component-docs-gallery.md)
   (gallery half)
@@ -23,11 +23,11 @@ smoke surface run in CI.
 - **In:** the Gallery app (pages per module: Elements / Components /
   Charts / Style tokens — the token page shows the
   `Colors`/`Sizes`/`Fonts` values live); auto-enumeration where possible
-  (share the M04-T2 component list so new components appear
+  (share the G04-T2 component list so new components appear
   automatically or fail a completeness check); a CI job that launches it
   offscreen and asserts a clean load; wire `python -m EasyApplication`
-  (M06-T1) to open it once it exists.
-- **Out:** per-component prose documentation (M08-T2); screenshot-diff
+  (G06-T1) to open it once it exists.
+- **Out:** per-component prose documentation (G08-T2); screenshot-diff
   visual regression (worthwhile follow-up — note it, don't build it
   here).
 
@@ -39,10 +39,10 @@ smoke surface run in CI.
    states demoed (enabled/ disabled/checked). Components page:
    representative instantiations (window furniture shown in-place or via
    screenshots where a full-window component can't nest). Charts page:
-   the M02 façade types with sample data. Style page: token
+   the G02 façade types with sample data. Style page: token
    swatches/values.
 3. Completeness check: compare the gallery's component list against the
-   module file list (same enumeration as M04-T2's smoke); fail CI if a
+   module file list (same enumeration as G04-T2's smoke); fail CI if a
    new component isn't represented.
 4. CI: run offscreen, assert no QML errors (reuse the smoke harness).
 
@@ -67,5 +67,5 @@ rendering actually inspected; the gallery itself follows the style guide
 
 ## Definition of done
 
-I-0025's gallery half delivered (issue closes with M08-T2); `status.yml`
+I-0025's gallery half delivered (issue closes with G08-T2); `status.yml`
 updated.

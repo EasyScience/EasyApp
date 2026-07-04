@@ -1,8 +1,8 @@
-# M05-T2: Modernisation batch — unversioned imports, base-window rename, smell fixes, JsonListModel de-eval
+# G05-T2: Modernisation batch — unversioned imports, base-window rename, smell fixes, JsonListModel de-eval
 
 - **Class:** standard
-- **Status:** blocked (wants the M04-T2 smoke test as the safety net)
-- **Depends:** M04-T2
+- **Status:** blocked (wants the G04-T2 smoke test as the safety net)
+- **Depends:** G04-T2
 - **Issues:**
   [I-0023](../../issues/open/I-0023-minor-qml-code-smells.md),
   [I-0028](../../issues/open/I-0028-two-applicationwindow-types.md),
@@ -24,7 +24,7 @@ style); the ambiguous base window renamed (`Elements/ApplicationWindow`
   1. Unversioned imports — the known versioned stragglers:
      `ChartViewSimple1dPlotly.qml`, `ChartViewHeatmap2dPlotly.qml`
      (`QtQuick 2.15`/`Controls 2.15`/`WebEngine 1.10` — these two files
-     may already be deleted by M02-T2; skip if gone),
+     may already be deleted by G02-T2; skip if gone),
      `QtCharts1dValueAxis.qml` (`Globals 1.0`), `GuideWindow.qml`
      (`Layouts 1.12`); then a repo grep for any others.
   2. I-0028 rename per its §Suggested fix (base →
@@ -35,7 +35,7 @@ style); the ambiguous base window renamed (`Elements/ApplicationWindow`
      positioning check).
   4. I-0031 per its §Suggested fix (usage survey → JSON.parse + explicit
      path-walk, XHR error handling, `Error` status, Qt Quick Test).
-- **Out:** private-`.impl` work (M05-T1); sizing/HiDPI (M05-T3).
+- **Out:** private-`.impl` work (G05-T1); sizing/HiDPI (G05-T3).
 
 ## Plan
 

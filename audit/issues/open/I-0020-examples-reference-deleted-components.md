@@ -5,7 +5,7 @@
 - **Area:** build
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0001, I-0004, I-0013, I-0019; milestone M01
+- **Related:** I-0001, I-0004, I-0013, I-0019; milestone G01
 
 ## Problem
 

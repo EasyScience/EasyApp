@@ -1,11 +1,11 @@
-# M06-T1: Dual distribution model implementation + self-demo entry point
+# G06-T1: Dual distribution model implementation + self-demo entry point
 
 - **Class:** design → standard (Decision B is ratified: dual build; this
   task implements the _distribution_ half and decides the packaging
   details)
-- **Status:** draft (promote once M01-T2 lands — it distributes what M01
+- **Status:** draft (promote once G01-T2 lands — it distributes what G01
   built)
-- **Depends:** M01-T2
+- **Depends:** G01-T2
 - **Issues:**
   [I-0014](../../issues/open/I-0014-broken-python-m-entrypoint.md)
 - **Anchors:**
@@ -23,14 +23,14 @@ demo window instead of erroring.
 
 ## Scope
 
-- **In:** CMake install/export targets for the M01 modules (package
+- **In:** CMake install/export targets for the G01 modules (package
   config, versions); wheel content audit (ships exactly the runtime
   files — QML, the _used_ fonts, no tests/tools);
   `src/EasyApplication/__main__.py` launching a minimal window (upgrade
-  to the M08-T1 gallery when it exists — keep this one tiny); document
+  to the G08-T1 gallery when it exists — keep this one tiny); document
   both install paths in the README/docs.
-- **Out:** the gallery app itself (M08-T1); PyPI release mechanics
-  (exists via workflows); font pruning (M06-T2 — but coordinate so the
+- **Out:** the gallery app itself (G08-T1); PyPI release mechanics
+  (exists via workflows); font pruning (G06-T2 — but coordinate so the
   wheel audit reflects it).
 
 ## Plan

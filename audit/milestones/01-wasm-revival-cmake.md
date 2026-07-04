@@ -10,10 +10,10 @@
   [I-0013](../issues/open/I-0013-duplicate-qtcharts-base-file.md),
   [I-0005](../issues/open/I-0005-wasm-ci-dispatch-only.md),
   [I-0033](../issues/open/I-0033-qmldir-registration-gaps.md)
-- **Tasks:** [M01-T1](../roadmap/tasks/M01-T1-cmake-core-modules.md) ·
-  [M01-T2](../roadmap/tasks/M01-T2-cmake-remaining-modules.md) ·
-  [M01-T3](../roadmap/tasks/M01-T3-wasm-ci.md) ·
-  [M01-T4](../roadmap/tasks/M01-T4-manifest-cleanup.md)
+- **Tasks:** [G01-T1](../roadmap/tasks/G01-T1-cmake-core-modules.md) ·
+  [G01-T2](../roadmap/tasks/G01-T2-cmake-remaining-modules.md) ·
+  [G01-T3](../roadmap/tasks/G01-T3-wasm-ci.md) ·
+  [G01-T4](../roadmap/tasks/G01-T4-manifest-cleanup.md)
 
 ## Why this is first
 
@@ -42,19 +42,19 @@ module-identity problem (I-0009) and unblocks `qmllint`/compiled QML.
 
 ## Sequence
 
-`M01-T1` (CMake beachhead: Style/Globals/Elements) → `M01-T2`
-(Components/Charts-native/Logic; delete manifest). `M01-T3` (CI) and
-`M01-T4` (duplicate + manifest cleanup) can run in parallel; `M01-T4`'s
-manifest half is mooted once `M01-T2` lands (do the duplicate-removal +
+`G01-T1` (CMake beachhead: Style/Globals/Elements) → `G01-T2`
+(Components/Charts-native/Logic; delete manifest). `G01-T3` (CI) and
+`G01-T4` (duplicate + manifest cleanup) can run in parallel; `G01-T4`'s
+manifest half is mooted once `G01-T2` lands (do the duplicate-removal +
 CI guard regardless).
 
 ## Explicitly deferred
 
-- Replacing the WebEngine charts (that's **M02**) — here they are simply
+- Replacing the WebEngine charts (that's **G02**) — here they are simply
   excluded from the WASM target so the rest can build/render.
 - Fixing private-`.impl` usage (record `qmllint` warnings; fix in
-  **M05**).
-- Packaging/distribution polish (**M06**).
+  **G05**).
+- Packaging/distribution polish (**G06**).
 
 ## Success criteria (externally checkable)
 

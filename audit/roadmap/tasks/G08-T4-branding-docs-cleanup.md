@@ -1,8 +1,8 @@
-# M08-T4: Branding & docs-drift cleanup
+# G08-T4: Branding & docs-drift cleanup
 
 - **Class:** mechanical
 - **Status:** ready
-- **Depends:** — (independent; coordinate with M01-T4 which fixes the
+- **Depends:** — (independent; coordinate with G01-T4 which fixes the
   `.pro` path)
 - **Issues:**
   [I-0019](../../issues/open/I-0019-stale-easyapp-branding.md),
@@ -24,8 +24,8 @@ GitHub links), and `EXAMPLES.md` only references things that exist
   examples) and the I-0032 steps (commit or drop the
   `.vscode/launch.json` reference; fix/drop the missing screenshot;
   align the PySide6 version guidance with pyproject/Decision E; docs
-  link-check — shared with M08-T2, wire it in whichever lands first).
-- **Out:** the `.pro`/`.qrc` path fixes (M01-T4); rewriting EXAMPLES.md
+  link-check — shared with G08-T2, wire it in whichever lands first).
+- **Out:** the `.pro`/`.qrc` path fixes (G01-T4); rewriting EXAMPLES.md
   content beyond the drift fixes.
 
 ## Plan

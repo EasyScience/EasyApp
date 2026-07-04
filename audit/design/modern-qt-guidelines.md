@@ -183,13 +183,13 @@ the audit issue it prevents.
 
 | Rule                                                                   | Gate                      |
 | ---------------------------------------------------------------------- | ------------------------- |
-| Unversioned imports, no private `.impl`, module identity               | `qmllint` (M04)           |
-| Formatting                                                             | `qmlformat --check` (M04) |
-| No `easydiffraction` / named pages in `Gui/*`                          | CI grep (M03)             |
-| No `Settings{location}` in screens; no `QtWebEngine`/`QtTest` in `src` | CI grep (M02/M03)         |
-| No dangling manifest paths; no spaces in `src/` filenames              | CI script (M01-T4)        |
-| Every component smoke-loads                                            | Qt Quick Test (M04-T2)    |
-| `qsTr()` on user text                                                  | lint heuristic (M07)      |
+| Unversioned imports, no private `.impl`, module identity               | `qmllint` (G04)           |
+| Formatting                                                             | `qmlformat --check` (G04) |
+| No `easydiffraction` / named pages in `Gui/*`                          | CI grep (G03)             |
+| No `Settings{location}` in screens; no `QtWebEngine`/`QtTest` in `src` | CI grep (G02/G03)         |
+| No dangling manifest paths; no spaces in `src/` filenames              | CI script (G01-T4)        |
+| Every component smoke-loads                                            | Qt Quick Test (G04-T2)    |
+| `qsTr()` on user text                                                  | lint heuristic (G07)      |
 
 When a rule here is checkable, prefer a gate over a review comment —
 reviews don't scale to less-advanced agents; gates do.

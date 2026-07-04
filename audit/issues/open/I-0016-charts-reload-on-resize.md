@@ -6,7 +6,7 @@
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
 - **Related:** I-0002 (the WebEngine replacement removes this class of
-  problem); milestone M02
+  problem); milestone G02
 
 ## Problem
 

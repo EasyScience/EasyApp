@@ -1,11 +1,11 @@
-# M02-T1: Charting façade + native 1-D backend (replace the WebEngine 1-D plot)
+# G02-T1: Charting façade + native 1-D backend (replace the WebEngine 1-D plot)
 
 - **Class:** design → standard (the governing Decision A was ratified
   2026-07-03: QtGraphs; the design step that remains is the façade API +
   the validating prototype)
-- **Status:** blocked (needs M01 so modules build + WASM excludes
+- **Status:** blocked (needs G01 so modules build + WASM excludes
   WebEngine)
-- **Depends:** M01-T2
+- **Depends:** G01-T2
 - **Issues:**
   [I-0002](../../issues/open/I-0002-charts-reports-require-qtwebengine.md),
   [I-0016](../../issues/open/I-0016-charts-reload-on-resize.md)
@@ -29,8 +29,8 @@ backend (QtGraphs or Qt Charts) is chosen once and swapped centrally.
   wire it into the measured-vs-calc view; in-place data updates (no
   reload, no `JSON.stringify` bridge); theme integration via
   `Style.Colors`.
-- **Out:** 2-D/3-D charts and the report (M02-T2); removing every Plotly
-  file (do the 1-D first, prove parity, then M02-T2 finishes the
+- **Out:** 2-D/3-D charts and the report (G02-T2); removing every Plotly
+  file (do the 1-D first, prove parity, then G02-T2 finishes the
   removal).
 
 ## Plan
@@ -51,7 +51,7 @@ backend (QtGraphs or Qt Charts) is chosen once and swapped centrally.
    reload; resize just relayouts). Remove the `newValues`-ignored-param
    bug pattern.
 4. Replace `QtCharts1dMeasVsCalc`/`ChartViewSimple1dPlotly` usage in the
-   measured-vs-calc view with `Chart1D`. Keep the old files until M02-T2
+   measured-vs-calc view with `Chart1D`. Keep the old files until G02-T2
    removes them.
 5. Verify on desktop **and** WASM; check large-array performance (a
    10⁵-pt pattern updates smoothly; resize does not flash).
@@ -84,6 +84,6 @@ performance on large arrays.
 
 ## Definition of done
 
-I-0002 (1-D portion) + I-0016 met; M02-T2 unblocked; `status.yml`
-updated. Full I-0002 closes when M02-T2 removes the remaining WebEngine
+I-0002 (1-D portion) + I-0016 met; G02-T2 unblocked; `status.yml`
+updated. Full I-0002 closes when G02-T2 removes the remaining WebEngine
 users.

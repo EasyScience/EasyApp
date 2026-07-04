@@ -44,20 +44,20 @@ quality so the hardening sticks.
 
 ## The three-phase plan (and why this order)
 
-- **Phase I — Unbreak & stabilise (M01–M03).** Restore the web target on
-  a CMake module build that _cannot_ drift (M01), make it actually
-  render and persist on WASM (M02), and decouple it from EasyDiffraction
-  (M03). After Phase I, `edi` can start building its surfaces on a base
-  that builds everywhere and isn't someone else's app. M01 and M03
+- **Phase I — Unbreak & stabilise (G01–G03).** Restore the web target on
+  a CMake module build that _cannot_ drift (G01), make it actually
+  render and persist on WASM (G02), and decouple it from EasyDiffraction
+  (G03). After Phase I, `edi` can start building its surfaces on a base
+  that builds everywhere and isn't someone else's app. G01 and G03
   parallelise (build vs decoupling).
-- **Phase II — Sustainable engineering (M04–M06).** Gate the _actual
-  product_: `qmllint`, `qmlformat`, Qt Quick Test required in CI (M04);
-  retire private-API reliance and modernise imports (M05); define a real
-  distribution model and prune deps/fonts (M06). This is what makes the
+- **Phase II — Sustainable engineering (G04–G06).** Gate the _actual
+  product_: `qmllint`, `qmlformat`, Qt Quick Test required in CI (G04);
+  retire private-API reliance and modernise imports (G05); define a real
+  distribution model and prune deps/fonts (G06). This is what makes the
   base _maintainable_ by many hands.
-- **Phase III — Solid base for edi (M07–M09).** i18n/a11y (M07),
-  documentation + a component gallery + an enforced style guide (M08),
-  and the `edi` handoff seam + semver (M09). This is what makes the base
+- **Phase III — Solid base for edi (G07–G09).** i18n/a11y (G07),
+  documentation + a component gallery + an enforced style guide (G08),
+  and the `edi` handoff seam + semver (G09). This is what makes the base
   _followable_ by less-advanced agents.
 
 ## Long-term improvements (beyond the issue fixes)
@@ -77,7 +77,7 @@ base healthy for years.
    differently (or don't exist) on WASM. Put each behind a small QML
    façade with a fixed property API and a target-aware backend, so app
    code is written once and the platform difference lives in one file.
-   (M02 does charts + settings; extend the pattern.)
+   (G02 does charts + settings; extend the pattern.)
 3. **Decoupling by construction, enforced.** The library must contain
    **zero** product literals and **zero** named app pages. Make that a
    CI grep gate, not a convention — so it can't regress as new agents
@@ -127,17 +127,17 @@ base healthy for years.
 
 - **Chart migration is the biggest single effort** (10 files + report,
   plus a library choice). De-risk by validating the ratified library
-  choice (Decision A: QtGraphs) on a measured 1-D prototype in M02-T1
+  choice (Decision A: QtGraphs) on a measured 1-D prototype in G02-T1
   before doing 2-D/3-D.
 - **CMake migration could disturb the working PySide path.** Mitigate by
   keeping the raw `.qml` in place and treating CMake as an additional
-  consumer (dual build), landing modules incrementally (M01-T1 beachhead
+  consumer (dual build), landing modules incrementally (G01-T1 beachhead
   first).
 - **Decoupling churns many files.** Mitigate with the smoke-load test
-  (M04-T2) landed early so the churn is caught, and CI grep gates so
+  (G04-T2) landed early so the churn is caught, and CI grep gates so
   decoupling can't silently regress.
 - **Less-advanced implementing agents.** Mitigate with explicit task
-  packets (done), an enforced style guide (I-0030/M08), and the
+  packets (done), an enforced style guide (I-0030/G08), and the
   [writing-for-junior-agents](../process/writing-for-junior-agents.md)
   conventions.
 

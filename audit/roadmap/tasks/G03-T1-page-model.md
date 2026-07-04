@@ -1,8 +1,8 @@
-# M03-T1: Data-driven app bar / page model — drop the app-specific page enums
+# G03-T1: Data-driven app bar / page model — drop the app-specific page enums
 
 - **Class:** design (define the page-model API) → then standard
 - **Status:** ready
-- **Depends:** — (coordinate with M03-T2)
+- **Depends:** — (coordinate with G03-T2)
 - **Issues:**
   [I-0006](../../issues/open/I-0006-app-specifics-baked-into-library.md)
 - **Anchors:**
@@ -26,8 +26,8 @@ swaps content from that model. Remove `AppBarIndexEnum` and
   becomes a plain int bound to the model length; delete the two enums
   from `Vars`.
 - **Out:** moving diffraction-specific _screens_ into the app (that can
-  follow); `ApplicationInfo` injection (M03-T2); the settings namespace
-  (M02-T3).
+  follow); `ApplicationInfo` injection (G03-T2); the settings namespace
+  (G02-T3).
 
 ## Plan
 
@@ -43,7 +43,7 @@ swaps content from that model. Remove `AppBarIndexEnum` and
    (Home/Project/… become the _app's_ data, not the library's).
 5. Add a CI grep gate: no app/page names (`Sample`, `Experiment`,
    `Analysis`, `Summary` as page enums) or `EasyDiffraction` literals in
-   `src/` (shared with M03-T2).
+   `src/` (shared with G03-T2).
 
 ## Deliverables
 
@@ -71,5 +71,5 @@ model; index bounds safe when the model is empty/changes.
 
 ## Definition of done
 
-I-0006 (page-taxonomy half) met; `status.yml` M03-T1 → done. The
-product-name half closes with M03-T2.
+I-0006 (page-taxonomy half) met; `status.yml` G03-T1 → done. The
+product-name half closes with G03-T2.

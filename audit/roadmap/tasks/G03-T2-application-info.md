@@ -1,8 +1,8 @@
-# M03-T2: Inject `ApplicationInfo`; de-hardcode the logging/settings identity
+# G03-T2: Inject `ApplicationInfo`; de-hardcode the logging/settings identity
 
 - **Class:** standard
 - **Status:** ready
-- **Depends:** — (coordinate with M03-T1 and M02-T3 on the settings
+- **Depends:** — (coordinate with G03-T1 and G02-T3 on the settings
   namespace)
 - **Issues:**
   [I-0006](../../issues/open/I-0006-app-specifics-baked-into-library.md)
@@ -26,7 +26,7 @@ filesystem I/O.
   `appName` through it; remove import-time `QSettings` I/O and the
   duplicated `_getLevelFromSettings` call; delete the `EasyDiffraction`
   literal and the two `# NEED FIX` markers.
-- **Out:** the updater move (M03-T3); the page model (M03-T1).
+- **Out:** the updater move (G03-T3); the page model (G03-T1).
 
 ## Plan
 
@@ -41,9 +41,9 @@ filesystem I/O.
    read against missing file / non-string.
 3. Replace `appName = 'EasyDiffraction'` with
    `ApplicationInfo.applicationName`; derive the settings path from
-   `settingsNamespace` (coordinate with M02-T3 so desktop and WASM
+   `settingsNamespace` (coordinate with G02-T3 so desktop and WASM
    agree).
-4. CI grep gate (shared with M03-T1): no
+4. CI grep gate (shared with G03-T1): no
    `EasyDiffraction`/`easydiffraction` in `src/`.
 
 ## Deliverables
@@ -69,8 +69,8 @@ different settings namespaces.
 ## Review focus
 
 No product literal anywhere in `src/`; settings namespace single-sourced
-(M02-T3 alignment); logger still colourises/formats as before.
+(G02-T3 alignment); logger still colourises/formats as before.
 
 ## Definition of done
 
-I-0006 (product-name half) + I-0022 met; `status.yml` M03-T2 → done.
+I-0006 (product-name half) + I-0022 met; `status.yml` G03-T2 → done.

@@ -1,9 +1,9 @@
-# M07-T2: One canonical translator, wired and tested
+# G07-T2: One canonical translator, wired and tested
 
 - **Class:** standard
-- **Status:** blocked (needs M07-T1's `.ts` to prove retranslation
+- **Status:** blocked (needs G07-T1's `.ts` to prove retranslation
   end-to-end)
-- **Depends:** M07-T1
+- **Depends:** G07-T1
 - **Issues:**
   [I-0029](../../issues/open/I-0029-translator-wiring-inconsistent.md)
 - **Anchors:**

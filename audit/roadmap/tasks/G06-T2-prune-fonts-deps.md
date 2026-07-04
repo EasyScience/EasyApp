@@ -1,4 +1,4 @@
-# M06-T2: Prune fonts and dependencies
+# G06-T2: Prune fonts and dependencies
 
 - **Class:** mechanical
 - **Status:** ready

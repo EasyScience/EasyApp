@@ -24,7 +24,7 @@ web target come before polish. They sit above the
 
 A milestone is **done** when its definition of done holds and every
 bundled issue meets its acceptance criteria (moved to `issues/closed/`).
-Phase I (M01–M03) is the gate for `edi` to begin its own surfaces; Phase
+Phase I (G01–G03) is the gate for `edi` to begin its own surfaces; Phase
 II/III harden and document.
 
 ## Phase I is the critical path
@@ -32,7 +32,7 @@ II/III harden and document.
 The audit's headline is that the **web target is broken and the library
 is entangled with EasyDiffraction**. Nothing else matters until those
 are fixed, so all three Phase-I milestones are priority 5 and should run
-first (M01 ∥ M03, then M02). Detailed pages:
-[M01](01-wasm-revival-cmake.md) · [M02](02-render-everywhere.md) ·
-[M03](03-decouple-easydiffraction.md). Phase II/III milestones follow
+first (G01 ∥ G03, then G02). Detailed pages:
+[G01](01-wasm-revival-cmake.md) · [G02](02-render-everywhere.md) ·
+[G03](03-decouple-easydiffraction.md). Phase II/III milestones follow
 the same page format when they become active.

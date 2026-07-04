@@ -11,10 +11,10 @@ Status key: 🔵 proposed (awaiting owner) · ✅ ratified · ⛔ overridden.
 
 ---
 
-## Decision A — Charting library (blocks M02) ✅
+## Decision A — Charting library (blocks G02) ✅
 
 **Ratified 2026-07-03 (owner):** **A1 — QtGraphs.** Validate on a
-measured 1-D prototype in M02-T1 before committing 2-D/3-D. Rationale:
+measured 1-D prototype in G02-T1 before committing 2-D/3-D. Rationale:
 strategic, WASM-capable, full 1D/2D/3D breadth; aligns with the Qt 6.9
 WASM target (Decision E1).
 
@@ -34,12 +34,12 @@ that works on desktop **and** WASM?
   only, if profiling shows QtGraphs/Charts can't hit the live-fit frame
   budget on 10⁴–10⁵ points.
 
-**Recommendation:** A1, validated by a measured 1-D prototype in M02-T1
+**Recommendation:** A1, validated by a measured 1-D prototype in G02-T1
 before committing to 2-D/3-D.
 
 ---
 
-## Decision B — Build & distribution model (blocks M01) ✅
+## Decision B — Build & distribution model (blocks G01) ✅
 
 **Ratified 2026-07-03 (owner):** **B1 — dual build, one source tree.**
 CMake `qt_add_qml_module` is the source of truth for C++/WASM (generated
@@ -69,7 +69,7 @@ giving the web target a real, generated, compiled build.
 
 ---
 
-## Decision C — Template framing (affects M04, feeds `edi`) 🔵
+## Decision C — Template framing (affects G04, feeds `edi`) 🔵
 
 **Question:** the repo is scaffolded from a generic Python-lib template
 (I-0018); how do we add QML-native tooling?
@@ -86,18 +86,18 @@ it.
 
 ---
 
-## Decision D — How far to split app-specific screens out of the library (affects M03) 🔵
+## Decision D — How far to split app-specific screens out of the library (affects G03) 🔵
 
 **Question:** beyond the seams (page model, `ApplicationInfo`, updater),
 how aggressively do we move diffraction-specific _screens_ (e.g.
 `ProjectDescriptionDialog`, report pipeline) out of the library?
 
 - **D1 (recommended): seams now, screens incrementally.** Land the
-  injection seams (M03) so the library is _structurally_ generic and
+  injection seams (G03) so the library is _structurally_ generic and
   CI-enforced; move individual app-specific screens to the app
   opportunistically as `edi` needs them, keeping a clearly-marked
   `recipes/` area for shared-but- non-core compositions.
-- **D2: hard split now** — move every non-generic screen out in M03.
+- **D2: hard split now** — move every non-generic screen out in G03.
   Cleaner boundary immediately, but larger churn and risk while the web
   target work is in flight.
 
@@ -124,5 +124,5 @@ stable LTS is preferred and QtGraphs availability is confirmed on it).
 ### How to ratify
 
 For each: set status ✅/⛔, add a one-line rationale + date + owner, and
-(if overridden) the chosen option. The blocked design tasks (M01-T1,
-M02-T1, M04-T3, M03) read this file at their design step.
+(if overridden) the chosen option. The blocked design tasks (G01-T1,
+G02-T1, G04-T3, G03) read this file at their design step.

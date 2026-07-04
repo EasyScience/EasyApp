@@ -6,7 +6,7 @@
 - **Targets:** web
 - **Found:** 2026-07 GUI base audit
 - **Related:** I-0004 (CMake migration supersedes the hand-qrc), I-0009,
-  I-0013, I-0020; milestone M01; evidence
+  I-0013, I-0020; milestone G01; evidence
   [findings-wasm-web.md](../audit-2026-07/findings-wasm-web.md)
 
 ## Problem
@@ -55,7 +55,7 @@ The QMake project has the same stale path:
 **Recommended:** do not repair the hand-written `.qrc` — replace the
 whole mechanism with a CMake `qt_add_qml_module` build (I-0004), which
 auto-generates the resource manifest from the module's actual files and
-cannot drift. Track this fix under M01-T2 (CMake) and only do the
+cannot drift. Track this fix under G01-T2 (CMake) and only do the
 minimal repair below if a stop-gap WASM build is needed _before_ CMake
 lands.
 

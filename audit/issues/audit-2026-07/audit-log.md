@@ -102,7 +102,7 @@ jobs). Outcome:
 5. **I-0003 wording** — the WASM settings mechanism is stated as "Qt's
    browser storage backend, verify localStorage-vs-IndexedDB on the
    pinned Qt" rather than asserting `localStorage`.
-6. **Cross-reference fix** — M02-T1/M02-T2/strategy referred to the
+6. **Cross-reference fix** — G02-T1/G02-T2/strategy referred to the
    chart choice as "Decision C"; the decision record has charts as
    **Decision A** (C is the template framing). All references aligned;
    packets updated for the A/B ratifications (2026-07-03).

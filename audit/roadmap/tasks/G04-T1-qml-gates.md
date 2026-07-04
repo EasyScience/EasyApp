@@ -1,9 +1,9 @@
-# M04-T1: qmllint + qmlformat gates; un-manual pre-commit; strip console/dead code
+# G04-T1: qmllint + qmlformat gates; un-manual pre-commit; strip console/dead code
 
 - **Class:** standard
-- **Status:** blocked (qmllint needs the M01-T1 module identities; the
+- **Status:** blocked (qmllint needs the G01-T1 module identities; the
   pre-commit/grep parts could start earlier if needed)
-- **Depends:** M01-T1
+- **Depends:** G01-T1
 - **Issues:**
   [I-0026](../../issues/open/I-0026-precommit-manual-no-qml-gate.md),
   [I-0021](../../issues/open/I-0021-console-debug-and-dead-code.md)
@@ -32,15 +32,15 @@ starts green.
   commented-out dead code, remove/flag-guard `console.*` in the 18
   files, singleton change-logging off by default).
 - **Out:** fixing what `qmllint` finds beyond formatting/dead code
-  (private-API findings go to M05-T1; record them); the tests themselves
-  (M04-T2).
+  (private-API findings go to G05-T1; record them); the tests themselves
+  (G04-T2).
 
 ## Plan
 
 1. Add a `qmllint` configuration (settings file with the import paths of
-   the M01 modules); run it over every module; triage output into (a)
+   the G01 modules); run it over every module; triage output into (a)
    fix-here (format, unqualified access, dead code) and (b)
-   record-for-M05 (`.impl`, etc.).
+   record-for-G05 (`.impl`, etc.).
 2. Do the I-0021 sweep per its §Suggested fix (steps 1–4).
 3. Add pixi tasks + pre-commit hooks (default stages, not manual) + a CI
    job; add the grep gates as a small script (`tools/check_gates.sh` or
@@ -51,7 +51,7 @@ starts green.
 
 - pixi tasks, pre-commit config with active stages, CI job, `tools` gate
   script, the I-0021 cleanup diff, and a recorded list of deferred
-  qmllint findings for M05.
+  qmllint findings for G05.
 
 ## Acceptance gates
 
@@ -72,5 +72,5 @@ between local and CI.
 
 ## Definition of done
 
-I-0026 + I-0021 met and closed; deferred-findings list handed to M05-T1;
+I-0026 + I-0021 met and closed; deferred-findings list handed to G05-T1;
 `status.yml` updated.

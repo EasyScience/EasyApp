@@ -5,7 +5,7 @@
 - **Area:** docs
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0001, I-0020; milestone M08
+- **Related:** I-0001, I-0020; milestone G08
 
 ## Problem
 

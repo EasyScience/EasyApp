@@ -5,7 +5,7 @@
 - **Area:** docs
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit (round 2)
-- **Related:** I-0019, I-0025; milestone M08
+- **Related:** I-0019, I-0025; milestone G08
 
 ## Problem
 
@@ -42,7 +42,7 @@ referenced assets/pins, not the example set.)
    CI Qt version (state the supported range once, ideally referencing
    the Decision E Qt baseline).
 4. Add a docs link-check (e.g. a markdown link checker over `*.md`) to
-   CI so broken repo-relative references fail (fits M08 docs work).
+   CI so broken repo-relative references fail (fits G08 docs work).
 
 ## Acceptance criteria
 

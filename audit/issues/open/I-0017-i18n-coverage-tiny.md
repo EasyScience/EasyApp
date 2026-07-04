@@ -5,7 +5,7 @@
 - **Area:** qml
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0029 (translator wiring); milestone M07
+- **Related:** I-0029 (translator wiring); milestone G07
 
 ## Problem
 

@@ -6,7 +6,7 @@
 - **Targets:** web
 - **Found:** 2026-07 GUI base audit
 - **Related:** I-0001 (shipped _because_ of this gap), I-0004, I-0010;
-  milestone M01
+  milestone G01
 
 ## Problem
 

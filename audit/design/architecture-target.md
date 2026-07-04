@@ -107,10 +107,10 @@ capability, not scattered (today the `Settings` bug is copy-pasted 11×).
 
 - **`edi` desktop app** — QML/PySide, declares its pages +
   `ApplicationInfo`, styles via `Style` tokens, uses
-  `Components`/`Elements`/`Charts` façades. Ready after M03
-  (decoupled) + M04 (gated).
+  `Components`/`Elements`/`Charts` façades. Ready after G03
+  (decoupled) + G04 (gated).
 - **`edi` web app** — the same QML compiled for WASM via CMake. Ready
-  after M01 + M02 (renders on WASM).
+  after G01 + G02 (renders on WASM).
 - **`edi` shared session layer** — theme/settings/page-model/undo state,
   injected through the seams above; a single place both surfaces share.
-  Formalised in M09.
+  Formalised in G09.

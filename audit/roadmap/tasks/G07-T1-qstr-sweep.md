@@ -1,9 +1,9 @@
-# M07-T1: qsTr sweep + lupdate extraction
+# G07-T1: qsTr sweep + lupdate extraction
 
 - **Class:** standard
-- **Status:** blocked (wants M03 done first — no point translating
-  strings that are moving out — and M04-T2's smoke as the net)
-- **Depends:** M03, M04-T2
+- **Status:** blocked (wants G03 done first — no point translating
+  strings that are moving out — and G04-T2's smoke as the net)
+- **Depends:** G03, G04-T2
 - **Issues:** [I-0017](../../issues/open/I-0017-i18n-coverage-tiny.md)
 - **Anchors:**
   [modern-qt-guidelines.md §7](../../design/modern-qt-guidelines.md)
@@ -24,7 +24,7 @@ regressing.
   (allowlistable) per I-0017; the style-guide rule already exists
   (guidelines §7).
 - **Out:** actually _translating_ (no second language shipped here); the
-  translator runtime (M07-T2); example-app strings (sweep
+  translator runtime (G07-T2); example-app strings (sweep
   opportunistically but don't gate on them).
 
 ## Plan

@@ -5,7 +5,7 @@
 - **Area:** process
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0011, I-0017, I-0025, I-0028; milestone M08
+- **Related:** I-0011, I-0017, I-0025, I-0028; milestone G08
 
 ## Problem
 

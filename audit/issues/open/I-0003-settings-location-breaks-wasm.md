@@ -5,7 +5,7 @@
 - **Area:** wasm-web
 - **Targets:** web
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0002; milestone M02; evidence
+- **Related:** I-0002; milestone G02; evidence
   [findings-wasm-web.md](../audit-2026-07/findings-wasm-web.md)
 
 ## Problem

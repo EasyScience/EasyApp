@@ -119,7 +119,7 @@ works, but subtle; pin with a test.
 
 ## Net
 
-Decoupling (roadmap M03) is the gate for `edi` adopting the base: remove
+Decoupling (roadmap G03) is the gate for `edi` adopting the base: remove
 page enums (host-supplied model), parameterise product identity
 (injected `ApplicationInfo`), lift the updater and the tutorial/QtTest
 harness out of the core, and fix the Maintenance parse/fetch bugs as

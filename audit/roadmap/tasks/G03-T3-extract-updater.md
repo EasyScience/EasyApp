@@ -1,8 +1,8 @@
-# M03-T3: Lift the auto-updater out of the base window into the app
+# G03-T3: Lift the auto-updater out of the base window into the app
 
 - **Class:** standard
 - **Status:** ready
-- **Depends:** — (touches the same files as M03-T1/I-0028; sequence to
+- **Depends:** — (touches the same files as G03-T1/I-0028; sequence to
   avoid conflicts)
 - **Issues:**
   [I-0007](../../issues/open/I-0007-updater-embedded-in-base-window.md),
@@ -24,7 +24,7 @@ into the consuming app, carrying the crash/redundant-fetch fixes.
   optional hook (host may assign an `updateService`); move
   `Logic/Maintenance.py` + `Logic/Maintenance/Updater.qml` to the app
   (beta/`edi`) and apply the I-0008 fixes there.
-- **Out:** the base-window rename (I-0028/M05) — but coordinate since
+- **Out:** the base-window rename (I-0028/G05) — but coordinate since
   both edit this file.
 
 ## Plan
@@ -72,4 +72,4 @@ relocated).
 
 ## Definition of done
 
-I-0007 + I-0008 met; `status.yml` M03-T3 → done.
+I-0007 + I-0008 met; `status.yml` G03-T3 → done.

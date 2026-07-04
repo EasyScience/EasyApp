@@ -1,9 +1,9 @@
-# M05-T3: HiDPI/sizing cleanup — FontMetrics, named tokens, no manual double-scaling
+# G05-T3: HiDPI/sizing cleanup — FontMetrics, named tokens, no manual double-scaling
 
 - **Class:** standard
-- **Status:** draft (promote to ready once M05-T1/T2 land; touches the
+- **Status:** draft (promote to ready once G05-T1/T2 land; touches the
   same Style files)
-- **Depends:** M05-T2
+- **Depends:** G05-T2
 - **Issues:**
   [I-0024](../../issues/open/I-0024-manual-scaling-vs-hidpi.md)
 - **Anchors:**

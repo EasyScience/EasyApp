@@ -47,7 +47,7 @@ audit/
 ├── roadmap/
 │   ├── index.md              ← phases, milestone ordering, how a task is run
 │   ├── status.yml            ← single source of truth for milestone/task progress
-│   └── tasks/                ← one packet per one-session task: M##-T##-slug.md
+│   └── tasks/                ← one packet per one-session task: G##-T##-slug.md
 ├── milestones/               ← externally-checkable capability deliverables
 ├── design/                   ← the analysis, target architecture, Qt best-practices, decisions
 └── process/                  ← operator playbook + how to write for junior agents

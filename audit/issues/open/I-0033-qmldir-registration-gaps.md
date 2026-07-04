@@ -6,7 +6,7 @@
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit (round 2)
 - **Related:** I-0009, I-0004 (generated qmldir supersedes), I-0013;
-  milestone M01
+  milestone G01
 
 ## Problem
 
@@ -44,10 +44,10 @@ include/exclude decision for each currently-unlisted file:
    dependency of `RadioButton`).
 2. `ChartViewSimple1dPlotly.qml` / `ChartViewHeatmap2dPlotly.qml` → do
    **not** carry into the new Charts module; they are WebEngine-based
-   and are deleted by M02-T2 (I-0002). Until then, note them as
+   and are deleted by G02-T2 (I-0002). Until then, note them as
    legacy-URL-only.
 
-**Stop-gap (only if the hand-written qmldir outlives M01-T1):** add the
+**Stop-gap (only if the hand-written qmldir outlives G01-T1):** add the
 `RadioIndicator 1.0 RadioIndicator.qml` line to `Gui/Elements/qmldir`.
 
 ## Acceptance criteria

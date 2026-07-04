@@ -1,17 +1,17 @@
-# M02-T2: 2-D/3-D charts and the report without WebEngine
+# G02-T2: 2-D/3-D charts and the report without WebEngine
 
 - **Class:** standard
-- **Status:** blocked (needs M02-T1's façade + chosen library)
-- **Depends:** M02-T1
+- **Status:** blocked (needs G02-T1's façade + chosen library)
+- **Depends:** G02-T1
 - **Issues:**
   [I-0002](../../issues/open/I-0002-charts-reports-require-qtwebengine.md)
   (remaining users)
-- **Anchors:** M02-T1 façade + Decision A (ratified: QtGraphs)
+- **Anchors:** G02-T1 façade + Decision A (ratified: QtGraphs)
 
 ## Goal
 
 Bring the 2-D heatmap, polar heatmap, 3-D scatter/surface, and the
-report to the native, WASM-safe stack established in M02-T1, then delete
+report to the native, WASM-safe stack established in G02-T1, then delete
 the Plotly/WebEngine files so **no** shipped code imports `QtWebEngine`.
 
 ## Scope
@@ -29,7 +29,7 @@ the Plotly/WebEngine files so **no** shipped code imports `QtWebEngine`.
 
 ## Plan
 
-1. Implement the 2-D/3-D façade types on the M02-T1 library (QtGraphs
+1. Implement the 2-D/3-D façade types on the G02-T1 library (QtGraphs
    covers surfaces/heatmaps natively).
 2. Reimplement `BasicReport` without WebEngine (render
    Markdown/RichText; export via PDF writer).
@@ -52,4 +52,4 @@ size drop; report export still works.
 
 ## Definition of done
 
-I-0002 fully closed; `status.yml` M02-T2 → done.
+I-0002 fully closed; `status.yml` G02-T2 → done.

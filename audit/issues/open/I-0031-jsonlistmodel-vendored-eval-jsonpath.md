@@ -5,7 +5,7 @@
 - **Area:** qml
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit (round 2)
-- **Related:** I-0011 (same modernisation batch); milestone M05
+- **Related:** I-0011 (same modernisation batch); milestone G05
 
 ## Problem
 

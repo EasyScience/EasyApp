@@ -1,18 +1,18 @@
 # Milestone 02 — Render everywhere (charts & settings that work on WASM)
 
 - **Phase:** I · **Priority:** 5/5 · **Status:** planned · **Depends:**
-  M01
+  G01
 - **Bundles:**
   [I-0002](../issues/open/I-0002-charts-reports-require-qtwebengine.md),
   [I-0016](../issues/open/I-0016-charts-reload-on-resize.md),
   [I-0003](../issues/open/I-0003-settings-location-breaks-wasm.md)
-- **Tasks:** [M02-T1](../roadmap/tasks/M02-T1-charting-facade.md) ·
-  [M02-T2](../roadmap/tasks/M02-T2-charts-2d-3d-report.md) ·
-  [M02-T3](../roadmap/tasks/M02-T3-settings-facade.md)
+- **Tasks:** [G02-T1](../roadmap/tasks/G02-T1-charting-facade.md) ·
+  [G02-T2](../roadmap/tasks/G02-T2-charts-2d-3d-report.md) ·
+  [G02-T3](../roadmap/tasks/G02-T3-settings-facade.md)
 
 ## Why
 
-Even once the WASM app _builds_ (M01), it cannot show a plot or a report
+Even once the WASM app _builds_ (G01), it cannot show a plot or a report
 (they need `QtWebEngine`, absent on WASM) and cannot persist settings
 (`Settings{location}` throws in the browser). For a diffraction-analysis
 GUI the plot **is** the app, so this milestone is what makes the web
@@ -33,9 +33,9 @@ target actually usable.
 
 ## Sequence
 
-`M02-T3` (settings façade) is independent and can start immediately
-(even in parallel with M01). `M02-T1` (1-D façade + chosen library)
-needs M01; `M02-T2` (2-D/3-D + report, delete Plotly) needs T1.
+`G02-T3` (settings façade) is independent and can start immediately
+(even in parallel with G01). `G02-T1` (1-D façade + chosen library)
+needs G01; `G02-T2` (2-D/3-D + report, delete Plotly) needs T1.
 
 ## Explicitly deferred
 

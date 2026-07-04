@@ -5,7 +5,7 @@
 - **Area:** reusability
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0006, I-0008; milestone M03; evidence
+- **Related:** I-0006, I-0008; milestone G03; evidence
   [findings-reusability-python.md](../audit-2026-07/findings-reusability-python.md)
 
 ## Problem

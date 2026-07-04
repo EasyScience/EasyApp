@@ -77,7 +77,7 @@ detected elsewhere: `Sizes.qml:22-26` branches on
 settings storage. The fix direction: default-constructed settings (no
 file `location:`) persist through Qt's browser storage backend on WASM —
 the exact mechanism (localStorage vs IndexedDB, readiness caveats) must
-be verified on the pinned Qt during M02-T3, not assumed.
+be verified on the pinned Qt during G02-T3, not assumed.
 
 ## 4. WASM CI is dispatch-only → nothing catches §1–3 (I-0005)
 
@@ -110,6 +110,6 @@ ignores its argument.
 
 Fixing §1 alone (rename paths) does **not** deliver a web app; §2
 (WebEngine) and §3 (settings) are structural. The recommended order
-(roadmap M01→M02): unbreak the build + move to CMake so the manifest
+(roadmap G01→G02): unbreak the build + move to CMake so the manifest
 can't drift (§1), gate it in CI (§4), then replace WebEngine charts with
 a native WASM-capable façade and add a settings façade (§2, §3, §5).

@@ -1,9 +1,9 @@
-# M09-T1: edi handoff — semver, the shared-session-layer seam, beta→components migration guide
+# G09-T1: edi handoff — semver, the shared-session-layer seam, beta→components migration guide
 
 - **Class:** design
-- **Status:** draft (activates when M02+M03+M05+M08 are done — it
+- **Status:** draft (activates when G02+G03+G05+G08 are done — it
   packages their results)
-- **Depends:** M02, M03, M05, M08
+- **Depends:** G02, G03, G05, G08
 - **Issues:** — (forward-looking; consumes the closed Phase-I/II issues)
 - **Anchors:**
   [architecture-target.md §edi consumption](../../design/architecture-target.md);
@@ -42,7 +42,7 @@ its hardened-base equivalent.
 ## Plan
 
 1. Draft the seam contract from `architecture-target.md` + the as-built
-   M02/M03 APIs; freeze it with the owner.
+   G02/G03 APIs; freeze it with the owner.
 2. Tag the first semver release (v1.0.0 of the hardened base) with the
    CHANGELOG.
 3. Write the migration guide against the real beta repo (walk its
@@ -66,11 +66,11 @@ its hardened-base equivalent.
 
 ## Review focus
 
-That the seams documented match what M02/M03 actually shipped (no
+That the seams documented match what G02/G03 actually shipped (no
 aspirational API in the contract); breaking-change definition is
 unambiguous.
 
 ## Definition of done
 
-edi's E03 unblocked with a versioned base; `status.yml` updated (M09
+edi's E03 unblocked with a versioned base; `status.yml` updated (G09
 done = Phase III complete).

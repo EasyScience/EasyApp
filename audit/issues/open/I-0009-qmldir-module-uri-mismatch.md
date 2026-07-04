@@ -6,7 +6,7 @@
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
 - **Related:** I-0004 (CMake fixes this by construction), I-0011;
-  milestone M01
+  milestone G01
 
 ## Problem
 

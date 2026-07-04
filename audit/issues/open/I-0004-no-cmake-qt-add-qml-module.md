@@ -5,7 +5,7 @@
 - **Area:** build
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0001, I-0009, I-0011, I-0020; milestone M01;
+- **Related:** I-0001, I-0009, I-0011, I-0020; milestone G01;
   [decisions-to-confirm.md §build](../../design/decisions-to-confirm.md);
   evidence
   [findings-build-qml.md](../audit-2026-07/findings-build-qml.md)

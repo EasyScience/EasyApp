@@ -1,9 +1,9 @@
-# M##-T##: <title>
+# G##-T##: <title>
 
 - **Class:** design | standard | mechanical
 - **Status:** draft | ready | active | blocked | done — `status.yml` is
   **authoritative**; mirror it here
-- **Depends:** <M##-T## | —>
+- **Depends:** <G##-T## | —>
 - **Issues:** <I-NNNN links this task closes | —>
 - **Anchors:** <design docs, guideline §, evidence files>
 

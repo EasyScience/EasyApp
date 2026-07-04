@@ -5,7 +5,7 @@
 - **Area:** build
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0004; milestone M06
+- **Related:** I-0004; milestone G06
 
 ## Problem
 

@@ -5,7 +5,7 @@
 - **Area:** qml
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0007, I-0010; milestone M03
+- **Related:** I-0007, I-0010; milestone G03
 
 ## Problem
 

@@ -1,9 +1,9 @@
-# M04-T3: Template/tooling framing decision (Python-lib template → GUI-aware)
+# G04-T3: Template/tooling framing decision (Python-lib template → GUI-aware)
 
 - **Class:** design (Decision C — owner ratification required before
   executing)
 - **Status:** draft
-- **Depends:** M04-T1 (so the QML tooling to be templated actually
+- **Depends:** G04-T1 (so the QML tooling to be templated actually
   exists)
 - **Issues:**
   [I-0018](../../issues/open/I-0018-scaffolded-from-python-lib-template.md)
@@ -28,7 +28,7 @@ bolt-on (C2) with a tracked follow-up.
   `copier update` here against it; if C2: document the divergence from
   the template and disable `copier update` steps that would overwrite
   the QML additions.
-- **Out:** the tooling itself (built in M01/M04); edi's scaffolding
+- **Out:** the tooling itself (built in G01/G04); edi's scaffolding
   (edi's E01 consumes the outcome).
 
 ## Plan
@@ -37,7 +37,7 @@ bolt-on (C2) with a tracked follow-up.
    [decisions-to-confirm.md](../../design/decisions-to-confirm.md)
    (owner).
 2. C1 path: open a PR to `easyscience/templates` adding the GUI variant
-   (source of truth = what M01/M04 built here); once merged, run
+   (source of truth = what G01/G04 built here); once merged, run
    `pixi run copier-update` with the new answers and verify nothing
    regresses (`git diff` review + full gate suite).
 3. C2 path: add a `docs`/CONTRIBUTING note listing the intentional
@@ -45,8 +45,8 @@ bolt-on (C2) with a tracked follow-up.
    them.
 4. Either way: re-evaluate the inherited Python-lib assumptions flagged
    by the audit — docstring coverage as a primary metric, the
-   `fitting`/`scipp-analysis` test folders (deleted in M04-T2), the
-   numpy dependency (M06-T2).
+   `fitting`/`scipp-analysis` test folders (deleted in G04-T2), the
+   numpy dependency (G06-T2).
 
 ## Deliverables
 

@@ -6,7 +6,7 @@
 - **Targets:** web
 - **Found:** 2026-07 GUI base audit
 - **Related:** I-0016 (the same charts are slow even on desktop),
-  I-0003; milestone M02;
+  I-0003; milestone G02;
   [decisions-to-confirm.md §charts](../../design/decisions-to-confirm.md);
   evidence [findings-wasm-web.md](../audit-2026-07/findings-wasm-web.md)
 

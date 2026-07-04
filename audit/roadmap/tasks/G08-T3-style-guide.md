@@ -1,9 +1,9 @@
-# M08-T3: Publish & enforce the QML style guide
+# G08-T3: Publish & enforce the QML style guide
 
 - **Class:** standard
 - **Status:** ready (the guide draft exists; publication + enforcement
-  wiring can start any time, enforcement depth grows with M04)
-- **Depends:** — (enforcement rows depend on M04-T1's gate script
+  wiring can start any time, enforcement depth grows with G04)
+- **Depends:** — (enforcement rows depend on G04-T1's gate script
   existing)
 - **Issues:** [I-0030](../../issues/open/I-0030-no-qml-style-guide.md)
 - **Anchors:**
@@ -27,14 +27,14 @@ having a junior agent add a component by following it alone.
   with the actual script/lint rule names as they land); a "new component
   checklist" one-pager distilled from it (file layout, naming, tokens,
   qsTr, test, gallery entry).
-- **Out:** building the gates themselves (M04-T1); rewriting the guide's
+- **Out:** building the gates themselves (G04-T1); rewriting the guide's
   content (amend only where enforcement work reveals a rule is
   untestable as written).
 
 ## Plan
 
 1. Decide canonical location (recommend: keep in `audit/design/`,
-   surface in the docs nav via the M08-T2 knowledge wiring; until then
+   surface in the docs nav via the G08-T2 knowledge wiring; until then
    link it from CONTRIBUTING and the repo README).
 2. Write the new-component checklist page; link both from CONTRIBUTING.
 3. Sync the Enforcement summary table with the real gate implementations

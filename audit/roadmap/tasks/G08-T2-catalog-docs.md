@@ -1,8 +1,8 @@
-# M08-T2: Component catalog docs + knowledge base wired into the site
+# G08-T2: Component catalog docs + knowledge base wired into the site
 
 - **Class:** standard
-- **Status:** draft (promote once M08-T1 exists to screenshot from)
-- **Depends:** M08-T1
+- **Status:** draft (promote once G08-T1 exists to screenshot from)
+- **Depends:** G08-T1
 - **Issues:**
   [I-0025](../../issues/open/I-0025-no-component-docs-gallery.md)
   (catalog half)
@@ -27,7 +27,7 @@ api-reference stubs are replaced.
   tokens / Guides / Knowledge); wire `audit/` into the nav (or publish
   it as a section, crysta-style); a QML doc-comment convention added to
   the style guide.
-- **Out:** the gallery app (M08-T1); tutorial-style guides beyond one
+- **Out:** the gallery app (G08-T1); tutorial-style guides beyond one
   "build a small app on the base" walkthrough.
 
 ## Plan
@@ -64,4 +64,4 @@ properties sanely or skips them explicitly.
 
 ## Definition of done
 
-I-0025 closed (with M08-T1); `status.yml` updated.
+I-0025 closed (with G08-T1); `status.yml` updated.

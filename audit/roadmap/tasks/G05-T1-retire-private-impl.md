@@ -1,14 +1,14 @@
-# M05-T1: Replace/wrap the private `QtQuick.Controls.impl` usages
+# G05-T1: Replace/wrap the private `QtQuick.Controls.impl` usages
 
 - **Class:** standard
-- **Status:** blocked (needs the M04-T1 qmllint findings list + M04-T2
+- **Status:** blocked (needs the G04-T1 qmllint findings list + G04-T2
   smoke test as the safety net)
-- **Depends:** M04-T1, M04-T2
+- **Depends:** G04-T1, G04-T2
 - **Issues:**
   [I-0011](../../issues/open/I-0011-private-controls-impl-imports.md)
 - **Anchors:**
   [modern-qt-guidelines.md §2](../../design/modern-qt-guidelines.md);
-  the M04-T1 deferred-findings list
+  the G04-T1 deferred-findings list
 
 ## Goal
 
@@ -27,17 +27,17 @@ upgrades can't silently break the controls. `QtQuick.Templates`
   same-named elements; a CI grep gate with the (ideally empty)
   allowlist.
 - **Out:** visual redesign (pixel-parity is the goal); the base-window
-  rename (M05-T2); Templates usage (keep).
+  rename (G05-T2); Templates usage (keep).
 
 ## Plan
 
-1. Take the M04-T1 findings list; group the 21 files by private type
+1. Take the G04-T1 findings list; group the 21 files by private type
    used.
 2. Introduce the single wrapper (`EaIconLabel`) first; mechanically
    migrate its users; then the indicator/placeholder swaps file-by-file.
 3. After each group: run the smoke test + eyeball the gallery/example
    app in light **and** dark.
-4. Add the allowlist grep gate to `tools/check_gates.sh` (from M04-T1).
+4. Add the allowlist grep gate to `tools/check_gates.sh` (from G04-T1).
 
 ## Deliverables
 

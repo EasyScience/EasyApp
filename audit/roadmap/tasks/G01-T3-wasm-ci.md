@@ -1,9 +1,9 @@
-# M01-T3: WASM build in CI (enable triggers, credential-free Qt, cheaper runner)
+# G01-T3: WASM build in CI (enable triggers, credential-free Qt, cheaper runner)
 
 - **Class:** standard
 - **Status:** ready (can run before T1 against the current qmake build;
   re-point at CMake after T1)
-- **Depends:** — (hardens after M01-T1/T2)
+- **Depends:** — (hardens after G01-T1/T2)
 - **Issues:**
   [I-0005](../../issues/open/I-0005-wasm-ci-dispatch-only.md)
 - **Anchors:** `.github/workflows/wasm.yml`
@@ -22,7 +22,7 @@ cheap Linux runner.
   `ubuntu-latest`; fail the job if artifacts are missing or empty; keep
   the `webapp` deploy gated to `master`.
 - **Out:** the CMake migration itself (T1/T2) — this task adapts
-  whichever build exists; charts (M02).
+  whichever build exists; charts (G02).
 
 ## Plan
 
@@ -38,12 +38,12 @@ cheap Linux runner.
    `arch: wasm_singlethread`, plus host Qt for tools) and set up emsdk
    (matching version per the existing comments). Move `runs-on` to
    `ubuntu-latest`.
-3. Build step: keep `qmake -spec wasm-emscripten` **until** M01-T2
+3. Build step: keep `qmake -spec wasm-emscripten` **until** G01-T2
    lands, then switch to `qt-cmake --preset wasm && cmake --build`.
 4. Add a smoke assertion after build: the expected `*.wasm` and `*.html`
    exist and are non-empty (extend the existing
    `if-no-files-found: error`). Optionally serve headless and check the
-   page loads (once the smoke test from M04-T2 exists).
+   page loads (once the smoke test from G04-T2 exists).
 5. Keep the push-to-`webapp`-branch deploy step, but only
    `if: github.ref == 'refs/heads/master'`.
 6. Mark the job **required** in branch protection.
@@ -74,4 +74,4 @@ it).
 
 ## Definition of done
 
-I-0005 acceptance met; `status.yml` M01-T3 → done.
+I-0005 acceptance met; `status.yml` G01-T3 → done.

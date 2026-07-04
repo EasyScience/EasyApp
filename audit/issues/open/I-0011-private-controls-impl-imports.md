@@ -6,7 +6,7 @@
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
 - **Related:** I-0004, I-0009 (needed to run qmllint that catches this),
-  I-0028; milestone M04/M05
+  I-0028; milestone G04/G05
 
 ## Problem
 

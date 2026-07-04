@@ -8,9 +8,9 @@
   [I-0007](../issues/open/I-0007-updater-embedded-in-base-window.md),
   [I-0008](../issues/open/I-0008-maintenance-indexerror-double-fetch.md),
   [I-0012](../issues/open/I-0012-qttest-qtmultimedia-in-shipped-lib.md)
-- **Tasks:** [M03-T1](../roadmap/tasks/M03-T1-page-model.md) ·
-  [M03-T2](../roadmap/tasks/M03-T2-application-info.md) ·
-  [M03-T3](../roadmap/tasks/M03-T3-extract-updater.md) · M03-T4 (follow
+- **Tasks:** [G03-T1](../roadmap/tasks/G03-T1-page-model.md) ·
+  [G03-T2](../roadmap/tasks/G03-T2-application-info.md) ·
+  [G03-T3](../roadmap/tasks/G03-T3-extract-updater.md) · G03-T4 (follow
   I-0012)
 
 ## Why
@@ -21,35 +21,35 @@ global singleton names the science app's pages, its logger reads
 EasyDiffraction's servers for updates, and a `QtTest`-driven tutorial
 harness ships inside it. `edi` cannot adopt this base without inheriting
 all of it. Decoupling is a **prerequisite**, not a nicety — and it can
-run in parallel with M01 (different files).
+run in parallel with G01 (different files).
 
 ## Definition of done
 
 1. `Gui/Globals/Vars.qml` has no app-page enum and no param-name-format
    enum; the app bar/content render pages from a **host-supplied model**
-   (M03-T1).
+   (G03-T1).
 2. No product-name literal anywhere in `src/`
    (`grep -Rin easydiffraction src/` → ∅, CI-enforced); logging/settings
    identity is injected via `ApplicationInfo`; importing `Logging` does
-   no file I/O (M03-T2).
+   no file I/O (G03-T2).
 3. The base `ApplicationWindow` has no updater/network/`QProcess`;
    update-checking is an optional host service; the EDI updater (with
-   the I-0008 crash/fetch fixes) lives in the app (M03-T3).
+   the I-0008 crash/fetch fixes) lives in the app (G03-T3).
 4. No `QtTest`/`QtMultimedia` in the shipped library; the tutorial
-   harness is relocated or reimplemented without test modules (M03-T4).
+   harness is relocated or reimplemented without test modules (G03-T4).
 
 ## Sequence
 
-`M03-T1`, `M03-T2`, `M03-T3`, `M03-T4` are largely independent; T1/T3
+`G03-T1`, `G03-T2`, `G03-T3`, `G03-T4` are largely independent; T1/T3
 both touch the window files, so sequence those (and coordinate with the
-I-0028 rename in M05). All can run in parallel with M01.
+I-0028 rename in G05). All can run in parallel with G01.
 
 ## Explicitly deferred
 
 - Moving diffraction-specific _screens_ into the app entirely (can be
   incremental after the seams exist).
-- The i18n/translator cleanup (**M07**) and docs of the new seams
-  (**M08**).
+- The i18n/translator cleanup (**G07**) and docs of the new seams
+  (**G08**).
 
 ## Success criteria
 

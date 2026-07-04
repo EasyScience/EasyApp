@@ -32,8 +32,8 @@ improvise beyond them.
 
 8. Make the packet's `## Acceptance gates` **all** green. For this repo
    that always includes the relevant subset of:
-   - `qmllint` clean · `qmlformat --check` clean (once M04 exists),
-   - the **QML smoke-load** test green (once M04-T2 exists),
+   - `qmllint` clean · `qmlformat --check` clean (once G04 exists),
+   - the **QML smoke-load** test green (once G04-T2 exists),
    - the **desktop example runs** (window renders, no console QML
      errors),
    - the **WASM example builds and renders** (for web-affecting tasks),

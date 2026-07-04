@@ -5,7 +5,7 @@
 - **Area:** qml
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0026 (a lint gate prevents recurrence); milestone M04
+- **Related:** I-0026 (a lint gate prevents recurrence); milestone G04
 
 ## Problem
 

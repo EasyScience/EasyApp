@@ -1,8 +1,8 @@
-# M03-T4: Lift the tutorial/QtTest harness out of the core library
+# G03-T4: Lift the tutorial/QtTest harness out of the core library
 
 - **Class:** standard
 - **Status:** ready
-- **Depends:** — (independent of M03-T1..T3; touches only the harness
+- **Depends:** — (independent of G03-T1..T3; touches only the harness
   files)
 - **Issues:**
   [I-0012](../../issues/open/I-0012-qttest-qtmultimedia-in-shipped-lib.md)
@@ -28,7 +28,7 @@ app's test tree.
   depend on the harness.
 - **Out:** building a replacement in-app tour feature (only if the owner
   asks; then without `QtTest`, per the issue's step 2); the page model
-  (M03-T1).
+  (G03-T1).
 
 ## Plan
 
@@ -36,7 +36,7 @@ Follow
 [I-0012 §Suggested fix](../../issues/open/I-0012-qttest-qtmultimedia-in-shipped-lib.md)
 steps 1–4. Concretely: create `tools/qml-harness/` (or the consuming
 app's tests tree) as the new home; move the files; drop them from
-`Elements/qmldir` (or the CMake module list post-M01);
+`Elements/qmldir` (or the CMake module list post-G01);
 `grep -R "RemoteController\|RemotePointer" src examples` and fix any
 dangling references.
 
@@ -49,7 +49,7 @@ dangling references.
 ## Acceptance gates
 
 - `grep -rn "import QtTest\|import QtMultimedia" src/` → nothing.
-- The QML smoke-load test (M04-T2, once present) passes without the
+- The QML smoke-load test (G04-T2, once present) passes without the
   `QtTest`/`QtMultimedia` modules installed; the WASM build does not
   package the harness.
 - The example apps run unchanged.

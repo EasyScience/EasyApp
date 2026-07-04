@@ -1,9 +1,9 @@
-# M04-T2: Qt Quick Test smoke-load + unit tests; delete the dummy tests
+# G04-T2: Qt Quick Test smoke-load + unit tests; delete the dummy tests
 
 - **Class:** standard
 - **Status:** ready (the smoke test is valuable even before CMake;
-  deepen after M01)
-- **Depends:** — (stronger with M01-T1 modules; can start against the
+  deepen after G01)
+- **Depends:** — (stronger with G01-T1 modules; can start against the
   PySide load path)
 - **Issues:** [I-0010](../../issues/open/I-0010-zero-real-tests.md)
 - **Anchors:**
@@ -28,7 +28,7 @@ tests. Delete the placeholder `test_dummy.py` files.
   headless (`QT_QPA_PLATFORM=offscreen`); delete dummy tests and the
   `fitting`/`scipp-analysis` dirs; raise the coverage floor off 0.
 - **Out:** exhaustive per-component tests (grow over time);
-  visual-regression/gallery (M08-T1).
+  visual-regression/gallery (G08-T1).
 
 ## Plan
 
@@ -79,4 +79,4 @@ revert).
 
 ## Definition of done
 
-I-0010 met; `status.yml` M04-T2 → done; unblocks the CI gates in M04-T1.
+I-0010 met; `status.yml` G04-T2 → done; unblocks the CI gates in G04-T1.

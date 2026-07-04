@@ -5,7 +5,7 @@
 - **Area:** ci
 - **Targets:** both
 - **Found:** 2026-07 GUI base audit
-- **Related:** I-0001, I-0005, I-0018, I-0026; milestone M04; evidence
+- **Related:** I-0001, I-0005, I-0018, I-0026; milestone G04; evidence
   [findings-governance-ci.md](../audit-2026-07/findings-governance-ci.md)
 
 ## Problem
