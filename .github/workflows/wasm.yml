@@ -26,6 +26,8 @@ jobs:
       # Emsdk 3.1.50 is needed for Qt 6.7
       # Emsdk 3.1.56 is needed for Qt 6.8
       # Emsdk 3.1.70 is needed for Qt 6.9
+      # Emsdk 4.0.7  is needed for Qt 6.10 and 6.11
+      # QT_VER="6.10.3" - WORKS :)
       # QT_VER="6.9.0" - WORKS :)
       # QT_VER="6.8.2" - FAILS :(
       - name: Set environment variables based on selected Qt version
@@ -33,10 +35,14 @@ jobs:
         shell: bash
         run: |
           # Select Qt version (change this to switch version)
-          QT_VER="6.9.0"
+          QT_VER="6.10.3"
 
           # Set matching installer and emsdk version
-          if [[ "$QT_VER" == "6.9.0" ]]; then
+          if [[ "$QT_VER" == "6.10.3" ]]; then
+            QT_VER_NO_DOTS="6103"
+            QT_INSTALLER_VER="4.9.0"
+            EMSDK_VER="4.0.7"
+          elif [[ "$QT_VER" == "6.9.0" ]]; then
             QT_VER_NO_DOTS="690"
             QT_INSTALLER_VER="4.9.0"
             EMSDK_VER="3.1.70"
