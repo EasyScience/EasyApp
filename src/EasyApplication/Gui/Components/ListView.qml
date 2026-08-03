@@ -226,7 +226,19 @@ ListView {
                 ? 2 * EaStyle.Sizes.tableRowHeight
                 : tableRowHeight * visibleRowCount + _headerHeight
 
-    clip: true
+    // WebAssembly: a layer instead of clip. See EaGlobals.Vars.isWasm.
+    //
+    // Both crop to this item's bounds, but a layer renders the subtree into
+    // its own texture and creates no clip node. On wasm a clip node here is
+    // lost whenever the scene is rebuilt - a tooltip appearing is enough -
+    // and this list's border and rows are then drawn outside the group box
+    // that should be hiding them.
+    //
+    // Cost: one texture the size of this list. Its height does not animate,
+    // so there is no per-frame re-rasterisation.
+    clip: !EaGlobals.Vars.isWasm
+    layer.enabled: EaGlobals.Vars.isWasm
+
     headerPositioning: ListView.OverlayHeader
     boundsBehavior: Flickable.StopAtBounds
     enabled: count > 0

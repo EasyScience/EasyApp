@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Controls.Material
 
+import EasyApplication.Gui.Globals as EaGlobals
 import EasyApplication.Gui.Style as EaStyle
 import EasyApplication.Gui.Elements as EaElements
 
@@ -38,7 +39,19 @@ Item {
 
         anchors.bottomMargin: EaStyle.Sizes.fontPixelSize
 
-        clip: true
+        // WebAssembly: a layer instead of clip. See EaGlobals.Vars.isWasm.
+        //
+        // A SwipeView is a ListView, so switching tabs slides its content.
+        // The pages either side are cropped by this clip, and on wasm a
+        // clipped item that moves past the edge of an enclosing clip is drawn
+        // outside it. Switching from Basic to Extra then paints the outgoing
+        // page over whatever sits beside the sidebar.
+        //
+        // A layer crops to the same bounds through a texture, with no clip
+        // node. Its size does not animate, so nothing is re-rasterised per
+        // frame.
+        clip: !EaGlobals.Vars.isWasm
+        layer.enabled: EaGlobals.Vars.isWasm
         interactive: false
 
         currentIndex: tabs.currentIndex

@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 
+import EasyApplication.Gui.Globals as EaGlobals
 import EasyApplication.Gui.Elements as EaElements
 
 Item {
@@ -27,7 +28,11 @@ Item {
         anchors.left: mainAreaContainer.left
         anchors.right: mainAreaContainer.right
 
-        clip: true
+        // WebAssembly: a layer instead of clip. See EaGlobals.Vars.isWasm and
+        // the longer note in SideBar.qml - the same applies to the main
+        // area's own tabs.
+        clip: !EaGlobals.Vars.isWasm
+        layer.enabled: EaGlobals.Vars.isWasm
         interactive: false
 
         currentIndex: tabs.currentIndex

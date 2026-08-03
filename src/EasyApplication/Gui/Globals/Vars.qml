@@ -9,6 +9,18 @@ import EasyApplication.Gui.Logic as EaLogic
 QtObject {
     id: object
 
+    // True when running in a browser through WebAssembly.
+    //
+    // Qt for WebAssembly loses a clip when the scene graph is rebuilt, or
+    // when a clipped item scrolls past the edge of an enclosing clip, and the
+    // hidden content is then drawn outside its container. Components that
+    // must crop something use a layer instead of clip when this is true. A
+    // layer crops to the same bounds but creates no clip node, at the cost of
+    // one texture.
+    //
+    // Desktop is unaffected and keeps plain clipping, which is cheaper.
+    readonly property bool isWasm: Qt.platform.os === 'wasm'
+
     // Python objects
     readonly property bool isTestMode: typeof pyIsTestMode !== "undefined" && pyIsTestMode !== null ?
                                           pyIsTestMode :

@@ -30,7 +30,23 @@ ListView {
                     tableRowHeight * (Math.min(count, maxRowCountShow) + 1 ) :
                     tableRowHeight * (Math.min(count, maxRowCountShow))
 
-    clip: true
+    // WebAssembly: a layer instead of clip.
+    //
+    // Both crop to this item's bounds, but a layer renders the subtree into
+    // its own texture and never creates a clip node. On wasm a clip node here
+    // is lost whenever the scene is rebuilt - a tooltip appearing is enough -
+    // and the table's border and rows are then drawn outside the group box
+    // that should be hiding them.
+    //
+    // Chosen over moving the border out of the list: the list's parent is
+    // GroupBox's contentItem, which is a Row, so reparenting anything into it
+    // changes the group's layout.
+    //
+    // Cost: one texture the size of this list. Its height does not animate,
+    // so there is no per-frame re-rasterisation.
+    clip: !EaGlobals.Vars.isWasm
+    layer.enabled: EaGlobals.Vars.isWasm
+
     headerPositioning: ListView.OverlayHeader
     boundsBehavior: Flickable.StopAtBounds
 
